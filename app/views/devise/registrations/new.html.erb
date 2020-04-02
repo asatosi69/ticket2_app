@@ -4,21 +4,26 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :sellername, '取扱者' %><br />
+    <%= f.text_field :sellername, autofocus: true, autocomplete: "取扱者" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :email, 'メールアドレス' %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, 'パスワード' %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "新しいパスワード" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :password_confirmation, 'パスワード（確認用）' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "新しいパスワード" %>
   </div>
 
   <div class="actions">
