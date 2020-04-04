@@ -1,0 +1,6 @@
+<h1>チケット情報を更新</h1>
+<%= form_for(@ticket) do |form| %>
+  <%= form.label :取扱者 %>
+  <%= form.collection_select :sellername, Seller.all, :sellername, :sellername, {prompt: "取扱者名"} %>
+  <%= form.submit "更新" %>
+<% end %>

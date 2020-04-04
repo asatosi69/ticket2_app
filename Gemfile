@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'pry-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

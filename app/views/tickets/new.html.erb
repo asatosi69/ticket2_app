@@ -1,0 +1,6 @@
+<h1>チケットを予約</h1>
+<%= form_for(@ticket) do |form| %>
+  <%= form.label :取扱者 %>
+  <%= form.collection_select(:sellername, Seller.all, :sellername, :sellername, {prompt: "取扱者名"}) %>
+  <%= form.submit "登録" %>
+<% end %>

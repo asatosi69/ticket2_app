@@ -5,4 +5,5 @@ class Seller< ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
          
+  has_many :tickets
 end
