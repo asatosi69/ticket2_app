@@ -1,3 +1,3 @@
 class Ticket < ApplicationRecord
-  belongs_to :seller, optional: true
+  belongs_to :seller
 end
