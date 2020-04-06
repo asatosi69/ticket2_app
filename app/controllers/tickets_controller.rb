@@ -9,6 +9,7 @@ class TicketsController < ApplicationController
 
   def create
       @Ticket = Ticket.new(params_ticket)
+
       @Ticket.save
       redirect_to("/tickets")
   end
@@ -33,7 +34,8 @@ class TicketsController < ApplicationController
   end
   
   private
-  def params_ticket
-    params.require(:ticket).permit(:name)
-  end
+   def params_ticket
+    params.require(:ticket).permit(:seller_id)
+   end
+  
 end
