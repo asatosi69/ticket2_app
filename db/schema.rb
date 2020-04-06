@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200404091820) do
+ActiveRecord::Schema.define(version: 20200406131559) do
 
   create_table "sellers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "",    null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20200404091820) do
     t.datetime "locked_at"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.string   "sellername"
+    t.string   "name"
     t.boolean  "admin_flag",             default: false, null: false
     t.index ["confirmation_token"], name: "index_sellers_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_sellers_on_email", unique: true, using: :btree
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20200404091820) do
   end
 
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "sellername"
+    t.integer  "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
