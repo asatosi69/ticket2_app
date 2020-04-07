@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200406131559) do
+ActiveRecord::Schema.define(version: 20200407100353) do
+
+  create_table "colors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "color_name"
+    t.string   "color_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "kinds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "kind"
+    t.integer  "seats"
+    t.integer  "price"
+    t.integer  "color_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "payment"
+    t.string   "abbreviation"
+    t.integer  "discount_rate"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "sellers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "",    null: false
@@ -40,10 +64,28 @@ ActiveRecord::Schema.define(version: 20200406131559) do
     t.index ["unlock_token"], name: "index_sellers_on_unlock_token", unique: true, using: :btree
   end
 
+  create_table "stages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "stage"
+    t.integer  "total_seats"
+    t.datetime "end_time"
+    t.boolean  "end_flag",    default: false, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "seller_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "stage_id"
+    t.integer  "kind_id"
+    t.integer  "payment_id"
+    t.integer  "count"
+    t.string   "buyer_name"
+    t.string   "buyer_furigana"
+    t.string   "buyer_mail"
+    t.text     "comment1",       limit: 65535
+    t.text     "comment2",       limit: 65535
   end
 
 end
