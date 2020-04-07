@@ -4,7 +4,11 @@
 <br>
 <br>
 
-<% if @tickets %>
+<% if @tickets.empty? %>
+
+<h1>いただいた予約はまだありません</h1>
+
+<% else %>
 
 <table border="1">
   <thead>
@@ -25,6 +29,5 @@
     <% end %>
   </tbody>
 </table>
-<% else %>
-  <h1>いただいた予約はまだありません</h1>
+
 <% end %>
