@@ -1,6 +1,23 @@
-<h1>チケットを予約</h1>
-<%= form_for(@ticket) do |form| %>
-  <%= form.label :取扱者 %>
-  <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: "取扱者名"}) %>
+<h1>チケット種別を登録</h1>
+<%= form_for @kind, url: kinds_path do |form| %>
+<p>
+  <%= form.label :チケット種別 %>
+  <%= form.text_field :kind %>
+</p>
+<p>
+  <%= form.label :消費する席数　%>
+  <%= form.number_field :seats %>
+</p>
+<p>
+  <%= form.label :料金 %>
+  <%= form.number_field :price, value:0 %>
+  <%= form.label :円 %>
+</p>
+<p>
+  <%= form.label :チケットの色 %>
+  <%= form.collection_select(:color_id, Color.all, :id, :color_name, {prompt: "チケットの色"}) %>
+</p>
+<p>
   <%= form.submit "登録" %>
+</p>
 <% end %>

@@ -6,7 +6,7 @@
 
 <% if @stages.empty? %>
 
-<h1>登録されている公演情報はありません</h1>
+<h1>登録されている『公演情報』はありません</h1>
 
 <% else %>
 
@@ -27,7 +27,7 @@
       <tr>
         <td><%= stage.stage %></td>
         <td><%= stage.total_seats %></td>
-        <td><%= stage.end_time %></td>
+        <td><%= stage.end_time.to_s(:end_time) %></td>
         <td>
           <% if stage.end_flag %>
             ☑️

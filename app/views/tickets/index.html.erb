@@ -14,8 +14,15 @@
   <thead>
     <tr>
       <th>取扱者</th>
-      <th>編集</th>
-      <th>削除</th>
+      <th>開演日時</th>
+      <th>チケット種別</th>
+      <th>支払方法</th>
+      <th>チケット枚数</th>
+      <th>購入者名</th>
+      <th>購入者名フリガナ</th>
+      <th>購入者Eメール</th>
+      <th>コメント</th>
+      <th>備考</th>
     </tr>
   </thead>
 
@@ -23,6 +30,15 @@
     <% @tickets.each do |ticket| %>
       <tr>
         <td><%= ticket.seller.name %></td>
+        <td><%= ticket.stage.stage %></td>
+        <td><%= ticket.kind.kind %></td>
+        <td><%= ticket.payment.payment %></td>
+        <td><%= ticket.count %></td>
+        <td><%= ticket.buyer_name %></td>
+        <td><%= ticket.buyer_furigana %></td>
+        <td><%= ticket.buyer_mail %></td>
+        <td><%= ticket.comment1 %></td>
+        <td><%= ticket.comment2 %></td>
         <td><%= link_to("編集", "/tickets/#{ticket.id}/edit") %></td>
         <td><%= link_to("削除", "/tickets/#{ticket.id}", {method: "delete"}) %></td>
       </tr>

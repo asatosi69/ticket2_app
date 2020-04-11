@@ -1,30 +1,36 @@
 <br>
 <br>
-<%= link_to("チケット予約する", "/tickets/new") %>
+<%= link_to("チケット種別を登録する", "/kinds/new") %>
 <br>
 <br>
 
-<% if @tickets.empty? %>
+<% if @kinds.empty? %>
 
-<h1>いただいた予約はまだありません</h1>
+<h1>登録した『チケット種別』はまだありません</h1>
 
 <% else %>
 
 <table border="1">
   <thead>
     <tr>
-      <th>取扱者</th>
+      <th>チケット種別</th>
+      <th>消費する席数</th>
+      <th>料金</th>
+      <th>チケットの色</th>
       <th>編集</th>
       <th>削除</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @tickets.each do |ticket| %>
+    <% @kinds.each do |kind| %>
       <tr>
-        <td><%= ticket.seller.name %></td>
-        <td><%= link_to("編集", "/tickets/#{ticket.id}/edit") %></td>
-        <td><%= link_to("削除", "/tickets/#{ticket.id}", {method: "delete"}) %></td>
+        <td><%= kind.kind %></td>
+        <td><%= kind.seats %></td>
+        <td><%= kind.price %></td>
+        <td><%= kind.color.color_name %></td>
+        <td><%= link_to("編集", "/kinds/#{kind.id}/edit") %></td>
+        <td><%= link_to("削除", "/kinds/#{kind.id}", {method: "delete"}) %></td>
       </tr>
     <% end %>
   </tbody>
