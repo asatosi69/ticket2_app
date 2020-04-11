@@ -1,0 +1,45 @@
+<br>
+<br>
+<%= link_to("公演情報を登録する", "/stages/new") %>
+<br>
+<br>
+
+<% if @stages.empty? %>
+
+<h1>登録されている公演情報はありません</h1>
+
+<% else %>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>開演日時</th>
+      <th>総席数</th>
+      <th>受付終了時間</th>
+      <th>終了フラグ</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stages.each do |stage| %>
+      <tr>
+        <td><%= stage.stage %></td>
+        <td><%= stage.total_seats %></td>
+        <td><%= stage.end_time %></td>
+        <td>
+          <% if stage.end_flag %>
+            ☑️
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td><%= link_to("編集", "/stages/#{stage.id}/edit") %></td>
+        <td><%= link_to("削除", "/stages/#{stage.id}", {method: "delete"}) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>

@@ -1,0 +1,33 @@
+<br>
+<br>
+<%= link_to("チケット予約する", "/tickets/new") %>
+<br>
+<br>
+
+<% if @tickets.empty? %>
+
+<h1>いただいた予約はまだありません</h1>
+
+<% else %>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>取扱者</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.seller.name %></td>
+        <td><%= link_to("編集", "/tickets/#{ticket.id}/edit") %></td>
+        <td><%= link_to("削除", "/tickets/#{ticket.id}", {method: "delete"}) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>

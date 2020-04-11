@@ -1,5 +1,5 @@
 <h1>チケット情報を更新</h1>
-<%= form_for @ticket, url: ticket_path, method: "patch" do |form| %>
+<%= form_for(@ticket) do |form| %>
   <%= form.label :取扱者 %>
   <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: "取扱者名"}) %>
   <%= form.submit "更新" %>

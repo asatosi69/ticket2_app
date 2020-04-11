@@ -1,0 +1,22 @@
+<h1>公演情報を更新</h1>
+<%= form_for @stage, url: stage_path, method: "patch" do |form| %>
+<p>
+  <%= form.label :開演日時 %>
+  <%= form.text_field :stage %>
+</p>
+<p>
+  <%= form.label :総席数 %>
+  <%= form.number_field :total_seats %>
+</p>
+<p>
+  <%= form.label :受付終了時間 %>
+  <%= form.datetime_field :end_time, value:Time.now.strftime("%Y-%m-%d %H:%M:%S") %>
+</p>
+<p>
+  <%= form.label :終了フラグ %>
+  <%= form.check_box :end_flag %>
+</p>
+<p>
+  <%= form.submit "更新" %>
+</p>
+<% end %>

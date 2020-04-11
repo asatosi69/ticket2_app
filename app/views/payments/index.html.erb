@@ -1,0 +1,37 @@
+<br>
+<br>
+<%= link_to("支払方法を登録する", "/payments/new") %>
+<br>
+<br>
+
+<% if @payments.empty? %>
+
+<h1>登録されている支払方法はありません</h1>
+
+<% else %>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>支払方法</th>
+      <th>略称</th>
+      <th>割引率</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payments.each do |payment| %>
+      <tr>
+        <td><%= payment.payment %></td>
+        <td><%= payment.abbreviation %></td>
+        <td><%= payment.discount_rate %></td>
+        <td><%= link_to("編集", "/payments/#{payment.id}/edit") %></td>
+        <td><%= link_to("削除", "/payments/#{payment.id}", {method: "delete"}) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>

@@ -1,0 +1,19 @@
+<h1>支払方法を更新</h1>
+<%= form_for @payment, url: payment_path, method: "patch" do |form| %>
+<p>
+  <%= form.label :支払方法 %>
+  <%= form.text_field :payment %>
+</p>
+<p>
+  <%= form.label :略称※全角３文字　%>
+  <%= form.text_field :abbreviation %>
+</p>
+<p>
+  <%= form.label :割引率 %>
+  <%= form.number_field :discount_rate %>
+  <%= form.label :% %>
+</p>
+<p>
+  <%= form.submit "更新" %>
+</p>
+<% end %>

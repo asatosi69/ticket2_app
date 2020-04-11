@@ -8,9 +8,9 @@ class TicketsController < ApplicationController
   end
 
   def create
-      @Ticket = Ticket.new(params_ticket)
+      @ticket = Ticket.new(params_ticket)
 
-      @Ticket.save
+      @ticket.save
       redirect_to("/tickets")
   end
 
