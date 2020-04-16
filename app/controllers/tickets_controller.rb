@@ -15,6 +15,10 @@ class TicketsController < ApplicationController
           @tickets = Ticket.where(seller_id: current_seller.id)
       end
   end
+  
+  def show
+      @ticket = Ticket.find_by(id: params[:id])
+  end
 
   def new
       @ticket = Ticket.new
@@ -79,13 +83,10 @@ class TicketsController < ApplicationController
   
   #『公演』モデルの各レコードの受付終了時間が現在時間と同じ時間、若しくは過ぎていれば、終了フラグを立てる
   def end_time_past?
-      @stages = Stage.all
+      @stages = Stage.where("end_time <= ?", Time.now.to_datetime)
       
       @stages.each do |stage|
-          if stage.end_time <= Time.now.to_datetime
-              stage.end_flag = true
-              stage.save
-          end
+          stage.finished
       end
   end
   

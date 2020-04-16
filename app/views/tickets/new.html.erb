@@ -2,47 +2,49 @@
 <%= form_for @ticket, url: tickets_path do |form| %>
 <p>
   <% if current_seller.admin_flag? %>
-    <%= form.label :取扱者名 %>
+    <%= form.label :取扱者名　　　　 %>
     <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: "取扱者名"}) %>
   <% else %>
     <%= form.hidden_field :seller_id, value: current_seller.id %>
   <% end %>
 </p>
 <p>
-  <%= form.label :開演日時 %>
+  <%= form.label :開演日時　　　　 %>
   <%= form.collection_select(:stage_id, Stage.all, :id, :stage, {prompt: "開演日時"}) %>
 </p>
 <p>
-  <%= form.label :チケット種別 %>
+  <%= form.label :チケット種別　　 %>
   <%= form.collection_select(:kind_id, Kind.all, :id, :kind, {prompt: "チケット種別"}) %>
 </p>
 <p>
-  <%= form.label :支払方法 %>
+  <%= form.label :支払方法　　　　 %>
   <%= form.collection_select(:payment_id, Payment.all, :id, :payment, {prompt: "支払方法"}) %>
 </p>
 <p>
-  <%= form.label :チケット枚数 %>
-  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: "チケット枚数"} %>ß
+  <%= form.label :チケット枚数　　 %>
+  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: "チケット枚数"} %>
 </p>
 <p>
-  <%= form.label :購入者名　%>
+  <%= form.label :購入者名　　　　 %>
   <%= form.text_field :buyer_name %>
 </p>
 <p>
-  <%= form.label :購入者名フリガナ　%>
+  <%= form.label :購入者名フリガナ %>
   <%= form.text_field :buyer_furigana %>
 </p>
 <p>
-  <%= form.label :購入者Eメール %>
+  <%= form.label :購入者メール　　 %>
   <%= form.email_field :buyer_mail, value:'example@example.com' %>
 </p>
 <p>
-  <%= form.label :コメント %>
-  <%= form.text_area :comment1 %>
+  <%= form.label :コメント　　　　 %>
+  <br>
+  <%= form.text_area :comment1, size: "50x20" %>
 </p>
 <p>
-  <%= form.label :備考 %>
-  <%= form.text_area :comment2 %>
+  <%= form.label :備考　　　　　　 %>
+  <br>
+  <%= form.text_area :comment2, size: "50x20" %>
 </p>
 <p>
   <%= form.submit "登録" %><%= button_to '戻る', {:controller => "tickets", :action => "index"}, {:method => :get}  %>

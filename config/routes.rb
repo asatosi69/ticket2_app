@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :sellers
   resources :pages
   resources :sellers, :only => [:index, :update, :destroy]
-  resources :tickets, :except => [:show]
+  resources :tickets
   resources :stages, :except => [:show]
   resources :kinds, :except => [:show]
   resources :payments, :except => [:show]

@@ -1,18 +1,21 @@
 <br>
 <br>
-<%= link_to("チケット予約する", "/tickets/new") %>
+<%= link_to("チケット予約を登録する", "/tickets/new") %>
 <br>
 <br>
 
-  <% if @tickets.empty? %>
+<% if @tickets.empty? %>
 
-    <h1>いただいた予約はまだありません</h1>
+<h1>登録されている『チケット予約』はありません</h1>
 
-  <% else %>
+<% else %>
 
     <table border="1">
       <thead>
         <tr>
+          <th>詳細</th>
+          <th>編集</th>
+          <th>削除</th>
           <th>取扱者</th>
           <th>開演日時</th>
           <th>チケット種別</th>
@@ -21,17 +24,15 @@
           <th>購入者名</th>
           <th>購入者名フリガナ</th>
           <th>購入者Eメール</th>
-          <th>コメント</th>
-          <th>備考</th>
-          <th>編集</th>
-          <th>削除</th>
         </tr>
       </thead>
 
       <tbody>
         <% @tickets.each do |ticket| %>
-
           <tr>
+            <td align="center"><%= button_to '詳細', "/tickets/#{ticket.id}", {method: "get"} %></td>
+            <td align="center"><%= button_to '編集', "/tickets/#{ticket.id}/edit", {method: "get"} %></td>
+            <td align="center"><%= button_to '削除', "/tickets/#{ticket.id}", {method: "delete"} %></td>
             <td align="center"><%= ticket.seller.name %></td>
             <td align="center"><%= ticket.stage.stage %></td>
             <td align="center"><%= ticket.kind.kind %></td>
@@ -40,12 +41,7 @@
             <td align="center"><%= ticket.buyer_name %></td>
             <td align="center"><%= ticket.buyer_furigana %></td>
             <td align="center"><%= ticket.buyer_mail %></td>
-            <td align="center"><%= ticket.comment1 %></td>
-            <td align="center"><%= ticket.comment2 %></td>
-            <td align="center"><%= button_to '編集', "/tickets/#{ticket.id}/edit", {method: "get"} %></td>
-            <td align="center"><%= button_to '削除', "/tickets/#{ticket.id}", {method: "delete"} %></td>
           </tr>
-
         <% end %>
       </tbody>
     </table>

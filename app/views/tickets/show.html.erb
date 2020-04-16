@@ -1,0 +1,25 @@
+<br>
+<br>
+<p>取扱者　　　　　　:　<%= @ticket.seller.name %></p>
+<p>公演　　　　　　　:　<%= @ticket.stage.stage %></p>
+<p>チケット種別　　　:　<%= @ticket.kind.kind %></p>
+<p>支払方法　　　　　:　<%= @ticket.payment.payment %></p>
+<p>枚数　　　　　　　:　<%= @ticket.count %></p>
+<p>購入者名　　　　　:　<%= @ticket.buyer_name %></p>
+<p>購入者名フリガナ　:　<%= @ticket.buyer_furigana %></p>
+<p>購入者メール　　　:　<%= @ticket.buyer_mail%></p>
+<p>コメント　　　　　:　</p>
+<table border="1">
+  <table>
+  <tr>
+    <td><%= simple_format(@ticket.comment1) %></td>
+  </tr>
+</table>
+<p>備考　　　　　　　:　</p>
+<table border="1">
+  <table>
+  <tr>
+    <td><%= simple_format(@ticket.comment2) %></td>
+  </tr>
+</table>
+<%= button_to '戻る', {:controller => "tickets", :action => "index"}, {:method => :get}  %>
