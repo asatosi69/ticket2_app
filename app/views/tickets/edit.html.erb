@@ -1,8 +1,12 @@
 <h1>チケット情報を更新</h1>
 <%= form_for @ticket, url: ticket_path, method: "patch" do |form| %>
 <p>
-  <%= form.label :取扱者名 %>
-  <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: "取扱者名"}) %>
+  <% if current_seller.admin_flag? %>
+    <%= form.label :取扱者名 %>
+    <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: "取扱者名"}) %>
+  <% else %>
+    <%= form.hidden_field :seller_id, value: current_seller.id %>
+  <% end %>
 </p>
 <p>
   <%= form.label :開演日時 %>
@@ -18,7 +22,7 @@
 </p>
 <p>
   <%= form.label :チケット枚数 %>
-  <%= form.number_field :count %>
+  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: "チケット枚数"} %>
 </p>
 <p>
   <%= form.label :購入者名　%>
@@ -41,6 +45,6 @@
   <%= form.text_area :comment2 %>
 </p>
 <p>
-  <%= form.submit "登録" %>
+  <%= form.submit "登録" %><%= button_to '戻る', {:controller => "tickets", :action => "index"}, {:method => :get}  %>
 </p>
 <% end %>

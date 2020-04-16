@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  root 'pages#index'
-  get 'pages/show'
+
+  root 'home#top'
   
   devise_for :sellers
+  resources :pages
   resources :sellers, :only => [:index, :update, :destroy]
   resources :tickets, :except => [:show]
   resources :stages, :except => [:show]

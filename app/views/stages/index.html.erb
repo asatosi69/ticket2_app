@@ -25,18 +25,18 @@
   <tbody>
     <% @stages.each do |stage| %>
       <tr>
-        <td><%= stage.stage %></td>
-        <td><%= stage.total_seats %></td>
-        <td><%= stage.end_time.to_s(:end_time) %></td>
-        <td>
+        <td align="center"><%= stage.stage %></td>
+        <td align="center"><%= stage.total_seats %></td>
+        <td align="center"><%= stage.end_time.to_s(:end_time) %></td>
+        <td align="center">
           <% if stage.end_flag %>
             ☑️
           <% else %>
             -
           <% end %>
         </td>
-        <td><%= link_to("編集", "/stages/#{stage.id}/edit") %></td>
-        <td><%= link_to("削除", "/stages/#{stage.id}", {method: "delete"}) %></td>
+        <td align="center"><%= button_to '編集', "/stages/#{stage.id}/edit", {method: "get"} %></td>
+        <td align="center"><%= button_to '削除', "/stages/#{stage.id}", {method: "delete"} %></td>
       </tr>
     <% end %>
   </tbody>

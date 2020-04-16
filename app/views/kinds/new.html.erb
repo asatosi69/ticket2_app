@@ -15,9 +15,9 @@
 </p>
 <p>
   <%= form.label :チケットの色 %>
-  <%= form.collection_select(:color_id, Color.all, :id, :color_name, {prompt: "チケットの色"}) %>
+  <%= form.collection_select(:color_id, Color.where(is_selected: false), :id, :color_name, {prompt: "チケットの色"}) %>
 </p>
 <p>
-  <%= form.submit "登録" %>
+  <%= form.submit "登録" %><%= button_to '戻る', {:controller => "kinds", :action => "index"}, {:method => :get}  %>
 </p>
 <% end %>

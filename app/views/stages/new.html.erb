@@ -17,6 +17,6 @@
   <%= form.check_box :end_flag %>
 </p>
 <p>
-  <%= form.submit "登録" %>
+  <%= form.submit "登録" %><%= button_to '戻る', {:controller => "stages", :action => "index"}, {:method => :get}  %>
 </p>
 <% end %>

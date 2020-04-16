@@ -1,7 +1,11 @@
 class SellersController < ApplicationController
     
     def index
-        @sellers = Seller.all
+        if current_seller.admin_flag?
+            @sellers = Seller.all
+        else
+            @sellers = Seller.where(id: current_seller.id)
+        end
     end
     
     def create

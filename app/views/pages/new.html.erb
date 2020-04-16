@@ -1,0 +1,11 @@
+<h1>『連絡事項』を登録</h1>
+<%= form_for @page, url: pages_path do |form| %>
+<p>
+  <%= form.text_area :notice, size: "50x20",
+      value: "執筆者の名前は必ず書いてください。
+      適当なところで改行してください。" %>
+</p>
+<p>
+  <%= form.submit "登録" %><%= button_to '戻る', {:controller => "pages", :action => "index"}, {:method => :get}  %>
+</p>
+<% end %>

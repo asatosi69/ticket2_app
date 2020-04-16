@@ -25,12 +25,12 @@
   <tbody>
     <% @kinds.each do |kind| %>
       <tr>
-        <td><%= kind.kind %></td>
-        <td><%= kind.seats %></td>
-        <td><%= kind.price %></td>
-        <td><%= kind.color.color_name %></td>
-        <td><%= link_to("編集", "/kinds/#{kind.id}/edit") %></td>
-        <td><%= link_to("削除", "/kinds/#{kind.id}", {method: "delete"}) %></td>
+        <td align="center"><%= kind.kind %></td>
+        <td align="center"><%= kind.seats %></td>
+        <td align="center"><%= kind.price %></td>
+        <td align="center"><%= kind.color.color_name %></td>
+        <td align="center"><%= button_to '編集', "/kinds/#{kind.id}/edit", {method: "get"} %></td>
+        <td align="center"><%= button_to '削除', "/kinds/#{kind.id}", {method: "delete"} %></td>
       </tr>
     <% end %>
   </tbody>

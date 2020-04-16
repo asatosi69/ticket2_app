@@ -1,0 +1,9 @@
+<h1>連絡事項を更新</h1>
+<%= form_for @page, url: page_path, method: "patch" do |form| %>
+<p>
+  <%= form.text_area :notice, size: "50x20" %>
+</p>
+<p>
+  <%= form.submit "更新" %><%= button_to '戻る', {:controller => "pages", :action => "index"}, {:method => :get}  %>
+</p>
+<% end %>

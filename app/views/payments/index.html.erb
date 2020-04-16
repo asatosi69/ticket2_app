@@ -24,11 +24,11 @@
   <tbody>
     <% @payments.each do |payment| %>
       <tr>
-        <td><%= payment.payment %></td>
-        <td><%= payment.abbreviation %></td>
-        <td><%= payment.discount_rate %></td>
-        <td><%= link_to("編集", "/payments/#{payment.id}/edit") %></td>
-        <td><%= link_to("削除", "/payments/#{payment.id}", {method: "delete"}) %></td>
+        <td align="center"><%= payment.payment %></td>
+        <td align="center"><%= payment.abbreviation %></td>
+        <td align="center"><%= payment.discount_rate %></td>
+        <td align="center"><%= button_to '編集', "/payments/#{payment.id}/edit", {method: "get"} %></td>
+        <td align="center"><%= button_to '削除', "/payments/#{payment.id}", {method: "delete"} %></td>
       </tr>
     <% end %>
   </tbody>

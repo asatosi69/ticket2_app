@@ -1,4 +1,7 @@
 class PaymentsController < ApplicationController
+    # 『管理取扱者』と『一般取扱者』では操作できる内容が異なる。『一般取扱者』は操作不可。
+    before_action :admin_seller?
+    
     def index
         @payments = Payment.all
     end

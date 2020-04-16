@@ -1,2 +1,24 @@
-<h1>ようこそ</h1>
-<p>トップページです。</p>
+<br>
+<br>
+<%= link_to("連絡事項を登録する", "/pages/new") %>
+<br>
+<br>
+
+<% if @pages.empty? %>
+
+<h1>登録されている『連絡事項』はありません</h1>
+
+<% else %>
+
+  <h1>『連絡事項』</h1>
+  <% @pages.each do |page| %>
+    <h4>更新日時:<%= page.updated_at.to_s(:updated_at) %></h4>
+    <table border="1">
+      <tr>
+        <td><%= simple_format(page.notice) %></td>
+      </tr>
+    </table>
+  <%= button_to '編集', "/pages/#{page.id}/edit", {method: "get"} %><%= button_to '削除', "/pages/#{page.id}", {method: "delete"} %>
+  <% end %>
+
+<% end %>

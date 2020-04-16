@@ -3,7 +3,9 @@
       <tr>
         <th>取扱者</th>
         <th>管理者フラグ</th>
-        <th>管理者フラグ ON/OFF</th>
+        <% if current_seller.admin_flag %>
+          <th>管理者フラグ ON/OFF</th>
+        <% end %>
         <th>削除</th>
       </tr>
     </thead>
@@ -12,15 +14,17 @@
       <% @sellers.each do |seller| %>
         <tr>
           <td><%= seller.name %></td>
-          <td>
+          <td align="center">
             <% if seller.admin_flag %>
               ☑️
             <% else %>
               -
             <% end %>
           </td>
-          <td><%= link_to("権限を変更", "/sellers/#{seller.id}", {method: "patch"}) %></td>
-          <td><%= link_to("削除", "/sellers/#{seller.id}", {method: "delete"}) %></td>
+          <% if current_seller.admin_flag %>
+            <td align="center"><%= button_to '権限を変更', "/sellers/#{seller.id}", {method: "patch"} %></td>
+          <% end %>
+          <td align="center"><%= button_to '削除', "/sellers/#{seller.id}", {method: "delete"} %></td>
         </tr>
       <% end %>
     </tbody>

@@ -13,5 +13,12 @@ module Ticket2App
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    
+    ### Railsが表示の際に扱うタイムゾーン ←ココ
+    config.time_zone = 'Tokyo'
+
+    ### Rails(Activerecord)がDBへのRead・Writeを行う際タイムゾーン ←ココ
+    config.active_record.default_timezone = :local
+
   end
 end
