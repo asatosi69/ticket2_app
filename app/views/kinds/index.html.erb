@@ -1,24 +1,23 @@
 <br>
 <br>
-<%= link_to("チケット種別を登録する", "/kinds/new") %>
+<br><%= link_to("チケット種別を登録する", new_kind_path) %>
 <br>
 <br>
-
 <% if @kinds.empty? %>
 
 <h1>登録した『チケット種別』はまだありません</h1>
 
 <% else %>
-
-<table border="1">
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:50%">
   <thead>
     <tr>
-      <th>チケット種別</th>
-      <th>消費する席数</th>
-      <th>料金</th>
-      <th>チケットの色</th>
-      <th>編集</th>
-      <th>削除</th>
+      <th><p class="text-center">チケット種別</p></th>
+      <th><p class="text-center">消費する席数</p></th>
+      <th><p class="text-center">料金</p></th>
+      <th><p class="text-center">チケットの色</p></th>
+      <th style="width: 60px"><p class="text-center">編集</p></th>
+      <th style="width: 60px"><p class="text-center">削除</p></th>
     </tr>
   </thead>
 
@@ -29,11 +28,11 @@
         <td align="center"><%= kind.seats %></td>
         <td align="center"><%= kind.price %></td>
         <td align="center"><%= kind.color.color_name %></td>
-        <td align="center"><%= button_to '編集', "/kinds/#{kind.id}/edit", {method: "get"} %></td>
-        <td align="center"><%= button_to '削除', "/kinds/#{kind.id}", {method: "delete"} %></td>
+        <td align="center"><%= button_to '編集', edit_kind_path(kind), {method: "get"} %></td>
+        <td align="center"><%= button_to '削除', kind_path(kind), {method: "delete"} %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
 <% end %>

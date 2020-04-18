@@ -1,25 +1,38 @@
 <br>
 <br>
-<p>取扱者　　　　　　:　<%= @ticket.seller.name %></p>
-<p>公演　　　　　　　:　<%= @ticket.stage.stage %></p>
-<p>チケット種別　　　:　<%= @ticket.kind.kind %></p>
-<p>支払方法　　　　　:　<%= @ticket.payment.payment %></p>
-<p>枚数　　　　　　　:　<%= @ticket.count %></p>
-<p>購入者名　　　　　:　<%= @ticket.buyer_name %></p>
-<p>購入者名フリガナ　:　<%= @ticket.buyer_furigana %></p>
-<p>購入者メール　　　:　<%= @ticket.buyer_mail%></p>
-<p>コメント　　　　　:　</p>
-<table border="1">
-  <table>
-  <tr>
-    <td><%= simple_format(@ticket.comment1) %></td>
-  </tr>
-</table>
-<p>備考　　　　　　　:　</p>
-<table border="1">
-  <table>
-  <tr>
-    <td><%= simple_format(@ticket.comment2) %></td>
-  </tr>
-</table>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <tr>
+      <td style="width:13%">取扱者</td><td style="width:87%"><%= @ticket.seller.name %></td>
+    </tr>
+    <tr>
+      <td style="width:13%"">公演</td><td style="width:80%"><%= @ticket.stage.stage %></td>
+    </tr>
+    <tr>
+      <td style="width:13%">チケット種別</td><td style="width:87%"><%= @ticket.kind.kind %></td>
+    </tr>
+    <tr>
+      <td style="width:13%">支払方法</td><td style="width:87%"><%= @ticket.payment.payment %></td>
+    </tr>
+    <tr>
+      <td style="width:13%">枚数</td><td style="width:87%"><%= @ticket.count %></td>
+    </tr>
+    <tr>
+      <td style="width:13%">購入者名</td><td style="width:87%"><%= @ticket.buyer_name %></td>
+    </tr>
+    <tr>
+      <td style="width:13%">購入者名フリガナ</td><td style="width:87%"><%= @ticket.buyer_furigana %></td>
+    </tr>
+    <tr>
+      <td style="width:13%">購入者Eメール</td><td style="width:87%"><%= @ticket.buyer_mail %></td>
+    </tr>
+    <tr>
+      <td style="width:13%">コメント</td><td style="width:87%"><%= simple_format(@ticket.comment1) %></td>
+    </tr>
+    <tr>
+      <td style="width:13%">備考</td><td style="width:87%"><%= simple_format(@ticket.comment2) %></td>
+    </tr>
+  </table>
+</div>
+
 <%= button_to '戻る', {:controller => "tickets", :action => "index"}, {:method => :get}  %>

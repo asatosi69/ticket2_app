@@ -2,49 +2,53 @@
 <%= form_for @ticket, url: tickets_path do |form| %>
 <p>
   <% if current_seller.admin_flag? %>
-    <%= form.label :取扱者名　　　　 %>
-    <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: "取扱者名"}) %>
+    <%= form.label :取扱者名, class:'control-label' %>
+    <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: "取扱者名"}, {class: "form-control input-sm"}) %>
   <% else %>
     <%= form.hidden_field :seller_id, value: current_seller.id %>
   <% end %>
 </p>
 <p>
-  <%= form.label :開演日時　　　　 %>
-  <%= form.collection_select(:stage_id, Stage.all, :id, :stage, {prompt: "開演日時"}) %>
+  <%= form.label :開演日時, class:'control-label' %>
+  <% if current_seller.admin_flag? %>
+    <%= form.collection_select(:stage_id, Stage.all, :id, :stage, {prompt: "開演日時"}, {class: "form-control input-sm"}) %>
+  <% else %>
+    <%= form.collection_select(:stage_id, Stage.where(end_flag: false), :id, :stage, {prompt: "開演日時"}, {class: "form-control input-sm"}) %>
+  <% end %>
 </p>
 <p>
-  <%= form.label :チケット種別　　 %>
-  <%= form.collection_select(:kind_id, Kind.all, :id, :kind, {prompt: "チケット種別"}) %>
+  <%= form.label :チケット種別, class:'control-label' %>
+  <%= form.collection_select(:kind_id, Kind.all, :id, :kind, {prompt: "チケット種別"}, {class: "form-control input-sm"}) %>
 </p>
 <p>
-  <%= form.label :支払方法　　　　 %>
-  <%= form.collection_select(:payment_id, Payment.all, :id, :payment, {prompt: "支払方法"}) %>
+  <%= form.label :支払方法, class:'control-label' %>
+  <%= form.collection_select(:payment_id, Payment.all, :id, :payment, {prompt: "支払方法"} , {class: "form-control input-sm"}) %>
 </p>
 <p>
-  <%= form.label :チケット枚数　　 %>
-  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: "チケット枚数"} %>
+  <%= form.label :チケット枚数, class:'control-label' %>
+  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: "チケット枚数"} , class: 'form-control' %>
 </p>
 <p>
-  <%= form.label :購入者名　　　　 %>
-  <%= form.text_field :buyer_name %>
+  <%= form.label :購入者名, class:'control-label' %>
+  <%= form.text_field :buyer_name, class: 'form-control' %>
 </p>
 <p>
-  <%= form.label :購入者名フリガナ %>
-  <%= form.text_field :buyer_furigana %>
+  <%= form.label :購入者名フリガナ, class:'control-label' %>
+  <%= form.text_field :buyer_furigana, class: 'form-control' %>
 </p>
 <p>
-  <%= form.label :購入者メール　　 %>
-  <%= form.email_field :buyer_mail, value:'example@example.com' %>
+  <%= form.label :購入者メール, class:'control-label' %>
+  <%= form.email_field :buyer_mail, value:'example@example.com', class: 'form-control' %>
 </p>
 <p>
-  <%= form.label :コメント　　　　 %>
+  <%= form.label :コメント, class:'control-label' %>
   <br>
-  <%= form.text_area :comment1, size: "50x20" %>
+  <%= form.text_area :comment1, size: "50x20", class: 'form-control' %>
 </p>
 <p>
-  <%= form.label :備考　　　　　　 %>
+  <%= form.label :備考, class:'control-label' %>
   <br>
-  <%= form.text_area :comment2, size: "50x20" %>
+  <%= form.text_area :comment2, size: "50x20", class: 'form-control' %>
 </p>
 <p>
   <%= form.submit "登録" %><%= button_to '戻る', {:controller => "tickets", :action => "index"}, {:method => :get}  %>

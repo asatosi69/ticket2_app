@@ -4,6 +4,7 @@ class Seller< ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
-         
+  
+  has_many :pages
   has_many :tickets
 end

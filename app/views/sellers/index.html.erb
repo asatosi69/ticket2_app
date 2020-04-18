@@ -1,12 +1,13 @@
-  <table border="1">
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:45%">
     <thead>
       <tr>
-        <th>取扱者</th>
-        <th>管理者フラグ</th>
+        <th><p class="text-center">取扱者</p></th>
+        <th style="width: 110px"><p class="text-center">管理者フラグ</p></th>
         <% if current_seller.admin_flag %>
-          <th>管理者フラグ ON/OFF</th>
+          <th ><p class="text-center">管理者フラグ ON/OFF</p></th>
         <% end %>
-        <th>削除</th>
+        <th style="width: 60px"><p class="text-center">削除</p></th>
       </tr>
     </thead>
 
@@ -22,10 +23,11 @@
             <% end %>
           </td>
           <% if current_seller.admin_flag %>
-            <td align="center"><%= button_to '権限を変更', "/sellers/#{seller.id}", {method: "patch"} %></td>
+            <td align="center"><%= button_to '権限を変更', seller_path(seller), {method: "patch"} %></td>
           <% end %>
-          <td align="center"><%= button_to '削除', "/sellers/#{seller.id}", {method: "delete"} %></td>
+          <td align="center"><%= button_to '削除', stage_path(seller), {method: "delete"} %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+</div>

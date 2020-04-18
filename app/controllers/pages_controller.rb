@@ -35,6 +35,6 @@ class PagesController < ApplicationController
   
   private
    def params_page
-    params.require(:page).permit(:notice, :updated_at)
+    params.require(:page).permit(:notice, :updated_at, :seller_id)
    end
 end

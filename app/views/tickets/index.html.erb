@@ -1,38 +1,38 @@
 <br>
 <br>
-<%= link_to("チケット予約を登録する", "/tickets/new") %>
+<%= link_to("チケット予約を登録する", new_ticket_path) %>
 <br>
 <br>
 
 <% if @tickets.empty? %>
 
-<h1>登録されている『チケット予約』はありません</h1>
+  <h1>登録されている『チケット予約』はありません</h1>
 
 <% else %>
-
-    <table border="1">
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
-          <th>詳細</th>
-          <th>編集</th>
-          <th>削除</th>
-          <th>取扱者</th>
-          <th>開演日時</th>
-          <th>チケット種別</th>
-          <th>支払方法</th>
-          <th>チケット枚数</th>
-          <th>購入者名</th>
-          <th>購入者名フリガナ</th>
-          <th>購入者Eメール</th>
+          <th style="width: 60px"><p class="text-center">詳細</p></th>
+          <th style="width: 60px"><p class="text-center">編集</p></th>
+          <th style="width: 60px"><p class="text-center">削除</p></th>
+          <th><p class="text-center">取扱者</p></th>
+          <th><p class="text-center">開演日時</p></th>
+          <th><p class="text-center">チケット種別</p></th>
+          <th><p class="text-center">支払方法</p></th>
+          <th><p class="text-center">チケット枚数</p></th>
+          <th><p class="text-center">購入者名</p></th>
+          <th><p class="text-center">購入者名フリガナ</p></th>
+          <th style="width: 200px"><p class="text-center">購入者Eメール</p></th>
         </tr>
       </thead>
 
       <tbody>
         <% @tickets.each do |ticket| %>
           <tr>
-            <td align="center"><%= button_to '詳細', "/tickets/#{ticket.id}", {method: "get"} %></td>
-            <td align="center"><%= button_to '編集', "/tickets/#{ticket.id}/edit", {method: "get"} %></td>
-            <td align="center"><%= button_to '削除', "/tickets/#{ticket.id}", {method: "delete"} %></td>
+            <td align="center"><%= button_to '詳細', ticket_path(ticket), {method: "get"}%></td>
+            <td align="center"><%= button_to '編集', edit_ticket_path(ticket)%></td>
+            <td align="center"><%= button_to '削除', ticket_path(ticket), {method: "delete"} %></td>
             <td align="center"><%= ticket.seller.name %></td>
             <td align="center"><%= ticket.stage.stage %></td>
             <td align="center"><%= ticket.kind.kind %></td>
@@ -45,5 +45,5 @@
         <% end %>
       </tbody>
     </table>
-
-  <% end %>
+  </div>
+<% end %>

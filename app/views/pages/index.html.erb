@@ -1,24 +1,28 @@
-<br>
-<br>
-<%= link_to("連絡事項を登録する", "/pages/new") %>
-<br>
-<br>
+
+<%= link_to("連絡事項を登録する", new_page_path) %>
 
 <% if @pages.empty? %>
 
-<h1>登録されている『連絡事項』はありません</h1>
+  <h1>登録されている『連絡事項』はありません</h1>
 
 <% else %>
-
+<br>
   <h1>『連絡事項』</h1>
+  <br>
   <% @pages.each do |page| %>
-    <h4>更新日時:<%= page.updated_at.to_s(:updated_at) %></h4>
-    <table border="1">
+    <table style="table-layout:fixed;width:50%">
       <tr>
-        <td><%= simple_format(page.notice) %></td>
+        <td><h4>更新日時: <%= page.updated_at.to_s(:updated_at) %></h4></td>
+        <td style="width: 60px"><%= button_to '編集', edit_page_path(page), {method: "get"} %></td>
+        <td style="width: 60px"><%= button_to '削除', page_path(page), {method: "delete"} %></td>
+      </tr>
+      　　<td colspan="3">投稿者：<%= page.seller.name %></td>
+      <tr>
+      </tr>
+      　　<td colspan="3">　</td>
+      <tr>
+        <td colspan="3"><%= simple_format(page.notice) %></td>
       </tr>
     </table>
-  <%= button_to '編集', "/pages/#{page.id}/edit", {method: "get"} %><%= button_to '削除', "/pages/#{page.id}", {method: "delete"} %>
   <% end %>
-
 <% end %>

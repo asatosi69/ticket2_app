@@ -1,6 +1,9 @@
 <h1>連絡事項を更新</h1>
 <%= form_for @page, url: page_path, method: "patch" do |form| %>
 <p>
+  <%= form.hidden_field :seller_id, value: current_seller.id %>
+</p>
+<p>
   <%= form.text_area :notice, size: "50x20" %>
 </p>
 <p>
