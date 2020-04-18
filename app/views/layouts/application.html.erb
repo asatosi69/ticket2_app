@@ -26,12 +26,13 @@
               <li><%= link_to 'チケット種別', kinds_path %></li>
               <li><%= link_to '支払方法', payments_path %></li>
             <% end %>
+            </ul>
           <% else %>
-            <li><%= link_to 'サインアップ', new_seller_registration_path %></li>
-            <li><%= link_to 'ログイン', new_seller_session_path %></li>
-          </ul>
+            <ul class="nav navbar-nav">
+              <li><%= link_to 'サインアップ', new_seller_registration_path %></li>
+              <li><%= link_to 'ログイン', new_seller_session_path %></li>
+            </ul>
           <% end %>
-          </div>
       </nav>
     </header>
       <p class="notice"><%= notice %></p>

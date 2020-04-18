@@ -90,6 +90,12 @@ class TicketsController < ApplicationController
       end
   end
   
+  # 検索フォームで使用する
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @tickets = Ticket.search(params[:search])
+  end
+  
   private
    def params_ticket
     params.require(:ticket).permit(:seller_id, :stage_id, :kind_id, :payment_id, :count, :buyer_name, :buyer_furigana, :buyer_mail, :comment1, :comment2)
