@@ -30,6 +30,10 @@ class SellersController < ApplicationController
     
     def destroy
         @seller = Seller.find_by(id: params[:id])
+        
+        # 『チケット種別モデル』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
+        @seller.seller_id_already_deleted?
+        
         @seller.destroy
         
         redirect_to("/sellers")

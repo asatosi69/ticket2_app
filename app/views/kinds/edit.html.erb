@@ -1,11 +1,11 @@
 <h1>チケット種別を更新</h1>
 <%= form_for @kind, url: kind_path, method: "patch" do |form| %>
 <p>
-  <%= form.label :チケット種別,, class:'control-label' %>
+  <%= form.label :チケット種別, class:'control-label' %>
   <%= form.text_field :kind, class: "form-control" %>
 </p>
 <p>
-  <%= form.label :消費する席数, class:'control-label'　%>
+  <%= form.label :消費する席数, class:'control-label' %>
   <%= form.number_field :seats, class: "form-control" %>
 </p>
 <p>

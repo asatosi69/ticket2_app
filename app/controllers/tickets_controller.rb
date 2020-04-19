@@ -56,7 +56,7 @@ class TicketsController < ApplicationController
       @stages = Stage.all
       
       if @stages.empty?
-          flash[:notice] = "予約情報の『確認/登録/編集』には『公演』の登録が必須です。"
+          flash[:notice] = "予約情報の『確認/登録/編集』には、先に『公演』の登録が必須です。"
           redirect_to("/stages")
       end
   end
@@ -66,7 +66,7 @@ class TicketsController < ApplicationController
       @kinds = Kind.all
       
       if @kinds.empty?
-          flash[:notice] = "予約情報を『確認/登録/編集』には『チケット種別』の登録が必須です。"
+          flash[:notice] = "予約情報を『確認/登録/編集』には、先に『チケット種別』の登録が必須です。"
           redirect_to("/kinds")
       end
   end
@@ -76,7 +76,7 @@ class TicketsController < ApplicationController
       @payments = Payment.all
       
       if @payments.empty?
-          flash[:notice] = "予約情報を『確認/登録/編集』には『支払方法』の登録が必須です。"
+          flash[:notice] = "予約情報を『確認/登録/編集』には、先に『支払方法』の登録が必須です。"
           redirect_to("/payments")
       end
   end
@@ -88,12 +88,6 @@ class TicketsController < ApplicationController
       @stages.each do |stage|
           stage.finished
       end
-  end
-  
-  # 検索フォームで使用する
-  def search
-    #Viewのformで取得したパラメータをモデルに渡す
-    @tickets = Ticket.search(params[:search])
   end
   
   private

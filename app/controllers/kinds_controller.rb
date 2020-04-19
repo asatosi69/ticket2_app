@@ -12,11 +12,13 @@ class KindsController < ApplicationController
 
     def create
         @kind = Kind.new(params_kind)
+        
+        # 『チケット種別モデル』のレコード作成時、『色モデル』の『使用済フラグ』を"true"にする
         @color = Color.find(@kind.color_id)
-        binding.pry
         @color.is_selected = true
+        
         @kind.save
-        binding.pry
+        
         @color.save
         
         
@@ -29,11 +31,18 @@ class KindsController < ApplicationController
 
     def update
         @kind = Kind.find_by(id: params[:id])
+        
+        # 『チケット種別モデル』のレコード更新時、『色モデル』の『使用済フラグ』を"false"にする
+        # 色が変わる前
+        @color = Color.find(@kind.color_id)
+        @color.is_selected = false
+        @color.save
+        
+        # 『チケット種別モデル』のレコード更新時、『色モデル』の『使用済フラグ』を"true"にする
+        # 色が変わった後
         @kind.assign_attributes(params_kind)
         @color = Color.find(@kind.color_id)
-        binding.pry
         @color.is_selected = true
-        binding.pry
         @color.save
         
         @kind.save
@@ -42,15 +51,21 @@ class KindsController < ApplicationController
     
     def destroy
         @kind = Kind.find_by(id: params[:id])
+        
+        # 『チケット種別モデル』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
+        @kind.kind_id_already_deleted?
+        
+        # 『チケット種別モデル』のレコード削除時、『色モデル』の『使用済フラグ』を"false"に戻す
         @color = Color.find(@kind.color_id)
-        binding.pry
         @color.is_selected = false
+        
         @kind.destroy
-        binding.pry
+        
         @color.save
         
         redirect_to("/kinds")
     end
+    
     
     private
      def params_kind
