@@ -1,0 +1,11 @@
+ja:
+  pages:
+    index:
+      notice: '連絡事項'
+      seller_id: '投稿者'
+    new:
+      notice: '連絡事項'
+      seller_id: '投稿者'
+    edit:
+      notice: '連絡事項'
+      seller_id: '投稿者'

@@ -1,0 +1,13 @@
+ja:
+  shared:
+    _ticket_format:
+      seller_id: '取扱者'
+      stage_id: '公演'
+      kind_id: 'チケット種別'
+      payment_id: '支払方法'
+      count: '枚数'
+      buyer_name: '購入者名'
+      buyer_furigana: '購入者名フリガナ'
+      buyer_mail: '購入者Eメール'
+      comment1: 'コメント'
+      comment2: '備考'

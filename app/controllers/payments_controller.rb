@@ -33,7 +33,7 @@ class PaymentsController < ApplicationController
         @payment = Payment.find_by(id: params[:id])
         
         # 『チケット種別モデル』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
-        @payment.payment_id_already_deleted?
+        # @payment.payment_id_already_deleted?
         
         @payment.destroy
         

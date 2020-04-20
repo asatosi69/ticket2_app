@@ -1,21 +1,20 @@
 <h1>チケット種別を更新</h1>
 <%= form_for @kind, url: kind_path, method: "patch" do |form| %>
-<p>
-  <%= form.label :チケット種別, class:'control-label' %>
+p>
+  <%= form.label(:kind, Kind.human_attribute_name(:kind), class:'control-label') %>
   <%= form.text_field :kind, class: "form-control" %>
 </p>
 <p>
-  <%= form.label :消費する席数, class:'control-label' %>
+  <%= form.label(:seats, Kind.human_attribute_name(:seats), class:'control-label') %>
   <%= form.number_field :seats, class: "form-control" %>
 </p>
 <p>
-  <%= form.label :料金, class:'control-label' %>
-  <%= form.number_field :price, class: "form-control" %>
-  <%= form.label :円 %>
+  <%= form.label(:price, Kind.human_attribute_name(:price), class:'control-label') %>
+  <%= form.number_field :price, value:0, class: "form-control" %>
 </p>
 <p>
-  <%= form.label :チケットの色, class:'control-label' %>
-  <%= form.collection_select(:color_id, Color.where(is_selected: false), :id, :color_name, {prompt: "チケットの色"}, {class: "form-control input-sm"}) %>
+  <%= form.label(:color_id, Kind.human_attribute_name(:color_id), class:'control-label') %>
+  <%= form.collection_select(:color_id, Color.where(is_selected: false), :id, :color_name, {prompt: :color_id}, {class: "form-control input-sm"}) %>
 </p>
 <p>
   <%= form.submit "登録" %><%= button_to '戻る', {:controller => "kinds", :action => "index"}, {:method => :get}  %>

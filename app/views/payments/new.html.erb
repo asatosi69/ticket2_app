@@ -1,17 +1,16 @@
 <h1>支払方法を登録</h1>
 <%= form_for @payment, url: payments_path do |form| %>
 <p>
-  <%= form.label :支払方法, class:'control-label' %>
+  <%= form.label(:payment, Payment.human_attribute_name(:payment), class:'control-label') %>
   <%= form.text_field :payment, class: 'form-control' %>
 </p>
 <p>
-  <%= form.label :略称※全角３文字, class:'control-label'　%>
+  <%= form.label(:abbreviation, Payment.human_attribute_name(:abbreviation), class:'control-label') %>
   <%= form.text_field :abbreviation, class: 'form-control' %>
 </p>
 <p>
-  <%= form.label :割引率, class:'control-label' %>
+  <%= form.label(:discount_rate, Payment.human_attribute_name(:discount_rate), class:'control-label') %>
   <%= form.number_field :discount_rate, value:0, class: 'form-control' %>
-  <%= form.label :% %>
 </p>
 <p>
   <%= form.submit "登録" %><%= button_to '戻る', {:controller => "payments", :action => "index"}, {:method => :get}  %>

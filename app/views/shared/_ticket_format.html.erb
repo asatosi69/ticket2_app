@@ -26,7 +26,7 @@
         <% @tickets.each do |ticket| %>
           <tr>
             <td align="center"><%= button_to '詳細', ticket_path(ticket), {method: "get"} %></td>
-            <td align="center"><%= button_to '編集', edit_ticket_path(ticket) %></td>
+            <td align="center"><%= button_to '編集', edit_ticket_path(ticket), {method: "get"} %></td>
             <td align="center"><%= button_to '削除', ticket_path(ticket), {method: "delete"} %></td>
             <td align="center"><%= ticket.seller.name %></td>
             <td align="center"><%= ticket.stage.stage %></td>

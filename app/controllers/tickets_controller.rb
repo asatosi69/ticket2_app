@@ -9,13 +9,12 @@ class TicketsController < ApplicationController
     before_action :end_time_past?
     
   def index
-      if current_seller.admin_flag?
-          @tickets = Ticket.all
-      else
-          @tickets = Ticket.where(seller_id: current_seller.id)
-      end
+      
+        @search_params = ticket_search_params
+        @tickets = Ticket.search(@search_params)
+
   end
-  
+
   def show
       @ticket = Ticket.find_by(id: params[:id])
   end
@@ -38,7 +37,6 @@ class TicketsController < ApplicationController
   def update
       @ticket = Ticket.find_by(id: params[:id])
       @ticket.assign_attributes(params_ticket)
-      
       
       @ticket.save
       redirect_to("/tickets")
@@ -91,8 +89,14 @@ class TicketsController < ApplicationController
   end
   
   private
-   def params_ticket
+  
+  def params_ticket
     params.require(:ticket).permit(:seller_id, :stage_id, :kind_id, :payment_id, :count, :buyer_name, :buyer_furigana, :buyer_mail, :comment1, :comment2)
-   end
+  end
+    
+  def ticket_search_params
+      params.fetch(:search, {}).permit(:seller_id, :stage_id, :kind_id, :payment_id)
+  end
   
 end
+

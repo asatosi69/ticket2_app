@@ -1,0 +1,17 @@
+ja:
+  kinds:
+    index:
+      kind: 'チケット種別'
+      seats: '消費する席数'
+      price: '料金'
+      color_id: 'チケットの色'
+    new:
+      kind: 'チケット種別'
+      seats: '消費する席数'
+      price: '料金'
+      color_id: 'チケットの色'
+    edit:
+      kind: 'チケット種別'
+      seats: '消費する席数'
+      price: '料金'
+      color_id: 'チケットの色'

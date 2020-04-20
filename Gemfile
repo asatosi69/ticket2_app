@@ -31,6 +31,7 @@ gem 'devise-i18n-views'
 gem 'pry-rails'
 gem "jquery-ui-rails"
 gem 'bootstrap-sass'
+gem 'rails-i18n', '~> 5.1' 
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

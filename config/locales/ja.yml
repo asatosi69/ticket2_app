@@ -27,6 +27,19 @@ activerecord:
       restrict_dependent_destroy:
         has_one: "%{record}が存在しているので削除できません"
         has_many: "%{record}が存在しているので削除できません"
+  models:
+    ticket: 'チケット'
+  attributes:
+    ticket:
+      seller_id: '取扱者'
+      stage_id: '開演日時'
+      kind_id: 'チケット種別'
+      payment_id: '支払方法'
+      buyer_name: '購入者名'
+      buyer_furigana: '購入者名フリガナ'
+      buyer_mail: '購入者Eメール'
+      comment1: 'コメント'
+      comment2: '備考'
 date:
   abbr_day_names:
   - 日
@@ -161,10 +174,11 @@ errors:
 helpers:
   select:
     prompt: 選択してください
-  submit:
+    include_blank: 選択
     create: 登録する
     submit: 保存する
     update: 更新する
+    search: 検索する
 number:
   currency:
     format:

@@ -33,7 +33,7 @@ class StagesController < ApplicationController
         @stage = Stage.find_by(id: params[:id])
         
         # 『チケット種別モデル』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
-        @stage.stage_id_already_deleted?
+        # @stage.stage_id_already_deleted?
         
         @stage.destroy
         

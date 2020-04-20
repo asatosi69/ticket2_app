@@ -1,0 +1,14 @@
+ja:
+  payments:
+    index:
+      payment: '支払方法'
+      abbreviation: '略称'
+      discount_rate: '割引率'
+    new:
+      payment: '支払方法'
+      abbreviation: '略称'
+      discount_rate: '割引率'
+    edit:
+      payment: '支払方法'
+      abbreviation: '略称'
+      discount_rate: '割引率'

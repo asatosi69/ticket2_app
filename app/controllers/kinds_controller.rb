@@ -16,11 +16,10 @@ class KindsController < ApplicationController
         # 『チケット種別モデル』のレコード作成時、『色モデル』の『使用済フラグ』を"true"にする
         @color = Color.find(@kind.color_id)
         @color.is_selected = true
+        @color.save
+        #Color.selected_color
         
         @kind.save
-        
-        @color.save
-        
         
         redirect_to("/kinds")
     end
@@ -53,7 +52,7 @@ class KindsController < ApplicationController
         @kind = Kind.find_by(id: params[:id])
         
         # 『チケット種別モデル』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
-        @kind.kind_id_already_deleted?
+        # @kind.kind_id_already_deleted?
         
         # 『チケット種別モデル』のレコード削除時、『色モデル』の『使用済フラグ』を"false"に戻す
         @color = Color.find(@kind.color_id)

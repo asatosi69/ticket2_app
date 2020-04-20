@@ -1,0 +1,47 @@
+ja:
+  activerecord:
+    models:
+      kind: 'チケット種別'
+      page: '連絡事項'
+      payment: '支払方法'
+      seller: '取扱者'
+      stage: '公演'
+      ticket: 'チケット'
+    attributes:
+      page:
+        notice: '連絡事項'
+        seller_id: '投稿者'
+      kind:
+        kind: 'チケット種別'
+        seats: '消費する席数'
+        price: '料金'
+        color_id: 'チケットの色'
+      payment:
+        payment: '支払方法'
+        abbreviation: '略称'
+        discount_rate: '割引率'
+      stage:
+        stage: '開演時間'
+        total_seats: '総席数'
+        end_time: '受付終了時間'
+        end_flag: '受付終了フラグ'
+      ticket:
+        seller_id: '取扱者'
+        stage_id: '公演'
+        kind_id: 'チケット種別'
+        payment_id: '支払方法'
+        count: '枚数'
+        buyer_name: '購入者名'
+        buyer_furigana: '購入者名フリガナ'
+        buyer_mail: '購入者Eメール'
+        comment1: 'コメント'
+        comment2: '備考'
+  helpers:
+    select:
+      prompt: '選択してください'
+      include_blank: '選択'
+    submit:
+      create: '登録する'
+      submit: '保存する'
+      update: '更新する'
+      search: '検索する'
