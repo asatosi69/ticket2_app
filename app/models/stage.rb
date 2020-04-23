@@ -7,9 +7,16 @@ class Stage < ApplicationRecord
     end
     
     
-    def stage_id_already_deleted?
-        if Ticket.where(stage_id: self.id).exist?
-        flash[:notice] = "『公演』を削除する前に、削除したい『公演』を使用している『チケット』を削除してください。"
+    #def stage_id_already_deleted?(id)
+    #    if Ticket.where(stage_id: id).exist?
+    #      flash[:notice] = "『公演』を削除する前に、削除したい『公演』を使用している『チケット』を削除してください。"
+    #    redirect_to("/tickets")
+    #    end
+    #end
+    
+    def self.stage_id_already_deleted?(id)
+        if Ticket.where(stage_id: id).exist?
+          flash[:notice] = "『公演』を削除する前に、削除したい『公演』を使用している『チケット』を削除してください。"
         redirect_to("/tickets")
         end
     end
