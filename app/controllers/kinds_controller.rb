@@ -47,14 +47,15 @@ class KindsController < ApplicationController
     def destroy
         @kind = Kind.find_by(id: params[:id])
         
-        # 『チケット種別モデル』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
-        # @kind.kind_id_already_deleted?
-        
         # 『チケット種別モデル』のレコード削除時、『色モデル』の『使用済フラグ』を"false"に戻す
         Color.unselected_color(@kind.color_id)
         
-        @kind.destroy
-        
+        # 『チケット種別』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
+        if Ticket.where(kind_id: @kind.id).exists?
+            flash[:alert] = "『チケット種別』を削除する前に、削除したい『チケット種別』を使用している『チケット』を削除してください。"
+        else
+            @kind.destroy
+        end
         
         
         redirect_to("/kinds")

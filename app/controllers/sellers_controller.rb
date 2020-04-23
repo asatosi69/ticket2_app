@@ -31,8 +31,12 @@ class SellersController < ApplicationController
     def destroy
         @seller = Seller.find_by(id: params[:id])
         
-        # 『チケット種別モデル』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
-        # @seller.seller_id_already_deleted?
+        # 『取扱者』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
+        if Ticket.where(seller_id: @seller.id).exists?
+            flash[:alert] = "『取扱者』を削除する前に、削除したい『取扱者』を使用している『チケット』を削除してください。"
+        else
+            @seller.destroy
+        end
         
         @seller.destroy
         

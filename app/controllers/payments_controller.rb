@@ -32,11 +32,13 @@ class PaymentsController < ApplicationController
     def destroy
         @payment = Payment.find_by(id: params[:id])
         
-        # 『チケット種別モデル』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
-        # @payment.payment_id_already_deleted?
-        
-        @payment.destroy
-        
+         # 『支払方法』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
+        if Ticket.where(payment_id: @payment.id).exists?
+            flash[:alert] = "『支払方法』を削除する前に、削除したい『支払方法』を使用している『チケット』を削除してください。"
+        else
+            @payment.destroy
+        end
+      
         redirect_to("/payments")
     end
     

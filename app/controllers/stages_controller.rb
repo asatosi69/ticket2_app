@@ -32,12 +32,13 @@ class StagesController < ApplicationController
     def destroy
         @stage = Stage.find_by(id: params[:id])
         
-        # 『チケット種別モデル』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
-        Stage.stage_id_already_deleted?(@stage.id)
-        #or
-        #stage_id_already_deleted?(@stage.id)
-        
-        @stage.destroy
+        # 『公演』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
+        if Ticket.where(stage_id: @stage.id).exists?
+          flash[:alert] = "『公演』を削除する前に、削除したい『公演』を使用している『チケット』を削除してください。"
+        else
+          @stage.destroy
+        end
+       
         
         redirect_to("/stages")
     end
