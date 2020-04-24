@@ -1,5 +1,6 @@
 <h1>支払方法を登録</h1>
 <%= form_for @payment, url: payments_path do |form| %>
+<%= render 'shared/error_messages', model: form.object %>
 <p>
   <%= form.label(:payment, Payment.human_attribute_name(:payment), class:'control-label') %>
   <%= form.text_field :payment, class: 'form-control' %>

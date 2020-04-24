@@ -1,4 +1,6 @@
 class PaymentsController < ApplicationController
+    # ログインしているユーザーのみ操作できるようにする
+    before_action :authenticate_seller!
     # 『管理取扱者』と『一般取扱者』では操作できる内容が異なる。『一般取扱者』は操作不可。
     before_action :admin_seller?
     
@@ -13,8 +15,13 @@ class PaymentsController < ApplicationController
     def create
         @payment = Payment.new(params_payment)
 
-        @payment.save
-        redirect_to("/payments")
+        if @payment.save
+            flash[:notice] = "登録が完了しました"
+            redirect_to("/payments")
+        else
+            render  'new'
+        end
+    
     end
 
     def edit
@@ -25,8 +32,12 @@ class PaymentsController < ApplicationController
         @payment = Payment.find_by(id: params[:id])
         @payment.assign_attributes(params_payment)
         
-        @payment.save
-        redirect_to("/payments")
+        if @payment.save
+            flash[:notice] = "編集が完了しました"
+            redirect_to("/payments")
+        else
+            render  'edit'
+        end
     end
     
     def destroy

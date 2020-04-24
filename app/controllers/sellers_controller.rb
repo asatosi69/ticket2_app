@@ -1,4 +1,6 @@
 class SellersController < ApplicationController
+    # ログインしているユーザーのみ操作できるようにする
+    before_action :authenticate_seller!
     
     def index
         if current_seller.admin_flag?
@@ -24,8 +26,12 @@ class SellersController < ApplicationController
         @seller = Seller.find_by(id: params[:id])
         @seller.admin_flag = !@seller.admin_flag
         
-        @seller.save
-        redirect_to("/sellers")
+        if @seller.save
+            flash[:notice] = "編集が完了しました"
+            redirect_to("/sellers")
+        else
+            render  'edit'
+        end
     end
     
     def destroy

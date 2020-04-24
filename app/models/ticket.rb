@@ -4,6 +4,25 @@ class Ticket < ApplicationRecord
     belongs_to :kind
     belongs_to :payment
     
+    validates :seller_id, presence: true, numericality: { only_integer: true }
+    validates :stage_id, presence: true, numericality: { only_integer: true }
+    validates :kind_id, presence: true, numericality: { only_integer: true }
+    validates :payment_id, presence: true, numericality: { only_integer: true }
+    validates :buyer_name, presence: true,
+    format: {
+      with: /\A[ぁ-んァ-ヶー一-龠]+\z/,
+      message: "は全角のみで入力して下さい"
+    }
+    validates :buyer_furigana, presence: true,
+    format: {
+      with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
+      message: "は全角カタカナのみで入力して下さい"
+    }
+    validates :email,
+    format: {
+      with: /\A([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+\z/,
+      message: "はメールアドレスの形式で入力してください"
+    }
     
     scope :search, -> (search_params) do
 

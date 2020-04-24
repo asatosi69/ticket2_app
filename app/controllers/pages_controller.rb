@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+    # ログインしているユーザーのみ操作できるようにする
+    before_action :authenticate_seller!
+    
   def index
       @pages = Page.all.order(updated_at: "DESC")
   end
@@ -10,8 +13,13 @@ class PagesController < ApplicationController
   def create
       @page = Page.new(params_page)
 
-      @page.save
-      redirect_to("/pages")
+      if @page.save
+          flash[:notice] = "登録が完了しました"
+          redirect_to("/pages")
+      else
+          render  'new'
+      end
+      
   end
 
   def edit
@@ -22,8 +30,12 @@ class PagesController < ApplicationController
       @page = Page.find_by(id: params[:id])
       @page.assign_attributes(params_page)
       
-      @page.save
-      redirect_to("/pages")
+      if @page.save
+          flash[:notice] = "編集が完了しました"
+          redirect_to("/pages")
+      else
+          render  'edit'
+      end
   end
   
   def destroy

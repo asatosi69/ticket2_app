@@ -1,5 +1,6 @@
 <h1>チケット種別を更新</h1>
 <%= form_for @kind, url: kind_path, method: "patch" do |form| %>
+<%= render 'shared/error_messages', model: form.object %>
 p>
   <%= form.label(:kind, Kind.human_attribute_name(:kind), class:'control-label') %>
   <%= form.text_field :kind, class: "form-control" %>

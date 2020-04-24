@@ -8,6 +8,7 @@ class Seller< ApplicationRecord
   has_many :pages
   has_many :tickets
   
+  validates :name, presence: true, uniqueness: true, numericality: { only_integer: true }
   
   
 end

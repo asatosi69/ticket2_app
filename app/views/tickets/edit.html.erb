@@ -1,5 +1,6 @@
 <h1>チケット情報を更新</h1>
 <%= form_for @ticket, url: ticket_path, method: "patch" do |form| %>
+<%= render 'shared/error_messages', model: form.object %>
 <p>
   <% if current_seller.admin_flag? %>
     <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id), class:'control-label') %>

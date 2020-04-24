@@ -1,4 +1,6 @@
 class KindsController < ApplicationController
+    # ログインしているユーザーのみ操作できるようにする
+    before_action :authenticate_seller!
     # 『管理取扱者』と『一般取扱者』では操作できる内容が異なる。『一般取扱者』は操作不可。
     before_action :admin_seller?
     
@@ -16,9 +18,14 @@ class KindsController < ApplicationController
         # 『チケット種別モデル』のレコード作成時、『色モデル』の『使用済フラグ』を"true"にする
         Color.selected_color(@kind.color_id)
         
-        @kind.save
+        if @kind.save
+            flash[:notice] = "登録が完了しました"
+            edirect_to("/kinds")
+        else
+            render  'new'
+        end
         
-        redirect_to("/kinds")
+
     end
 
     def edit
@@ -40,8 +47,13 @@ class KindsController < ApplicationController
         # 『チケット種別モデル』のレコード更新時、『色モデル』の『使用済フラグ』を"true"にする
         Color.selected_color(@kind.color_id)
         
-        @kind.save
-        redirect_to("/kinds")
+        if @kind.save
+            flash[:notice] = "編集が完了しました"
+            redirect_to("/kinds")
+        else
+            render  'edit'
+        end
+        
     end
     
     def destroy

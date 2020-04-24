@@ -1,4 +1,6 @@
 class TicketsController < ApplicationController
+    # ログインしているユーザーのみ操作できるようにする
+    before_action :authenticate_seller!
     #『公演』モデルにレコードが無い状態で『チケット』関連処理が実行されるのを避けるため、『公演』モデルにレコードあるかの確認
     before_action :stage_records_empty?, {except: [:destroy]}
     #『チケット種別』モデルにレコードが無い状態で『チケット』関連処理が実行されるのを避けるため、『チケット種別』モデルにレコードあるかの確認
@@ -24,12 +26,20 @@ class TicketsController < ApplicationController
   def create
       @ticket = Ticket.new(params_ticket)
       
-      @ticket.save
-      if params[:Renzoku]
-        redirect_to("/tickets/new")
+      if @ticket.save
+          flash[:notice] = "登録が完了しました"
+          redirect_to("/tickets")
+          
+          if params[:Renzoku]
+              redirect_to("/tickets/new")
+          else
+              redirect_to("/tickets")
+          end
+          
       else
-        redirect_to("/tickets")
+          render  'new'
       end
+      
   end
 
   def edit
@@ -40,8 +50,12 @@ class TicketsController < ApplicationController
       @ticket = Ticket.find_by(id: params[:id])
       @ticket.assign_attributes(params_ticket)
       
-      @ticket.save
-      redirect_to("/tickets")
+      if @ticket.save
+          flash[:notice] = "編集が完了しました"
+          redirect_to("/tickets")
+      else
+          render  'edit'
+      end
   end
   
   def destroy
