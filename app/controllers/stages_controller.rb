@@ -43,6 +43,15 @@ class StagesController < ApplicationController
         redirect_to("/stages")
     end
     
+    #『公演』モデルの各レコードの受付終了時間が現在時間と同じ時間、若しくは過ぎていれば、終了フラグを立てる
+    def end_time_past?
+        @stages = Stage.where("end_time <= ?", Time.now.to_datetime)
+        
+        @stages.each do |stage|
+            stage.finished
+        end
+    end
+    
     private
      def params_stage
       params.require(:stage).permit(:stage, :total_seats, :end_time, :end_flag)

@@ -9,12 +9,10 @@ class TicketsController < ApplicationController
     before_action :end_time_past?
     
   def index
-      
-        @search_params = ticket_search_params
-        @tickets = Ticket.search(@search_params)
-
+      @search_params = ticket_search_params
+      @tickets = Ticket.search(@search_params)
   end
-
+    
   def show
       @ticket = Ticket.find_by(id: params[:id])
   end
@@ -27,7 +25,11 @@ class TicketsController < ApplicationController
       @ticket = Ticket.new(params_ticket)
       
       @ticket.save
-      redirect_to("/tickets")
+      if params[:Renzoku]
+        redirect_to("/tickets/new")
+      else
+        redirect_to("/tickets")
+      end
   end
 
   def edit

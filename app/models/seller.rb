@@ -9,4 +9,5 @@ class Seller< ApplicationRecord
   has_many :tickets
   
   
+  
 end
