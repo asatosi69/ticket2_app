@@ -23,6 +23,14 @@
    <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id)) %>
    <%= form.collection_select(:payment_id, Payment.all, :id, :payment, selected: @search_params[:payment_id], include_blank: t('helpers.select.include_blank')) %>
 
+   <BR>
+
+   <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name)) %>
+   <%= form.text_field :buyer_name, value: @search_params[:buyer_name] %>
+
+   <%= form.label(:buyer_furigana, Ticket.human_attribute_name(:buyer_furigana)) %>
+   <%= form.text_field :buyer_furigana, value: @search_params[:buyer_furigana] %>
+
    <%= form.submit(t('helpers.submit.search')) %>
 <% end %>
 
