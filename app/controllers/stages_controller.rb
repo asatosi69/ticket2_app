@@ -3,6 +3,8 @@ class StagesController < ApplicationController
     before_action :authenticate_seller!
     # 『管理取扱者』と『一般取扱者』では操作できる内容が異なる。『一般取扱者』は操作不可。
     before_action :admin_seller?
+    #『公演』モデルの各レコードの受付終了時間が現在時間と同じ時間、若しくは過ぎていれば、終了フラグを立てる
+    before_action :end_time_past?
     
     def index
         @stages = Stage.all

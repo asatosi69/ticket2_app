@@ -1,21 +1,13 @@
-<h1>チケットを予約</h1>
+<h1>『<%= @seller.name %>』からチケットを予約</h1>
 <%= form_for @ticket, url: tickets_path do |form| %>
+<%= render 'shared/error_messages', model: form.object %>
 <p>
-  <% if current_seller.admin_flag? %>
-    <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id), class:'control-label') %>
-    <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: "取扱者"}, {class: "form-control input-sm"}) %>
-  <% else %>
-    <%= form.hidden_field :seller_id, value: current_seller.id %>
-  <% end %>
+  <%= form.hidden_field :seller_id, value: @seller.id %>
 </p>
 <p>
   <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
-  <% if current_seller.admin_flag? %>
-    <%= form.collection_select(:stage_id, Stage.all, :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
-  <% else %>
-    <%= form.collection_select(:stage_id, Stage.where(end_flag: false), :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
-  <% end %>
-</p>
+  <%= form.collection_select(:stage_id, Stage.where(end_flag: false), :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
+<p>
 <p>
   <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
   <%= form.collection_select(:kind_id, Kind.all, :id, :kind, {prompt: :kind_id} ,{class: "form-control input-sm"}) %>
@@ -43,10 +35,6 @@
 <p>
   <%= form.label(:comment1, Ticket.human_attribute_name(:comment1), class:'control-label') %>
   <%= form.text_area :comment1, size: "50x20", class: 'form-control' %>
-</p>
-<p>
-  <%= form.label(:comment2, Ticket.human_attribute_name(:comment2), class:'control-label') %>
-  <%= form.text_area :comment2, size: "50x20", class: 'form-control' %>
 </p>
 <p>
   <%= form.submit "登録" %><%= button_to '戻る', {:controller => "tickets", :action => "index"}, {:method => :get}  %>

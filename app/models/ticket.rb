@@ -18,7 +18,7 @@ class Ticket < ApplicationRecord
       with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
       message: "は全角カタカナのみで入力して下さい"
     }
-    validates :email,
+    validates :buyer_mail,
     format: {
       with: /\A([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+\z/,
       message: "はメールアドレスの形式で入力してください"
