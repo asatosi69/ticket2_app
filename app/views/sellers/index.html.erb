@@ -1,19 +1,24 @@
 <div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:45%">
+  <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:50%">
     <thead>
       <tr>
-        <th><p class="text-center">取扱者</p></th>
-        <th style="width: 110px"><p class="text-center">管理者フラグ</p></th>
         <% if current_seller.admin_flag %>
-          <th ><p class="text-center">管理者フラグ ON/OFF</p></th>
+          <th style="width: 70px"><p class="text-center">編集</p></th>
+          <th style="width: 70px"><p class="text-center">削除</p></th>
         <% end %>
-        <th style="width: 60px"><p class="text-center">削除</p></th>
+        <th style="width: 120px"><p class="text-center">取扱者</p></th>
+        <th style="width: 120px"><p class="text-center">管理者フラグ</p></th>
+        <th><p class="text-center">予約用URL</p></th>
       </tr>
     </thead>
 
     <tbody>
       <% @sellers.each do |seller| %>
         <tr>
+          <% if current_seller.admin_flag %>
+            <td align="center"><%= button_to '編集', edit_seller_path(seller), {method: "get"} %></td>
+            <td align="center"><%= button_to '削除', seller_path(seller), {method: "delete"} %></td>
+          <% end %>
           <td><%= seller.name %></td>
           <td align="center">
             <% if seller.admin_flag %>
@@ -22,10 +27,7 @@
               -
             <% end %>
           </td>
-          <% if current_seller.admin_flag %>
-            <td align="center"><%= button_to '権限を変更', seller_path(seller), {method: "patch"} %></td>
-          <% end %>
-          <td align="center"><%= button_to '削除', stage_path(seller), {method: "delete"} %></td>
+          <td><%= seller.url %></td>
         </tr>
       <% end %>
     </tbody>

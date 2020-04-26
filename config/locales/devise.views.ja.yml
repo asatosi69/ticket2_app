@@ -21,11 +21,13 @@ activerecord:
   attributes:
     seller:
       current_password: "現在のパスワード"
-      name: 名前
+      name: "名前"
       email: "メールアドレス"
       password: "パスワード"
       password_confirmation: "確認用パスワード"
       remember_me: "次回から自動的にログイン"
+      admin_flag: "管理者フラグ"
+      url: "予約用ページ"
   models:
     seller: "取扱者"
 devise:

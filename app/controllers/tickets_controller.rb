@@ -11,8 +11,10 @@ class TicketsController < ApplicationController
     before_action :end_time_past?
     
   def index
+      
       @search_params = ticket_search_params
       @tickets = Ticket.search(@search_params)
+
   end
     
   def show

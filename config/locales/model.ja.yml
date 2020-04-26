@@ -36,6 +36,10 @@ ja:
         buyer_mail: '購入者Eメール'
         comment1: 'コメント'
         comment2: '備考'
+      seller:
+        name: '取扱者'
+        admin_flag: '管理者フラグ'
+        url: '予約用ページ'
   helpers:
     select:
       prompt: '選択してください'

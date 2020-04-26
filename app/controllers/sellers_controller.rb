@@ -17,20 +17,22 @@ class SellersController < ApplicationController
     end
     
     def edit
+        @seller = Seller.find(params[:id])
     end
     
     def show
     end
     
     def update
-        @seller = Seller.find_by(id: params[:id])
-        @seller.admin_flag = !@seller.admin_flag
+        @seller = Seller.find(params[:id])
+        @seller.assign_attributes(params_seller)
         
         if @seller.save
+            binding.pry
             flash[:notice] = "編集が完了しました"
             redirect_to("/sellers")
         else
-            render  'edit'
+            redirect_to("/sellers")
         end
     end
     
@@ -47,6 +49,11 @@ class SellersController < ApplicationController
         @seller.destroy
         
         redirect_to("/sellers")
+    end
+    
+    private
+    def params_seller
+     params.require(:seller).permit(:name, :admin_flag, :url)
     end
     
 end

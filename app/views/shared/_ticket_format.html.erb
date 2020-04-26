@@ -24,19 +24,39 @@
 
       <tbody>
         <% @tickets.each do |ticket| %>
-          <tr>
-            <td align="center"><%= button_to '詳細', ticket_path(ticket), {method: "get"} %></td>
-            <td align="center"><%= button_to '編集', edit_ticket_path(ticket), {method: "get"} %></td>
-            <td align="center"><%= button_to '削除', ticket_path(ticket), {method: "delete"} %></td>
-            <td align="center"><%= ticket.seller.name %></td>
-            <td align="center"><%= ticket.stage.stage %></td>
-            <td align="center"><%= ticket.kind.kind %></td>
-            <td align="center"><%= ticket.payment.payment %></td>
-            <td align="center"><%= ticket.count %></td>
-            <td align="center"><%= ticket.buyer_name %></td>
-            <td align="center"><%= ticket.buyer_furigana %></td>
-            <td align="center"><%= ticket.buyer_mail %></td>
-          </tr>
+          <%# ログインしているのが『管理取扱者』の場合：全ての予約を画面に表示する %>
+          <% if current_seller.admin_flag? %>
+            <tr>
+              <td align="center"><%= button_to '詳細', ticket_path(ticket), {method: "get"} %></td>
+              <td align="center"><%= button_to '編集', edit_ticket_path(ticket), {method: "get"} %></td>
+              <td align="center"><%= button_to '削除', ticket_path(ticket), {method: "delete"} %></td>
+              <td align="center"><%= ticket.seller.name %></td>
+              <td align="center"><%= ticket.stage.stage %></td>
+              <td align="center"><%= ticket.kind.kind %></td>
+              <td align="center"><%= ticket.payment.payment %></td>
+              <td align="center"><%= ticket.count %></td>
+              <td align="center"><%= ticket.buyer_name %></td>
+              <td align="center"><%= ticket.buyer_furigana %></td>
+              <td align="center"><%= ticket.buyer_mail %></td>
+            </tr>
+          <%# ログインしているのが『一般取扱者』の場合：自身の予約のみ画面に表示する。 %>
+          <% elsif current_seller.id == ticket.seller_id %>
+            <tr>
+              <td align="center"><%= button_to '詳細', ticket_path(ticket), {method: "get"} %></td>
+              <td align="center"><%= button_to '編集', edit_ticket_path(ticket), {method: "get"} %></td>
+              <td align="center"><%= button_to '削除', ticket_path(ticket), {method: "delete"} %></td>
+              <td align="center"><%= ticket.seller.name %></td>
+              <td align="center"><%= ticket.stage.stage %></td>
+              <td align="center"><%= ticket.kind.kind %></td>
+              <td align="center"><%= ticket.payment.payment %></td>
+              <td align="center"><%= ticket.count %></td>
+              <td align="center"><%= ticket.buyer_name %></td>
+              <td align="center"><%= ticket.buyer_furigana %></td>
+              <td align="center"><%= ticket.buyer_mail %></td>
+            </tr>
+          <%# ログインしているのが『一般取扱者』の場合：自身以外の予約は画面に表示しない %>
+          <% else %>
+          <% end %>
         <% end %>
       </tbody>
     </table>
