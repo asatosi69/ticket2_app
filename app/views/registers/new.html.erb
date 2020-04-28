@@ -37,6 +37,7 @@
   <%= form.text_area :comment1, size: "50x20", class: 'form-control' %>
 </p>
 <p>
-  <%= form.submit "登録" %><%= button_to '戻る', {:controller => "tickets", :action => "index"}, {:method => :get}  %>
+  <%= form.submit "申込" %>
 </p>
 <% end %>
+<%= button_to "中止", "http://www.google.co.jp/", {method: :get}  %>
