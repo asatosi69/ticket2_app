@@ -1,0 +1,19 @@
+<%= @seller.name %>様
+
+
+<%= Rails.application.config.troupe_name %> 『<%= Rails.application.config.performance_name %>』にご参加いただき、誠にありがとうございます！
+予約用ページの準備ができましたので、URLをお知らせいたします。
+
+=====================================================
+お名前：<%= @ticket.buyer_name %>様
+メールアドレス：<%= @ticket.buyer_mail %>
+=====================================================
+
+疑問点などございましたら、<%= Rails.application.config.troupe_mail %>までご連絡ください。
+
+★公演情報
+<%= Rails.application.config.troupe_name %> 『<%= Rails.application.config.performance_name %>』
+公演ページ： <%= Rails.application.config.performance_url %>
+
+<%= Rails.application.config.troupe_name %>
+<%= Rails.application.config.troupe_url %>
