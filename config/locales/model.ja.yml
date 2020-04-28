@@ -31,15 +31,15 @@ ja:
         kind_id: 'チケット種別'
         payment_id: '支払方法'
         count: '枚数'
-        buyer_name: '購入者名'
-        buyer_furigana: '購入者名フリガナ'
-        buyer_mail: '購入者Eメール'
+        buyer_name: '予約者名'
+        buyer_furigana: '予約者名フリガナ'
+        buyer_mail: '予約者Eメール'
         comment1: 'コメント'
         comment2: '備考'
       seller:
         name: '取扱者'
         admin_flag: '管理者フラグ'
-        url: '予約用ページ'
+        url: '予約ページ'
   helpers:
     select:
       prompt: '選択してください'

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   
   post "registers/create" => "registers#create"
   get "registers/:seller_id/new" => "registers#new"
+  post "registers/:seller_id/new" => "registers#back", as: :new_registers
+  post "registers/:seller_id/confirm" => "registers#confirm", as: :confirm_registers
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
