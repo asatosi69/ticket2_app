@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_072217) do
+ActiveRecord::Schema.define(version: 2020_04_28_095003) do
 
   create_table "colors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "color_name"
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 2020_04_25_072217) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_selected", default: false, null: false
+  end
+
+  create_table "connections", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "stage_id"
+    t.integer "kind_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "invalid_flag", default: false, null: false
+    t.index ["kind_id"], name: "index_connections_on_kind_id"
+    t.index ["stage_id"], name: "index_connections_on_stage_id"
   end
 
   create_table "kinds", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -97,4 +107,6 @@ ActiveRecord::Schema.define(version: 2020_04_25_072217) do
     t.text "comment2"
   end
 
+  add_foreign_key "connections", "kinds"
+  add_foreign_key "connections", "stages"
 end
