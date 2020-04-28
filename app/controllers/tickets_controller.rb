@@ -32,8 +32,10 @@ class TicketsController < ApplicationController
           flash[:notice] = "登録が完了しました"
           
           if params[:Renzoku]
+              UserMailer.notice_mail_for_create_ticket(@ticket).deliver
               redirect_to("/tickets/new")
           else
+              UserMailer.notice_mail_for_create_ticket(@ticket).deliver
               redirect_to("/tickets")
           end
           
@@ -52,6 +54,7 @@ class TicketsController < ApplicationController
       @ticket.assign_attributes(params_ticket)
       
       if @ticket.save
+          UserMailer.notice_mail_for_update_ticket(@ticket).deliver
           flash[:notice] = "編集が完了しました"
           redirect_to("/tickets")
       else
@@ -62,7 +65,7 @@ class TicketsController < ApplicationController
   def destroy
       @ticket = Ticket.find_by(id: params[:id])
       @ticket.destroy
-      
+      UserMailer.notice_mail_for_destroy_ticket(@ticket).deliver
       redirect_to("/tickets")
   end
   

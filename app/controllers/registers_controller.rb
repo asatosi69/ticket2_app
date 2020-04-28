@@ -11,13 +11,13 @@ class RegistersController < ApplicationController
     def new
         @seller = Seller.find(params[:seller_id])
         @ticket = Ticket.new
-        #@ticket = Ticket.new(seller_id: params[:seller_id])
     end
 
     def create
         @ticket = Ticket.new(params_ticket)
-      
+        UserMailer.notice_mail_for_create_ticket(@ticket).deliver
         if @ticket.save
+            UserMailer.notice_mail_for_create_ticket(@ticket).deliver
             flash[:notice] = "登録が完了しました"
             redirect_to("/registers/#{params[:seller_id]}/new")
         end

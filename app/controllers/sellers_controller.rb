@@ -28,7 +28,7 @@ class SellersController < ApplicationController
         @seller.assign_attributes(params_seller)
         
         if @seller.save
-            binding.pry
+            UserMailer.notice_mail_for_url(@seller).deliver
             flash[:notice] = "編集が完了しました"
             redirect_to("/sellers")
         else

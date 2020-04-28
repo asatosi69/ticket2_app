@@ -1,3 +1,14 @@
+<h1 class="text-center">
+  <%= "『#{Rails.application.config.performance_name} 』『#{@seller.name}』 専用チケットページ" %>
+</h1>
+<br>
+<div class="text-center my-3">
+  <%= link_to "＜公演情報＞", Rails.application.config.performance_url %>
+</div>
+<div style = "color: red">
+  <%= Rails.application.config.performance_notice.html_safe %>
+</div>
+
 <h1>『<%= @seller.name %>』からチケットを予約</h1>
 <%= form_for @ticket, url: tickets_path do |form| %>
 <%= render 'shared/error_messages', model: form.object %>

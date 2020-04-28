@@ -3,7 +3,7 @@
 <p>
   <% if current_seller.admin_flag? %>
     <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id), class:'control-label') %>
-    <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: "取扱者"}, {class: "form-control input-sm"}) %>
+    <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: :seller_id}, {class: "form-control input-sm"}) %>
   <% else %>
     <%= form.hidden_field :seller_id, value: current_seller.id %>
   <% end %>

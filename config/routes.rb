@@ -13,5 +13,11 @@ Rails.application.routes.draw do
   post "registers/create" => "registers#create"
   get "registers/:seller_id/new" => "registers#new"
   
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+  
+  
+  
   
 end
