@@ -9,6 +9,7 @@
   <%= Rails.application.config.performance_notice.html_safe %>
 </div>
 
+
 <%= form_for @ticket, url: confirm_registers_path do |form| %>
 <%= render 'shared/error_messages', model: form.object %>
 <p>
@@ -46,8 +47,6 @@
   <%= form.label(:comment1, Ticket.human_attribute_name(:comment1), class:'control-label') %>
   <%= form.text_area :comment1, size: "50x20", class: 'form-control' %>
 </p>
-<p>
-  <%= form.submit "申込" %>
-</p>
+      <%= form.submit "申込", class: 'btn btn-default' %>
+      <%= link_to '中止', 'https://www.google.co.jp', class: 'btn btn-default' %>
 <% end %>
-<%= button_to "中止", "http://www.google.co.jp/", {method: :get}  %>

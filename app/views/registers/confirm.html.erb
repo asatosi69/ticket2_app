@@ -1,3 +1,5 @@
+<h3>申込内容の確認</h3>
+
 <p> 開演日時: <%= @ticket.stage.stage %></p>
 <p> チケット種別: <%= @ticket.kind.kind %></p>
 <p> 支払方法: <%= @ticket.payment.payment %></p>
@@ -7,28 +9,35 @@
 <p> 予約者Eメール: <%= @ticket.buyer_mail %></p>
 <p> コメント: <%= @ticket.comment1 %></p>
 
-<%= form_for @ticket, url: new_registers_path do |f| %>
-  <%= f.hidden_field :seller_id %>
-  <%= f.hidden_field :stage_id %>
-  <%= f.hidden_field :kind_id %>
-  <%= f.hidden_field :payment_id %>
-  <%= f.hidden_field :count %>
-  <%= f.hidden_field :buyer_name %>
-  <%= f.hidden_field :buyer_furigana %>
-  <%= f.hidden_field :buyer_mail %>
-  <%= f.hidden_field :comment1 %>
-  <%= f.submit '戻る'%>
-<% end %>
-
-<%= form_for @ticket, url: registers_create_path do |f| %>
-  <%= f.hidden_field :seller_id %>
-  <%= f.hidden_field :stage_id %>
-  <%= f.hidden_field :kind_id %>
-  <%= f.hidden_field :payment_id %>
-  <%= f.hidden_field :count %>
-  <%= f.hidden_field :buyer_name %>
-  <%= f.hidden_field :buyer_furigana %>
-  <%= f.hidden_field :buyer_mail %>
-  <%= f.hidden_field :comment1 %>
-  <%= f.submit '申込'%>
-<% end %>
+<table>
+  <tr>
+    <td>
+      <%= form_for @ticket, url: new_registers_path do |f| %>
+        <%= f.hidden_field :seller_id %>
+        <%= f.hidden_field :stage_id %>
+        <%= f.hidden_field :kind_id %>
+        <%= f.hidden_field :payment_id %>
+        <%= f.hidden_field :count %>
+        <%= f.hidden_field :buyer_name %>
+        <%= f.hidden_field :buyer_furigana %>
+        <%= f.hidden_field :buyer_mail %>
+        <%= f.hidden_field :comment1 %>
+        <%= f.submit '戻る', class: 'btn btn-default'%>
+      <% end %>
+    </td>
+    <td>
+      <%= form_for @ticket, url: registers_create_path do |f| %>
+        <%= f.hidden_field :seller_id %>
+        <%= f.hidden_field :stage_id %>
+        <%= f.hidden_field :kind_id %>
+        <%= f.hidden_field :payment_id %>
+        <%= f.hidden_field :count %>
+        <%= f.hidden_field :buyer_name %>
+        <%= f.hidden_field :buyer_furigana %>
+        <%= f.hidden_field :buyer_mail %>
+        <%= f.hidden_field :comment1 %>
+        <%= f.submit '申込', class: 'btn btn-default'%>
+      <% end %>
+    </td>
+  </tr>
+</table>
