@@ -6,8 +6,6 @@
 
 <%= form_with(scope: :search, url: tickets_path, method: :get, local: true) do |form| %>
 
-
-
    <% if current_seller.admin_flag? %>
      <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id)) %>
      <%= form.collection_select(:seller_id, Seller.all, :id, :name, selected: @search_params[:seller_id], include_blank: t('helpers.select.include_blank')) %>
@@ -35,4 +33,12 @@
    <%= form.submit(t('helpers.submit.search')) %>
 <% end %>
 
-<%= render :partial => "shared/ticket_format" %>
+<% if params[:commit] %>
+ <%= render :partial => "shared/ticket_format" %>
+<% else %>
+  <BR>
+  <BR>
+  <h2>チケットの情報を表示するには、ボタン『検索』をクリックしてください</h2>
+  <BR>
+  <h2>全チケットの情報を表示するには、条件に何も設定せずに検索してください</h2>
+<% end %>

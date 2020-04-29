@@ -1,12 +1,13 @@
 class SellersController < ApplicationController
+
     # ログインしているユーザーのみ操作できるようにする
     before_action :authenticate_seller!
     
     def index
         if current_seller.admin_flag?
-            @sellers = Seller.all
+            @sellers = Seller.page(params[:page]).per(10)
         else
-            @sellers = Seller.where(id: current_seller.id)
+            @sellers = Seller.where(id: current_seller.id).page(params[:page]).per(10)
         end
     end
     

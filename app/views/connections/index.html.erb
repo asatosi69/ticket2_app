@@ -1,0 +1,10 @@
+<% @kinds.each do |kind| %>
+<% kind.connections.each do |connection| %>
+    <%= kind.id %>
+    <% if connection.invalid_flag %>
+      ☑️
+    <% else %>
+      -
+    <% end %>
+<% end %>
+<% end %>

@@ -10,6 +10,7 @@ class KindsController < ApplicationController
 
     def new
         @kind = Kind.new
+        @kind.connections.build
     end
 
     def create
@@ -76,6 +77,6 @@ class KindsController < ApplicationController
     
     private
      def params_kind
-      params.require(:kind).permit(:kind, :seats, :price, :color_id)
+      params.require(:kind).permit(:kind, :seats, :price, :color_id, { :stage_ids=> [] })
      end
 end

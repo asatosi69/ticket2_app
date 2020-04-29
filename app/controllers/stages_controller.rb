@@ -12,6 +12,7 @@ class StagesController < ApplicationController
 
     def new
         @stage = Stage.new
+        @stage.connections.build
     end
 
     def create
@@ -67,6 +68,6 @@ class StagesController < ApplicationController
     
     private
      def params_stage
-      params.require(:stage).permit(:stage, :total_seats, :end_time, :end_flag)
+      params.require(:stage).permit(:stage, :total_seats, :end_time, :end_flag, { :kind_ids=> [] })
      end
 end

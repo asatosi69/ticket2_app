@@ -32,6 +32,8 @@ gem 'pry-rails'
 gem "jquery-ui-rails"
 gem 'bootstrap-sass'
 gem 'rails-i18n', '~> 5.1' 
+gem 'kaminari', '~> 0.17.0'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -8,3 +8,10 @@ ja:
       name: '取扱者'
       admin_flag: '管理者フラグ'
       url: '予約用ページ'
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."

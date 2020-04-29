@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :stages, :except => [:show]
   resources :kinds, :except => [:show]
   resources :payments, :except => [:show]
+  resources :connections, :only => [:index, :edit, :update]
+  
   
   post "registers/create" => "registers#create"
   get "registers/:seller_id/new" => "registers#new"

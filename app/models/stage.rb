@@ -1,7 +1,7 @@
 class Stage < ApplicationRecord
     has_many :tickets
     has_many :connections
-    has_many :kinds, through: :connections
+    has_many :kinds, through: :connections, dependent: :destroy
     
     validates :stage, presence: true, uniqueness: true
     validates :total_seats, presence: true,  numericality: { only_integer: true }
