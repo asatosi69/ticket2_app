@@ -1,7 +1,7 @@
 class Kind < ApplicationRecord
     belongs_to :color
     has_many :tickets
-    has_many :connections
+    has_many :connections, dependent: :destroy
     has_many :stages, through: :connections, dependent: :destroy
     
     validates :kind, presence: true, uniqueness: true
