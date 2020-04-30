@@ -18,11 +18,6 @@ class Ticket < ApplicationRecord
       with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
       message: "は全角カタカナのみで入力して下さい"
     }
-    validates :buyer_mail,
-    format: {
-      with: /\A([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+\z/,
-      message: "はメールアドレスの形式で入力してください"
-    }
     
     scope :search, -> (search_params) do
 
@@ -36,8 +31,6 @@ class Ticket < ApplicationRecord
         .buyer_furigana_like(search_params[:buyer_furigana])
 
     end
-
-
 
     scope :seller_id_is, -> (seller_id) { where(seller_id: seller_id) if seller_id.present? }
     scope :stage_id_is, -> (stage_id) { where(stage_id: stage_id) if stage_id.present? }

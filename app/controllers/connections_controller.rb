@@ -1,7 +1,7 @@
 class ConnectionsController < ApplicationController
   def index
-      @stage = Stage.find(10)
-      @kinds = @stage.connections
+      @kinds = Kind.all.order(kind: "ASC")
+      @stages = Stage.all.order(stage: "ASC")
   end
 
   def update
