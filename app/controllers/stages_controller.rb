@@ -16,7 +16,15 @@ class StagesController < ApplicationController
     end
 
     def create
+        
         @stage = Stage.new(params_stage)
+        
+        # モデル『Connection』に新しい『@stage』の情報を登録するための処理
+        @kinds = Kind.all
+        @kinds.each do |kind|
+            @stage.kinds << kind
+        end
+        
 
         if @stage.save
             flash[:notice] = "登録が完了しました"

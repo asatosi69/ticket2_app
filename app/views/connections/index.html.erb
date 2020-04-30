@@ -1,29 +1,34 @@
-<table border="2">
-  <%# 1列目 %>
-  <tr>
-    <td>
-    </td>
-    <% @kinds.each do |kind| %>
-      <th>
-        <%= kind.kind %>
-      </th>
-    <% end %>
-    </tr>
-
-  <% @stages.each do |stage| %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:75%">
     <tr>
-      <th>
-          <%= stage.stage %>
-      </th>
+      <td>
+      </td>
       <% @kinds.each do |kind| %>
-        <td>
-          <% if Connection.find_by(stage_id: stage.id, kind_id: kind.id).invalid_flag %>
-          ☑️
-          <% else %>
-            -
-          <% end %>
-        </td>
+        <th>
+          <p class="text-center">
+          <%= kind.kind %>
+          </p>
+        </th>
       <% end %>
-    </tr>
-<% end %>
-</table>
+      </tr>
+
+    <% @stages.each do |stage| %>
+      <tr>
+        <th>
+          <p class="text-center">
+            <%= stage.stage %>
+          </p>
+        </th>
+        <% @kinds.each do |kind| %>
+          <td align="center">
+            <% if Connection.find_by(stage_id: stage.id, kind_id: kind.id).invalid_flag %>
+              ☑️
+            <% else %>
+              -
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+  <% end %>
+  </table>
+</div>

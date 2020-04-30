@@ -19,9 +19,15 @@ class KindsController < ApplicationController
         # 『チケット種別モデル』のレコード作成時、『色モデル』の『使用済フラグ』を"true"にする
         Color.selected_color(@kind.color_id)
         
+        # モデル『Connection』に新しい『@kind』の情報を登録するための処理
+        @stages = Stage.all
+        @stages.each do |stage|
+            @kind.stages << stage
+        end
+        
         if @kind.save
             flash[:notice] = "登録が完了しました"
-            edirect_to("/kinds")
+            redirect_to("/kinds")
         else
             render  'new'
         end
