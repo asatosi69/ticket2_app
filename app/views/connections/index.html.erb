@@ -30,13 +30,17 @@
         </th>
         <% @kinds.each do |kind| %>
           <td align="center">
-            <% @connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
-            <% if @connection.invalid_flag %>
-              ☑️
+            <% if stage.end_flag %>
+              受付終了
             <% else %>
-              -
+              <% @connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
+              <% if @connection.invalid_flag %>
+                ☑️
+              <% else %>
+                -
+              <% end %>
+              <%= button_to '反転', connection_path(@connection), {method: "patch"} %>
             <% end %>
-            <%= button_to '反転', connection_path(@connection), {method: "patch"} %>
           </td>
         <% end %>
       </tr>

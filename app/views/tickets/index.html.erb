@@ -33,10 +33,10 @@
    <BR>
 
    <%= form.label(:comment1, Ticket.human_attribute_name(:comment1)) %>
-   <%= form.check_box :comment1 %>
+   <%= form.check_box :comment1, value: true %>
 
    <%= form.label(:comment2, Ticket.human_attribute_name(:comment2)) %>
-   <%= form.check_box :comment2 %>
+   <%= form.check_box :comment2, value: true %>
 
    <%= form.submit(t('helpers.submit.search')) %>
 <% end %>

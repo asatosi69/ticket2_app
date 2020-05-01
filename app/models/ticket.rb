@@ -22,7 +22,7 @@ class Ticket < ApplicationRecord
     scope :search, -> (search_params) do
 
         return if search_params.blank?
-
+        
         seller_id_is(search_params[:seller_id])
         .stage_id_is(search_params[:stage_id])
         .kind_id_is(search_params[:kind_id])
@@ -40,7 +40,7 @@ class Ticket < ApplicationRecord
     scope :payment_id_is, -> (payment_id) { where(payment_id: payment_id) if payment_id.present? }
     scope :buyer_name_like, -> (buyer_name) { where('buyer_name LIKE ?', "%#{buyer_name}%") if buyer_name.present? }
     scope :buyer_furigana_like, -> (buyer_furigana) { where('buyer_furigana LIKE ?', "%#{buyer_furigana}%") if buyer_furigana.present? }
-    scope :comment1_like, -> (comment1) { where('comment1 LIKE ?', "%%") if comment1 = true }
-    scope :comment2_like, -> (comment2) { where('comment2 LIKE ?', "%%") if comment2 = true }
+    scope :comment1_like, -> (comment1) { where.not(comment1: nil ) if comment1 = 1 }
+    scope :comment2_like, -> (comment2) { where.not(comment2: nil ) if comment2 = 1 }
 
 end
