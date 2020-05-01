@@ -77,7 +77,7 @@ class TicketsController < ApplicationController
   end
     
   def ticket_search_params
-      params.fetch(:search, {}).permit(:seller_id, :stage_id, :kind_id, :payment_id, :buyer_name, :buyer_furigana)
+      params.fetch(:search, {}).permit(:seller_id, :stage_id, :kind_id, :payment_id, :buyer_name, :buyer_furigana, :comment1, :comment2)
   end
   
 end

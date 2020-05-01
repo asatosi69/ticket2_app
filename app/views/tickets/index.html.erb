@@ -30,6 +30,14 @@
    <%= form.label(:buyer_furigana, Ticket.human_attribute_name(:buyer_furigana)) %>
    <%= form.text_field :buyer_furigana, value: @search_params[:buyer_furigana] %>
 
+   <BR>
+
+   <%= form.label(:comment1, Ticket.human_attribute_name(:comment1)) %>
+   <%= form.check_box :comment1 %>
+
+   <%= form.label(:comment2, Ticket.human_attribute_name(:comment2)) %>
+   <%= form.check_box :comment2 %>
+
    <%= form.submit(t('helpers.submit.search')) %>
 <% end %>
 

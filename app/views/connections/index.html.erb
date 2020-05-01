@@ -1,3 +1,12 @@
+<br>
+<br>
+<p>『管理取扱者』：チェックがついている組み合わせのチケットも予約可能です</p>
+<p>『一般取扱者』：チェックがついている組み合わせのチケットは予約できません</p>
+<p>『一般のお客様』：チェックがついている組み合わせのチケットは予約できません</p>
+<p>『一般取扱者』/『一般のお客様』：チェックがついていないにもかかわらず、予約ができない場合は『公演』にて『終了フラグ』が立っています。</p>
+<br>
+<br>
+
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:75%">
     <tr>
@@ -21,11 +30,13 @@
         </th>
         <% @kinds.each do |kind| %>
           <td align="center">
-            <% if Connection.find_by(stage_id: stage.id, kind_id: kind.id).invalid_flag %>
+            <% @connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
+            <% if @connection.invalid_flag %>
               ☑️
             <% else %>
               -
             <% end %>
+            <%= button_to '反転', connection_path(@connection), {method: "patch"} %>
           </td>
         <% end %>
       </tr>

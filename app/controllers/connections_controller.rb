@@ -5,11 +5,30 @@ class ConnectionsController < ApplicationController
   def index
       @kinds = Kind.all.order(kind: "ASC")
       @stages = Stage.all.order(stage: "ASC")
-  end
-
-  def update
+      @connections = Connection.all
   end
 
   def edit
+      @kinds = Kind.all.order(kind: "ASC")
+      @stages = Stage.all.order(stage: "ASC")
+      @connection = Connection.find_by(id: params[:id])
   end
+
+  def update
+      @kinds = Kind.all.order(kind: "ASC")
+      @stages = Stage.all.order(stage: "ASC")
+      @connection = Connection.find_by(id: params[:id])
+      
+      @connection.invalid_flag = !@connection.invalid_flag
+      
+      if @connection.save
+          flash[:notice] = "反転が完了しました"
+          redirect_to("/connections")
+      else
+          render  'index'
+      end
+  end
+  
+
+
 end

@@ -28,6 +28,8 @@ class SellersController < ApplicationController
         @seller = Seller.find(params[:id])
         @seller.assign_attributes(params_seller)
         
+        @host = request.host
+        
         if @seller.save
             UserMailer.notice_mail_for_url(@seller).deliver
             flash[:notice] = "編集が完了しました"

@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :payments, :except => [:show]
   resources :connections, :only => [:index, :edit, :update]
   
-  
   post "registers/create" => "registers#create"
   get "registers/:seller_id/new" => "registers#new", as: :new_registers2
   post "registers/:seller_id/new" => "registers#back", as: :new_registers
