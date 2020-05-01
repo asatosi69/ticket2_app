@@ -1,9 +1,10 @@
 <h1>チケットを予約</h1>
 <%= form_for @ticket, url: tickets_path do |form| %>
+<%= render 'shared/error_messages', model: form.object %>
 <p>
   <% if current_seller.admin_flag? %>
     <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id), class:'control-label') %>
-    <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: :seller_id}, {class: "form-control input-sm"}) %>
+    <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: :seller_id}, {class: "form-control input-sm", required => true}) %>
   <% else %>
     <%= form.hidden_field :seller_id, value: current_seller.id %>
   <% end %>
@@ -11,14 +12,14 @@
 <p>
   <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
   <% if current_seller.admin_flag? %>
-    <%= form.collection_select(:stage_id, Stage.all, :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
+    <%= form.collection_select(:stage_id, Stage.all.order(stage: "ASC"), :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
   <% else %>
-    <%= form.collection_select(:stage_id, Stage.where(end_flag: false), :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
+    <%= form.collection_select(:stage_id, Stage.where(end_flag: false).order(stage: "ASC"), :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
   <% end %>
 </p>
 <p>
   <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
-  <%= form.collection_select(:kind_id, Kind.all, :id, :kind, {prompt: :kind_id} ,{class: "form-control input-sm"}) %>
+  <%= form.collection_select(:kind_id, Kind.all, :id, :kind, {prompt: :kind_id}, {class: "form-control input-sm"}) %>
 </p>
 <p>
   <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
@@ -26,7 +27,7 @@
 </p>
 <p>
   <%= form.label(:count, Ticket.human_attribute_name(:count), class:'control-label') %>
-  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: :count}, class: 'form-control' %>
+  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: :count}, {class: "form-control"} %>
 </p>
 <p>
   <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name), class:'control-label') %>

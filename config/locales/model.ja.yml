@@ -21,7 +21,7 @@ ja:
         abbreviation: '略称'
         discount_rate: '割引率'
       stage:
-        stage: '開演時間'
+        stage: '公演'
         total_seats: '総席数'
         end_time: '受付終了時間'
         end_flag: '受付終了フラグ'

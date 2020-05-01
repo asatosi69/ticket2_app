@@ -1,17 +1,17 @@
 ja:
   stagess:
     index:
-      stage: '開演時間'
+      stage: '公演'
       total_seats: '総席数'
       end_time: '受付終了時間'
       end_flag: '受付終了フラグ'
     new:
-      stage: '開演時間'
+      stage: '公演'
       total_seats: '総席数'
       end_time: '受付終了時間'
       end_flag: '受付終了フラグ'
     edit:
-      stage: '開演時間'
+      stage: '公演'
       total_seats: '総席数'
       end_time: '受付終了時間'
       end_flag: '受付終了フラグ'

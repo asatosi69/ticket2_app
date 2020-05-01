@@ -2,7 +2,7 @@ ja:
   tickets:
     index:
       seller_id: '取扱者'
-      stage_id: '開演日時'
+      stage_id: '公演'
       kind_id: 'チケット種別'
       payment_id: '支払方法'
       count: '枚数'
@@ -13,7 +13,7 @@ ja:
       comment2: '備考'
     new:
       seller_id: '取扱者'
-      stage_id: '開演日時'
+      stage_id: '公演'
       kind_id: 'チケット種別'
       payment_id: '支払方法'
       count: '枚数'
@@ -24,7 +24,7 @@ ja:
       comment2: '備考'
     edit:
       seller_id: '取扱者'
-      stage_id: '開演日時'
+      stage_id: '公演'
       kind_id: 'チケット種別'
       payment_id: '支払方法'
       count: '枚数'
@@ -35,7 +35,7 @@ ja:
       comment2: '備考'
     show:
       seller_id: '取扱者'
-      stage_id: '開演日時'
+      stage_id: '公演'
       kind_id: 'チケット種別'
       payment_id: '支払方法'
       count: '枚数'

@@ -23,12 +23,14 @@ class TicketsController < ApplicationController
 
   def new
       @ticket = Ticket.new
+
   end
 
   def create
       @ticket = Ticket.new(params_ticket)
+      validation_context = current_seller.admin_flag? ? :admin_seller : nil
       
-      if @ticket.save
+      if @ticket.save(context: validation_context)
           flash[:notice] = "登録が完了しました"
           
           if params[:Renzoku]
@@ -38,28 +40,30 @@ class TicketsController < ApplicationController
               UserMailer.notice_mail_for_create_ticket(@ticket).deliver
               redirect_to("/tickets")
           end
-          
+              
       else
-          render  'new'
+              render  'new'
       end
       
   end
 
   def edit
       @ticket = Ticket.find_by(id: params[:id])
+      @connections = Connection.all
   end
 
   def update
       @ticket = Ticket.find_by(id: params[:id])
       @ticket.assign_attributes(params_ticket)
+      validation_context = current_seller.admin_flag? ? :admin_seller : nil
       
-      if @ticket.save
-          UserMailer.notice_mail_for_update_ticket(@ticket).deliver
-          flash[:notice] = "編集が完了しました"
-          redirect_to("/tickets")
+      if @ticket.save(context: validation_context)
+         UserMailer.notice_mail_for_update_ticket(@ticket).deliver
+         flash[:notice] = "編集が完了しました"
       else
-          render  'edit'
+         render  'edit'
       end
+      
   end
   
   def destroy

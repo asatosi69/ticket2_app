@@ -4,20 +4,24 @@ class Ticket < ApplicationRecord
     belongs_to :kind
     belongs_to :payment
     
-    validates :seller_id, presence: true, numericality: { only_integer: true }
-    validates :stage_id, presence: true, numericality: { only_integer: true }
-    validates :kind_id, presence: true, numericality: { only_integer: true }
-    validates :payment_id, presence: true, numericality: { only_integer: true }
+    validates :seller_id, presence: true
+    validates :stage_id, presence: true
+    validates :kind_id, presence: true
+    validates :payment_id, presence: true
+    
     validates :buyer_name, presence: true,
     format: {
       with: /\A[ぁ-んァ-ヶー一-龠]+\z/,
-      message: "は全角のみで入力して下さい"
+      errors: "は全角のみで入力して下さい"
     }
+    
     validates :buyer_furigana, presence: true,
     format: {
       with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
-      message: "は全角カタカナのみで入力して下さい"
+      errors: "は全角カタカナのみで入力して下さい"
     }
+    
+    validate :check_conbination_of_stage_and_kind, unless: -> { validation_context == :admin_seller }
     
     scope :search, -> (search_params) do
 
@@ -42,5 +46,15 @@ class Ticket < ApplicationRecord
     scope :buyer_furigana_like, -> (buyer_furigana) { where('buyer_furigana LIKE ?', "%#{buyer_furigana}%") if buyer_furigana.present? }
     scope :comment1_like, -> (comment1) { where.not(comment1: nil ) if comment1 = 1 }
     scope :comment2_like, -> (comment2) { where.not(comment2: nil ) if comment2 = 1 }
+
+  private
+
+    def check_conbination_of_stage_and_kind
+        
+      return unless Connection.find_by(stage_id: stage_id, kind_id: kind_id).invalid_flag
+
+      errors.add('選択いただいた『公演 / チケット種別』の組み合わせでは予約を承ることができません。')
+
+    end
 
 end

@@ -12,9 +12,9 @@
 <p>
   <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
   <% if current_seller.admin_flag? %>
-    <%= form.collection_select(:stage_id, Stage.all, :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
+    <%= form.collection_select(:stage_id, Stage.all.order(stage: "ASC"), :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
   <% else %>
-    <%= form.collection_select(:stage_id, Stage.where(end_flag: false), :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
+    <%= form.collection_select(:stage_id, Stage.where(end_flag: false).order(stage: "ASC"), :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
   <% end %>
 </p>
 <p>
