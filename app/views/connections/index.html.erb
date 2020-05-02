@@ -34,7 +34,11 @@
               受付終了
             <% else %>
               <% @connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
-                <%= check_box_tag :invalid_flag, value = "", @connection.invalid_flag %>
+              <% if @connection.invalid_flag %>
+                <%= check_box_tag :invalid_flag, value = "", @connection.invalid_flag, {:checked => true} %>
+              <% else %>
+                <%= check_box_tag :invalid_flag, value = "", @connection.invalid_flag, {:checked => false} %>
+              <% end %>
               <%= button_to '反転', connection_path(@connection), {method: "patch"} %>
             <% end %>
           </td>

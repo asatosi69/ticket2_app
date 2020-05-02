@@ -4,6 +4,9 @@ class SellersController < ApplicationController
     before_action :authenticate_seller!
     
     def index
+        
+        @host = request.host
+        @port = request.port
         if current_seller.admin_flag?
             @sellers = Seller.page(params[:page]).per(10)
         else

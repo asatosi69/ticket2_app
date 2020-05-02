@@ -15,10 +15,6 @@
   <%= form.check_box :admin_flag , class: 'form-control' %>
 </p>
 <p>
-  <%= form.label(:url, Seller.human_attribute_name(:url), class:'control-label') %>
-  <%= form.text_field :url, value:"/registers/#{@seller.id}/new", class: 'form-control' %>
-</p>
-<p>
   <%= form.submit "更新" %><%= button_to '戻る', {:controller => "sellers", :action => "index"}, {:method => :get}  %>
 </p>
 <% end %>

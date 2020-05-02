@@ -8,15 +8,8 @@ class ConnectionsController < ApplicationController
       @connections = Connection.all
   end
 
-  def edit
-      @kinds = Kind.all.order(kind: "ASC")
-      @stages = Stage.all.order(stage: "ASC")
-      @connection = Connection.find_by(id: params[:id])
-  end
-
   def update
-      @kinds = Kind.all.order(kind: "ASC")
-      @stages = Stage.all.order(stage: "ASC")
+      
       @connection = Connection.find_by(id: params[:id])
       
       @connection.invalid_flag = !@connection.invalid_flag
@@ -27,8 +20,7 @@ class ConnectionsController < ApplicationController
       else
           render  'index'
       end
+    
   end
-  
-
-
+       
 end
