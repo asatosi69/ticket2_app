@@ -33,7 +33,7 @@
             <% if stage.end_flag %>
               受付終了
             <% else %>
-              <% @connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
+            <% @connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
               <% if @connection.invalid_flag %>
                 <%= check_box_tag :invalid_flag, value = "", @connection.invalid_flag, {:checked => true} %>
               <% else %>

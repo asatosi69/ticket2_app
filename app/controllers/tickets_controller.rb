@@ -60,6 +60,7 @@ class TicketsController < ApplicationController
       if @ticket.save(context: validation_context)
          UserMailer.notice_mail_for_update_ticket(@ticket).deliver
          flash[:notice] = "編集が完了しました"
+         redirect_to("/tickets")
       else
          render  'edit'
       end
