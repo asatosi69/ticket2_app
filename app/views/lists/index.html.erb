@@ -1,15 +1,15 @@
+<%# 左から　トリオ、ペア、通常 %>
+
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:75%">
     <tr>
-      <td>
+      <td  style="width: 120px">
       </td>
       <% @stages.each do |stage| %>
-        <th style="width: 70px">
-          <span class="vertical">
-            <p class="text-center">
-            <%= stage.stage %>
-            </p>
-          </span>
+        <th>
+          <p class="text-center">
+          <%= stage.stage %>
+          </p>
         </th>
       <% end %>
       </tr>
@@ -23,9 +23,17 @@
         </th>
         <% @stages.each do |stage| %>
           <td align="center">
+          <% @kinds.each do |kind| %>
+            <%# 予約枚数 %>
+            <% @seats_count1 = Ticket.ticket_list_classified_by_seller(seller.id, stage.id, kind.id) %>
+            <%= @seats_count1 %>
+            <%# 予約枚数に消費される席数をかけた枚数 %>
+            <% @seats_count2 = @seats_count1 * kind.seats %>
+            (<%=  @seats_count2 %>)
+          <% end %>
           </td>
         <% end %>
       </tr>
-  <% end %>
+    <% end %>
   </table>
 </div>

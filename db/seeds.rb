@@ -1,17 +1,12 @@
-Connection.destroy_all
-# ステージの処理
-stage1 = Stage.find(10)
-stage2 = Stage.find(11)
-
-# チケット種別の処理
-kind1 = Kind.find(11)
-kind2 = Kind.find(14)
-
-#関連付けを追加
-stage1.kinds << kind1
-stage1.kinds << kind2
-stage1.save
-
-stage2.kinds << kind1
-stage2.kinds << kind2
-stage2.save
+Color.destroy_all
+Color.create!(id: 1, color_code: '#FF0000', color_name: '赤', is_selected: true)
+Color.create!(id: 2, color_code: '#00FF00', color_name: '黄緑', is_selected: false)
+Color.create!(id: 3, color_code: '#0000FF', color_name: '青', is_selected: false)
+Color.create!(id: 4, color_code: '#FFFF00', color_name: '黄', is_selected: false)
+Color.create!(id: 5, color_code: '#00FFFF', color_name: '水色', is_selected: false)
+Color.create!(id: 6, color_code: '#FF00FF', color_name: 'ピンク', is_selected: false)
+Color.create!(id: 7, color_code: '#008000', color_name: '緑', is_selected: false)
+Color.create!(id: 8, color_code: '#000080', color_name: '群青', is_selected: false)
+Color.create!(id: 9, color_code: '#808000', color_name: 'オリーブ', is_selected: false)
+Color.create!(id: 10, color_code: '#800080', color_name: '紫', is_selected: false)
+Color.create!(id: 11, color_code: '#800000', color_name: '栗色', is_selected: false)

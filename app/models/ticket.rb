@@ -23,6 +23,10 @@ class Ticket < ApplicationRecord
     
     validate :check_conbination_of_stage_and_kind, unless: -> { validation_context == :admin_seller }
     
+    def self.ticket_list_classified_by_seller(seller_id, stage_id, kind_id)
+        self.count_by_sql "SELECT COUNT(count) FROM tickets  WHERE seller_id = #{seller_id} and stage_id = #{stage_id} and kind_id = #{kind_id}"
+    end
+    
     scope :search, -> (search_params) do
 
         return if search_params.blank?

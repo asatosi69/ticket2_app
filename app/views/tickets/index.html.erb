@@ -14,7 +14,7 @@
    <% end %>
 
    <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id)) %>
-   <%= form.collection_select(:stage_id, Stage.all, :id, :stage, selected: @search_params[:stage_id], include_blank: t('helpers.select.include_blank')) %>
+   <%= form.collection_select(:stage_id, Stage.all.order(stage: "ASC"), :id, :stage, selected: @search_params[:stage_id], include_blank: t('helpers.select.include_blank')) %>
 
    <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id)) %>
    <%= form.collection_select(:kind_id, Kind.all, :id, :kind, selected: @search_params[:kind_id], include_blank: t('helpers.select.include_blank')) %>
