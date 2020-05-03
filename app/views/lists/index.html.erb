@@ -13,18 +13,23 @@
           </p>
         </th>
       <% end %>
-      <th>
+      <th align="center">
         <p class="text-center">
           合計
         </p>
       </th>
       </tr>
 
+    <%# 合計(取扱者別)用配列の初期化 %>
+    <% total_for_stage = [] %>
+
     <% @sellers.each do |seller| %>
+
     <%# 合計(取扱者別)用配列の初期化 %>
     <% total_for_seller = [] %>
+
       <tr>
-        <th>
+        <th align="center">
           <p class="text-center">
             <%= seller.name %>
           </p>
@@ -40,11 +45,14 @@
             (<%=  @seats_count2 %>)
             <%# 合計(取扱者別)用配列に配列を追加する %>
             <% total_for_seller.push([kind.kind, @seats_count1]) %>
+            <% total_for_stage.push([stage.stage, kind.kind, @seats_count1]) %>
           <% end %>
           </td>
         <% end %>
-        <td align="center">
+
+
         <%# 合計(取扱者別)処理 %>
+        <td align="center">
         <% @kinds.each do |kind| %>
           <% sum = 0 %>
           <% total_for_seller.each do |v1, v2| %>
@@ -55,7 +63,50 @@
           <%= sum %>(<%= sum * kind.seats %>)
         <% end %>
         </td>
+
+
       </tr>
     <% end %>
+    <tr>
+      <th align="center">
+        <p class="text-center">
+          合計
+        </p>
+      </th>
+
+
+      <%# 合計(公演別)処理 %>
+      <% @stages.each do |stage| %>
+        <td align="center">
+          <% @kinds.each do |kind| %>
+            <% sum = 0 %>
+            <% total_for_stage.each do |v1, v2, v3| %>
+              <% if v1 == stage.stage %>
+                <% if v2 == kind.kind %>
+                  <% sum += v3 %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <%= sum %>(<%= sum * kind.seats %>)
+          <% end %>
+        </td>
+      <% end %>
+
+
+      <%# 総合計(公演別)処理 %>
+        <td align="center">
+          <% @kinds.each do |kind| %>
+            <% sum = 0 %>
+            <% total_for_stage.each do |v1, v2, v3| %>
+              <% if v2 == kind.kind %>
+                <% sum += v3 %>
+              <% end %>
+            <% end %>
+            <%= sum %>(<%= sum * kind.seats %>)
+          <% end %>
+        </td>
+
+
+    </tr>
   </table>
 </div>
