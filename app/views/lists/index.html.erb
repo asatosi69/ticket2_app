@@ -15,19 +15,12 @@
       <% end %>
       <th align="center">
         <p class="text-center">
-          合計
+          集計
         </p>
       </th>
-      </tr>
-
-    <%# 合計(取扱者別)用配列の初期化 %>
-    <% total_for_stage = [] %>
+    </tr>
 
     <% @sellers.each do |seller| %>
-
-    <%# 合計(取扱者別)用配列の初期化 %>
-    <% total_for_seller = [] %>
-
       <tr>
         <th align="center">
           <p class="text-center">
@@ -36,77 +29,172 @@
         </th>
         <% @stages.each do |stage| %>
           <td align="center">
+          <% array = [] %>
+          <% sum = 0 %>
           <% @kinds.each do |kind| %>
             <%# 予約枚数 %>
-            <% @seats_count1 = Ticket.ticket_list_classified_by_seller(seller.id, stage.id, kind.id) %>
-            <%= @seats_count1 %>
-            <%# 予約枚数に消費される席数をかけた枚数 %>
-            <% @seats_count2 = @seats_count1 * kind.seats %>
-            (<%=  @seats_count2 %>)
-            <%# 合計(取扱者別)用配列に配列を追加する %>
-            <% total_for_seller.push([kind.kind, @seats_count1]) %>
-            <% total_for_stage.push([stage.stage, kind.kind, @seats_count1]) %>
+            <% @seats_count = Ticket.ticket_list_classified_by_seller(seller.id, stage.id, kind.id) %>
+            <% sum += @seats_count * kind.seats %>
+            <% array.push(@seats_count) %>
+          <% end %>
+          <%= sum %>
+          <% array.each do |value| %>
+            (<%= value %>)
           <% end %>
           </td>
         <% end %>
-
-
         <%# 合計(取扱者別)処理 %>
         <td align="center">
-        <% @kinds.each do |kind| %>
+          <% array = [] %>
           <% sum = 0 %>
-          <% total_for_seller.each do |v1, v2| %>
-            <% if v1 == kind.kind %>
-              <% sum += v2 %>
-            <% end %>
+          <% @kinds.each do |kind| %>
+            <% @seats_count = Ticket.tickets_of_the_seller(seller.id, kind.id) %>
+            <% sum += @seats_count * kind.seats %>
+            <% array.push(@seats_count) %>
           <% end %>
-          <%= sum %>(<%= sum * kind.seats %>)
-        <% end %>
+          <%= sum %>
+          <% array.each do |value| %>
+            (<%= value %>)
+          <% end %>
         </td>
-
-
       </tr>
     <% end %>
+
+
     <tr>
       <th align="center">
         <p class="text-center">
-          合計
+          販売済
         </p>
       </th>
-
-
       <%# 合計(公演別)処理 %>
       <% @stages.each do |stage| %>
         <td align="center">
+          <% array = [] %>
+          <% sum = 0 %>
           <% @kinds.each do |kind| %>
-            <% sum = 0 %>
-            <% total_for_stage.each do |v1, v2, v3| %>
-              <% if v1 == stage.stage %>
-                <% if v2 == kind.kind %>
-                  <% sum += v3 %>
-                <% end %>
-              <% end %>
-            <% end %>
-            <%= sum %>(<%= sum * kind.seats %>)
+            <% @seats_count = Ticket.tickets_in_the_stage(stage.id, kind.id) %>
+            <% sum += @seats_count * kind.seats %>
+            <% array.push(@seats_count) %>
+          <% end %>
+          <%= sum %>
+          <% array.each do |value| %>
+            (<%= value %>)
           <% end %>
         </td>
       <% end %>
-
-
-      <%# 総合計(公演別)処理 %>
-        <td align="center">
-          <% @kinds.each do |kind| %>
-            <% sum = 0 %>
-            <% total_for_stage.each do |v1, v2, v3| %>
-              <% if v2 == kind.kind %>
-                <% sum += v3 %>
-              <% end %>
-            <% end %>
-            <%= sum %>(<%= sum * kind.seats %>)
-          <% end %>
-        </td>
-
-
+      <%# 総合計処理 %>
+      <td align="center">
+        <% array = [] %>
+        <% sum2 = 0 %>
+        <% @kinds.each do |kind| %>
+          <% @seats_count = Ticket.all_tickets(kind.id) %>
+          <% sum2 += @seats_count * kind.seats%>
+          <% array.push(@seats_count) %>
+        <% end %>
+        <%= sum2 %>
+        <% array.each do |value| %>
+          (<%= value %>)
+        <% end %>
+      </td>
     </tr>
+
+
+    <%# 空行 %>
+    <tr>
+      <td>
+      </td>
+      <% @stages.each do |stage| %>
+        <td>
+        </td>
+      <% end %>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <th align="center">
+        <p class="text-center">
+          座席
+        </p>
+      </th>
+      <% sum3 = 0 %>
+      <% @stages.each do |stage| %>
+      <td align="center">
+        <%= stage.total_seats %>
+        <% sum3 += stage.total_seats %>
+      </td>
+      <% end %>
+      <td align="center">
+        <%= sum3 %>
+      </td>
+    </tr>
+
+
+    <tr>
+      <th align="center">
+        <p class="text-center">
+          収容率(%)
+        </p>
+      </th>
+      <% @stages.each do |stage| %>
+        <td align="center">
+        <% array = [] %>
+        <% sum = 0 %>
+        <% @kinds.each do |kind| %>
+          <% @seats_count = Ticket.tickets_in_the_stage(stage.id, kind.id) %>
+          <% sum += @seats_count * kind.seats%>
+        <% end %>
+        <%= sum * 100 / stage.total_seats   %>
+      </td>
+      <% end %>
+      <td align="center">
+        <%= sum2 * 100 / sum3   %>
+      </td>
+    </tr>
+
+
+    <%# 空行 %>
+    <tr>
+      <td>
+      </td>
+      <% @stages.each do |stage| %>
+        <td>
+        </td>
+      <% end %>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <th align="center">
+        <p class="text-center">
+          金額
+        </p>
+      </th>
+      <% @stages.each do |stage| %>
+        <td align="center">
+        <% sum = 0 %>
+        <% @kinds.each do |kind| %>
+          <% @seats_count = Ticket.tickets_in_the_stage(stage.id, kind.id) %>
+          <% sum += @seats_count * kind.price %>
+        <% end %>
+        <%= sum %>
+        </td>
+      <% end %>
+      <td align="center">
+        <% sum2 = 0 %>
+        <% @kinds.each do |kind| %>
+          <% @seats_count = Ticket.all_tickets(kind.id) %>
+          <% sum2 += @seats_count * kind.price %>
+        <% end %>
+        <%= sum2 %>
+      </td>
+    </tr>
+
+
+
+
+
   </table>
 </div>

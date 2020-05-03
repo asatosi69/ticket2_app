@@ -27,6 +27,18 @@ class Ticket < ApplicationRecord
         self.count_by_sql "SELECT COUNT(count) FROM tickets  WHERE seller_id = #{seller_id} and stage_id = #{stage_id} and kind_id = #{kind_id}"
     end
     
+    def self.tickets_of_the_seller(seller_id, kind_id)
+        self.count_by_sql "SELECT COUNT(count) FROM tickets  WHERE seller_id = #{seller_id} and kind_id = #{kind_id}"
+    end
+    
+    def self.tickets_in_the_stage(stage_id, kind_id)
+        self.count_by_sql "SELECT COUNT(count) FROM tickets  WHERE stage_id = #{stage_id} and kind_id = #{kind_id}"
+    end
+    
+    def self.all_tickets(kind_id)
+        self.count_by_sql "SELECT COUNT(count) FROM tickets  WHERE kind_id = #{kind_id}"
+    end
+    
     scope :search, -> (search_params) do
 
         return if search_params.blank?
