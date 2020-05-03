@@ -6,6 +6,7 @@ class ListsController < ApplicationController
         @sellers = Seller.all
         @stages = Stage.all.order(stage: "ASC")
         @kinds = Kind.all.order(kind: "ASC")
+        @payments = Payment.all.order(payment: "ASC")
         @tickets = Ticket.all
     end
 end

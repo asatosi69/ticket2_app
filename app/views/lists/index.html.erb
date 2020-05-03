@@ -192,8 +192,72 @@
       </td>
     </tr>
 
+    <%# 空行 %>
+    <tr>
+      <td>
+      </td>
+      <% @stages.each do |stage| %>
+        <td>
+        </td>
+      <% end %>
+      <td>
+      </td>
+    </tr>
 
-
+    <tr>
+      <td  style="width: 120px">
+      </td>
+      <% @stages.each do |stage| %>
+        <th>
+          <p class="text-center">
+          <%= stage.stage %>
+          </p>
+        </th>
+      <% end %>
+      <th align="center">
+        <p class="text-center">
+          集計
+        </p>
+      </th>
+    </tr>
+    <% @payments.each do |payment| %>
+      <tr>
+        <th align="center">
+          <p class="text-center">
+            <%= payment.payment %>
+          </p>
+        </th>
+        <% @stages.each do |stage| %>
+          <td align="center">
+            <% array = [] %>
+            <% sum = 0 %>
+            <% @kinds.each do |kind| %>
+              <%# 予約枚数 %>
+              <% @seats_count = Ticket.tickets_list_classified_by_seller(payment.id, stage.id, kind.id) %>
+              <% sum += @seats_count * kind.seats %>
+              <% array.push(@seats_count) %>
+            <% end %>
+            <%= sum %>
+            <% array.each do |value| %>
+              (<%= value %>)
+            <% end %>
+          </td>
+        <% end %>
+        <td align="center">
+          <% array = [] %>
+          <% sum = 0 %>
+          <% @kinds.each do |kind| %>
+            <% @seats_count = Ticket.tickets_with_the_payment_method(payment.id, kind.id) %>
+            <% sum += @seats_count * kind.seats %>
+            <% array.push(@seats_count) %>
+          <% end %>
+          <%= sum %>
+          <% array.each do |value| %>
+            (<%= value %>)
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
 
 
   </table>

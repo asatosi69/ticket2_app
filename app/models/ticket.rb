@@ -39,6 +39,14 @@ class Ticket < ApplicationRecord
         self.count_by_sql "SELECT COUNT(count) FROM tickets  WHERE kind_id = #{kind_id}"
     end
     
+    def self.tickets_list_classified_by_seller(payment_id, stage_id, kind_id)
+        self.count_by_sql "SELECT COUNT(count) FROM tickets  WHERE payment_id = #{payment_id} and stage_id = #{stage_id} and kind_id = #{kind_id}"
+    end
+    
+    def self.tickets_with_the_payment_method(payment_id, kind_id)
+        self.count_by_sql "SELECT COUNT(count) FROM tickets  WHERE payment_id = #{payment_id} and kind_id = #{kind_id}"
+    end
+    
     scope :search, -> (search_params) do
 
         return if search_params.blank?
