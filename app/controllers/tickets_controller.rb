@@ -31,6 +31,7 @@ class TicketsController < ApplicationController
 
   def create
       @ticket = Ticket.new(params_ticket)
+      
       validation_context = current_seller.admin_flag? ? :admin_seller : nil
       
       if @ticket.save(context: validation_context)
@@ -57,7 +58,9 @@ class TicketsController < ApplicationController
 
   def update
       @ticket = Ticket.find_by(id: params[:id])
+    
       @ticket.assign_attributes(params_ticket)
+      
       validation_context = current_seller.admin_flag? ? :admin_seller : nil
       
       if @ticket.save(context: validation_context)
@@ -72,6 +75,7 @@ class TicketsController < ApplicationController
   
   def destroy
       @ticket = Ticket.find_by(id: params[:id])
+      
       @ticket.destroy
       UserMailer.notice_mail_for_destroy_ticket(@ticket).deliver
       redirect_to("/tickets")

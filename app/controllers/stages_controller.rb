@@ -72,6 +72,6 @@ class StagesController < ApplicationController
     
     private
      def params_stage
-      params.require(:stage).permit(:stage, :total_seats, :end_time, :end_flag)
+      params.require(:stage).permit(:stage, :total_seats, :end_time, :end_flag, :remaining)
      end
 end

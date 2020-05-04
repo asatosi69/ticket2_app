@@ -19,6 +19,7 @@
       <th style="width: 80px"><p class="text-center">総席数</p></th>
       <th><p class="text-center">受付終了時間</p></th>
       <th style="width: 100px"><p class="text-center">終了フラグ</p></th>
+      <th style="width: 100px"><p class="text-center">残席数</p>
     </tr>
   </thead>
 
@@ -37,6 +38,7 @@
             -
           <% end %>
         </td>
+      <td align="center"><%= stage.remaining %></td>
       </tr>
     <% end %>
   </tbody>

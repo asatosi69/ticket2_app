@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_095003) do
+ActiveRecord::Schema.define(version: 2020_05_04_082250) do
 
   create_table "colors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "color_name"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2020_04_28_095003) do
     t.boolean "end_flag", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "remaining"
   end
 
   create_table "tickets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

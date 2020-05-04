@@ -71,6 +71,8 @@ class ApplicationController < ActionController::Base
               sum += @seats_count * kind.seats
             end
             
+            Stage.remaining_tickets(stage.id, sum)
+            
             if sum >= stage.total_seats
                 stage.finished
             end
