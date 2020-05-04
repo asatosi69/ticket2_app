@@ -27,11 +27,11 @@ class UserMailer < ApplicationMailer
     end
     
     def notice_mail_for_url(seller)
-      return if seller.mail.blank?
+      return if seller.email.blank?
       @seller = seller
       mail(
-        to: @seller.mail,
-       subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』の予約ページのURLをお知らせいたします。'"
-      )
-    end
+        to: @seller.email,
+        subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』の予約ページのURLをお知らせいたします。'"
+        )
+      end
 end

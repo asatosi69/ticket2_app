@@ -29,6 +29,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'pry-rails'
+gem 'pry-byebug'
 gem "jquery-ui-rails"
 gem 'bootstrap-sass'
 gem 'rails-i18n', '~> 5.1' 

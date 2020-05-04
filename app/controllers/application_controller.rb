@@ -25,22 +25,22 @@ class ApplicationController < ActionController::Base
         @stages = Stage.all
         
         if @stages.empty?
-            flash[:notice] = "予約情報の『確認/登録/編集』には、先に『公演』の登録が必須です。"
-            redirect_to("/stages")
+           flash[:notice] = "予約情報の『確認/登録/編集』には、先に『公演』の登録が必須です。"
+           redirect_to("/stages")
         end
     end
     
-    #『チケット種別』モデルにレコードが無い状態で『チケット』関連処理が実行されるのを避けるため、『チケット種別』モデルにレコードあるかの確認
+#『チケット種別』モデルにレコードが無い状態で『チケット』関連処理が実行されるのを避けるため、『チケット種別』モデルにレコードあるかの確認
     def kind_records_empty?
         @kinds = Kind.all
-        
+    
         if @kinds.empty?
-            flash[:notice] = "予約情報を『確認/登録/編集』には、先に『チケット種別』の登録が必須です。"
-            redirect_to("/kinds")
+           flash[:notice] = "予約情報を『確認/登録/編集』には、先に『チケット種別』の登録が必須です。"
+           redirect_to("/kinds")
         end
     end
     
-    #『支払方法』モデルにレコードが無い状態で『チケット』関連処理が実行されるのを避けるため、『支払方法』モデルにレコードあるかの確認
+#『支払方法』モデルにレコードが無い状態で『チケット』関連処理が実行されるのを避けるため、『支払方法』モデルにレコードあるかの確認
     def payment_records_empty?
         @payments = Payment.all
         
@@ -50,12 +50,30 @@ class ApplicationController < ActionController::Base
         end
     end
     
-    #『公演』モデルの各レコードの受付終了時間が現在時間と同じ時間、若しくは過ぎていれば、終了フラグを立てる
+#『公演』モデルの各レコードの受付終了時間が現在時間と同じ時間、若しくは過ぎていれば、終了フラグを立てる
     def end_time_past?
         @stages = Stage.where("end_time <= ?", Time.now.to_datetime)
         
         @stages.each do |stage|
             stage.finished
+        end
+    end
+
+# 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは下回った場合、終了フラグを立てる
+    def sold_out?
+        @stages = Stage.all.order(stage: "ASC")
+        @kinds = Kind.all.order(kind: "ASC")
+        
+        @stages.each do |stage|
+            sum = 0
+            @kinds.each do |kind|
+              @seats_count = Ticket.tickets_in_the_stage(stage.id, kind.id)
+              sum += @seats_count * kind.seats
+            end
+            
+            if sum >= stage.total_seats
+                stage.finished
+            end
         end
     end
     

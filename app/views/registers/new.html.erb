@@ -17,19 +17,19 @@
 </p>
 <p>
   <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
-  <%= form.collection_select(:stage_id, Stage.where(end_flag: false), :id, :stage, {prompt: :stage_id}, {class: "form-control input-sm"}) %>
+  <%= form.collection_select(:stage_id, Stage.where(end_flag: false), :id, :stage, {prompt: :stage_id}, {:required => true, class: "form-control input-sm"}) %>
 <p>
 <p>
   <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
-  <%= form.collection_select(:kind_id, Kind.all, :id, :kind, {prompt: :kind_id} ,{class: "form-control input-sm"}) %>
+  <%= form.collection_select(:kind_id, Kind.all, :id, :kind, {prompt: :kind_id} ,{:required => true, class: "form-control input-sm"}) %>
 </p>
 <p>
   <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
-  <%= form.collection_select(:payment_id, Payment.all, :id, :payment, {prompt: :payment_id}, {class: "form-control input-sm"}) %>
+  <%= form.collection_select(:payment_id, Payment.all, :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
 </p>
 <p>
   <%= form.label(:count, Ticket.human_attribute_name(:count), class:'control-label') %>
-  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: :count}, class: 'form-control' %>
+  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {:required => true, prompt: :count}, class: 'form-control' %>
 </p>
 <p>
   <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name), class:'control-label') %>

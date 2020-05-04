@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
     # ログインしているユーザーのみ操作できるようにする
-      before_action :authenticate_seller!
+    before_action :authenticate_seller!
       
     def index
         @sellers = Seller.all

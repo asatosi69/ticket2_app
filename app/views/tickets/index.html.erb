@@ -17,10 +17,10 @@
    <%= form.collection_select(:stage_id, Stage.all.order(stage: "ASC"), :id, :stage, selected: @search_params[:stage_id], include_blank: t('helpers.select.include_blank')) %>
 
    <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id)) %>
-   <%= form.collection_select(:kind_id, Kind.all, :id, :kind, selected: @search_params[:kind_id], include_blank: t('helpers.select.include_blank')) %>
+   <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind, selected: @search_params[:kind_id], include_blank: t('helpers.select.include_blank')) %>
 
    <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id)) %>
-   <%= form.collection_select(:payment_id, Payment.all, :id, :payment, selected: @search_params[:payment_id], include_blank: t('helpers.select.include_blank')) %>
+   <%= form.collection_select(:payment_id, Payment.all.order(payment: "ASC"), :id, :payment, selected: @search_params[:payment_id], include_blank: t('helpers.select.include_blank')) %>
 
    <BR>
 

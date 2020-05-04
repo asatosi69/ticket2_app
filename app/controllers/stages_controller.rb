@@ -5,6 +5,11 @@ class StagesController < ApplicationController
     before_action :admin_seller?
     #『公演』モデルの各レコードの受付終了時間が現在時間と同じ時間、若しくは過ぎていれば、終了フラグを立てる
     before_action :end_time_past?
+    # 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは下回った場合、終了フラグを立てる
+    before_action :sold_out?
+
+
+
     
     def index
         @stages = Stage.all
@@ -41,7 +46,7 @@ class StagesController < ApplicationController
     def update
         @stage = Stage.find_by(id: params[:id])
         @stage.assign_attributes(params_stage)
-        
+
         if @stage.save
             flash[:notice] = "編集が完了しました"
             redirect_to("/stages")
@@ -65,17 +70,8 @@ class StagesController < ApplicationController
         redirect_to("/stages")
     end
     
-    #『公演』モデルの各レコードの受付終了時間が現在時間と同じ時間、若しくは過ぎていれば、終了フラグを立てる
-    def end_time_past?
-        @stages = Stage.where("end_time <= ?", Time.now.to_datetime)
-        
-        @stages.each do |stage|
-            stage.finished
-        end
-    end
-    
     private
      def params_stage
-      params.require(:stage).permit(:stage, :total_seats, :end_time, :end_flag, { :kind_ids=> [] })
+      params.require(:stage).permit(:stage, :total_seats, :end_time, :end_flag)
      end
 end

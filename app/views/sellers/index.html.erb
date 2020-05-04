@@ -27,7 +27,7 @@
               -
             <% end %>
           </td>
-          <td><%= "#{@host}:#{@port}/registers/#{seller.id}/new" %></td>
+          <td><%= "#{@host_with_port}/registers/#{seller.id}/new" %></td>
         </tr>
       <% end %>
       <%= paginate @sellers -%>
