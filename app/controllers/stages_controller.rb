@@ -23,6 +23,7 @@ class StagesController < ApplicationController
     def create
         
         @stage = Stage.new(params_stage)
+        @stage.remaining = @stage.total_seats
         
         # モデル『Connection』に新しい『@stage』の情報を登録するための処理
         @kinds = Kind.all
@@ -30,7 +31,6 @@ class StagesController < ApplicationController
             @stage.kinds << kind
         end
         
-
         if @stage.save
             flash[:notice] = "登録が完了しました"
             redirect_to("/stages")

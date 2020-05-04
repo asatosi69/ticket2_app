@@ -23,6 +23,8 @@ class Ticket < ApplicationRecord
     
     validate :check_combination_of_stage_and_kind, unless: -> { validation_context == :admin_seller }
     
+    validate :check_ticket_limit, unless: -> { validation_context == :admin_seller }
+    
     def self.ticket_list_classified_by_seller(seller_id, stage_id, kind_id)
         self.count_by_sql "SELECT COUNT(count) FROM tickets  WHERE seller_id = #{seller_id} and stage_id = #{stage_id} and kind_id = #{kind_id}"
     end
@@ -70,9 +72,10 @@ class Ticket < ApplicationRecord
     scope :payment_id_is, -> (payment_id) { where(payment_id: payment_id) if payment_id.present? }
     scope :buyer_name_like, -> (buyer_name) { where('buyer_name LIKE ?', "%#{buyer_name}%") if buyer_name.present? }
     scope :buyer_furigana_like, -> (buyer_furigana) { where('buyer_furigana LIKE ?', "%#{buyer_furigana}%") if buyer_furigana.present? }
-   scope :comment1_like, -> (comment1) { where.not(comment1: nil && blank) if comment1 == 1 }
-   scope :comment2_like, -> (comment2) { where.not(comment2: nil && blank) if comment2 == 1 }
+    scope :comment1_like, -> (comment1) { where.not(comment1: nil && blank) if comment1 == 1 }
+    scope :comment2_like, -> (comment2) { where.not(comment2: nil && blank) if comment2 == 1 }
 
+    private
     def check_combination_of_stage_and_kind
         
       return unless Connection.find_by(stage_id: stage_id, kind_id: kind_id).invalid_flag
@@ -81,4 +84,13 @@ class Ticket < ApplicationRecord
 
     end
 
+    def check_ticket_limit
+        
+      @@remaining = Stage.find_by(id: stage_id).remaining
+      @@num = :count * Kind.find_by(kind_id: kind_id).seats
+      binding.pry
+      
+      errors.add(:kind_id, ' 申し込みいただいた『チケット種別 / 枚数』の組み合わせではお席をご用意することができません。') if @@remaining - @@num < 0
+    end
+      
 end

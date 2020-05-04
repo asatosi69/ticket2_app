@@ -4,7 +4,7 @@ class Kind < ApplicationRecord
     has_many :connections, dependent: :destroy
     has_many :stages, through: :connections, dependent: :destroy
     
-    validates :kind, presence: true, uniqueness: true
+    validates :kind, presence: true
     validates :seats, presence: true, numericality: { only_integer: true }
     validates :price, presence: true, numericality: { only_integer: true }
     validates :color_id, presence: true, uniqueness: true, numericality: { only_integer: true }

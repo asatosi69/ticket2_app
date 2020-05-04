@@ -25,6 +25,7 @@ ja:
         total_seats: '総席数'
         end_time: '受付終了時間'
         end_flag: '受付終了フラグ'
+        remaining: '残席数'
       ticket:
         seller_id: '取扱者'
         stage_id: '公演'
