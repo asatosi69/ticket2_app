@@ -1,5 +1,14 @@
 <%# 左から　トリオ、ペア、通常 %>
 
+<h3>チケット枚数の見方（凡例）</h3>
+<br>
+<p>黒色は、各種類のチケットの合計が何席分の売り上げなのかを示す。</p>
+<% @kinds.each do |kind| %>
+  <div style="color: <%= kind.color.color_code %>;">
+    この色は、<%= kind.kind %>チケットの販売枚数を表します。1枚の<%= kind.kind %>チケットは、席を<%= kind.seats %>席分、消費します。
+  </div>
+<% end %>
+<br>
 
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:75%">
@@ -35,11 +44,14 @@
             <%# 予約枚数 %>
             <% @seats_count = Ticket.ticket_list_classified_by_seller(seller.id, stage.id, kind.id) %>
             <% sum += @seats_count * kind.seats %>
-            <% array.push(@seats_count) %>
+            <% color_code = kind.color.color_code %>
+            <% array.push([color_code, @seats_count]) %>
           <% end %>
           <%= sum %>
-          <% array.each do |value| %>
-            (<%= value %>)
+          <% array.each do |value1, value2| %>
+            <span style="color: <%= value1 %>">
+              (<%= value2 %>)
+            </span>
           <% end %>
           </td>
         <% end %>
@@ -50,11 +62,14 @@
           <% @kinds.each do |kind| %>
             <% @seats_count = Ticket.tickets_of_the_seller(seller.id, kind.id) %>
             <% sum += @seats_count * kind.seats %>
-            <% array.push(@seats_count) %>
+            <% color_code = kind.color.color_code %>
+            <% array.push([color_code, @seats_count]) %>
           <% end %>
           <%= sum %>
-          <% array.each do |value| %>
-            (<%= value %>)
+          <% array.each do |value1, value2| %>
+            <span style="color: <%= value1 %>">
+              (<%= value2 %>)
+            </span>
           <% end %>
         </td>
       </tr>
@@ -75,11 +90,14 @@
           <% @kinds.each do |kind| %>
             <% @seats_count = Ticket.tickets_in_the_stage(stage.id, kind.id) %>
             <% sum += @seats_count * kind.seats %>
-            <% array.push(@seats_count) %>
+            <% color_code = kind.color.color_code %>
+            <% array.push([color_code, @seats_count]) %>
           <% end %>
           <%= sum %>
-          <% array.each do |value| %>
-            (<%= value %>)
+          <% array.each do |value1, value2| %>
+            <span style="color: <%= value1 %>">
+              (<%= value2 %>)
+            </span>
           <% end %>
         </td>
       <% end %>
@@ -90,11 +108,14 @@
         <% @kinds.each do |kind| %>
           <% @seats_count = Ticket.all_tickets(kind.id) %>
           <% sum2 += @seats_count * kind.seats%>
-          <% array.push(@seats_count) %>
+          <% color_code = kind.color.color_code %>
+          <% array.push([color_code, @seats_count]) %>
         <% end %>
         <%= sum2 %>
-        <% array.each do |value| %>
-          (<%= value %>)
+        <% array.each do |value1, value2| %>
+          <span style="color: <%= value1 %>">
+            (<%= value2 %>)
+          </span>
         <% end %>
       </td>
     </tr>
@@ -235,11 +256,14 @@
               <%# 予約枚数 %>
               <% @seats_count = Ticket.tickets_list_classified_by_seller(payment.id, stage.id, kind.id) %>
               <% sum += @seats_count * kind.seats %>
-              <% array.push(@seats_count) %>
+              <% color_code = kind.color.color_code %>
+              <% array.push([color_code, @seats_count]) %>
             <% end %>
             <%= sum %>
-            <% array.each do |value| %>
-              (<%= value %>)
+            <% array.each do |value1, value2| %>
+              <span style="color: <%= value1 %>">
+                (<%= value2 %>)
+              </span>
             <% end %>
           </td>
         <% end %>
@@ -249,11 +273,14 @@
           <% @kinds.each do |kind| %>
             <% @seats_count = Ticket.tickets_with_the_payment_method(payment.id, kind.id) %>
             <% sum += @seats_count * kind.seats %>
-            <% array.push(@seats_count) %>
+            <% color_code = kind.color.color_code %>
+            <% array.push([color_code, @seats_count]) %>
           <% end %>
           <%= sum %>
-          <% array.each do |value| %>
-            (<%= value %>)
+          <% array.each do |value1, value2| %>
+            <span style="color: <%= value1 %>">
+              (<%= value2 %>)
+            </span>
           <% end %>
         </td>
       </tr>
