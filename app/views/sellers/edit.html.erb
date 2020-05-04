@@ -11,6 +11,9 @@
   <%= form.check_box :admin_flag , class: 'form-control' %>
 </p>
 <p>
+  <%= form.hidden_field :url, value: "#{@host_with_port}/registers/#{params[:id]}/new" %>
+</p>
+<p>
   <%= form.submit "更新" %><%= button_to '戻る', {:controller => "sellers", :action => "index"}, {:method => :get}  %>
 </p>
 <% end %>

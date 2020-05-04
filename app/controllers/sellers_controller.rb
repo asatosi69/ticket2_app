@@ -31,6 +31,7 @@ class SellersController < ApplicationController
     
     def edit
         @seller = Seller.find(params[:id])
+        @host_with_port = request.host_with_port
     end
     
     def show
@@ -39,8 +40,6 @@ class SellersController < ApplicationController
     def update
         @seller = Seller.find(params[:id])
         @seller.assign_attributes(params_seller)
-        
-        @host_with_port = request.host_with_port
         
         if @seller.save
             UserMailer.notice_mail_for_url(@seller).deliver
@@ -68,7 +67,7 @@ class SellersController < ApplicationController
     
     private
     def params_seller
-     params.require(:seller).permit(:admin_flag)
+     params.require(:seller).permit(:admin_flag, :url)
     end
     
 end
