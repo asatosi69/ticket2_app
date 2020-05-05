@@ -9,8 +9,6 @@ class StagesController < ApplicationController
     before_action :sold_out?
 
 
-
-    
     def index
         @stages = Stage.all
     end

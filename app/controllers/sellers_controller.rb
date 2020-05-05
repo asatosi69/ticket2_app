@@ -22,28 +22,15 @@ class SellersController < ApplicationController
             @sellers = Seller.where(id: current_seller.id).page(params[:page]).per(10)
         end
     end
-    
-    def create
-    end
-    
-    def new
-    end
-    
-    def edit
-        @seller = Seller.find(params[:id])
-        @host_with_port = request.host_with_port
-    end
-    
-    def show
-    end
+
     
     def update
         @seller = Seller.find(params[:id])
-        @seller.assign_attributes(params_seller)
+        @seller.admin_flag = !@seller.admin_flag
         
         if @seller.save
             UserMailer.notice_mail_for_url(@seller).deliver
-            flash[:notice] = "編集が完了しました"
+            flash[:notice] = "フラグを反転させました"
             redirect_to("/sellers")
         else
             redirect_to("/sellers")

@@ -1,9 +1,19 @@
+<% if current_seller.admin_flag %>
+  <h3>『取扱者』管理ページ</h3>
+  <br>
+  <p>『管理者フラグ』が立っているのが、『管理取扱者』、立っていないのが『一般取扱者』</p>
+  <p>ボタン『反転』をクリックすると、『管理者フラグ』を『ON/OFF』します</p>
+  <p>『管理者取扱者』は全部の操作が可能ですが、『一般取扱者』は一部の操作のみが可能です。</p>
+<% else %>
+  <h3>『取扱者』情報ページ</h3>
+<% end %>
+<br>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:70%">
     <thead>
       <tr>
         <% if current_seller.admin_flag %>
-          <th style="width: 70px"><p class="text-center">編集</p></th>
+          <th style="width: 70px"><p class="text-center">フラグ反転</p></th>
           <th style="width: 70px"><p class="text-center">削除</p></th>
         <% end %>
         <th style="width: 150px"><p class="text-center">取扱者</p></th>
@@ -16,10 +26,10 @@
       <% @sellers.each do |seller| %>
         <tr>
           <% if current_seller.admin_flag %>
-            <td align="center"><%= button_to '編集', edit_seller_path(seller), {method: "get"} %></td>
+            <td align="center"><%= button_to '反転', seller_path(seller), {method: "patch"} %></td>
             <td align="center"><%= button_to '削除', seller_path(seller), {method: "delete"} %></td>
           <% end %>
-          <td><%= seller.name %></td>
+          <td align="center"><%= seller.name %></td>
           <td align="center">
             <% if seller.admin_flag %>
               ☑️
