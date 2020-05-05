@@ -19,6 +19,9 @@
   <%= form.number_field :discount_rate, value:0, class: 'form-control' %>
 </p>
 <p>
-  <%= form.submit "登録" %><%= button_to '戻る', {:controller => "payments", :action => "index"}, {:method => :get}  %>
+  <%= form.submit "登録" %>
+  <%= link_to :back, :style=>"color:black" do %>
+    <button>戻る</button>
+  <% end %>
 </p>
 <% end %>

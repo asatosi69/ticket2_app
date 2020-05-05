@@ -9,6 +9,9 @@
       value: "適当なところで改行してください。" %>
 </p>
 <p>
-  <%= form.submit "登録" %><%= button_to '戻る', {:controller => "pages", :action => "index"}, {:method => :get}  %>
+  <%= form.submit "登録" %>
+  <%= link_to :back, :style=>"color:black" do %>
+    <button>戻る</button>
+  <% end %>
 </p>
 <% end %>

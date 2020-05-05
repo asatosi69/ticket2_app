@@ -50,6 +50,10 @@
   <%= form.text_area :comment2, size: "50x20", class: 'form-control' %>
 </p>
 <p>
-  <%= form.submit "登録" %><%= form.submit "連続登録", name: "Renzoku" %><%= button_to '戻る', {:controller => "tickets", :action => "index"}, {:method => :get}  %>
+  <%= form.submit "登録" %>
+  <%= form.submit "連続登録", name: "Renzoku" %>
+  <%= link_to :back, :style=>"color:black" do %>
+    <button>戻る</button>
+  <% end %>
 </p>
 <% end %>

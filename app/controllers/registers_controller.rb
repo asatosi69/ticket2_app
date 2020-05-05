@@ -12,8 +12,6 @@ class RegistersController < ApplicationController
       # 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは下回った場合、終了フラグを立てる
       after_action :sold_out?, {only: [:create]}
 
-
-
       
     def new
         @seller = Seller.find(params[:seller_id])
@@ -38,14 +36,13 @@ class RegistersController < ApplicationController
 
     def create
         @ticket = Ticket.new(params_ticket)
-        validation_context = current_seller.admin_flag? ? :admin_seller : nil
+        seller_id = @ticket.seller_id
+        validation_context = Seller.find(seller_id).admin_flag? ? :admin_seller : nil
         
         if @ticket.save
             UserMailer.notice_mail_for_create_ticket(@ticket).deliver
             flash[:notice] = "登録が完了しました"
-            
-            render :thankyou
-            
+            redirect_to("/registers/#{seller_id}/thankyou")
         end
         
     end
