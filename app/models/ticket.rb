@@ -87,9 +87,7 @@ class Ticket < ApplicationRecord
     def check_ticket_limit
         
       @@remaining = Stage.find(stage_id).remaining
-      binding.pry
       @@num = count * Kind.find(kind_id).seats
-      binding.pry
       
       errors.add(:kind_id, ' 申し込みいただいた『チケット種別 / 枚数』の組み合わせではお席をご用意することができません。') if @@remaining - @@num < 0
     end
