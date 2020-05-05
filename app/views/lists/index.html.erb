@@ -29,11 +29,62 @@
       </th>
     </tr>
 
-    <% @sellers.each do |seller| %>
+    <%# 『管理取扱者』は『全て』の予約について表示する。 %>
+    <% if current_seller.admin_flag %>
+      <% @sellers.each do |seller| %>
+        <tr>
+          <th align="center">
+            <p class="text-center">
+              <%= seller.name %>
+            </p>
+          </th>
+          <% @stages.each do |stage| %>
+            <td align="center">
+            <% array = [] %>
+            <% sum = 0 %>
+            <% @kinds.each do |kind| %>
+              <%# 予約枚数 %>
+              <% @seats_count = Ticket.ticket_list_classified_by_seller(seller.id, stage.id, kind.id) %>
+              <% sum += @seats_count * kind.seats %>
+              <% color_code = kind.color.color_code %>
+              <% array.push([color_code, @seats_count]) %>
+            <% end %>
+            <%= sum %>
+            <% array.each do |value1, value2| %>
+              <span style="color: <%= value1 %>">
+                (<%= value2 %>)
+              </span>
+            <% end %>
+            </td>
+          <% end %>
+          <%# 合計(取扱者別)処理 %>
+          <td align="center">
+            <% array = [] %>
+            <% sum = 0 %>
+            <% @kinds.each do |kind| %>
+              <% @seats_count = Ticket.tickets_of_the_seller(seller.id, kind.id) %>
+              <% sum += @seats_count * kind.seats %>
+              <% color_code = kind.color.color_code %>
+              <% array.push([color_code, @seats_count]) %>
+            <% end %>
+            <%= sum %>
+            <% array.each do |value1, value2| %>
+              <span style="color: <%= value1 %>">
+                (<%= value2 %>)
+              </span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+
+
+    <%# 『一般取扱者』は『自身』の予約についてのみ表示する。 %>
+    <% if !current_seller.admin_flag %>
       <tr>
         <th align="center">
           <p class="text-center">
-            <%= seller.name %>
+            <%= current_seller.name %>
           </p>
         </th>
         <% @stages.each do |stage| %>
@@ -42,7 +93,7 @@
           <% sum = 0 %>
           <% @kinds.each do |kind| %>
             <%# 予約枚数 %>
-            <% @seats_count = Ticket.ticket_list_classified_by_seller(seller.id, stage.id, kind.id) %>
+            <% @seats_count = Ticket.ticket_list_classified_by_seller(current_seller.id, stage.id, kind.id) %>
             <% sum += @seats_count * kind.seats %>
             <% color_code = kind.color.color_code %>
             <% array.push([color_code, @seats_count]) %>
@@ -60,7 +111,7 @@
           <% array = [] %>
           <% sum = 0 %>
           <% @kinds.each do |kind| %>
-            <% @seats_count = Ticket.tickets_of_the_seller(seller.id, kind.id) %>
+            <% @seats_count = Ticket.tickets_of_the_seller(current_seller.id, kind.id) %>
             <% sum += @seats_count * kind.seats %>
             <% color_code = kind.color.color_code %>
             <% array.push([color_code, @seats_count]) %>
@@ -133,6 +184,8 @@
       </td>
     </tr>
 
+
+   <%# 『座席』については『管理取扱者』も『一般取扱者』も共通。 %>
     <tr>
       <th align="center">
         <p class="text-center">
@@ -152,6 +205,7 @@
     </tr>
 
 
+   <%# 『収容率』については『管理取扱者』も『一般管理者』も共通。 %>
     <tr>
       <th align="center">
         <p class="text-center">
@@ -174,45 +228,50 @@
       </td>
     </tr>
 
-
-    <%# 空行 %>
-    <tr>
-      <td class="noborder">
-      </td>
-      <% @stages.each do |stage| %>
+    <%# 『管理取扱者』は『金額』は表示する。 %>
+    <%# 『一般取扱者』は『金額』は表示しない。 %>
+    <% if current_seller.admin_flag %>
+      <%# 空行 %>
+      <tr>
         <td class="noborder">
         </td>
-      <% end %>
-      <td class="noborder">
-      </td>
-    </tr>
+        <% @stages.each do |stage| %>
+          <td class="noborder">
+          </td>
+        <% end %>
+        <td class="noborder">
+        </td>
+      </tr>
 
-    <tr>
-      <th align="center">
-        <p class="text-center">
-          金額
-        </p>
-      </th>
-      <% @stages.each do |stage| %>
+      <tr>
+        <th align="center">
+          <p class="text-center">
+            金額
+          </p>
+        </th>
+        <% @stages.each do |stage| %>
+          <td align="center">
+          <% sum = 0 %>
+          <% @kinds.each do |kind| %>
+            <% @seats_count = Ticket.tickets_in_the_stage(stage.id, kind.id) %>
+            <% sum += @seats_count * kind.price %>
+          <% end %>
+          <%= sum %>
+          </td>
+        <% end %>
         <td align="center">
-        <% sum = 0 %>
-        <% @kinds.each do |kind| %>
-          <% @seats_count = Ticket.tickets_in_the_stage(stage.id, kind.id) %>
-          <% sum += @seats_count * kind.price %>
-        <% end %>
-        <%= sum %>
+          <% sum2 = 0 %>
+          <% @kinds.each do |kind| %>
+            <% @seats_count = Ticket.all_tickets(kind.id) %>
+            <% sum2 += @seats_count * kind.price %>
+          <% end %>
+          <%= sum2 %>
         </td>
-      <% end %>
-      <td align="center">
-        <% sum2 = 0 %>
-        <% @kinds.each do |kind| %>
-          <% @seats_count = Ticket.all_tickets(kind.id) %>
-          <% sum2 += @seats_count * kind.price %>
-        <% end %>
-        <%= sum2 %>
-      </td>
-    </tr>
+      </tr>
+    <% end %>
 
+
+    <%# ここ以降の内容については『管理取扱者』も『一般取扱者』も共通。 %>
     <%# 空行 %>
     <tr>
       <td class="noborder">
@@ -224,6 +283,7 @@
       <td class="noborder">
       </td>
     </tr>
+
 
     <tr>
       <td  style="width: 120px">

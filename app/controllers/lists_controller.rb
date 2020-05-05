@@ -3,7 +3,11 @@ class ListsController < ApplicationController
     before_action :authenticate_seller!
       
     def index
-        @sellers = Seller.all
+        
+        if current_seller.admin_flag
+          @sellers = Seller.all
+        end
+    
         @stages = Stage.all.order(stage: "ASC")
         @kinds = Kind.all.order(kind: "ASC")
         @payments = Payment.all.order(payment: "ASC")

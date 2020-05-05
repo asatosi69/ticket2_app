@@ -21,8 +21,8 @@
             <li><%= link_to '連絡事項', pages_path %></li>
             <li><%= link_to 'チケット', tickets_path %></li>
             <li><%= link_to '取扱者', sellers_path %></li>
+            <li><%= link_to '集計', lists_path %></li>
             <% if current_seller.admin_flag %>
-              <li><%= link_to '集計', lists_path %></li>
               <li><%= link_to '公演', stages_path %></li>
               <li><%= link_to 'チケット種別', kinds_path %></li>
               <li><%= link_to '支払方法', payments_path %></li>
