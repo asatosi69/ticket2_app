@@ -6,6 +6,8 @@ class ListsController < ApplicationController
         
         if current_seller.admin_flag
           @sellers = Seller.all
+        else
+          @sellers = Seller.where(id: current_seller.id)
         end
     
         @stages = Stage.all.order(stage: "ASC")
