@@ -27,6 +27,15 @@
       <td style="width:13%">購入者Eメール</td><td style="width:87%"><%= @ticket.buyer_mail %></td>
     </tr>
     <tr>
+      <td style="width:13%">来場済</td><td style="width:87%">
+        <% if @ticket.visited_flag %>
+          ☑️
+        <% else %>
+          -
+        <% end %>
+      </td>
+    </tr>
+    <tr>
       <td style="width:13%">コメント</td><td style="width:87%"><%= simple_format(@ticket.comment1) %></td>
     </tr>
     <tr>

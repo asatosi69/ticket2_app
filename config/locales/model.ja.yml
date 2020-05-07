@@ -35,6 +35,7 @@ ja:
         buyer_name: '予約者名'
         buyer_furigana: '予約者名フリガナ'
         buyer_mail: '予約者Eメール'
+        visited_flag: '来場済'
         comment1: 'コメント'
         comment2: '備考'
       seller:

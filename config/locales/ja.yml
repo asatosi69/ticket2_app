@@ -35,9 +35,10 @@ activerecord:
       stage_id: '開演日時'
       kind_id: 'チケット種別'
       payment_id: '支払方法'
-      buyer_name: '購入者名'
-      buyer_furigana: '購入者名フリガナ'
-      buyer_mail: '購入者Eメール'
+      buyer_name: '予約者名'
+      buyer_furigana: '予約者名フリガナ'
+      buyer_mail: '予約者Eメール'
+      visited_flag: '来場済'
       comment1: 'コメント'
       comment2: '備考'
 date:

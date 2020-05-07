@@ -19,6 +19,7 @@
           <th><p class="text-center">予約者名</p></th>
           <th><p class="text-center">予約者名フリガナ</p></th>
           <th style="width: 200px"><p class="text-center">予約者Eメール</p></th>
+          <th><p class="text-center">来場済</p></th>
         </tr>
       </thead>
 
@@ -36,6 +37,13 @@
             <td align="center"><%= ticket.buyer_name %></td>
             <td align="center"><%= ticket.buyer_furigana %></td>
             <td align="center"><%= ticket.buyer_mail %></td>
+            <td align="center">
+              <% if ticket.visited_flag %>
+                ☑️
+              <% else %>
+                -
+              <% end %>
+            </td>
           </tr>
         <% end %>
         <%= paginate @tickets %>

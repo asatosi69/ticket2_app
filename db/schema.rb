@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_082250) do
+ActiveRecord::Schema.define(version: 2020_05_07_082012) do
 
   create_table "colors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "color_name"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_082250) do
     t.string "buyer_mail"
     t.text "comment1"
     t.text "comment2"
+    t.boolean "visited_flag", default: false, null: false
   end
 
   add_foreign_key "connections", "kinds"
