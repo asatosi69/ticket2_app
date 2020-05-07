@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :payments, :except => [:show]
   resources :connections, :only => [:index, :update]
   resources :lists, :only => [:index]
+  resources :visitors, :only => [:index, :update]
   
   post "registers/create" => "registers#create"
   get "registers/:seller_id/new" => "registers#new", as: :new_registers2

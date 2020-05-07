@@ -1,0 +1,6 @@
+ja:
+  visitors:
+    index:
+      stage_id: '公演'
+    update:
+      stage_id: '公演'
