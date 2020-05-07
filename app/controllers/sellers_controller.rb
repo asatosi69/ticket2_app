@@ -10,9 +10,6 @@ class SellersController < ApplicationController
     # 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは下回った場合、終了フラグを立てる
     before_action :sold_out?
 
-
-
-    
     def index
         
         @host_with_port = request.host_with_port
@@ -29,13 +26,22 @@ class SellersController < ApplicationController
         @seller.admin_flag = !@seller.admin_flag
         
         if @seller.save
-            UserMailer.notice_mail_for_url(@seller).deliver
             flash[:notice] = "フラグを反転させました"
             redirect_to("/sellers")
         else
             redirect_to("/sellers")
         end
     end
+    
+    def mail_all
+        @sellers = Seller.where(id: params[:sellers])
+        
+        @sellers.each do |seller|
+          UserMailer.notice_mail_for_url(seller).deliver
+        end
+    end
+    
+    
     
     def destroy
         @seller = Seller.find_by(id: params[:id])

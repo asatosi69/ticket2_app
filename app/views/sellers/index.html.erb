@@ -13,6 +13,7 @@
     <thead>
       <tr>
         <% if current_seller.admin_flag %>
+          <th style="width: 70px"><p class="text-center"> </p></th>
           <th style="width: 70px"><p class="text-center">フラグ反転</p></th>
           <th style="width: 70px"><p class="text-center">削除</p></th>
         <% end %>
@@ -23,22 +24,26 @@
     </thead>
 
     <tbody>
-      <% @sellers.each do |seller| %>
-        <tr>
-          <% if current_seller.admin_flag %>
-            <td align="center"><%= button_to '反転', seller_path(seller), {method: "patch"} %></td>
-            <td align="center"><%= button_to '削除', seller_path(seller), {method: "delete"} %></td>
-          <% end %>
-          <td align="center"><%= seller.name %></td>
-          <td align="center">
-            <% if seller.admin_flag %>
-              ☑️
-            <% else %>
-              -
+      <%= form_tag({ controller: :sellers, action: :mail_all }, method: 'get') do %>
+        <% @sellers.each do |seller| %>
+          <tr>
+            <% if current_seller.admin_flag %>
+              <td align="center"><%= check_box_tag 'sellers[]',seller.id %></td>
+              <td align="center"><%= button_to '反転', seller_path(seller), {method: "patch"} %></td>
+              <td align="center"><%= button_to '削除', seller_path(seller), {method: "delete"} %></td>
             <% end %>
-          </td>
-          <td><%= "#{@host_with_port}/registers/#{seller.id}/new" %></td>
-        </tr>
+            <td align="center"><%= seller.name %></td>
+            <td align="center">
+              <% if seller.admin_flag %>
+                ☑️
+              <% else %>
+                -
+              <% end %>
+            </td>
+            <td><%= "#{@host_with_port}/registers/#{seller.id}/new" %></td>
+          </tr>
+        <% end %>
+        <%= submit_tag "一括送信" %>
       <% end %>
       <%= paginate @sellers -%>
     </tbody>

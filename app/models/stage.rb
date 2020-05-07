@@ -15,9 +15,9 @@ class Stage < ApplicationRecord
     
     # モデル『公演』の残席数を設定する
     def self.remaining_tickets(id, sum)
-        @@total_seats = self.find(id).total_seats
-        @@cnt = @@total_seats - sum
-        self.find(id).update(remaining: @@cnt)
+        total_seats = self.find(id).total_seats
+        cnt = total_seats - sum
+        self.find(id).update(remaining: cnt)
     end
     
 end
