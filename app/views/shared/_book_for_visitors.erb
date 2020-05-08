@@ -38,9 +38,28 @@
             <%= seller.name %>
           </p>
         </th>
-        <td>
+        <td align="center">
+          <% array = [] %>
+          <% sum = 0 %>
+          <% @kinds.each do |kind| %>
+            <%# 予約枚数 %>
+            <% @seats_count = Ticket.tickets_list_classified_by_seller(seller.id, params[:stage_id], kind.id) %>
+            <% sum += @seats_count * kind.seats %>
+            <% color_code = kind.color.color_code %>
+            <% array.push([color_code, @seats_count]) %>
+          <% end %>
+          <%= sum %>
         </td>
-        <td>
+        <td align="center">
+          <% array = [] %>
+          <% sum = 0 %>
+          <% @kinds.each do |kind| %>
+            <% @seats_count = Ticket.tickets_list_classified_by_seller(seller.id, params[:stage_id], kind.id) %>
+            <% sum += @seats_count * kind.seats %>
+            <% color_code = kind.color.color_code %>
+            <% array.push([color_code, @seats_count]) %>
+          <% end %>
+          <%= sum %>
         </td>
       </tr>
     <% end %>
