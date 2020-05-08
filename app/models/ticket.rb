@@ -25,7 +25,7 @@ class Ticket < ApplicationRecord
     
     validate :check_ticket_limit, unless: -> { validation_context == :admin_seller }
     
-    def self.ticket_list_classified_by_seller(seller_id, stage_id, kind_id)
+    def self.tickets_list_classified_by_seller(seller_id, stage_id, kind_id)
         self.where(seller_id: seller_id, stage_id: stage_id, kind_id: kind_id).sum(:count)
     end
     
@@ -47,6 +47,10 @@ class Ticket < ApplicationRecord
     
     def self.tickets_with_the_payment_method(payment_id, kind_id)
         self.where(payment_id: payment_id, kind_id: kind_id).sum(:count)
+    end
+    
+    def self.tickets_for_visitors(seller_id, stage_id, kind_id, visited_flag)
+        self.self.where(seller_id: seller_id, stage_id: stage_id, kind_id: kind_id, visited_flag: visited_flag).sum(:count)
     end
     
     scope :search, -> (search_params) do

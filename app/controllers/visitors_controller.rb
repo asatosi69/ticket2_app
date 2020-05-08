@@ -1,6 +1,7 @@
 class VisitorsController < ApplicationController
   def index
       @stages = Stage.all.order(stage: "ASC")
+      @kinds = Kind.all.order(kind: "ASC")
       
       if current_seller.admin_flag
         @sellers = Seller.all
