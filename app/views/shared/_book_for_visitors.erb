@@ -22,7 +22,7 @@
   <tr>
     <th>
       <p class="text-center">
-        来場済>
+        来場済
       </p>
     </th>
     <th>
@@ -97,6 +97,11 @@
             <% array.push([color_code, @seats_count]) %>
           <% end %>
           <%= sum %>
+          <% array.each do |value1, value2| %>
+            <span style="color: <%= value1 %>">
+              (<%= value2 %>)
+            </span>
+          <% end %>
         </td>
         <td align="center">
           <% array = [] %>
@@ -108,6 +113,11 @@
             <% array.push([color_code, @seats_count]) %>
           <% end %>
           <%= sum %>
+          <% array.each do |value1, value2| %>
+            <span style="color: <%= value1 %>">
+              (<%= value2 %>)
+            </span>
+          <% end %>
         </td>
       </tr>
     <% end %>
