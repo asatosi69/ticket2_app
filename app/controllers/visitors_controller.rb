@@ -2,6 +2,11 @@ class VisitorsController < ApplicationController
   def index
       @stages = Stage.all.order(stage: "ASC")
       
+      if current_seller.admin_flag
+        @sellers = Seller.all
+      else
+        @sellers = Seller.where(id: current_seller.id)
+      end
       
       if params[:order_id] == 'order_by_seller_id_and_buyer_furigana'
         if current_seller.admin_flag
