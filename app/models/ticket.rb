@@ -50,7 +50,11 @@ class Ticket < ApplicationRecord
     end
     
     def self.tickets_for_visitors(seller_id, stage_id, kind_id, visited_flag)
-        self.self.where(seller_id: seller_id, stage_id: stage_id, kind_id: kind_id, visited_flag: visited_flag).sum(:count)
+        self.where(seller_id: seller_id, stage_id: stage_id, kind_id: kind_id, visited_flag: visited_flag).sum(:count)
+    end
+    
+    def self.tickets_in_the_stage_for_visitors(stage_id, kind_id, visited_flag)
+        self.where(stage_id: stage_id, kind_id: kind_id, visited_flag: visited_flag).sum(:count)
     end
     
     scope :search, -> (search_params) do
