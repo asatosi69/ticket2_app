@@ -19,5 +19,30 @@
       </p>
     </th>
   </tr>
+  <tr>
+    <th>
+      <p class="text-center">
+        <%= "来場済" %>
+      </p>
+    </th>
+    <th>
+      <p class="text-center">
+        <%= "予約全体" %>
+      </p>
+    </th>
+  </tr>
+  <% @sellers.each do |seller| %>
+    <tr>
+      <th align="center">
+        <p class="text-center">
+          <%= seller.name %>
+        </p>
+      </th>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+  <% end %>
  </table>
 </div>
