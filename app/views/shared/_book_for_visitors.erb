@@ -76,6 +76,40 @@
       </tr>
     <% end %>
 
-
+    <%# 『管理取扱者』は『販売済』を表示する。 %>
+    <%# 『一般取扱者』は『販売済』を表示しない。 %>
+    <% if current_seller.admin_flag %>
+      <tr>
+        <th align="center">
+          <p class="text-center">
+            合計
+          </p>
+        </th>
+        <%# 合計(公演別)処理 %>
+        <td align="center">
+          <% array = [] %>
+          <% sum = 0 %>
+          <% visited_flag = true %>
+          <% @kinds.each do |kind| %>
+            <% @seats_count = Ticket.tickets_in_the_stage_for_visitors(params[:stage_id], kind.id, visited_flag) %>
+            <% sum += @seats_count * kind.seats %>
+            <% color_code = kind.color.color_code %>
+            <% array.push([color_code, @seats_count]) %>
+          <% end %>
+          <%= sum %>
+        </td>
+        <td align="center">
+          <% array = [] %>
+          <% sum = 0 %>
+          <% @kinds.each do |kind| %>
+            <% @seats_count = Ticket.tickets_in_the_stage(params[:stage_id], kind.id) %>
+            <% sum += @seats_count * kind.seats %>
+            <% color_code = kind.color.color_code %>
+            <% array.push([color_code, @seats_count]) %>
+          <% end %>
+          <%= sum %>
+        </td>
+      </tr>
+    <% end %>
   </table>
 </div>
