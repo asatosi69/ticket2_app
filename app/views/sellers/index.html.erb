@@ -1,9 +1,11 @@
 <% if current_seller.admin_flag %>
   <h3>『取扱者』管理ページ</h3>
   <br>
-  <p>『管理者フラグ』が立っているのが、『管理取扱者』、立っていないのが『一般取扱者』</p>
-  <p>ボタン『反転』をクリックすると、『管理者フラグ』を『ON/OFF』します</p>
+  <p>『管理者フラグ』が立っているのが、『管理取扱者』、立っていないのが『一般取扱者』です。</p>
+  <p>ボタン『反転』をクリックすると、『管理者フラグ』を『ON/OFF』します。</p>
   <p>『管理者取扱者』は全部の操作が可能ですが、『一般取扱者』は一部の操作のみが可能です。</p>
+  <br>
+  <p>チェックボックスでレ点がついている状態で、ボタン『一括送信』を押下すると、『取扱者』に『予約用URL』がメールされます。</p>
 <% else %>
   <h3>『取扱者』情報ページ</h3>
 <% end %>
@@ -28,7 +30,7 @@
         <% @sellers.each do |seller| %>
           <tr>
             <% if current_seller.admin_flag %>
-              <td align="center"><%= check_box_tag 'sellers[]',seller.id %></td>
+              <td align="center"><%= check_box_tag 'sellers[]', seller.id %></td>
               <td align="center"><%= link_to '反転', seller_path(seller), {method: "patch", class: 'btn btn-default'} %></td>
               <td align="center"><%= link_to '削除', seller_path(seller), {method: "delete", class: 'btn btn-default'} %></td>
             <% end %>
@@ -43,8 +45,10 @@
             <td><%= "#{@host_with_port}/registers/#{seller.id}/new" %></td>
           </tr>
           <% end %>
-        <%= submit_tag "一括送信" %>
+        <% if current_seller.admin_flag %>
+          <%= submit_tag "一括送信" %>
         <% end %>
+      <% end %>
       <%= paginate @sellers -%>
     </tbody>
   </table>

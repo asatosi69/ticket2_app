@@ -8,6 +8,9 @@
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
+          <% if current_seller.admin_flag %>
+            <th><p class="text-center"> </p></th>
+          <% end %>
           <th><p class="text-center">取扱者</p></th>
           <th><p class="text-center">開演日時</p></th>
           <th><p class="text-center">チケット種別</p></th>
@@ -21,24 +24,32 @@
       </thead>
 
       <tbody>
-        <% @tickets.each do |ticket| %>
-          <tr>
-            <td align="center"><%= ticket.seller.name %></td>
-            <td align="center"><%= ticket.stage.stage %></td>
-            <td align="center"><%= ticket.kind.kind %></td>
-            <td align="center"><%= ticket.payment.payment %></td>
-            <td align="center"><%= ticket.count %></td>
-            <td align="center"><%= ticket.buyer_name %></td>
-            <td align="center"><%= ticket.buyer_furigana %></td>
-            <td align="center"><%= ticket.buyer_mail %></td>
-            <td align="center">
-              <% if ticket.visited_flag %>
-                ☑️
-              <% else %>
-                -
+        <%= form_tag(visitor_all_path, method: 'patch') do %>
+          <% @tickets.each do |ticket| %>
+            <tr>
+              <% if current_seller.admin_flag %>
+                <td align="center"><%= check_box_tag 'tickets[]',ticket.id %></td>
               <% end %>
-            </td>
-          </tr>
+              <td align="center"><%= ticket.seller.name %></td>
+              <td align="center"><%= ticket.stage.stage %></td>
+              <td align="center"><%= ticket.kind.kind %></td>
+              <td align="center"><%= ticket.payment.payment %></td>
+              <td align="center"><%= ticket.count %></td>
+              <td align="center"><%= ticket.buyer_name %></td>
+              <td align="center"><%= ticket.buyer_furigana %></td>
+              <td align="center"><%= ticket.buyer_mail %></td>
+              <td align="center">
+                <% if ticket.visited_flag %>
+                  ☑️
+                <% else %>
+                  -
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          <% if current_seller.admin_flag %>
+           <%= submit_tag "来場済 ON/OFF" %>
+         <% end %>
         <% end %>
       </tbody>
     </table>

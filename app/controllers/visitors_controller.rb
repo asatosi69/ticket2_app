@@ -1,4 +1,7 @@
 class VisitorsController < ApplicationController
+    # ログインしているユーザーのみ操作できるようにする
+    before_action :authenticate_seller!
+
   def index
       @stages = Stage.all.order(stage: "ASC")
       @kinds = Kind.all.order(kind: "ASC")
@@ -29,6 +32,18 @@ class VisitorsController < ApplicationController
   end
 
 
-  def update
+  def visitor_all
+        
+        @tickets = Ticket.where(id: params[:tickets])
+        
+        validation_context = current_seller.admin_flag? ? :admin_seller : nil
+        
+        @tickets.each do |ticket|
+          ticket.visited_flag = !ticket.visited_flag
+          ticket.save(context: validation_context)
+        end
+        
+        redirect_to("/visitors")
   end
+
 end

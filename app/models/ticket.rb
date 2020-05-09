@@ -94,7 +94,7 @@ class Ticket < ApplicationRecord
         
       remaining = Stage.find(stage_id).remaining
       num = count * Kind.find(kind_id).seats
-      
+      binding.pry
       errors.add(:kind_id, ' 申し込みいただいた『チケット種別 / 枚数』の組み合わせではお席をご用意することができません。') if remaining - num < 0
     end
       
