@@ -34,11 +34,15 @@ class SellersController < ApplicationController
     end
     
     def mail_all
+        
         @sellers = Seller.where(id: params[:sellers])
         
         @sellers.each do |seller|
           UserMailer.notice_mail_for_url(seller).deliver
         end
+  
+        redirect_to("/sellers")
+
     end
     
     

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :sellers
   resources :pages
   resources :sellers, :only => [:index, :update, :destroy, :mail_all]
-  get :sellers, to: 'sellers#mail_all'
+  get "sellers/mail_all" => "sellers#mail_all", as: :mail_all
   resources :tickets
   resources :stages, :except => [:show]
   resources :kinds, :except => [:show]

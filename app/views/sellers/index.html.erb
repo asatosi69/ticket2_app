@@ -24,13 +24,13 @@
     </thead>
 
     <tbody>
-      <%= form_tag({ controller: :sellers, action: :mail_all }, method: 'get') do %>
+      <%= form_tag(mail_all_path, method: 'get') do %>
         <% @sellers.each do |seller| %>
           <tr>
             <% if current_seller.admin_flag %>
               <td align="center"><%= check_box_tag 'sellers[]',seller.id %></td>
-              <td align="center"><%= button_to '反転', seller_path(seller), {method: "patch"} %></td>
-              <td align="center"><%= button_to '削除', seller_path(seller), {method: "delete"} %></td>
+              <td align="center"><%= link_to '反転', seller_path(seller), {method: "patch", class: 'btn btn-default'} %></td>
+              <td align="center"><%= link_to '削除', seller_path(seller), {method: "delete", class: 'btn btn-default'} %></td>
             <% end %>
             <td align="center"><%= seller.name %></td>
             <td align="center">
@@ -42,9 +42,9 @@
             </td>
             <td><%= "#{@host_with_port}/registers/#{seller.id}/new" %></td>
           </tr>
-        <% end %>
+          <% end %>
         <%= submit_tag "一括送信" %>
-      <% end %>
+        <% end %>
       <%= paginate @sellers -%>
     </tbody>
   </table>
