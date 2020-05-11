@@ -1,9 +1,9 @@
 <br>
 <br>
-<h1>公演情報を更新</h1>
+<h1>『公演』を更新</h1>
 <br>
 <br>
-<%= form_for @stage, url: stage_path, method: "patch" do |form| %>
+<%= form_with model: @stage do |form| %>
 <%= render 'shared/error_messages', model: form.object %>
 <p>
   <%= form.label(:stage, Stage.human_attribute_name(:stage), class:'control-label') %>

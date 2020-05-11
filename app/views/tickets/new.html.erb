@@ -1,5 +1,9 @@
-<h1>チケットを予約</h1>
-<%= form_for @ticket, url: tickets_path do |form| %>
+<br>
+<br>
+<h1>『チケット予約』を登録</h1>
+<br>
+<br>
+<%= form_with model: @ticket do |form| %>
 <%= render 'shared/error_messages', model: form.object %>
 <p>
   <% if current_seller.admin_flag? %>

@@ -12,31 +12,31 @@
 <table>
   <tr>
     <td>
-      <%= form_for @ticket, url: new_registers_path do |f| %>
-        <%= f.hidden_field :seller_id %>
-        <%= f.hidden_field :stage_id %>
-        <%= f.hidden_field :kind_id %>
-        <%= f.hidden_field :payment_id %>
-        <%= f.hidden_field :count %>
-        <%= f.hidden_field :buyer_name %>
-        <%= f.hidden_field :buyer_furigana %>
-        <%= f.hidden_field :buyer_mail %>
-        <%= f.hidden_field :comment1 %>
-        <%= f.submit '戻る', class: 'btn btn-default' %>
+      <%= form_with( model: @ticket, url: new_registers_path, local: true) do |form| %>
+        <%= form.hidden_field :seller_id %>
+        <%= form.hidden_field :stage_id %>
+        <%= form.hidden_field :kind_id %>
+        <%= form.hidden_field :payment_id %>
+        <%= form.hidden_field :count %>
+        <%= form.hidden_field :buyer_name %>
+        <%= form.hidden_field :buyer_furigana %>
+        <%= form.hidden_field :buyer_mail %>
+        <%= form.hidden_field :comment1 %>
+        <%= form.submit '戻る', class: 'btn btn-default' %>
       <% end %>
     </td>
     <td>
-      <%= form_for @ticket, url: registers_create_path do |f| %>
-        <%= f.hidden_field :seller_id %>
-        <%= f.hidden_field :stage_id %>
-        <%= f.hidden_field :kind_id %>
-        <%= f.hidden_field :payment_id %>
-        <%= f.hidden_field :count %>
-        <%= f.hidden_field :buyer_name %>
-        <%= f.hidden_field :buyer_furigana %>
-        <%= f.hidden_field :buyer_mail %>
-        <%= f.hidden_field :comment1 %>
-        <%= f.submit '申込', class: 'btn btn-default' %>
+      <%= form_with( model: @ticket, url: registers_create_path, local: true) do |form| %>
+        <%= form.hidden_field :seller_id %>
+        <%= form.hidden_field :stage_id %>
+        <%= form.hidden_field :kind_id %>
+        <%= form.hidden_field :payment_id %>
+        <%= form.hidden_field :count %>
+        <%= form.hidden_field :buyer_name %>
+        <%= form.hidden_field :buyer_furigana %>
+        <%= form.hidden_field :buyer_mail %>
+        <%= form.hidden_field :comment1 %>
+        <%= form.submit '申込', class: 'btn btn-default' %>
       <% end %>
     </td>
   </tr>

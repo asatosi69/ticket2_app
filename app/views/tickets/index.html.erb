@@ -3,7 +3,6 @@
 <%= link_to("チケット予約を登録する", new_ticket_path) %>
 <br>
 <br>
-
 <%= form_with(scope: :search, url: tickets_path, method: :get, local: true) do |form| %>
 
    <% if current_seller.admin_flag? %>

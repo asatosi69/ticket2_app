@@ -1,10 +1,9 @@
 <br>
 <br>
-<h1>支払方法を更新</h1>
+<h1>『支払方法』を更新</h1>
 <br>
 <br>
-
-<%= form_for @payment, url: payment_path, method: "patch" do |form| %>
+<%= form_with model: @payment do |form| %>
 <%= render 'shared/error_messages', model: form.object %>
 <p>
   <%= form.label(:payment, Payment.human_attribute_name(:payment), class:'control-label') %>

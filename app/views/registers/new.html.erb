@@ -9,8 +9,7 @@
   <%= Rails.application.config.performance_notice.html_safe %>
 </div>
 
-
-<%= form_for @ticket, url: confirm_registers_path do |form| %>
+<%= form_with model: @ticket, url: confirm_registers_path do |form| %>
 <%= render 'shared/error_messages', model: form.object %>
 <p>
   <%= form.hidden_field :seller_id, value: @seller.id %>
@@ -21,7 +20,7 @@
 <p>
 <p>
   <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
-  <%= form.collection_select(:kind_id, Kind.all, :id, :kind, {prompt: :kind_id} ,{:required => true, class: "form-control input-sm"}) %>
+  <%= form.collection_select(:kind_id, Kind.where(end_flag: false), :id, :kind, {prompt: :kind_id} ,{:required => true, class: "form-control input-sm"}) %>
 </p>
 <p>
   <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>

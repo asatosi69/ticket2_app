@@ -1,10 +1,9 @@
 <br>
 <br>
-<h1>チケット種別を登録</h1>
+<h1>『チケット種別』を登録</h1>
 <br>
 <br>
-
-<%= form_for @kind, url: kinds_path do |form| %>
+<%= form_with model: @kind do |form| %>
 <%= render 'shared/error_messages', model: form.object %>
 <p>
   <%= form.label(:kind, Kind.human_attribute_name(:kind), class:'control-label') %>

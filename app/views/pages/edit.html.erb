@@ -1,5 +1,9 @@
-<h1>連絡事項を更新</h1>
-<%= form_for @page, url: page_path, method: "patch" do |form| %>
+<br>
+<br>
+<h1>『連絡事項』を更新</h1>
+<br>
+<br>
+<%= form_with model: @page do |form| %>
 <%= render 'shared/error_messages', model: form.object %>
 <p>
   <%= form.hidden_field :seller_id, value: current_seller.id %>
