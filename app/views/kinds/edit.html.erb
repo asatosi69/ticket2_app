@@ -23,6 +23,10 @@
   <%= form.collection_select(:color_id, Color.where(is_selected: false), :id, :color_name, {prompt: :color_id}, {class: "form-control input-sm"}) %>
 </p>
 <p>
+  <%= form.label(:end_flag, Stage.human_attribute_name(:end_flag), class:'control-label') %>
+  <%= form.check_box :end_flag , class: 'form-control'%>
+</p>
+<p>
   <%= form.submit "登録" %><%= button_to '戻る', {:controller => "kinds", :action => "index"}, {:method => :get}  %>
 </p>
 <% end %>

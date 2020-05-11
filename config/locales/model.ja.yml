@@ -7,6 +7,7 @@ ja:
       seller: '取扱者'
       stage: '公演'
       ticket: 'チケット'
+      connection: '組み合わせ'
     attributes:
       page:
         notice: '連絡事項'
@@ -16,10 +17,11 @@ ja:
         seats: '消費する席数'
         price: '料金'
         color_id: 'チケットの色'
+        end_flag: '終了フラグ'
       payment:
         payment: '支払方法'
         abbreviation: '略称'
-        discount_rate: '割引率'
+        discount_rate: '変動額'
       stage:
         stage: '公演'
         total_seats: '総席数'
@@ -38,6 +40,7 @@ ja:
         visited_flag: '来場済'
         comment1: 'コメント'
         comment2: '備考'
+        cipher: '暗号'
       seller:
         name: '取扱者'
         admin_flag: '管理者フラグ'

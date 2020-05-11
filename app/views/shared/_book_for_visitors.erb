@@ -121,5 +121,36 @@
         </td>
       </tr>
     <% end %>
+
+    <%# 『管理取扱者』は『金額』は表示する。 %>
+    <%# 『一般取扱者』は『金額』は表示しない。 %>
+    <% if current_seller.admin_flag %>
+      <%# 空行 %>
+      <tr>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+
+      <tr>
+        <th align="center">
+          <p class="text-center">
+            金額
+          </p>
+        </th>
+        <td align="center">
+          <% visited_flag = true %>
+          <%= Ticket.money_in_the_stage_for_visitors(params[:stage_id], visited_flag) %>
+        </td>
+        <td align="center">
+          <%= Ticket.money_in_the_stage(params[:stage_id]) %>
+        </td>
+      </tr>
+    <% end %>
+
+
   </table>
 </div>

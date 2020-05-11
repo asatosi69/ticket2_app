@@ -5,13 +5,16 @@ ja:
       seats: '消費する席数'
       price: '料金'
       color_id: 'チケットの色'
+      end_flag: '終了フラグ'
     new:
       kind: 'チケット種別'
       seats: '消費する席数'
       price: '料金'
       color_id: 'チケットの色'
+      end_flag: '終了フラグ'
     edit:
       kind: 'チケット種別'
       seats: '消費する席数'
       price: '料金'
       color_id: 'チケットの色'
+      end_flag: '終了フラグ'

@@ -84,6 +84,6 @@ class KindsController < ApplicationController
     
     private
      def params_kind
-      params.require(:kind).permit(:kind, :seats, :price, :color_id, { :stage_ids=> [] })
+      params.require(:kind).permit(:kind, :seats, :price, :color_id, :end_flag)
      end
 end

@@ -134,13 +134,13 @@
 
     <%# 空行 %>
     <tr>
-      <td class="noborder">
+      <td>
       </td>
       <% @stages.each do |stage| %>
-        <td class="noborder">
+        <td>
         </td>
       <% end %>
-      <td class="noborder">
+      <td>
       </td>
     </tr>
 
@@ -193,13 +193,13 @@
     <% if current_seller.admin_flag %>
       <%# 空行 %>
       <tr>
-        <td class="noborder">
+        <td>
         </td>
         <% @stages.each do |stage| %>
-          <td class="noborder">
+          <td>
           </td>
         <% end %>
-        <td class="noborder">
+        <td>
         </td>
       </tr>
 
@@ -211,21 +211,11 @@
         </th>
         <% @stages.each do |stage| %>
           <td align="center">
-          <% sum = 0 %>
-          <% @kinds.each do |kind| %>
-            <% @seats_count = Ticket.tickets_in_the_stage(stage.id, kind.id) %>
-            <% sum += @seats_count * kind.price %>
-          <% end %>
-          <%= sum %>
+            <%= Ticket.money_in_the_stage(stage.id) %>
           </td>
         <% end %>
         <td align="center">
-          <% sum2 = 0 %>
-          <% @kinds.each do |kind| %>
-            <% @seats_count = Ticket.all_tickets(kind.id) %>
-            <% sum2 += @seats_count * kind.price %>
-          <% end %>
-          <%= sum2 %>
+          <%= Ticket.all_money %>
         </td>
       </tr>
     <% end %>
@@ -234,13 +224,13 @@
     <%# ここ以降の内容については『管理取扱者』も『一般取扱者』も共通。 %>
     <%# 空行 %>
     <tr>
-      <td class="noborder">
+      <td>
       </td>
       <% @stages.each do |stage| %>
-        <td class="noborder">
+        <td>
         </td>
       <% end %>
-      <td class="noborder">
+      <td>
       </td>
     </tr>
 

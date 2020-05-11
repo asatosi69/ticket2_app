@@ -3,12 +3,12 @@ ja:
     index:
       payment: '支払方法'
       abbreviation: '略称'
-      discount_rate: '割引率'
+      discount_rate: '変動額'
     new:
       payment: '支払方法'
       abbreviation: '略称'
-      discount_rate: '割引率'
+      discount_rate: '変動額'
     edit:
       payment: '支払方法'
       abbreviation: '略称'
-      discount_rate: '割引率'
+      discount_rate: '変動額'

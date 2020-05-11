@@ -49,6 +49,26 @@ class Ticket < ApplicationRecord
         self.where(payment_id: payment_id, kind_id: kind_id).sum(:count)
     end
     
+    def self.money_in_the_stage(stage_id)
+        tickets = self.where(stage_id: stage_id)
+        sum = 0
+        tickets.each do |ticket|
+          price = ( ticket.kind.price + ticket.payment.discount_rate ) * ticket.count
+          sum += price
+        end
+        sum
+    end
+    
+    def self.all_money
+        tickets = self.all
+        sum = 0
+        tickets.each do |ticket|
+          price = ( ticket.kind.price + ticket.payment.discount_rate ) * ticket.count
+          sum += price
+        end
+        sum
+    end
+    
     def self.tickets_for_visitors(seller_id, stage_id, kind_id, visited_flag)
         self.where(seller_id: seller_id, stage_id: stage_id, kind_id: kind_id, visited_flag: visited_flag).sum(:count)
     end
@@ -56,6 +76,18 @@ class Ticket < ApplicationRecord
     def self.tickets_in_the_stage_for_visitors(stage_id, kind_id, visited_flag)
         self.where(stage_id: stage_id, kind_id: kind_id, visited_flag: visited_flag).sum(:count)
     end
+    
+    def self.money_in_the_stage_for_visitors(stage_id, visited_flag)
+        tickets = self.where(stage_id: stage_id, visited_flag: visited_flag)
+        sum = 0
+        tickets.each do |ticket|
+          price = ( ticket.kind.price + ticket.payment.discount_rate ) * ticket.count
+          sum += price
+        end
+        sum
+    end
+    
+    
     
     scope :search, -> (search_params) do
 

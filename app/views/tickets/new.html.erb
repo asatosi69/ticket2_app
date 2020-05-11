@@ -19,7 +19,11 @@
 </p>
 <p>
   <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
-  <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind,  {prompt: :kind_id}, {:required => true, class: "form-control input-sm"}) %>
+  <% if current_seller.admin_flag? %>
+    <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind,  {prompt: :kind_id}, {:required => true, class: "form-control input-sm"}) %>
+  <% else %>
+    <%= form.collection_select(:kind_id, Kind.where(end_flag: false).order(kind: "ASC"), :id, :kind,  {prompt: :kind_id}, {:required => true, class: "form-control input-sm"}) %>
+  <% end %>
 </p>
 <p>
   <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>

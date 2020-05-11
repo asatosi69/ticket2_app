@@ -87,7 +87,7 @@ class TicketsController < ApplicationController
   private
   
   def params_ticket
-    params.require(:ticket).permit(:seller_id, :stage_id, :kind_id, :payment_id, :count, :buyer_name, :buyer_furigana, :buyer_mail, :visited_flag, :comment1, :comment2)
+    params.require(:ticket).permit(:seller_id, :stage_id, :kind_id, :payment_id, :count, :buyer_name, :buyer_furigana, :buyer_mail, :visited_flag, :comment1, :comment2, :cipher)
   end
     
   def ticket_search_params

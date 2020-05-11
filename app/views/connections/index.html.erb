@@ -30,7 +30,7 @@
         </th>
         <% @kinds.each do |kind| %>
           <td align="center">
-            <% if stage.end_flag %>
+            <% if stage.end_flag || kind.end_flag %>
               受付終了
             <% else %>
             <% @connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
