@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
     end
 
 # 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは下回った場合、終了フラグを立てる
-# # 公演』モデルの残席数をセットする
+# 『公演』モデルの残席数をセットする
     def sold_out?
         @stages = Stage.all.order(stage: "ASC")
         @kinds = Kind.all.order(kind: "ASC")
@@ -81,6 +81,7 @@ class ApplicationController < ActionController::Base
             end
         end
     end
+    
     
     rescue_from ActiveRecord::RecordNotFound, with: :render_404
     rescue_from ActionController::RoutingError, with: :render_404

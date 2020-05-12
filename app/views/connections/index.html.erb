@@ -1,9 +1,17 @@
 <h3>『組み合わせ』管理ページ</h3><br>
 <br>
-<p>『管理取扱者』：すべてのチケットが予約可能です。</p>
-<p>『一般取扱者』：チェックがついている、又『受付終了』と書かれているチケットは予約できません</p>
-<p>『一般のお客様』：チェックがついている、又『受付終了』と書かれているチケットは予約できません。</p>
-<p>『受付終了』と書かれているチケットは『公演』にて『終了フラグ』が立っているため、予約できません。</p>
+<p>『組み合わせ』の見方（凡例）</p>
+<br>
+<p>セル内に『受付終了』と書かれている、『☑️ 』と書かれている『公演』/『チケット種別』の組み合わせ</p>
+<p>『管理取扱者』は予約可能です。</p>
+<p>『一般取扱者』は予約不可です。</p>
+<p>『一般のお客様』は予約不可です</p>
+<br>
+<p>セル内に『-』と書かれている『公演』/『チケット種別』の組み合わせ</p>
+<p>『だれでも』予約可能です。</p>
+<br>
+<p>セル内右側のチェックボックスにレ点を書いて、ボタン『組み合わせフラグ ON/OFF』を押下すると</p>
+<p>セル左側の『☑️ 』/ 『-』が反転します</p>
 <br>
 <br>
 
@@ -13,38 +21,40 @@
       <td>
       </td>
       <% @kinds.each do |kind| %>
-        <th>
+        <th class="align-middle">
           <p class="text-center">
           <%= kind.kind %>
           </p>
         </th>
       <% end %>
       </tr>
-
-    <% @stages.each do |stage| %>
-      <tr>
-        <th>
-          <p class="text-center">
-            <%= stage.stage %>
-          </p>
-        </th>
-        <% @kinds.each do |kind| %>
-          <td align="center">
-            <% if stage.end_flag || kind.end_flag %>
-              受付終了
-            <% else %>
-            <% @connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
-              <% if @connection.invalid_flag %>
-                <%= check_box_tag :invalid_flag, value = "", @connection.invalid_flag, {:checked => true} %>
+    <%= form_tag(connection_all_path, method: 'patch') do %>
+      <% @stages.each do |stage| %>
+        <tr>
+          <th>
+              <p>
+                <%= stage.stage %>
+              </p>
+          </th>
+          <% @kinds.each do |kind| %>
+            <td align="center" class="align-middle">
+              <% if stage.end_flag || kind.end_flag %>
+                <p>受付終了</p>
               <% else %>
-                <%= check_box_tag :invalid_flag, value = "", @connection.invalid_flag, {:checked => false} %>
+                <% connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
+                <% if connection.invalid_flag %>
+                   ☑️ /
+                <% else %>
+                   - /
+                <% end %>
+                <%= check_box_tag 'connections[]', connection.id %>
               <% end %>
-              <%= button_to '反転', connection_path(@connection), {method: "patch"} %>
-            <% end %>
-          </td>
-        <% end %>
-      </tr>
-  <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      <%= submit_tag "組み合わせフラグ ON/OFF" %>
+    <% end %>
   </table>
 </div>
 

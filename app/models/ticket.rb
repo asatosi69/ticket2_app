@@ -87,6 +87,21 @@ class Ticket < ApplicationRecord
         sum
     end
     
+    def self.encryption(id)
+        binding.pry
+        moji = Rails.application.config.troupe_name,Rails.application.config.performance_name,Ticket.find(id).id,Ticket.find(id).seller_id,Ticket.find(id).stage_id,Ticket.find(id).kind_id,Ticket.find(id).payment_id,Ticket.find(id).buyer_furigana,Ticket.find(id).count
+
+        moji2 = moji.join
+        binding.pry
+        key_len = ActiveSupport::MessageEncryptor.key_len
+        secret = Rails.application.key_generator.generate_key('salt', key_len)
+        crypt = ActiveSupport::MessageEncryptor.new(secret)
+        encrypted = crypt.encrypt_and_sign(moji2)
+        self.find(id).update(cipher: encrypted)
+        binding.pry
+
+    end
+    
     
     
     scope :search, -> (search_params) do

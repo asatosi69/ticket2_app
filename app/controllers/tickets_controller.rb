@@ -83,6 +83,11 @@ class TicketsController < ApplicationController
       redirect_to("/tickets")
   end
   
+  def create_cipher
+      @ticket =Ticket.find_by(cipher: "")
+      
+      Ticket.encrption()
+  end
   
   private
   

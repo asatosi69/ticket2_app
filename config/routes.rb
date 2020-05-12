@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :stages, :except => [:show]
   resources :kinds, :except => [:show]
   resources :payments, :except => [:show]
-  resources :connections, :only => [:index, :update]
+  resources :connections, :only => [:index]
+  patch "connections/connection_all" => "connections#connection_all", as: :connection_all
   resources :lists, :only => [:index]
   resources :visitors, :only => [:index]
   patch "visitors/visitor_all" => "visitors#visitor_all", as: :visitor_all

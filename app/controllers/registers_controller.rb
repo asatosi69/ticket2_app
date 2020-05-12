@@ -47,7 +47,6 @@ class RegistersController < ApplicationController
         
     end
     
-    
     private
     
     def params_ticket

@@ -8,19 +8,16 @@ class ConnectionsController < ApplicationController
       @connections = Connection.all
   end
 
-  def update
-      
-      @connection = Connection.find_by(id: params[:id])
-      
-      @connection.invalid_flag = !@connection.invalid_flag
-      
-      if @connection.save
-          flash[:notice] = "反転が完了しました"
-          redirect_to("/connections")
-      else
-          render  'index'
-      end
-    
+  def connection_all
+        
+        @connections = Connection.where(id: params[:connections])
+
+        @connections.each do |connection|
+          connection.invalid_flag = !connection.invalid_flag
+          connection.save
+        end
+        
+        redirect_to("/connections")
   end
        
 end
