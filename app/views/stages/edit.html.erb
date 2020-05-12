@@ -30,6 +30,9 @@
   <%= form.check_box :end_flag , class: 'form-control'%>
 </p>
 <p>
-  <%= form.submit "更新" %><%= button_to '戻る', {:controller => "stages", :action => "index"}, {:method => :get}  %>
+  <%= form.submit "更新" %>
+  <%= link_to :back, :style=>"color:black" do %>
+    <button>戻る</button>
+  <% end %>
 </p>
 <% end %>
