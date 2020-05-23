@@ -34,4 +34,13 @@ class UserMailer < ApplicationMailer
         subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』の予約ページのURLをお知らせいたします。'"
         )
       end
+    
+    def notice_mail_for_enquete(ticket)
+    return if ticket.buyer_mail.blank?
+    @ticket = ticket
+    mail(
+      to: @ticket.buyer_mail,
+      subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』への観劇後のアンケートにご協力ください。'"
+      )
+    end
 end

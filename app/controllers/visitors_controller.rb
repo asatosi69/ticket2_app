@@ -45,5 +45,17 @@ class VisitorsController < ApplicationController
         
         redirect_to("/visitors")
   end
+  
+  def enquete
+        @tickets = Ticket.all
+        @tickets.each do |ticket|
+            
+          if ticket.visited_flag
+            UserMailer.notice_mail_for_enquete(ticket).deliver
+          end
+        end
+        
+        redirect_to("/visitors")
+  end
 
 end

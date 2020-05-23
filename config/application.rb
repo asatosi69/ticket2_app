@@ -26,6 +26,7 @@ module Ticket2App
     config.performance_notice = '『お客様へのお願い』<br>・劇場の開場時間は公演開演時間の30分前となります。<br/><br/>'
     config.troupe_url = 'www.sankaku.com'.freeze
     config.troupe_mail = 'aaa@yahoo.co.jp'.freeze
+    config.enquete_form = 'google.co.jp'.freeze
 
 
   end
