@@ -18,7 +18,7 @@ class TicketsController < ApplicationController
   def index
       
       @search_params = ticket_search_params
-      @tickets = Ticket.search(@search_params).page(params[:page]).per(10)
+      @tickets = Ticket.search(@search_params).order(created_at: "DESC").page(params[:page]).per(20)
 
   end
     

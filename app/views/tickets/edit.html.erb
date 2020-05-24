@@ -50,14 +50,6 @@
   <%= form.email_field :buyer_mail, class: 'form-control' %>
 </p>
 <p>
-  <% if current_seller.admin_flag? %>
-    <%= form.label(:visited_flag, Ticket.human_attribute_name(:visited_flag), class:'control-label') %>
-    <%= form.check_box :visited_flag , class: 'form-control'%>
-  <% else %>
-    <%= form.hidden_field :visited_flag %>
-  <% end %>
-</p>
-<p>
   <%= form.label(:comment1, Ticket.human_attribute_name(:comment1), class:'control-label') %>
   <%= form.text_area :comment1, size: "50x20", class: 'form-control' %>
 </p>
