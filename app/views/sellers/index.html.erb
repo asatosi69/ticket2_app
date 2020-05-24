@@ -30,7 +30,7 @@
         <% @sellers.each do |seller| %>
           <tr>
             <% if current_seller.admin_flag %>
-              <td align="center"><%= check_box_tag 'sellers[]', seller.id %></td>
+              <td align="center"><%= check_box_tag 'sellers[]',seller.id %></td>
               <td align="center"><%= link_to '反転', seller_path(seller), {method: "patch", class: 'btn btn-default'} %></td>
               <td align="center"><%= link_to '削除', seller_path(seller), {method: "delete", class: 'btn btn-default'} %></td>
             <% end %>
