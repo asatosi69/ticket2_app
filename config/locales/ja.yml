@@ -41,7 +41,7 @@ activerecord:
       visited_flag: '来場済'
       comment1: 'コメント'
       comment2: '備考'
-      cipher: '暗号'
+      enquete_flag: 'アンケート送付済みフラグ'
 date:
   abbr_day_names:
   - 日

@@ -28,6 +28,7 @@ ja:
         end_time: '受付終了時間'
         end_flag: '受付終了フラグ'
         remaining: '残席数'
+        start_time: '受付開始時間'
       ticket:
         seller_id: '取扱者'
         stage_id: '公演'
@@ -40,7 +41,7 @@ ja:
         visited_flag: '来場済'
         comment1: 'コメント'
         comment2: '備考'
-        cipher: '暗号'
+        enquete_flage: 'アンケート送付済みフラグ'
       seller:
         name: '取扱者'
         admin_flag: '管理者フラグ'

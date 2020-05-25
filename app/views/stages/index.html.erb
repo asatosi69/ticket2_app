@@ -22,6 +22,7 @@
       <th style="width: 60px"><p class="text-center">削除</p></th>
       <th><p class="text-center">開演日時</p></th>
       <th style="width: 80px"><p class="text-center">総席数</p></th>
+      <th><p class="text-center">受付開始時間</p></th>
       <th><p class="text-center">受付終了時間</p></th>
       <th style="width: 100px"><p class="text-center">終了フラグ</p></th>
       <th style="width: 100px"><p class="text-center">残席数</p>
@@ -35,6 +36,7 @@
         <td align="center"><%= button_to '削除', stage_path(stage), {method: "delete"} %></td>
         <td align="center"><%= stage.stage %></td>
         <td align="center"><%= stage.total_seats %></td>
+        <td align="center"><%= stage.start_time.to_s(:start_time) %></td>
         <td align="center"><%= stage.end_time.to_s(:end_time) %></td>
         <td align="center">
           <% if stage.end_flag %>

@@ -11,8 +11,9 @@
 ご予約内容：
 <%= Rails.application.config.troupe_name %> 『<%= Rails.application.config.performance_name %>』
 <%= @ticket.stage.stage %>
-<%= @ticket.kind.kind %> <%= @ticket.kind.price %>円 × <%= @ticket.count %>枚
-お支払い金額：<%= @ticket.kind.price * @ticket.count %>円
+<%= @ticket.kind.kind %>
+支払方法が『<%= @ticket.payment.payment %>』の時のチケット『<%= @ticket.kind.kind %>』の料金：<%= @ticket.kind.price + @ticket.payment.discount_rate %>円 × 枚数：<%= @ticket.count %>枚
+お支払い金額：<%= (@ticket.kind.price + @ticket.payment.discount_rate) * @ticket.count %>円
 ---------------------
 またのご予約をお待ちしております。
 今後とも<%= Rails.application.config.troupe_name %> をよろしくお願いいたします。

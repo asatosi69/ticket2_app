@@ -18,7 +18,7 @@
   <% if current_seller.admin_flag? %>
     <%= form.collection_select(:stage_id, Stage.all.order(stage: "ASC"), :id, :stage, {prompt: :stage_id}, {:required => true, class: "form-control input-sm"}) %>
   <% else %>
-    <%= form.collection_select(:stage_id, Stage.where(end_flag: false).order(stage: "ASC"), :id, :stage, {prompt: :stage_id}, {:required => true, class: "form-control input-sm"}) %>
+    <%= form.collection_select(:stage_id, Stage.where(end_flag: false).where("start_time <= ?", Time.now)order(stage: "ASC"), :id, :stage, {prompt: :stage_id}, {:required => true, class: "form-control input-sm"}) %>
   <% end %>
 </p>
 <p>

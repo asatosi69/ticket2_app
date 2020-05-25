@@ -14,6 +14,18 @@
   <%= form.number_field :total_seats, class: 'form-control' %>
 </p>
 <p>
+  <%= form.label(:start_time, Stage.human_attribute_name(:start_time), class:'control-label') %>
+  <%= form.datetime_select :start_time,
+        start_year: Time.now.year,
+        end_year: Time.now.since(3.years).year,
+        use_two_digit_numbers: true,
+        date_separator: '-',
+        datetime_separator: ',',
+        time_separator: ':',
+        class:'control-label'
+     %>
+</p>
+<p>
   <%= form.label(:end_time, Stage.human_attribute_name(:end_time), class:'control-label') %>
   <%= form.datetime_select :end_time,
         start_year: Time.now.year,

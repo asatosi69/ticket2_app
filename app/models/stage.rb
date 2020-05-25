@@ -5,6 +5,7 @@ class Stage < ApplicationRecord
     
     validates :stage, presence: true
     validates :total_seats, presence: true, numericality: { only_integer: true }
+    validates :start_time, presence: true
     validates :end_time, presence: true
     validates :remaining, presence: true, numericality: { only_integer: true }
     
