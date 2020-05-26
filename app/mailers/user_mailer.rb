@@ -4,6 +4,7 @@ class UserMailer < ApplicationMailer
       @ticket = ticket
       mail(
         to: @ticket.buyer_mail,
+        bcc: @ticket.seller.email,
         subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』のご予約を承りました'"
       )
     end
@@ -13,6 +14,7 @@ class UserMailer < ApplicationMailer
       @ticket = ticket
       mail(
         to: @ticket.buyer_mail,
+        bcc: @ticket.seller.email,
         subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』のご予約内容を変更いたしました'"
       )
     end
@@ -22,7 +24,8 @@ class UserMailer < ApplicationMailer
       @ticket = ticket
       mail(
         to: @ticket.buyer_mail,
-       subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』のご予約をキャンセルいたしました。'"
+        bcc: @ticket.seller.email,
+        subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』のご予約をキャンセルいたしました。'"
       )
     end
     
@@ -40,6 +43,7 @@ class UserMailer < ApplicationMailer
     @ticket = ticket
     mail(
       to: @ticket.buyer_mail,
+      bcc: @ticket.seller.email,
       subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』への観劇後のアンケートにご協力ください。'"
       )
     end

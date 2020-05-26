@@ -11,7 +11,7 @@
 <p>招待の場合は、支払方法『招待』の『変動額』は『−4200』を入れてください。</p>
 <br>
 <p>仕様により、『変動額』に『マイナス』の数字を設定した『支払方法』は予約用URLでは選択できなくなります。</p>
-<p>ご注意ください。</p>
+<p>ご注意ください。<div style="color:#ff0000;">『変動額』に『マイナス』の数字を設定した『支払方法』は赤字で表示しています。</div></p>
 <br>
 <br>
 <%= link_to("支払方法を登録する", new_payment_path) %>
@@ -40,9 +40,15 @@
       <tr>
         <td align="center"><%= button_to '編集', edit_payment_path(payment), {method: "get"} %></td>
         <td align="center"><%= button_to '削除', payment_path(payment), {method: "delete"} %></td>
-        <td align="center"><%= payment.payment %></td>
-        <td align="center"><%= payment.abbreviation %></td>
-        <td align="center"><%= payment.discount_rate %></td>
+        <% if payment.discount_rate < 0 %>
+          <td align="center"><div style="color:#ff0000;"><%= payment.payment %></div></td>
+          <td align="center"><div style="color:#ff0000;"><%= payment.abbreviation %></div></td>
+          <td align="center"><div style="color:#ff0000;"><%= payment.discount_rate %></div></td>
+        <% else %>
+           <td align="center"><%= payment.payment %></td>
+           <td align="center"><%= payment.abbreviation %></td>
+           <td align="center"><%= payment.discount_rate %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
