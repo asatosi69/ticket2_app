@@ -16,13 +16,17 @@
         <td style="width: 60px"><%= button_to '編集', edit_page_path(page), {method: "get"} %></td>
         <td style="width: 60px"><%= button_to '削除', page_path(page), {method: "delete"} %></td>
       </tr>
-      　　<td colspan="3">投稿者：<%= page.seller.name %></td>
+        <td colspan="3">投稿者：<%= page.seller.name %></td>
       <tr>
       </tr>
-      　　<td colspan="3">　</td>
+        <td colspan="3">　</td>
       <tr>
         <td colspan="3"><%= simple_format(page.notice) %></td>
       </tr>
     </table>
   <% end %>
+<% end %>
+<br>
+<%= link_to :back, :style=>"color:#333333" do %>
+  <button>戻る</button>
 <% end %>
