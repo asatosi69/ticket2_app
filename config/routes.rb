@@ -14,8 +14,7 @@ Rails.application.routes.draw do
   patch "connections/connection_all" => "connections#connection_all", as: :connection_all
   resources :lists, :only => [:index]
   resources :visitors, :only => [:index]
-  patch "visitors/visitor_all" => "visitors#visitor_all", as: :visitor_all
-  get "visitors/enquete" => "visitors#enquete", as: :enquete
+  patch "visitors/visitor" => "visitors#visitor", as: :visitor
   
   post "registers/create" => "registers#create"
   get "registers/:seller_id/new" => "registers#new", as: :new_registers2
