@@ -35,10 +35,16 @@ gem 'bootstrap-sass'
 gem 'rails-i18n', '~> 5.1' 
 gem 'kaminari', '~> 0.17.0'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'unicorn'
 
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+group :deployment do
+  # capistrano
+  gem 'capistrano'        
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

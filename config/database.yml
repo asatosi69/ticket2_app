@@ -49,6 +49,9 @@ test:
 #
 production:
   <<: *default
-  database: ticket2_app_production
-  username: ticket2_app
-  password: <%= ENV['TICKET2_APP_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  encoding: utf8
+  database: ticket2_app_production # mysqlで作成したdatabase名
+  username: root
+  password: orangeseed69
+  host: 160.251.15.86 # IPアドレス
