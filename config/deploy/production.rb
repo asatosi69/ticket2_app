@@ -1,7 +1,8 @@
 #set :stage, :production
+set :stage, :production
 set :branch, 'master' ## 必要があれば変更
 
-server 'IP.AD.RE.SS', user: 'hogehuga', roles: %w{app db web}, port: 55555
+server '160.251.15.86', user: 'asatosi69', roles: %w{app db web}, port: 55555
 
 set :ssh_options, {
   port: 55555, #### 変更

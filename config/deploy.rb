@@ -1,18 +1,16 @@
 # 共通の設定をconfig/deploy.rbで記述
 
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.11.0"
+lock "~> 3.14.0"
 
 # 基本設定
 set :application, "ticket2_app"
-set :repo_url, "https://UserName@github.com/UserName/ticket2_app.git"# デプロイ対象のリポジトリ->プライベートリポジトリとしていたため私はhttpsで指定しましたが、sshで大丈夫です。
+set :repo_url, "git@github.com:asatosi69/ticket2_app.git"# デプロイ対象のリポジトリ->プライベートリポジトリとしていたため私はhttpsで指定しましたが、sshで大丈夫です。
 
 set :deploy_to, '/var/www/ticket2_app' # デプロイ先
 
-set :rbenv_type, :user  # rbenvをシステムにインストールした or ユーザーローカルにインストールした
-set :rbenv_ruby, '2.5.1' # サーバで利用するrubyのバージョンを指定
-set :rbenv_path, '/home/username/.rbenv'
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_type, :system  # rbenvをシステムにインストールした or ユーザーローカルにインストールした
+set :rbenv_ruby, '2.6.3' # サーバで利用するrubyのバージョンを指定
 
 # リリースフォルダをいくつまで保持するか？
 set :keep_releases, 5

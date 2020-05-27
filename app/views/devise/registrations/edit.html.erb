@@ -18,7 +18,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password, '新しいパスワード'%> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password, '新しいパスワード'%> <br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
@@ -32,19 +32,16 @@
   </div>
 
   <div class="field">
-    <%= f.label :current_password, '現在のパスワード' %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password, '現在のパスワード' %> <br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "更新" %>
-  </div>
+  <p>
+    <div class="actions">
+      <%= f.submit "更新" %>
+      <%= link_to :back, :style=>"color:#333333" do %>
+        <button>戻る</button>
+      <% end %>
+    </div>
+  </p>
 <% end %>
-
-<h3>更新をキャンセル</h3>
-
-<%= button_to "更新をキャンセル", registration_path(resource_name), data: { confirm: "本当によろしいですか?" }, method: :delete %>
-
-</br>
-
-<%= link_to "戻る", :back %>
