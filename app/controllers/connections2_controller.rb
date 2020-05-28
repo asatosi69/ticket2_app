@@ -17,7 +17,7 @@ class Connections2Controller < ApplicationController
           connection.save
         end
         
-        redirect_to("/connections")
+        redirect_to("/connections2")
   end
        
 end

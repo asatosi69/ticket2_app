@@ -15,26 +15,26 @@
 <br>
 <br>
 
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:75%">
-    <tr>
-      <td>
-      </td>
-      <% @payments.each do |payment| %>
-        <th class="align-middle">
-          <p class="text-center">
-          <%= payment.payment %>
-          </p>
-        </th>
-      <% end %>
+<%= form_tag(connection2_all_path, method: 'patch') do %>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:75%">
+      <tr>
+        <td>
+        </td>
+        <% @payments.each do |payment| %>
+          <th class="align-middle">
+            <p class="text-center">
+              <%= payment.payment %>
+            </p>
+          </th>
+        <% end %>
       </tr>
-    <%= form_tag(connection2_all_path, method: 'patch') do %>
       <% @kinds.each do |kind| %>
         <tr>
           <th>
-              <p>
-                <%= kind.kind %>
-              </p>
+            <p>
+              <%= kind.kind %>
+            </p>
           </th>
           <% @payments.each do |payment| %>
             <td align="center" class="align-middle">
@@ -54,9 +54,9 @@
         </tr>
       <% end %>
       <p><%= submit_tag "組み合わせフラグ ON/OFF" %></p>
-    <% end %>
-  </table>
-</div>
+    </table>
+  </div>
+<% end %>
 
 <%= link_to :back, :style=>"color:#333333" do %>
   <button>戻る</button>
