@@ -8,6 +8,7 @@ class Ticket < ApplicationRecord
     validates :stage_id, presence: true
     validates :kind_id, presence: true
     validates :payment_id, presence: true
+    validates :count, presence: true, numericality: { only_integer: true }
     
     validates :buyer_name, presence: true,
     format: {
@@ -161,8 +162,10 @@ class Ticket < ApplicationRecord
     def check_ticket_limit
         
       remaining = Stage.find(stage_id).remaining
+      binding.pry
       num = count * Kind.find(kind_id).seats
-      errors.add(:kind_id, ' 申し込みいただいた『チケット種別 / 枚数』の組み合わせではお席をご用意することができません。') if remaining - num < 0
+      binding.pry
+      errors.add(:limit_over, ' 申し込みいただいた『チケット種別 / 枚数』の組み合わせではお席をご用意することができません。') if remaining - num < 0
     end
       
 end
