@@ -26,6 +26,12 @@ class KindsController < ApplicationController
             @kind.stages << stage
         end
         
+        # モデル『Connection2』に新しい『@kind』の情報を登録するための処理
+        @payments = Payment.all
+        @payments.each do |payment|
+            @kind.payments << payment
+        end
+        
         if @kind.save
             flash[:notice] = "登録が完了しました"
             redirect_to("/kinds")

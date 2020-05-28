@@ -2,8 +2,8 @@ class Stage < ApplicationRecord
     has_many :tickets
     has_many :connections, dependent: :destroy
     has_many :kinds, through: :connections, dependent: :destroy
-    has_many :connection2s, dependent: :destroy
-    has_many :payments, through: :connection2s, dependent: :destroy
+    has_many :connection3s, dependent: :destroy
+    has_many :payments, through: :connection3s, dependent: :destroy
     
     validates :stage, presence: true
     validates :total_seats, presence: true, numericality: { only_integer: true }

@@ -30,7 +30,13 @@ class StagesController < ApplicationController
         @kinds.each do |kind|
             @stage.kinds << kind
         end
-        
+        binding.pry
+        # モデル『Connection3』に新しい『@stage』の情報を登録するための処理
+        @payments = Payment.all
+        @payments.each do |payment|
+            @stage.payments << payment
+        end
+        binding.pry
         if @stage.save
             flash[:notice] = "登録が完了しました"
             redirect_to("/stages")

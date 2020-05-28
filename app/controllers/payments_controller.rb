@@ -14,6 +14,18 @@ class PaymentsController < ApplicationController
 
     def create
         @payment = Payment.new(params_payment)
+        
+        # モデル『Connection2』に新しい『@payment』の情報を登録するための処理
+        @kinds = Kind.all
+        @kinds.each do |kind|
+            @payment.kinds << kind
+        end
+        
+        # モデル『Connection3』に新しい『@payment』の情報を登録するための処理
+        @stages = Stage.all
+        @stages.each do |stage|
+            @payment.stages << stage
+        end
 
         if @payment.save
             flash[:notice] = "登録が完了しました"
