@@ -1,16 +1,16 @@
-class ConnectionsController < ApplicationController
+class Connections3Controller < ApplicationController
     # ログインしているユーザーのみ操作できるようにする
     before_action :authenticate_seller!
     
   def index
+      @payments = Payment.all.order(payment: "ASC")
       @stages = Stage.all.order(stage: "ASC")
-      @kinds = Kind.all.order(kind: "ASC")
-      @connections = Connection.all
+      @connections = Connection3.all
   end
 
-  def connection_all
+  def connection3_all
         
-        @connections = Connection.where(id: params[:connections])
+        @connections = Connection3.where(id: params[:connections])
 
         @connections.each do |connection|
           connection.invalid_flag = !connection.invalid_flag

@@ -20,28 +20,28 @@
     <tr>
       <td>
       </td>
-      <% @kinds.each do |kind| %>
+      <% @stages.each do |stage| %>
         <th class="align-middle">
           <p class="text-center">
-          <%= kind.kind %>
+          <%= stage.stage %>
           </p>
         </th>
       <% end %>
       </tr>
-    <%= form_tag(connection_all_path, method: 'patch') do %>
-      <% @stages.each do |stage| %>
+    <%= form_tag(connection3_all_path, method: 'patch') do %>
+      <% @payments.each do |payment| %>
         <tr>
           <th>
               <p>
-                <%= stage.stage %>
+                <%= payment.payment %>
               </p>
           </th>
-          <% @kinds.each do |kind| %>
+          <% @stages.each do |stage| %>
             <td align="center" class="align-middle">
-              <% if stage.end_flag || kind.end_flag %>
+              <% if stage.end_flag %>
                 <p>受付終了</p>
               <% else %>
-                <% connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
+                <% connection = Connection3.find_by(stage_id: stage.id, payment_id: payment.id) %>
                 <% if connection.invalid_flag %>
                    ☑️ /
                 <% else %>
@@ -62,10 +62,11 @@
   <button>戻る</button>
 <% end %>
 
-<%= link_to :connections2_index, :style=>"color:#333333" do %>
-  <button>『チケット種別』と『支払方法』の組み合わせ</button>
+
+<%= link_to :connections, :style=>"color:#333333" do %>
+  <button>『公演』と『チケット種別』の組み合わせ</button>
 <% end %>
 
-<%= link_to :connections3_index, :style=>"color:#333333" do %>
-  <button>『支払方法』と『公演』の組み合わせ</button>
+<%= link_to :connections2_index, :style=>"color:#333333" do %>
+  <button>『チケット種別』と『支払方法』の組み合わせ</button>
 <% end %>
