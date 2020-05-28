@@ -135,7 +135,7 @@ class Ticket < ApplicationRecord
         
       return unless Connection.find_by(stage_id: stage_id, kind_id: kind_id).invalid_flag
 
-      errors.add(:stage_id, ' 選択いただいた『公演 / チケット種別』の組み合わせでは予約を承ることができません。')
+      errors.add(:error_connection, ' 選択いただいた『公演 / チケット種別』の組み合わせでは予約を承ることができません。')
 
     end
 
@@ -144,7 +144,7 @@ class Ticket < ApplicationRecord
     
       return unless Connection2.find_by(kind_id: kind_id, payment_id: payment_id).invalid_flag
 
-      errors.add(:kind_id, ' 選択いただいた『チケット種別 / 支払方法』の組み合わせでは予約を承ることができません。')
+      errors.add(:error_connection, ' 選択いただいた『チケット種別 / 支払方法』の組み合わせでは予約を承ることができません。')
 
     end
 
@@ -153,7 +153,7 @@ class Ticket < ApplicationRecord
 
       return unless Connection3.find_by(payment_id: payment_id, stage_id: stage_id).invalid_flag
 
-      errors.add(:payment_id, ' 選択いただいた『支払方法 / 公演』の組み合わせでは予約を承ることができません。')
+      errors.add(:error_connection, ' 選択いただいた『支払方法 / 公演』の組み合わせでは予約を承ることができません。')
 
     end
 

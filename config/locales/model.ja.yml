@@ -42,6 +42,7 @@ ja:
         comment1: 'コメント'
         comment2: '備考'
         enquete_flage: 'アンケート送付済みフラグ'
+        error_connection: '組み合わせエラー'
       seller:
         name: '取扱者'
         admin_flag: '管理者フラグ'
