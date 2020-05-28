@@ -3,6 +3,9 @@ class Kind < ApplicationRecord
     has_many :tickets
     has_many :connections, dependent: :destroy
     has_many :stages, through: :connections, dependent: :destroy
+    has_many :connection2s, dependent: :destroy
+    has_many :payments, through: :connection2s, dependent: :destroy
+    
     
     validates :kind, presence: true
     validates :seats, presence: true, numericality: { only_integer: true }
