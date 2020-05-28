@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :payments, :except => [:show]
   resources :connections, :only => [:index]
   patch "connections/connection_all" => "connections#connection_all", as: :connection_all
+  resources :connections2, :only => [:index]
+  patch "connections2/connection_all" => "connections2#connection_all", as: :connection2_all
+  resources :connections3, :only => [:index]
+  patch "connections3/connection_all" => "connections3#connection_all", as: :connection3_all
   resources :lists, :only => [:index]
   resources :visitors, :only => [:index]
   patch "visitors/visitor" => "visitors#visitor", as: :visitor
