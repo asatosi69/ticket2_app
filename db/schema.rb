@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_220947) do
+ActiveRecord::Schema.define(version: 2020_05_27_231319) do
 
   create_table "colors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "color_name"
@@ -18,6 +18,26 @@ ActiveRecord::Schema.define(version: 2020_05_25_220947) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_selected", default: false, null: false
+  end
+
+  create_table "connection2s", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "kind_id"
+    t.integer "payment_id"
+    t.boolean "invalid_flag", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kind_id"], name: "index_connection2s_on_kind_id"
+    t.index ["payment_id"], name: "index_connection2s_on_payment_id"
+  end
+
+  create_table "connection3s", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "payment_id"
+    t.integer "stage_id"
+    t.boolean "invalid_flag", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_connection3s_on_payment_id"
+    t.index ["stage_id"], name: "index_connection3s_on_stage_id"
   end
 
   create_table "connections", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -112,6 +132,10 @@ ActiveRecord::Schema.define(version: 2020_05_25_220947) do
     t.boolean "enquete_flag", default: false, null: false
   end
 
+  add_foreign_key "connection2s", "kinds"
+  add_foreign_key "connection2s", "payments"
+  add_foreign_key "connection3s", "payments"
+  add_foreign_key "connection3s", "stages"
   add_foreign_key "connections", "kinds"
   add_foreign_key "connections", "stages"
 end
