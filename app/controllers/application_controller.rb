@@ -82,6 +82,19 @@ class ApplicationController < ActionController::Base
         end
     end
     
+    # 自分以外の予約は操作できないようにする
+    def correct_user?
+        # 『取扱者』の場合
+        unless current_seller.admin_flag?
+            binding.pry
+            # 自分以外の予約
+            if current_seller.id != ticket.seller_id
+              flash[:notice] = "他の取扱者の予約は操作できません"
+              redirect_to("/tickets")
+            end
+        end
+    end
+    
     
     rescue_from ActiveRecord::RecordNotFound, with: :render_404
     rescue_from ActionController::RoutingError, with: :render_404

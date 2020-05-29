@@ -9,9 +9,9 @@ class TicketsController < ApplicationController
     before_action :payment_records_empty?, {except: [:destroy]}
     #『公演』モデルの各レコードの受付終了時間が現在時間と同じ時間、若しくは過ぎていれば、終了フラグを立てる
     before_action :end_time_past?
-    # 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは下回った場合、終了フラグを立てる
+    # 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは上回った場合、終了フラグを立てる
     before_action :sold_out?
-    # 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは下回った場合、終了フラグを立てる
+    # 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは上回った場合、終了フラグを立てる
     after_action :sold_out?, {only: [:create, :update, :destroy]}
 
     
@@ -24,6 +24,15 @@ class TicketsController < ApplicationController
     
   def show
       @ticket = Ticket.find_by(id: params[:id])
+      
+      # 『取扱者』の場合は自分以外の予約の操作はできない
+      unless current_seller.admin_flag?
+          # 自分以外の予約
+          if current_seller.id != @ticket.seller_id
+            flash[:notice] = "他の取扱者の予約は操作できません"
+            redirect_to("/tickets")
+          end
+      end
   end
 
   def new
@@ -54,12 +63,32 @@ class TicketsController < ApplicationController
   end
 
   def edit
+      
       @ticket = Ticket.find_by(id: params[:id])
+      
+      # 『取扱者』の場合は自分以外の予約の操作はできない
+      unless current_seller.admin_flag?
+          # 自分以外の予約
+          if current_seller.id != @ticket.seller_id
+            flash[:notice] = "他の取扱者の予約は操作できません"
+            redirect_to("/tickets")
+          end
+      end
+      
       @connections = Connection.all
   end
 
   def update
       @ticket = Ticket.find_by(id: params[:id])
+      
+      # 『取扱者』の場合は自分以外の予約の操作はできない
+      unless current_seller.admin_flag?
+          # 自分以外の予約
+          if current_seller.id != @ticket.seller_id
+            flash[:notice] = "他の取扱者の予約は操作できません"
+            redirect_to("/tickets")
+          end
+      end
     
       @ticket.assign_attributes(params_ticket)
       
@@ -78,9 +107,32 @@ class TicketsController < ApplicationController
   def destroy
       @ticket = Ticket.find_by(id: params[:id])
       
+      # 『取扱者』の場合は自分以外の予約の操作はできない
+      unless current_seller.admin_flag?
+          # 自分以外の予約
+          if current_seller.id != @ticket.seller_id
+            flash[:notice] = "他の取扱者の予約は操作できません"
+            redirect_to("/tickets")
+          end
+      end
+      
       @ticket.destroy
       UserMailer.notice_mail_for_destroy_ticket(@ticket).deliver
       redirect_to("/tickets")
+  end
+  
+ 
+  def correct_user?
+      
+      if not current_seller.admin_flag
+          
+          if @current_seller.id != params[:id].to_i
+            flash[:notice] = "他の取扱者の予約は操作できません"
+            redirect_to("/tickets")
+          end
+    
+      end
+      
   end
   
   private
