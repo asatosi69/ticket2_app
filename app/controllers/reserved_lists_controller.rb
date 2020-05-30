@@ -1,0 +1,27 @@
+class ReservedListsController < ApplicationController
+# ログインしているユーザーのみ操作できるようにする
+  before_action :authenticate_seller!
+
+  def index
+        @stages = Stage.all.order(stage: "ASC")
+        @kinds = Kind.all.order(kind: "ASC")
+        
+  end
+    
+  def reserved_list_print
+      search_condition = Ticket.joins(:seller).where(stage_id: params[:stage_id])
+      search_condition =
+          case params[:order_id]
+               when 'order_by_seller_id_and_buyer_furigana' then
+                    search_condition.includes(:seller).order("sellers.name asc").order(buyer_furigana: "ASC")
+               when 'order_by_buyer_furigana' then
+                    search_condition.order(buyer_furigana: "ASC")
+               when 'order_by_created_at' then
+                    search_condition.order(created_at: "DESC")
+          end
+      @stage = Stage.find_by(id: params[:stage_id])
+      @tickets = search_condition
+      render template: 'reserved_lists/reserved_lists'
+    end
+
+end

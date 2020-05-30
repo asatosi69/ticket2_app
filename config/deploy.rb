@@ -9,8 +9,12 @@ set :repo_url, "git@github.com:asatosi69/ticket2_app.git"# デプロイ対象の
 
 set :deploy_to, '/var/www/ticket2_app' # デプロイ先
 
-set :rbenv_type, :system  # rbenvをシステムにインストールした or ユーザーローカルにインストールした
+set :rbenv_type, :user  # rbenvをシステムにインストールした or ユーザーローカルにインストールした
 set :rbenv_ruby, '2.6.3' # サーバで利用するrubyのバージョンを指定
+
+set :rbenv_custom_path, '/home/asatosi69/.rbenv'
+
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_custom_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_custom_path)}/bin/rbenv exec"
 
 # リリースフォルダをいくつまで保持するか？
 set :keep_releases, 5

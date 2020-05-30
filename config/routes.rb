@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   resources :lists, :only => [:index]
   resources :visitors, :only => [:index]
   patch "visitors/visitor" => "visitors#visitor", as: :visitor
+  resources :reserved_lists, :only => [:index]
+  get "reserved_lists/reserved_list_print" => "reserved_lists#reserved_list_print", as: :reserved_list_print
+  resources :reserved_stubs, :only => [:index]
   
   post "registers/create" => "registers#create"
   get "registers/:seller_id/new" => "registers#new", as: :new_registers2

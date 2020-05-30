@@ -1,6 +1,12 @@
 class TicketsController < ApplicationController
     # ログインしているユーザーのみ操作できるようにする
     before_action :authenticate_seller!
+    #『公演』モデルにレコードが無い状態で『チケット』関連処理が実行されるのを避けるため、『公演』モデルにレコードあるかの確認
+    before_action :stage_records_empty?
+    #『チケット種別』モデルにレコードが無い状態で『チケット』関連処理が実行されるのを避けるため、『チケット種別』モデルにレコードあるかの確認
+    before_action :kind_records_empty?
+    #『支払方法』モデルにレコードが無い状態で『チケット』関連処理が実行されるのを避けるため、『支払方法』モデルにレコードあるかの確認
+    before_action :payment_records_empty?
     #『公演』モデルの各レコードの受付終了時間が現在時間と同じ時間、若しくは過ぎていれば、終了フラグを立てる
     before_action :end_time_past?
     # 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは上回った場合、終了フラグを立てる
