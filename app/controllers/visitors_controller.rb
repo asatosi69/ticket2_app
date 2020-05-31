@@ -15,26 +15,26 @@ class VisitorsController < ApplicationController
       case params[:order_id]
       when 'order_by_seller_id_and_buyer_furigana' then
           if current_seller.admin_flag
-              @tickets = Ticket.where(stage_id: params[:stage_id])
-                            .includes(:seller).order("sellers.name asc").order(buyer_furigana: "ASC")
+              @tickets = Ticket.eager_load(:seller, :stage, :kind, :payment).where(stage_id: params[:stage_id])
+                            .order("sellers.name asc").order(buyer_furigana: "ASC")
           else
-            @tickets = Ticket.where(stage_id: params[:stage_id], seller_id: current_seller.id)
-                           .includes(:seller).order("sellers.name asc").order(buyer_furigana: "ASC")
+              @tickets = Ticket.eager_load(:seller, :stage, :kind, :payment).where(stage_id: params[:stage_id], seller_id: current_seller.id)
+                            .order("sellers.name asc").order(buyer_furigana: "ASC")
           end
       when 'order_by_buyer_furigana' then
           if current_seller.admin_flag
-              @tickets = Ticket.where(stage_id: params[:stage_id])
+              @tickets = Ticket.eager_load(:seller, :stage, :kind, :payment).where(stage_id: params[:stage_id])
                             .order(buyer_furigana: "ASC")
           else
-              @tickets = Ticket.where(stage_id: params[:stage_id], seller_id: current_seller.id)
+              @tickets = Ticket.eager_load(:seller, :stage, :kind, :payment).where(stage_id: params[:stage_id], seller_id: current_seller.id)
                             .order(buyer_furigana: "ASC")
           end
       when 'order_by_created_at' then
           if current_seller.admin_flag
-              @tickets = Ticket.where(stage_id: params[:stage_id])
+              @tickets = Ticket.eager_load(:seller, :stage, :kind, :payment).where(stage_id: params[:stage_id])
                             .order(created_at: "DESC")
           else
-              @tickets = Ticket.where(stage_id: params[:stage_id], seller_id: current_seller.id)
+              @tickets = Ticket.eager_load(:seller, :stage, :kind, :payment).where(stage_id: params[:stage_id], seller_id: current_seller.id)
                             .order(created_at: "DESC")
           end
       end

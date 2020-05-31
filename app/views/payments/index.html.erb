@@ -10,7 +10,7 @@
 <p>当日精算が4700円の場合は、支払方法『当日精算』の『変動額』は『500』を入れてください。</p>
 <p>招待の場合は、支払方法『招待』の『変動額』は『−4200』を入れてください。</p>
 <br>
-<p>仕様により、『変動額』に『マイナス』の数字を設定した『支払方法』は予約用URLでは選択できなくなります。</p>
+<p>仕様により、『変動額』に『マイナス』の数字を設定した『支払方法』は『一般客』には選択できません。</p>
 <p>ご注意ください。<div style="color:#ff0000;">『変動額』に『マイナス』の数字を設定した『支払方法』は赤字で表示しています。</div></p>
 <br>
 <br>
@@ -56,6 +56,47 @@
 </div>
 <% end %>
 <br>
+<p>【参考】各チケット種別の支払別料金</p>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:35%">
+    <tr>
+      <td>
+      </td>
+      <% @payments.each do |payment| %>
+        <th class="align-middle">
+          <% if payment.discount_rate < 0 %>
+            <div align="center" style="color:#ff0000;">
+              <p class="text-center"><%= payment.payment %></p>
+            </div>
+          <% else %>
+            <p class="text-center"><%= payment.payment %></p>
+          <% end %>
+        </th>
+      <% end %>
+    </tr>
+    <% @kinds.each do |kind| %>
+      <tr>
+        <th class="align-middle">
+          <p class="text-center">
+            <%= kind.kind %>
+          </p>
+        </th>
+        <% @payments.each do |payment| %>
+          <% money = kind.price + payment.discount_rate %>
+          <td class="align-middle">
+            <% if payment.discount_rate < 0 %>
+              <div style="color:#ff0000;">
+                <p class="text-center"><%= money %></p>
+              </div>
+            <% else %>
+              <p class="text-center"><%= money %></p>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
 <%= link_to :back, :style=>"color:#333333" do %>
   <button>戻る</button>
 <% end %>

@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get "reserved_lists/reserved_list_print" => "reserved_lists#reserved_list_print", as: :reserved_list_print
   resources :reserved_stubs, :only => [:index]
   
+  get "downloads/" => "downloads#index"
+  get "downloads/download" => "downloads#download"
   post "registers/create" => "registers#create"
   get "registers/:seller_id/new" => "registers#new", as: :new_registers2
   get "registers/:seller_id/thankyou" => "registers#thankyou", as: :thankyou

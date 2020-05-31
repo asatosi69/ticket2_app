@@ -122,10 +122,10 @@ class Ticket < ApplicationRecord
 
     end
     
-    scope :seller_id_is, -> (seller_id) { where(seller_id: seller_id) if seller_id.present? }
-    scope :stage_id_is, -> (stage_id) { where(stage_id: stage_id) if stage_id.present? }
-    scope :kind_id_is, -> (kind_id) { where(kind_id: kind_id) if kind_id.present? }
-    scope :payment_id_is, -> (payment_id) { where(payment_id: payment_id) if payment_id.present? }
+    scope :seller_id_is, -> (seller_id) { (:sellers).where(seller_id: seller_id) if seller_id.present? }
+    scope :stage_id_is, -> (stage_id) { (:stages).where(stage_id: stage_id) if stage_id.present? }
+    scope :kind_id_is, -> (kind_id) { (:kinds).where(kind_id: kind_id) if kind_id.present? }
+    scope :payment_id_is, -> (payment_id) { (:payments).where(payment_id: payment_id) if payment_id.present? }
     scope :buyer_name_like, -> (buyer_name) { where('buyer_name LIKE ?', "%#{buyer_name}%") if buyer_name.present? }
     scope :buyer_furigana_like, -> (buyer_furigana) { where('buyer_furigana LIKE ?', "%#{buyer_furigana}%") if buyer_furigana.present? }
     scope :comment1_like, -> (chk1) { where.not(comment1: nil || "" ) if chk1 == "1" }

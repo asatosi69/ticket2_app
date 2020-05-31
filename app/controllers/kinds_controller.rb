@@ -1,7 +1,7 @@
 class KindsController < ApplicationController
     # ログインしているユーザーのみ操作できるようにする
     before_action :authenticate_seller!
-    # 『管理取扱者』と『一般取扱者』では操作できる内容が異なる。『一般取扱者』は操作不可。
+    # 『管理者』として、ログインしないと処理は実行できない
     before_action :admin_seller?
     
     

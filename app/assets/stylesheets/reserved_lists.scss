@@ -1,3 +1,26 @@
 // Place all the styles related to the ReservedLists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/* A4横 */
+@page {
+  size: A4 landscape;
+  margin: 27mm 16mm 27mm 16mm;
+}
+body {
+  -webkit-print-color-adjust: exact;
+}
+.table th {
+  background-color: #e9ecef !important;
+}
+
+.table td {
+  background-color: inherit !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0,0,0,.01) !important;
+}
+
+.table tr td, .table tr th {
+  page-break-inside: avoid;
+}

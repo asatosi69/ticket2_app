@@ -1,6 +1,8 @@
 class ReservedListsController < ApplicationController
-# ログインしているユーザーのみ操作できるようにする
+　# ログインしているユーザーのみ操作できるようにする
   before_action :authenticate_seller!
+　# 『管理者』として、ログインしないと処理は実行できない
+  before_action :admin_seller?
 
   def index
         @stages = Stage.all.order(stage: "ASC")
@@ -9,6 +11,7 @@ class ReservedListsController < ApplicationController
   end
     
   def reserved_list_print
+      @page_title = '予約一覧別ウィンドウ'
       search_condition = Ticket.joins(:seller).where(stage_id: params[:stage_id])
       search_condition =
           case params[:order_id]
