@@ -5,12 +5,8 @@
 <br>
 <%= form_with(scope: :search, url: tickets_path, method: :get, local: true) do |form| %>
 
-   <% if current_seller.admin_flag? %>
-     <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id)) %>
-     <%= form.collection_select(:seller_id, Seller.all, :id, :name, selected: @search_params[:seller_id], include_blank: t('helpers.select.include_blank')) %>
-   <% else %>
-     <%= form.hidden_field :seller_id, value: current_seller.id %>
-   <% end %>
+   <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id)) %>
+   <%= form.collection_select(:seller_id, Seller.all, :id, :name, selected: @search_params[:seller_id], include_blank: t('helpers.select.include_blank')) %>
 
    <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id)) %>
    <%= form.collection_select(:stage_id, Stage.all.order(stage: "ASC"), :id, :stage, selected: @search_params[:stage_id], include_blank: t('helpers.select.include_blank')) %>
@@ -39,5 +35,5 @@
 
    <%= form.submit(t('helpers.submit.search')) %>
 <% end %>
-
+<br>
 <%= render :partial => "shared/ticket_format" %>

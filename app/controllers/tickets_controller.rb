@@ -25,9 +25,15 @@ class TicketsController < ApplicationController
   def index2
       
       @search_params = ticket_search_params
-      @tickets = Ticket.search(@search_params).order(created_at: "DESC").page(params[:page]).per(20)
 
+      if @search_params.empty?
+        @tickets = Ticket.where(seller_id: current_seller.id).order(created_at: "DESC").page(params[:page]).per(20)
+      else
+        @tickets = Ticket.search(@search_params).order(created_at: "DESC").page(params[:page]).per(20)
+      end
   end
+  
+  
     
   def show
       @ticket = Ticket.find_by(id: params[:id])
@@ -142,6 +148,13 @@ class TicketsController < ApplicationController
       
   end
   
+  def not_admin
+      
+      binding.pry
+      @tickets = Ticket.all
+      
+  end
+  
   private
   
   def params_ticket
@@ -153,4 +166,3 @@ class TicketsController < ApplicationController
   end
   
 end
-

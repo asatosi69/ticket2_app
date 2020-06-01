@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   
   devise_for :sellers
   resources :pages
-  resources :sellers, :only => [:index, :update, :destroy, :mail_all]
+  resources :sellers, :only => [:index, :update, :destroy]
   get "sellers/mail_all" => "sellers#mail_all", as: :mail_all
+  get "tickets/index2" => "tickets#index2", as: :index2
   resources :tickets
-  get "tickets/index2" => "tickets#index2"
   resources :stages, :except => [:show]
   resources :kinds, :except => [:show]
   resources :payments, :except => [:show]
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :reserved_lists, :only => [:index]
   get "reserved_lists/reserved_list_print" => "reserved_lists#reserved_list_print", as: :reserved_list_print
   resources :reserved_stubs, :only => [:index]
+  
   
   get "downloads/" => "downloads#index"
   get "downloads/download" => "downloads#download"
