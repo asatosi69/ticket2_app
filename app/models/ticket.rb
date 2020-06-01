@@ -93,7 +93,7 @@ class Ticket < ApplicationRecord
     scope :search, -> (search_params) do
 
         return if search_params.blank?
-        binding.pry
+        
         seller_id_is(search_params[:seller_id])
         .stage_id_is(search_params[:stage_id])
         .kind_id_is(search_params[:kind_id])

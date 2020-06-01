@@ -18,22 +18,22 @@ class TicketsController < ApplicationController
   def index
       
       @search_params = ticket_search_params
-      @tickets = Ticket.search(@search_params).order(created_at: "DESC").page(params[:page]).per(20)
-
-  end
-  
-  def index2
       
-      @search_params = ticket_search_params
-
-      if @search_params.empty?
-        @tickets = Ticket.where(seller_id: current_seller.id).order(created_at: "DESC").page(params[:page]).per(20)
-      else
+      if current_seller.admin_flag?
+          
         @tickets = Ticket.search(@search_params).order(created_at: "DESC").page(params[:page]).per(20)
+        
+      elsif @search_params.empty?
+         
+        @tickets = Ticket.where(seller_id: current_seller.id).order(created_at: "DESC").page(params[:page]).per(20)
+         
+      else
+        
+        @tickets = Ticket.search(@search_params).order(created_at: "DESC").page(params[:page]).per(20)
+          
       end
+      
   end
-  
-  
     
   def show
       @ticket = Ticket.find_by(id: params[:id])
