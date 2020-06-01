@@ -10,8 +10,8 @@
         <p class="text-center">販売状況</p>
       </td>
     </tr>
-    <tr>
-      <% @stages.each do |stage| %>
+    <% @stages.each do |stage| %>
+      <tr>
         <td class="align-middle">
           <p class="text-center"><%= stage.stage %></p>
         </td>
@@ -29,8 +29,8 @@
             <% end %>
           </p>
         </td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   </table>
 </div>
 <br>

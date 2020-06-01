@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :sellers, :only => [:index, :update, :destroy, :mail_all]
   get "sellers/mail_all" => "sellers#mail_all", as: :mail_all
   resources :tickets
+  get "tickets/index2" => "tickets#index2"
   resources :stages, :except => [:show]
   resources :kinds, :except => [:show]
   resources :payments, :except => [:show]

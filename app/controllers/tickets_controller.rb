@@ -21,6 +21,13 @@ class TicketsController < ApplicationController
       @tickets = Ticket.search(@search_params).order(created_at: "DESC").page(params[:page]).per(20)
 
   end
+  
+  def index2
+      
+      @search_params = ticket_search_params
+      @tickets = Ticket.search(@search_params).order(created_at: "DESC").page(params[:page]).per(20)
+
+  end
     
   def show
       @ticket = Ticket.find_by(id: params[:id])
