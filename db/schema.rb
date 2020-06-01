@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_231319) do
+ActiveRecord::Schema.define(version: 2020_06_01_105721) do
 
   create_table "colors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "color_name"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_231319) do
     t.datetime "updated_at", null: false
     t.integer "remaining"
     t.datetime "start_time"
+    t.datetime "stage_time"
   end
 
   create_table "tickets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

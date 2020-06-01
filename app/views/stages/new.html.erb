@@ -10,6 +10,18 @@
   <%= form.text_field :stage, :size=>"30", class: 'form-control' %>
 </p>
 <p>
+  <%= form.label(:stage_time, Stage.human_attribute_name(:stage_time), class:'control-label') %>
+  <%= form.datetime_select :stage_time,
+        start_year: Time.now.year,
+        end_year: Time.now.since(3.years).year,
+        use_two_digit_numbers: true,
+        date_separator: '-',
+        datetime_separator: ',',
+        time_separator: ':',
+        class:'control-label'
+     %>
+</p>
+<p>
   <%= form.label(:total_seats, Stage.human_attribute_name(:total_seats), class:'control-label') %>
   <%= form.number_field :total_seats, class: 'form-control' %>
 </p>

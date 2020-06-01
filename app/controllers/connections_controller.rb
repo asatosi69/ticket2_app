@@ -5,7 +5,7 @@ class ConnectionsController < ApplicationController
     before_action :admin_seller?
     
   def index
-      @stages = Stage.all.order(stage: "ASC")
+      @stages = Stage.all.order(stage_time: "ASC")
       @kinds = Kind.all.order(kind: "ASC")
       @connections = Connection.all
   end

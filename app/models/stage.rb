@@ -10,6 +10,7 @@ class Stage < ApplicationRecord
     validates :start_time, presence: true
     validates :end_time, presence: true
     validates :remaining, presence: true, numericality: { only_integer: true }
+    validates :stage_time, presence: true
     
     # 終了フラグを立てる
     def finished

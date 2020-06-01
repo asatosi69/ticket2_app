@@ -29,6 +29,7 @@ ja:
         end_flag: '受付終了フラグ'
         remaining: '残席数'
         start_time: '受付開始時間'
+        stage_time: '開演時間'
       ticket:
         seller_id: '取扱者'
         stage_id: '公演'

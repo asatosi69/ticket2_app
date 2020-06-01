@@ -6,7 +6,7 @@ class Connections3Controller < ApplicationController
     
   def index
       @payments = Payment.all.order(payment: "ASC")
-      @stages = Stage.all.order(stage: "ASC")
+      @stages = Stage.all.order(stage_time: "ASC")
       @connections = Connection3.all
   end
 

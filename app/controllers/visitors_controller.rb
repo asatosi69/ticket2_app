@@ -3,7 +3,7 @@ class VisitorsController < ApplicationController
     before_action :authenticate_seller!
 
   def index
-      @stages = Stage.all.order(stage: "ASC")
+      @stages = Stage.all.order(stage_time: "ASC")
       @kinds = Kind.all.order(kind: "ASC")
       
       if current_seller.admin_flag

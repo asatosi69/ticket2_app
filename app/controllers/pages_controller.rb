@@ -4,6 +4,7 @@ class PagesController < ApplicationController
     
   def index
       @pages = Page.all.order(updated_at: "DESC")
+      @stages = Stage.all.order(stage_time: "ASC")
   end
 
   def new

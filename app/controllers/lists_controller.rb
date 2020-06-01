@@ -10,7 +10,7 @@ class ListsController < ApplicationController
           @sellers = Seller.where(id: current_seller.id)
         end
     
-        @stages = Stage.all.order(stage: "ASC")
+        @stages = Stage.all.order(stage_time: "ASC")
         @kinds = Kind.all.order(kind: "ASC")
         @payments = Payment.all.order(payment: "ASC")
         @tickets = Ticket.all
