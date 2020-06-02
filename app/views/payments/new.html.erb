@@ -3,6 +3,11 @@
 <h1>『支払方法』を登録</h1>
 <br>
 <br>
+<p>割引キーワードは『』、【】といったカッコを使わず、設定してください。</p>
+<p>割引キーワードに複数のキーワードを設定する場合は、(,)で区切り、単語と単語の間にスペースを入れずに登録してください。</p>
+<p>割引キーワード設定例）SP,SQ
+<br>
+<br>
 <%= form_with model: @payment do |form| %>
 <%= render 'shared/error_messages', model: form.object %>
 <p>
