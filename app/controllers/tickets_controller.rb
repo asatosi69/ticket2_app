@@ -125,6 +125,7 @@ class TicketsController < ApplicationController
       
       @connections = Connection.all
   end
+  
 
   def update
       @ticket = Ticket.find_by(id: params[:id])
@@ -142,12 +143,38 @@ class TicketsController < ApplicationController
       
       validation_context = current_seller.admin_flag? ? :admin_seller : nil
       
-      if @ticket.save(context: validation_context)
-         UserMailer.notice_mail_for_update_ticket(@ticket).deliver
-         flash[:notice] = "編集が完了しました"
-         redirect_to("/tickets")
+      check = 0
+         
+      unless @ticket.payment.discount_keyword.nil?
+         
+          keywords = @ticket.payment.discount_keyword.split(",")
+      
+          for keyword in keywords do
+               check = 1  if @ticket.comment1.include?(keyword)
+          end
+             
+          if check == 1
+      
+              if @ticket.save(context: validation_context)
+                    UserMailer.notice_mail_for_update_ticket(@ticket).deliver
+                    flash[:notice] = "編集が完了しました"
+                    redirect_to("/tickets")
+              else
+                    rendirect("tickets/edit")
+              end
+          else
+              flash[:notice] = "割引キーワードが正しくありません。"
+              render 'edit'
+          end
+          
       else
-         render  'edit'
+          if @ticket.save(context: validation_context)
+             UserMailer.notice_mail_for_update_ticket(@ticket).deliver
+             flash[:notice] = "編集が完了しました"
+             redirect_to("/tickets")
+          else
+             rendirect("tickets/edit")
+          end
       end
       
   end
