@@ -68,6 +68,6 @@ class PaymentsController < ApplicationController
     
     private
      def params_payment
-      params.require(:payment).permit(:payment, :abbreviation, :discount_rate)
+      params.require(:payment).permit(:payment, :abbreviation, :discount_rate, :discount_keyword)
      end
 end

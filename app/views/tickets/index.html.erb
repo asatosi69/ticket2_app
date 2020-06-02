@@ -39,5 +39,13 @@
 
    <%= form.submit(t('helpers.submit.search')) %>
 <% end %>
+
+<br>
+
+<% if current_seller.admin_flag? %>
+  <br>
+  <%= link_to "CSV出力", tickets_download_path(format: :csv), class: "btn btn-primary" %>
+  <br>
+<% end %>
 <br>
 <%= render :partial => "shared/ticket_format" %>

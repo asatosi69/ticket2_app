@@ -4,11 +4,14 @@ ja:
       payment: '支払方法'
       abbreviation: '略称'
       discount_rate: '変動額'
+      discount_keyword: '割引キーワード'
     new:
       payment: '支払方法'
       abbreviation: '略称'
       discount_rate: '変動額'
+      discount_keyword: '割引キーワード'
     edit:
       payment: '支払方法'
       abbreviation: '略称'
       discount_rate: '変動額'
+      discount_keyword: '割引キーワード'

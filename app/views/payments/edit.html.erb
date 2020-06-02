@@ -17,7 +17,10 @@
   <%= form.label(:discount_rate, Payment.human_attribute_name(:discount_rate), class:'control-label') %>
   <%= form.number_field :discount_rate, class: 'form-control' %>
 </p>
-
+<p>
+  <%= form.label(:discount_keyword, Payment.human_attribute_name(:discount_keyword), class:'control-label') %>
+  <%= form.text_field :discount_keyword, class: 'form-control' %>
+</p>
 <p>
   <%= form.submit "更新" %>
   <%= link_to :back, :style=>"color:#333333" do %>

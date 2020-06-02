@@ -43,5 +43,6 @@
     </tr>
   </table>
 </div>
-
-<%= button_to '戻る', {:controller => "tickets", :action => "index"}, {:method => :get}  %>
+<%= link_to :back, :style=>"color:black" do %>
+  <button>戻る</button>
+<% end %>

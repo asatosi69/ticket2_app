@@ -18,6 +18,10 @@
   <%= form.number_field :discount_rate, value:0, class: 'form-control' %>
 </p>
 <p>
+  <%= form.label(:discount_keyword, Payment.human_attribute_name(:discount_keyword), class:'control-label') %>
+  <%= form.text_field :discount_keyword, class: 'form-control' %>
+</p>
+<p>
   <%= form.submit "登録" %>
   <%= link_to :back, :style=>"color:#333333" do %>
     <button>戻る</button>

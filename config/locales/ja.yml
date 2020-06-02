@@ -32,7 +32,7 @@ activerecord:
   attributes:
     ticket:
       seller_id: '取扱者'
-      stage_id: '開演日時'
+      stage_id: '公演'
       kind_id: 'チケット種別'
       payment_id: '支払方法'
       buyer_name: '予約者名'

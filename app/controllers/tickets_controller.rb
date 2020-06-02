@@ -134,6 +134,17 @@ class TicketsController < ApplicationController
       redirect_to("/tickets")
   end
   
+  
+  def download
+     @tickets = Ticket.all
+     
+     respond_to do |format|
+       format.csv do
+         send_data render_to_string, filename: "tickets.csv", type: :csv
+       end
+     end
+  end
+  
  
   def correct_user?
       

@@ -11,6 +11,7 @@
 <p>招待の場合は、支払方法『招待』の『変動額』は『−4200』を入れてください。</p>
 <br>
 <p>仕様により、『変動額』に『マイナス』の数字を設定した『支払方法』は『一般客』には選択できません。</p>
+<p>ただし、『割引キーワード』が設定されている『支払方法』は選択できます。</p>
 <p>ご注意ください。<div style="color:#ff0000;">『変動額』に『マイナス』の数字を設定した『支払方法』は赤字で表示しています。</div></p>
 <br>
 <br>
@@ -24,7 +25,7 @@
 
 <% else %>
 <div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:35%">
+  <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:60%">
   <thead>
     <tr>
       <th style="width: 60px"><p class="text-center">編集</p></th>
@@ -32,6 +33,7 @@
       <th><p class="text-center">支払方法</p></th>
       <th><p class="text-center">略称</p></th>
       <th><p class="text-center">変動額</p></th>
+      <th><p class="text-center">割引キーワード</p></th>
     </tr>
   </thead>
 
@@ -44,10 +46,12 @@
           <td align="center"><div style="color:#ff0000;"><%= payment.payment %></div></td>
           <td align="center"><div style="color:#ff0000;"><%= payment.abbreviation %></div></td>
           <td align="center"><div style="color:#ff0000;"><%= payment.discount_rate %></div></td>
+          <td align="center"><div style="color:#ff0000;"><%= payment.discount_keyword %></div></td>
         <% else %>
            <td align="center"><%= payment.payment %></td>
            <td align="center"><%= payment.abbreviation %></td>
            <td align="center"><%= payment.discount_rate %></td>
+           <td align="center"><%= payment.discount_keyword %></td>
         <% end %>
       </tr>
     <% end %>
