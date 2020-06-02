@@ -11,7 +11,7 @@
 <br>
 <p>お支払い金額：<%=  (@ticket.kind.price + @ticket.payment.discount_rate) * @ticket.count %>円</p>
 <p>請求明細：</p>
-<p>支払方法が『<%= @ticket.payment.payment %>』の時のチケット種別『<%= @ticket.kind.kind %>』のチケット１枚の料金『<%= @ticket.kind.price %>円』 × 枚数『<%= @ticket.count %>枚』</p>
+<p>支払方法が『<%= @ticket.payment.payment %>』の時のチケット種別『<%= @ticket.kind.kind %>』のチケット１枚の料金『<%= @ticket.kind.price + @ticket.payment.discount_rate %>円』 × 枚数『<%= @ticket.count %>枚』</p>
 <br>
 <table>
   <tr>

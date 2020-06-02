@@ -159,12 +159,6 @@ class TicketsController < ApplicationController
       
   end
   
-  def not_admin
-      
-      binding.pry
-      @tickets = Ticket.all
-      
-  end
   
   private
   

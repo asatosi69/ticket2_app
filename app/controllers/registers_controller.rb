@@ -35,12 +35,34 @@ class RegistersController < ApplicationController
         seller_id = @ticket.seller_id
         validation_context = Seller.find(seller_id).admin_flag? ? :admin_seller : nil
         
-        if @ticket.save
-            UserMailer.notice_mail_for_create_ticket(@ticket).deliver
-            flash[:notice] = "登録が完了しました"
-            redirect_to("/registers/#{seller_id}/thankyou")
+        unless @ticket.payment.discount_keyword.nil?
+     
+            keywords = @ticket.payment.discount_keyword.split(",")
+            binding.pry
+            for keyword in keywords do
+              check = 1  if @ticket.comment1.include?(keyword)
+            end
+binding.pry
+            if check == 1
+                if @ticket.save
+                    UserMailer.notice_mail_for_create_ticket(@ticket).deliver
+                    flash[:notice] = "登録が完了しました"
+                    redirect_to("/registers/#{seller_id}/thankyou")
+                end
+            else
+             binding.pry
+                flash[:notice] = "割引キーワードが正しくありません。"
+                redirect_to("/registers/#{seller_id}/new")
+            end
+                
+        else
+          if @ticket.save
+              UserMailer.notice_mail_for_create_ticket(@ticket).deliver
+              flash[:notice] = "登録が完了しました"
+              redirect_to("/registers/#{seller_id}/thankyou")
+          end
         end
-        
+          
     end
     
     private
