@@ -87,7 +87,7 @@ class TicketsController < ApplicationController
               
           else
             flash[:notice] = "割引キーワードが正しくありません。"
-            redirect_to("/registers/#{seller_id}/new")
+            redirect_to("/tickets/new")
           end
             
       else
