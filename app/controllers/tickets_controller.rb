@@ -58,23 +58,58 @@ class TicketsController < ApplicationController
       
       validation_context = current_seller.admin_flag? ? :admin_seller : nil
       
-      if @ticket.save(context: validation_context)
-          flash[:notice] = "登録が完了しました"
-          
-          if params[:Renzoku]
-              UserMailer.notice_mail_for_create_ticket(@ticket).deliver
-              redirect_to("/tickets/new")
-          else
-              UserMailer.notice_mail_for_create_ticket(@ticket).deliver
-              redirect_to("/tickets")
+      check = 0
+      
+      unless @ticket.payment.discount_keyword.nil?
+      
+          keywords = @ticket.payment.discount_keyword.split(",")
+   
+          for keyword in keywords do
+               check = 1  if @ticket.comment1.include?(keyword)
           end
+          
+          if check == 1
+      
+              if @ticket.save(context: validation_context)
+                  flash[:notice] = "登録が完了しました"
+          
+                  if params[:Renzoku]
+                      UserMailer.notice_mail_for_create_ticket(@ticket).deliver
+                      redirect_to("/tickets/new")
+                  else
+                      UserMailer.notice_mail_for_create_ticket(@ticket).deliver
+                      redirect_to("/tickets")
+                  end
+                  
+              else
+                      redirect_to("/tickets")
+              end
               
+          else
+            flash[:notice] = "割引キーワードが正しくありません。"
+            redirect_to("/registers/#{seller_id}/new")
+          end
+            
       else
-              render  'new'
+      
+          if @ticket.save(context: validation_context)
+                  flash[:notice] = "登録が完了しました"
+          
+                  if params[:Renzoku]
+                      UserMailer.notice_mail_for_create_ticket(@ticket).deliver
+                      redirect_to("/tickets/new")
+                  else
+                      UserMailer.notice_mail_for_create_ticket(@ticket).deliver
+                      redirect_to("/tickets")
+                  end
+                  
+              else
+                  redirect_to("/tickets")
+              end
       end
       
   end
-
+      
   def edit
       
       @ticket = Ticket.find_by(id: params[:id])
