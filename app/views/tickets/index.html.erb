@@ -1,3 +1,4 @@
+<h3>『チケット』管理ページ</h3>
 <br>
 <br>
 <%= link_to("チケット予約を登録する", new_ticket_path) %>
@@ -13,7 +14,7 @@
    <% end %>
 
    <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id)) %>
-   <%= form.collection_select(:stage_id, Stage.all.order(stage: "ASC"), :id, :stage, selected: @search_params[:stage_id], include_blank: t('helpers.select.include_blank')) %>
+   <%= form.collection_select(:stage_id, Stage.all.order(stage_time: "ASC"), :id, :stage, selected: @search_params[:stage_id], include_blank: t('helpers.select.include_blank')) %>
 
    <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id)) %>
    <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind, selected: @search_params[:kind_id], include_blank: t('helpers.select.include_blank')) %>
@@ -43,9 +44,10 @@
 <br>
 
 <% if current_seller.admin_flag? %>
-  <br>
-  <%= link_to "CSV出力", tickets_download_path(format: :csv), class: "btn btn-primary" %>
-  <br>
+  <%= link_to tickets_download_path(format: :csv), :style=>"color:#333333" do %>
+    <button>全レコードCSVダウンロード</button>
+  <% end %>
 <% end %>
+<br>
 <br>
 <%= render :partial => "shared/ticket_format" %>

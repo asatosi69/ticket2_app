@@ -5,7 +5,7 @@
 <%= form_tag(reserved_list_print_path, method: :get, target: '_blank') do %>
   <p>公演</p>
   <div class="form-group">
-    <%= select_tag 'stage_id', options_from_collection_for_select(Stage.all, :id, :stage, params[:stage_id]),
+    <%= select_tag 'stage_id', options_from_collection_for_select(Stage.all.order(stage_time: "ASC"), :id, :stage, params[:stage_id]),
    {prompt: "選択して下さい"} %>
   </div>
   <p>並び順</p>

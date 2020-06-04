@@ -1,5 +1,5 @@
 class ReservedStubsController < ApplicationController
-　# ログインしているユーザーのみ操作できるようにする
+  # ログインしているユーザーのみ操作できるようにする
   before_action :authenticate_seller!
   # 『管理者』として、ログインしないと処理は実行できない
   before_action :admin_seller?
