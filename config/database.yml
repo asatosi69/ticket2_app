@@ -54,4 +54,4 @@ production:
   database: ticket2_app_production # mysqlで作成したdatabase名
   username: root
   password: orangeseed69
-  host: 160.251.15.86 # IPアドレス
+  host: 127.0.0.1 # IPアドレス
