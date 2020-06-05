@@ -8,6 +8,7 @@ install_plugin Capistrano::SCM::Git
 require "capistrano/rails" 
 require "capistrano/rails/assets"
 require "capistrano/rails/migrations" 
+require "capistrano3/unicorn"
 # rbenvの設定
 require "capistrano/rbenv" #ok
 require "capistrano/bundler"
