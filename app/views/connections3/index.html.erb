@@ -31,15 +31,15 @@
       </tr>
       <% @payments.each do |payment| %>
         <tr>
-          <th>
-            <p>
+          <th class="align-middle">
+            <p class="text-center">
               <%= payment.payment %>
             </p>
           </th>
           <% @stages.each do |stage| %>
-            <td align="center" class="align-middle">
+            <td class="align-middle">
               <% if stage.end_flag %>
-                <p>受付終了</p>
+                <p class="text-center">受付終了</p>
               <% else %>
                 <% connection = Connection3.find_by(payment_id: payment.id, stage_id: stage.id) %>
                 <% if connection.invalid_flag %>

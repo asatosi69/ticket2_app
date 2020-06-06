@@ -31,15 +31,15 @@
       </tr>
       <% @kinds.each do |kind| %>
         <tr>
-          <th>
-            <p>
+          <th class="align-middle">
+            <p class="text-center">
               <%= kind.kind %>
             </p>
           </th>
           <% @payments.each do |payment| %>
-            <td align="center" class="align-middle">
+            <td class="align-middle">
               <% if kind.end_flag %>
-                <p>受付終了</p>
+                <p class="text-center">受付終了</p>
               <% else %>
                 <% connection = Connection2.find_by(kind_id: kind.id, payment_id: payment.id) %>
                 <% if connection.invalid_flag %>

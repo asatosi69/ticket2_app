@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
       mail(
         to: @ticket.buyer_mail,
         bcc: @ticket.seller.email,
-        subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』のご予約を承りました'"
+        subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』のご予約、承りました'"
       )
     end
 
@@ -15,7 +15,7 @@ class UserMailer < ApplicationMailer
       mail(
         to: @ticket.buyer_mail,
         bcc: @ticket.seller.email,
-        subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』のご予約内容を変更いたしました'"
+        subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』のご予約、内容変更承りました'"
       )
     end
 
@@ -25,7 +25,7 @@ class UserMailer < ApplicationMailer
       mail(
         to: @ticket.buyer_mail,
         bcc: @ticket.seller.email,
-        subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』のご予約をキャンセルいたしました。'"
+        subject: "'#{Rails.application.config.troupe_name}『#{Rails.application.config.performance_name}』のご予約、キャンセル承りました'"
       )
     end
     
