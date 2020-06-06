@@ -85,7 +85,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  #config.action_mailer.default_url_options = { protocol: 'http', host: 'http://160.251.15.86/'}
+  config.action_mailer.default_url_options = { protocol: 'http', host: 'http://160.251.15.86/'}
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -95,6 +95,6 @@ Rails.application.configure do
     :domain => 'smtp.gmail.com',
     :user_name => "ratchetwrench.teatro@gmail.com",
     :password => "czauoqqpymgztpvd",
-    :authentication => 'login'
+    :authentication => 'plain'
   }
 end
