@@ -3,6 +3,7 @@ class PagesController < ApplicationController
     before_action :authenticate_seller!
     
   def index
+      @tickets = Ticket.all
       @pages = Page.all.order(updated_at: "DESC")
       @stages = Stage.all.order(stage_time: "ASC")
   end
