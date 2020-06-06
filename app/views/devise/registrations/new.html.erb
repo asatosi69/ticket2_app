@@ -25,11 +25,13 @@
     <%= f.label :password_confirmation, 'パスワード（確認用）' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-  <br>
+  <p></p>
   <div class="actions">
     <%= f.submit "サインアップ" %>
   </div>
-  <br>
+
 <% end %>
+
+<br>
 
 <%= render "devise/shared/links" %>
