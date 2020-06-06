@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'ratchetwrench.teatro@gmail.com'
+  default from: 'no-replay@gmail.com'
   layout 'mailer'
 end
