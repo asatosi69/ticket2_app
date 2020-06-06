@@ -23,7 +23,7 @@
                     <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete %></li>
                     <li><%= link_to '連絡事項', pages_path %></li>
                     <li><%= link_to '取扱者', sellers_path %></li>
-                    <li><%= link_to '公演 ← チケットを予約するために登録が必要です', :stagess, :style=>"color:#FF00FF"%></li>
+                    <li><%= link_to '公演 ← チケットを予約するために登録が必要です', :stages, :style=>"color:#FF00FF"%></li>
                   </ul>
                 <% else %>
                   <% if @master_kind.empty? %>
