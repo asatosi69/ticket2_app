@@ -31,7 +31,6 @@ class SellersController < ApplicationController
     def mail_all
         
         @sellers = Seller.where(id: params[:sellers])
-        binding.pry
         
         @sellers.each do |seller|
           UserMailer.notice_mail_for_url(seller).deliver
