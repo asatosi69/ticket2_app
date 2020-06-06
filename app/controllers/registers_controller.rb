@@ -37,7 +37,7 @@ class RegistersController < ApplicationController
         
         check = 0
            
-        unless @ticket.payment.discount_keyword.nil?
+        unless @ticket.payment.discount_keyword.empty?
            
             keywords = @ticket.payment.discount_keyword.split(",")
         
