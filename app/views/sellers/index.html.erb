@@ -48,12 +48,15 @@
       </tbody>
     </table>
   </div>
-  <br>
   <% if current_seller.admin_flag %>
-   <p><%= submit_tag "一括送信" %></p>
+   <%= submit_tag "一括送信" %>
+   <%= link_to :back, :style=>"color:#333333" do %>
+     <button>戻る</button>
+   <% end %>
+  <% else %>
+  <%= link_to :back, :style=>"color:#333333" do %>
+    <button>戻る</button>
+  <% end %>
   <% end %>
 <% end %>
 <%= paginate @sellers -%>
-<%= link_to :back, :style=>"color:#333333" do %>
-  <button>戻る</button>
-<% end %>
