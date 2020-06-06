@@ -29,27 +29,27 @@ class Ticket < ApplicationRecord
     validate :check_ticket_limit, unless: -> { validation_context == :admin_seller }
     
     def self.tickets_list_classified_by_seller(seller_id, stage_id, kind_id)
-        self.where(seller_id: seller_id, stage_id: stage_id, kind_id: kind_id).sum(:count)
+        self.where(seller_id: seller_id, stage_id: stage_id, kind_id: kind_id).sum('count')
     end
     
     def self.tickets_of_the_seller(seller_id, kind_id)
-        self.where(seller_id: seller_id, kind_id: kind_id).sum(:count)
+        self.where(seller_id: seller_id, kind_id: kind_id).sum('count')
     end
     
     def self.tickets_in_the_stage(stage_id, kind_id)
-        self.where(stage_id: stage_id, kind_id: kind_id).sum(:count)
+        self.where(stage_id: stage_id, kind_id: kind_id).sum('count')
     end
     
     def self.all_tickets(kind_id)
-        self.where(kind_id: kind_id).sum(:count)
+        self.where(kind_id: kind_id).sum('count')
     end
     
     def self.tickets_list_classified_by_payment(payment_id, stage_id, kind_id)
-        self.where(payment_id: payment_id, stage_id: stage_id, kind_id: kind_id).sum(:count)
+        self.where(payment_id: payment_id, stage_id: stage_id, kind_id: kind_id).sum('count')
     end
     
     def self.tickets_with_the_payment_method(payment_id, kind_id)
-        self.where(payment_id: payment_id, kind_id: kind_id).sum(:count)
+        self.where(payment_id: payment_id, kind_id: kind_id).sum('count')
     end
     
     def self.money_in_the_stage(stage_id)
@@ -73,11 +73,11 @@ class Ticket < ApplicationRecord
     end
     
     def self.tickets_for_visitors(seller_id, stage_id, kind_id, visited_flag)
-        self.where(seller_id: seller_id, stage_id: stage_id, kind_id: kind_id, visited_flag: visited_flag).sum(:count)
+        self.where(seller_id: seller_id, stage_id: stage_id, kind_id: kind_id, visited_flag: visited_flag).sum('count')
     end
     
     def self.tickets_in_the_stage_for_visitors(stage_id, kind_id, visited_flag)
-        self.where(stage_id: stage_id, kind_id: kind_id, visited_flag: visited_flag).sum(:count)
+        self.where(stage_id: stage_id, kind_id: kind_id, visited_flag: visited_flag).sum('count')
     end
     
     def self.money_in_the_stage_for_visitors(stage_id, visited_flag)
