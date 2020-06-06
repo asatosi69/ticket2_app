@@ -94,7 +94,7 @@ Rails.application.configure do
     :port => 587,
     :domain => 'smtp.gmail.com',
     :user_name => "ratchetwrench.teatro@gmail.com",
-    :password => "fybiqmsyxwvitqys",
+    :password => "czauoqqpymgztpvd",
     :authentication => 'login'
   }
 end
