@@ -1,5 +1,5 @@
 Color.destroy_all
-Color.create!(id: 1, color_code: '#FF0000', color_name: '赤', is_selected: true)
+Color.create!(id: 1, color_code: '#FF0000', color_name: '赤', is_selected: false)
 Color.create!(id: 2, color_code: '#00FF00', color_name: '黄緑', is_selected: false)
 Color.create!(id: 3, color_code: '#0000FF', color_name: '青', is_selected: false)
 Color.create!(id: 4, color_code: '#FFFF00', color_name: '黄', is_selected: false)
