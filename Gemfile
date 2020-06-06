@@ -36,6 +36,7 @@ gem 'rails-i18n', '~> 5.1'
 gem 'kaminari', '~> 0.17.0'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'unicorn'
+gem 'unicorn-rails'
 gem 'capistrano3-unicorn'
 gem 'listen', '~> 3.0.5'
 
