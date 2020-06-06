@@ -42,12 +42,14 @@
                 <p class="text-center">受付終了</p>
               <% else %>
                 <% connection = Connection2.find_by(kind_id: kind.id, payment_id: payment.id) %>
-                <% if connection.invalid_flag %>
-                   ☑️ /
-                <% else %>
-                   - /
-                <% end %>
-                <%= check_box_tag 'connections[]', connection.id %>
+                <p class="text-center">
+                  <% if connection.invalid_flag %>
+                     ☑️ /
+                  <% else %>
+                     - /
+                  <% end %>
+                  <%= check_box_tag 'connections[]', connection.id %>
+                </p>
               <% end %>
             </td>
           <% end %>
