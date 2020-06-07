@@ -33,21 +33,21 @@
   <tbody>
     <% @stages.each do |stage| %>
       <tr>
-        <td class="align-middle"><%= button_to '編集', edit_stage_path(stage), {method: "get"} %></td>
-        <td class="align-middle"><%= button_to '削除', stage_path(stage), {method: "delete"} %></td>
-        <td class="align-middle"><%= stage.stage %></td>
-        <td class="align-middle"><%= stage.start_time.to_s(:stage_time) %></td>
-        <td class="align-middle"><%= stage.total_seats %></td>
-        <td class="align-middle"><%= stage.start_time.to_s(:start_time) %></td>
-        <td class="align-middle"><%= stage.end_time.to_s(:end_time) %></td>
-        <td class="align-middle">
+        <td><div class="v-align-middle"><%= button_to '編集', edit_stage_path(stage), {method: "get"} %></div></td>
+        <td><div class="v-align-middle"><%= button_to '削除', stage_path(stage), {method: "delete"} %></div></td>
+        <td><div class="v-align-middle"><p class="text-center"><%= stage.stage %></p></div></td>
+        <td><div class="v-align-middle"><p class="text-center"><%= stage.start_time.to_s(:stage_time) %></p></div></td>
+        <td><div class="v-align-middle"><p class="text-center"><%= stage.total_seats %></p></div></td>
+        <td><div class="v-align-middle"><p class="text-center"><%= stage.start_time.to_s(:start_time) %></p></div></td>
+        <td><div class="v-align-middle"><p class="text-center"><%= stage.end_time.to_s(:end_time) %></p></div></td>
+        <td><div class="v-align-middle"><p class="text-center">
           <% if stage.end_flag %>
             ☑️
           <% else %>
             -
           <% end %>
-        </td>
-      <td class="align-middle"><%= stage.remaining %></td>
+        </p></td>
+      <td><div class="v-align-middle"><p class="text-center"><%= stage.remaining %></p></div></td>
       </tr>
     <% end %>
   </tbody>

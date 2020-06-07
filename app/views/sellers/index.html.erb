@@ -30,19 +30,19 @@
           <% @sellers.each do |seller| %>
             <tr>
               <% if current_seller.admin_flag %>
-                <td align="center"><%= check_box_tag 'sellers[]',seller.id %></td>
-                <td align="center"><%= link_to '反転', seller_path(seller), {method: "patch", class: 'btn btn-default'} %></td>
-                <td align="center"><%= link_to '削除', seller_path(seller), {method: "delete", class: 'btn btn-default'} %></td>
+                <td class="align-middle"><%= check_box_tag 'sellers[]',seller.id %></td>
+                <td class="align-middle"><%= link_to '反転', seller_path(seller), {method: "patch", class: 'btn btn-default'} %></td>
+                <td class="align-middle"><%= link_to '削除', seller_path(seller), {method: "delete", class: 'btn btn-default'} %></td>
               <% end %>
-              <td align="center"><%= seller.name %></td>
-              <td align="center">
+              <td class="align-middle"><p class="text-center"><%= seller.name %></p></td>
+              <td class="align-middle"><p class="text-center">
                 <% if seller.admin_flag %>
                   ☑️
                 <% else %>
                   -
                 <% end %>
-              </td>
-              <td><%= "#{@host_with_port}/registers/#{seller.id}/new" %></td>
+              </p></td>
+              <td class="align-middle"><p class="text-center"><%= "#{@host_with_port}/registers/#{seller.id}/new" %></p></td>
             </tr>
             <% end %>
       </tbody>

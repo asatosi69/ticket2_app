@@ -31,17 +31,17 @@
       <tr>
         <td class="align-middle"><%= button_to '編集', edit_kind_path(kind), {method: "get"} %></td>
         <td class="align-middle"><%= button_to '削除', kind_path(kind), {method: "delete"} %></td>
-        <td class="align-middle"><%= kind.kind %></td>
-        <td class="align-middle"><%= kind.seats %></td>
-        <td class="align-middle"><%= kind.price %></td>
-        <td class="align-middle"><%= kind.color.color_name %></td>
-        <td class="align-middle">
+        <td class="align-middle"><p class="text-center"><%= kind.kind %></td>
+        <td class="align-middle"><p class="text-center"><%= kind.seats %></td>
+        <td class="align-middle"><p class="text-center"><%= kind.price %></td>
+        <td class="align-middle"><p class="text-center"><%= kind.color.color_name %></td>
+        <td class="align-middle"><p class="text-center">
           <% if kind.end_flag %>
             ☑️
           <% else %>
             -
           <% end %>
-        </td>
+        <p></td>
       </tr>
     <% end %>
   </tbody>

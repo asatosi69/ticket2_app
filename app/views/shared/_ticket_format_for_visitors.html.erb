@@ -28,23 +28,23 @@
           <% @tickets.each do |ticket| %>
             <tr>
               <% if current_seller.admin_flag %>
-                <td align="center"><%= check_box_tag 'tickets[]',ticket.id %></td>
+                <td class="align-middle"><p class="text-center"><%= check_box_tag 'tickets[]',ticket.id %></p></td>
               <% end %>
-              <td align="center"><%= ticket.seller.name %></td>
-              <td align="center"><%= ticket.stage.stage %></td>
-              <td align="center"><%= ticket.kind.kind %></td>
-              <td align="center"><%= ticket.payment.payment %></td>
-              <td align="center"><%= ticket.count %></td>
-              <td align="center"><%= ticket.buyer_name %></td>
-              <td align="center"><%= ticket.buyer_furigana %></td>
-              <td align="center"><%= ticket.buyer_mail %></td>
-              <td align="center">
+              <td class="align-middle"><p class="text-center"><%= ticket.seller.name %></p></td>
+              <td class="align-middle"><p class="text-center"><%= ticket.stage.stage %></p></td>
+              <td class="align-middle"><p class="text-center"><%= ticket.kind.kind %></p></td>
+              <td class="align-middle"><p class="text-center"><%= ticket.payment.payment %></p></td>
+              <td class="align-middle"><p class="text-center"><%= ticket.count %></p></td>
+              <td class="align-middle"><p class="text-center"><%= ticket.buyer_name %></p></td>
+              <td class="align-middle"><p class="text-center"><%= ticket.buyer_furigana %></p></td>
+              <td class="align-middle"><p class="text-center"><%= ticket.buyer_mail %></p></td>
+              <td class="align-middle"><p class="text-center">
                 <% if ticket.visited_flag %>
                   ☑️
                 <% else %>
                   -
                 <% end %>
-              </td>
+              </p></td>
             </tr>
           <% end %>
 

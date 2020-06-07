@@ -1,3 +1,34 @@
 // Place all the styles related to the Stages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+table {
+    border-collapse: collapse;
+    margin-top: 30px;
+
+    caption {
+        text-align: left;
+    }
+
+    th {
+        font-weight: normal;
+        background-color: #EEEEEE;
+    }
+
+    th, td {
+        border: 1px solid #CCCCCC;
+        padding: 5px;
+    }
+
+    td div.v-align-middle {
+        display: inline-block;
+        // table-cellだとtextareaとbuttonの隙間がなくなる
+        // display: table-cell;
+        vertical-align: middle;
+
+        #sample-text {
+            vertical-align: bottom; // chrome用
+            resize: none;           // chrome用
+            width: 300px;
+        }
+    }
+}
