@@ -43,15 +43,15 @@
         <td align="center"><%= button_to '編集', edit_payment_path(payment), {method: "get"} %></td>
         <td align="center"><%= button_to '削除', payment_path(payment), {method: "delete"} %></td>
         <% if payment.discount_rate < 0 %>
-          <td align="center"><div style="color:#ff0000;"><%= payment.payment %></div></td>
-          <td align="center"><div style="color:#ff0000;"><%= payment.abbreviation %></div></td>
-          <td align="center"><div style="color:#ff0000;"><%= payment.discount_rate %></div></td>
-          <td align="center"><div style="color:#ff0000;"><%= payment.discount_keyword %></div></td>
+          <td class="align-middle"><div style="color:#ff0000;"><%= payment.payment %></div></td>
+          <td class="align-middle"><div style="color:#ff0000;"><%= payment.abbreviation %></div></td>
+          <td class="align-middle"><div style="color:#ff0000;"><%= payment.discount_rate %></div></td>
+          <td class="align-middle"><div style="color:#ff0000;"><%= payment.discount_keyword %></div></td>
         <% else %>
-           <td align="center"><%= payment.payment %></td>
-           <td align="center"><%= payment.abbreviation %></td>
-           <td align="center"><%= payment.discount_rate %></td>
-           <td align="center"><%= payment.discount_keyword %></td>
+           <td class="align-middle"><%= payment.payment %></td>
+           <td class="align-middle"><%= payment.abbreviation %></td>
+           <td class="align-middle"><%= payment.discount_rate %></td>
+           <td class="align-middle"><%= payment.discount_keyword %></td>
         <% end %>
       </tr>
     <% end %>

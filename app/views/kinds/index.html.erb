@@ -29,13 +29,13 @@
   <tbody>
     <% @kinds.each do |kind| %>
       <tr>
-        <td align="center"><%= button_to '編集', edit_kind_path(kind), {method: "get"} %></td>
-        <td align="center"><%= button_to '削除', kind_path(kind), {method: "delete"} %></td>
-        <td align="center"><%= kind.kind %></td>
-        <td align="center"><%= kind.seats %></td>
-        <td align="center"><%= kind.price %></td>
-        <td align="center"><%= kind.color.color_name %></td>
-        <td align="center">
+        <td class="align-middle"><%= button_to '編集', edit_kind_path(kind), {method: "get"} %></td>
+        <td class="align-middle"><%= button_to '削除', kind_path(kind), {method: "delete"} %></td>
+        <td class="align-middle"><%= kind.kind %></td>
+        <td class="align-middle"><%= kind.seats %></td>
+        <td class="align-middle"><%= kind.price %></td>
+        <td class="align-middle"><%= kind.color.color_name %></td>
+        <td class="align-middle">
           <% if kind.end_flag %>
             ☑️
           <% else %>
