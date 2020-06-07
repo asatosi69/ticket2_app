@@ -18,19 +18,19 @@
     <tr>
       <th style="width: 60px"><p class="text-center">編集</p></th>
       <th style="width: 60px"><p class="text-center">削除</p></th>
-      <th style="width: 60px"><p class="text-center">チケット種別</p></th>
-      <th style="width: 60px"><p class="text-center">消費する席数</p></th>
-      <th style="width: 60px"><p class="text-center">料金</p></th>
-      <th style="width: 60px"><p class="text-center">チケットの色</p></th>
-      <th style="width: 60px"><p class="text-center">終了フラグ</p></th>
+      <th><p class="text-center">チケット種別</p></th>
+      <th><p class="text-center">消費する席数</p></th>
+      <th><p class="text-center">料金</p></th>
+      <th><p class="text-center">チケットの色</p></th>
+      <th><p class="text-center">終了フラグ</p></th>
     </tr>
   </thead>
 
   <tbody>
     <% @kinds.each do |kind| %>
       <tr>
-        <td class="align-middle"><%= button_to '編集', edit_kind_path(kind), {method: "get"} %></td>
-        <td class="align-middle"><%= button_to '削除', kind_path(kind), {method: "delete"} %></td>
+        <td class="align-middle"><p class="text-center"><%= button_to '編集', edit_kind_path(kind), {method: "get"} %></p></td>
+        <td class="align-middle"><p class="text-center"><%= button_to '削除', kind_path(kind), {method: "delete"} %></p></td>
         <td class="align-middle"><p class="text-center"><%= kind.kind %></td>
         <td class="align-middle"><p class="text-center"><%= kind.seats %></td>
         <td class="align-middle"><p class="text-center"><%= kind.price %></td>
