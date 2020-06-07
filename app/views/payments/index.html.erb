@@ -40,18 +40,18 @@
   <tbody>
     <% @payments.each do |payment| %>
       <tr>
-        <td align="center"><%= button_to '編集', edit_payment_path(payment), {method: "get"} %></td>
-        <td align="center"><%= button_to '削除', payment_path(payment), {method: "delete"} %></td>
+        <td class="align-middle"><%= button_to '編集', edit_payment_path(payment), {method: "get"} %></td>
+        <td class="align-middle"><%= button_to '削除', payment_path(payment), {method: "delete"} %></td>
         <% if payment.discount_rate < 0 %>
-          <td class="align-middle"><div style="color:#ff0000;"><%= payment.payment %></div></td>
-          <td class="align-middle"><div style="color:#ff0000;"><%= payment.abbreviation %></div></td>
-          <td class="align-middle"><div style="color:#ff0000;"><%= payment.discount_rate %></div></td>
-          <td class="align-middle"><div style="color:#ff0000;"><%= payment.discount_keyword %></div></td>
+          <td class="align-middle"><div style="color:#ff0000;"><p class="text-center"><%= payment.payment %></p></div></td>
+          <td class="align-middle"><div style="color:#ff0000;"><p class="text-center"><%= payment.abbreviation %></p></div></td>
+          <td class="align-middle"><div style="color:#ff0000;"><p class="text-center"><%= payment.discount_rate %></p></div></td>
+          <td class="align-middle"><div style="color:#ff0000;"><p class="text-center"><%= payment.discount_keyword %></p></div></td>
         <% else %>
-           <td class="align-middle"><%= payment.payment %></td>
-           <td class="align-middle"><%= payment.abbreviation %></td>
-           <td class="align-middle"><%= payment.discount_rate %></td>
-           <td class="align-middle"><%= payment.discount_keyword %></td>
+           <td class="align-middle"><p class="text-center"><%= payment.payment %></p></td>
+           <td class="align-middle"><p class="text-center"><%= payment.abbreviation %></p></td>
+           <td class="align-middle"><p class="text-center"><%= payment.discount_rate %></p></td>
+           <td class="align-middle"><p class="text-center"><%= payment.discount_keyword %></p></td>
         <% end %>
       </tr>
     <% end %>
@@ -71,7 +71,7 @@
         <% @payments.each do |payment| %>
           <th class="align-middle">
             <% if payment.discount_rate < 0 %>
-              <div align="center" style="color:#ff0000;">
+              <div class="align-middle" style="color:#ff0000;">
                 <p class="text-center"><%= payment.payment %></p>
               </div>
             <% else %>
