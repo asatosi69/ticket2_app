@@ -2,24 +2,23 @@
 
 <% else %>
   <p>チケット残席速報</p>
-  <br>
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:50%">
       <tr>
-        <td class="align-middle">
-          <p class="text-center">公演</p>
+        <td>
+          <div class="position-in-the-cell1">公演</div>
         </td>
-        <td class="align-middle">
-          <p class="text-center">販売状況</p>
+        <td>
+          <div class="position-in-the-cell1">販売状況</div>
         </td>
       </tr>
       <% @stages.each do |stage| %>
         <tr>
-          <td class="align-middle">
-            <p class="text-center"><%= stage.stage %></p>
+          <td>
+            <div class="position-in-the-cell1"><%= stage.stage %></div>
           </td>
-          <td class="align-middle">
-            <p class="text-center">
+          <td>
+            <div class="position-in-the-cell1">
               <% percent = ( stage.remaining * 100 ) / stage.total_seats %>
               <%if stage.end_flag? %>
                 終了
@@ -30,7 +29,7 @@
               <% else %>
                 ×
               <% end %>
-            </p>
+            </div>
           </td>
         </tr>
       <% end %>
@@ -65,7 +64,7 @@
     </table>
   <% end %>
 <% end %>
-<br>
+
 <%= link_to :back, :style=>"color:#333333" do %>
   <button>戻る</button>
 <% end %>

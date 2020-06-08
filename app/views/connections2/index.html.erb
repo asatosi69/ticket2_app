@@ -5,7 +5,7 @@
 <p>セル内に『受付終了』と書かれている、または『☑️ 』と書かれている『チケット種別』/『支払方法』の組み合わせ</p>
 <p>『管理者』は予約可能です。</p>
 <p>『取扱者』は予約不可です。</p>
-<p>『一般客』は予約不可です</p>
+<p>『一般のお客様』は予約不可です</p>
 <br>
 <p>セル内に『-』と書かれている『チケット種別』/『支払方法』の組み合わせ</p>
 <p>『どなたでも』予約可能です。</p>
@@ -22,34 +22,34 @@
         <td>
         </td>
         <% @payments.each do |payment| %>
-          <th class="align-middle">
-            <p class="text-center">
+          <th>
+            <div class="position-in-the-cell1">
               <%= payment.payment %>
-            </p>
+            </div>
           </th>
         <% end %>
       </tr>
       <% @kinds.each do |kind| %>
         <tr>
-          <th class="align-middle">
-            <p class="text-center">
+          <th>
+            <div class="position-in-the-cell1">
               <%= kind.kind %>
-            </p>
+            </div>
           </th>
           <% @payments.each do |payment| %>
-            <td class="align-middle">
-              <% if kind.end_flag %>
-                <p class="text-center">受付終了</p>
-              <% else %>
-                <% connection = Connection2.find_by(kind_id: kind.id, payment_id: payment.id) %>
-                <p class="text-center">
-                  <% if connection.invalid_flag %>
-                     ☑️ /
-                  <% else %>
-                     - /
-                  <% end %>
+            <td>
+              <div class="position-in-the-cell1">
+                <% if kind.end_flag %>
+                  受付終了
+                <% else %>
+                  <% connection = Connection2.find_by(kind_id: kind.id, payment_id: payment.id) %>
+                    <% if connection.invalid_flag %>
+                       ☑️ /
+                    <% else %>
+                       - /
+                    <% end %>
                   <%= check_box_tag 'connections[]', connection.id %>
-                </p>
+                </div>
               <% end %>
             </td>
           <% end %>

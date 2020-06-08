@@ -16,32 +16,32 @@
   <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th style="width: 60px"><p class="text-center">編集</p></th>
-      <th style="width: 60px"><p class="text-center">削除</p></th>
-      <th><p class="text-center">チケット種別</p></th>
-      <th><p class="text-center">消費する席数</p></th>
-      <th><p class="text-center">料金</p></th>
-      <th><p class="text-center">チケットの色</p></th>
-      <th><p class="text-center">終了フラグ</p></th>
+      <th style="width: 60px"><div class="position-in-the-cell1">編集</div></th>
+      <th style="width: 60px"><div class="position-in-the-cell1">削除</div></th>
+      <th><div class="position-in-the-cell1">チケット種別</div></th>
+      <th><div class="position-in-the-cell1">消費する席数</div></th>
+      <th><div class="position-in-the-cell1">料金</div></th>
+      <th><div class="position-in-the-cell1">チケットの色</div></th>
+      <th><div class="position-in-the-cell1">終了フラグ</div></th>
     </tr>
   </thead>
 
   <tbody>
     <% @kinds.each do |kind| %>
       <tr>
-        <td class="align-middle"><p class="text-center"><%= button_to '編集', edit_kind_path(kind), {method: "get"} %></p></td>
-        <td class="align-middle"><p class="text-center"><%= button_to '削除', kind_path(kind), {method: "delete"} %></p></td>
-        <td class="align-middle"><p class="text-center"><%= kind.kind %></td>
-        <td class="align-middle"><p class="text-center"><%= kind.seats %></td>
-        <td class="align-middle"><p class="text-center"><%= kind.price %></td>
-        <td class="align-middle"><p class="text-center"><%= kind.color.color_name %></td>
-        <td class="align-middle"><p class="text-center">
+        <td><div class="position-in-the-cell2"><%= button_to '編集', edit_kind_path(kind), {method: "get"} %></div></td>
+        <td><div class="position-in-the-cell2"><%= button_to '削除', kind_path(kind), {method: "delete"} %></div></td>
+        <td><div class="position-in-the-cell2"><%= kind.kind %></div></td>
+        <td><div class="position-in-the-cell2"><%= kind.seats %></div></td>
+        <td><div class="position-in-the-cell2"><%= kind.price %></div></td>
+        <td><div class="position-in-the-cell2"><%= kind.color.color_name %></div></td>
+        <td><div class="position-in-the-cell2">
           <% if kind.end_flag %>
             ☑️
           <% else %>
             -
           <% end %>
-        <p></td>
+        <div></td>
       </tr>
     <% end %>
   </tbody>

@@ -13,19 +13,19 @@
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <tr>
-      <td>
+      <td align="center">
       </td>
       <% @stages.each do |stage| %>
         <th>
-          <p class="text-center">
+          <div class="position-in-the-cell1">
           <%= stage.stage %>
-          </p>
+          </div>
         </th>
       <% end %>
-      <th align="center">
-        <p class="text-center">
+      <th>
+        <div class="position-in-the-cell1">
           集計
-        </p>
+        </div>
       </th>
     </tr>
 
@@ -33,10 +33,10 @@
     <%# 『一般取扱者』は『自身』の予約のみについて表示する。 %>
       <% @sellers.each do |seller| %>
         <tr>
-          <th align="center">
-            <p class="text-center">
+          <th>
+            <div class="position-in-the-cell1">
               <%= seller.name %>
-            </p>
+            </div>
           </th>
           <% @stages.each do |stage| %>
             <td align="center">
@@ -51,9 +51,9 @@
             <% end %>
             <%= sum %>
             <% array.each do |value1, value2| %>
-              <span style="color: <%= value1 %>">
-                (<%= value2 %>)
-              </span>
+                <span style="color: <%= value1 %>">
+                  (<%= value2 %>)
+                </span>
             <% end %>
             </td>
           <% end %>
@@ -67,12 +67,13 @@
               <% color_code = kind.color.color_code %>
               <% array.push([color_code, @seats_count]) %>
             <% end %>
-            <%= sum %>
+              <%= sum %>
             <% array.each do |value1, value2| %>
               <span style="color: <%= value1 %>">
                 (<%= value2 %>)
               </span>
-            <% end %>
+              <% end %>
+            </div>
           </td>
         </tr>
       <% end %>
@@ -81,10 +82,10 @@
     <%# 『一般取扱者』は『販売済』を表示しない。 %>
     <% if current_seller.admin_flag %>
       <tr>
-        <th align="center">
-          <p class="text-center">
+        <th>
+          <div class="position-in-the-cell1">
             販売済
-          </p>
+          </div>
         </th>
         <%# 合計(公演別)処理 %>
         <% @stages.each do |stage| %>
@@ -129,48 +130,56 @@
         <% @seats_count = Ticket.all_tickets(kind.id) %>
         <% sum2 += @seats_count * kind.seats%>
       <% end %>
-      <% sum2 %>
+      <div class="position-in-the-cell1">
+        <% sum2 %>
+      </div>
     <% end %>
 
     <%# 空行 %>
     <tr>
-      <td>
+      <td align="center">
       </td>
       <% @stages.each do |stage| %>
-        <td>
+        <td align="center">
         </td>
       <% end %>
-      <td>
+      <td align="center">
       </td>
     </tr>
 
 
    <%# 『座席』については『管理取扱者』も『一般取扱者』も共通。 %>
     <tr>
-      <th align="center">
-        <p class="text-center">
+      <th>
+        <div class="position-in-the-cell1">
           座席
-        </p>
+        </div>
       </th>
       <% sum3 = 0 %>
       <% @stages.each do |stage| %>
       <td align="center">
-        <%= stage.total_seats %>
+        <div class="position-in-the-cell1">
+          <%= stage.total_seats %>
+        </div>
         <% sum3 += stage.total_seats %>
       </td>
       <% end %>
       <td align="center">
-        <%= sum3 %>
+        <div class="position-in-the-cell1">
+          <div class="position-in-the-cell1">
+            <%= sum3 %>
+          </div>
+        </div>
       </td>
     </tr>
 
 
     <%# 『収容率』については『管理取扱者』も『一般管理者』も共通。 %>
     <tr>
-      <th align="center">
-        <p class="text-center">
+      <th>
+        <div class="position-in-the-cell1">
           収容率(%)
-        </p>
+        </div>
       </th>
       <% @stages.each do |stage| %>
         <td align="center">
@@ -180,11 +189,15 @@
           <% @seats_count = Ticket.tickets_in_the_stage(stage.id, kind.id) %>
           <% sum += @seats_count * kind.seats%>
         <% end %>
-        <%= sum * 100 / stage.total_seats   %>
+        <div class="position-in-the-cell1">
+          <%= sum * 100 / stage.total_seats %>
+        </div>
       </td>
       <% end %>
       <td align="center">
-        <%= sum2 * 100 / sum3   %>
+        <div class="position-in-the-cell1">
+          <%= sum2 * 100 / sum3   %>
+        </div>
       </td>
     </tr>
 
@@ -193,29 +206,33 @@
     <% if current_seller.admin_flag %>
       <%# 空行 %>
       <tr>
-        <td>
+        <td align="center">
         </td>
         <% @stages.each do |stage| %>
-          <td>
+          <td align="center">
           </td>
         <% end %>
-        <td>
+        <td align="center">
         </td>
       </tr>
 
       <tr>
-        <th align="center">
-          <p class="text-center">
+        <th>
+          <div class="position-in-the-cell1">
             金額
-          </p>
+          </div>
         </th>
         <% @stages.each do |stage| %>
           <td align="center">
-            <%= Ticket.money_in_the_stage(stage.id) %>
+            <div class="position-in-the-cell1">
+              <%= Ticket.money_in_the_stage(stage.id) %>
+            </div>
           </td>
         <% end %>
         <td align="center">
-          <%= Ticket.all_money %>
+          <div class="position-in-the-cell1">
+            <%= Ticket.all_money %>
+          </div>
         </td>
       </tr>
     <% end %>
@@ -224,38 +241,38 @@
     <%# ここ以降の内容については『管理取扱者』も『一般取扱者』も共通。 %>
     <%# 空行 %>
     <tr>
-      <td>
+      <td align="center">
       </td>
       <% @stages.each do |stage| %>
-        <td>
+        <td align="center">
         </td>
       <% end %>
-      <td>
+      <td align="center">
       </td>
     </tr>
 
     <tr>
-      <td>
+      <td align="center">
       </td>
       <% @stages.each do |stage| %>
         <th>
-          <p class="text-center">
+          <div class="position-in-the-cell1">
           <%= stage.stage %>
-          </p>
+          </div>
         </th>
       <% end %>
-      <th align="center">
-        <p class="text-center">
+      <th>
+        <div class="position-in-the-cell1">
           集計
-        </p>
+        </div>
       </th>
     </tr>
     <% @payments.each do |payment| %>
       <tr>
-        <th align="center">
-          <p class="text-center">
+        <th>
+          <div class="position-in-the-cell1">
             <%= payment.payment %>
-          </p>
+          </div>
         </th>
         <% @stages.each do |stage| %>
           <td align="center">
@@ -294,10 +311,8 @@
         </td>
       </tr>
     <% end %>
-
   </table>
 </div>
-<br>
 <%= link_to :back, :style=>"color:#333333" do %>
   <button>戻る</button>
 <% end %>

@@ -8,42 +8,42 @@
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
-          <th style="width: 60px"><p class="text-center">詳細</p></th>
-          <th style="width: 60px"><p class="text-center">編集</p></th>
-          <th style="width: 60px"><p class="text-center">削除</p></th>
-          <th><p class="text-center">取扱者</p></th>
-          <th><p class="text-center">公演</p></th>
-          <th><p class="text-center">チケット種別</p></th>
-          <th><p class="text-center">支払方法</p></th>
-          <th><p class="text-center">チケット枚数</p></th>
-          <th><p class="text-center">予約者名</p></th>
-          <th><p class="text-center">予約者名フリガナ</p></th>
-          <th><p class="text-center">予約者Eメール</p></th>
-          <th><p class="text-center">来場済</p></th>
+          <th style="width: 60px"><div class="position-in-the-cell1">詳細</div></th>
+          <th style="width: 60px"><div class="position-in-the-cell1">編集</div></th>
+          <th style="width: 60px"><div class="position-in-the-cell1">削除</div></th>
+          <th><div class="position-in-the-cell1">取扱者</div></th>
+          <th><div class="position-in-the-cell1">公演</div></th>
+          <th><div class="position-in-the-cell1">チケット種別</div></th>
+          <th><div class="position-in-the-cell1">支払方法</div></th>
+          <th><div class="position-in-the-cell1">チケット枚数</div></th>
+          <th><div class="position-in-the-cell1">予約者名</div></th>
+          <th><div class="position-in-the-cell1">予約者名フリガナ</div></th>
+          <th><div class="position-in-the-cell1">予約者Eメール</div></th>
+          <th><div class="position-in-the-cell1">来場済</div></th>
         </tr>
       </thead>
 
       <tbody>
         <% @tickets.each do |ticket| %>
           <tr>
-            <td class="align-middle"><%= button_to '詳細', ticket_path(ticket), {method: "get"} %></td>
-            <td class="align-middle"><%= button_to '編集', edit_ticket_path(ticket), {method: "get"} %></td>
-            <td class="align-middle"><%= button_to '削除', ticket_path(ticket), {method: "delete"} %></td>
-            <td class="align-middle"><p class="text-center"><%= ticket.seller.name %></p></td>
-            <td class="align-middle"><p class="text-center"><%= ticket.stage.stage %></p></td>
-            <td class="align-middle"><p class="text-center"><%= ticket.kind.kind %></p></td>
-            <td class="align-middle"><p class="text-center"><%= ticket.payment.payment %></p></td>
-            <td class="align-middle"><p class="text-center"><%= ticket.count %></p></td>
-            <td class="align-middle"><p class="text-center"><%= ticket.buyer_name %></p></td>
-            <td class="align-middle"><p class="text-center"><%= ticket.buyer_furigana %></p></td>
-            <td class="align-middle"><p class="text-center"><%= ticket.buyer_mail %></p></td>
-            <td class="align-middle"><p class="text-center">
+            <td><div class="position-in-the-cell1"><%= button_to '詳細', ticket_path(ticket), {method: "get"} %></td>
+            <td><div class="position-in-the-cell1"><%= button_to '編集', edit_ticket_path(ticket), {method: "get"} %></td>
+            <td><div class="position-in-the-cell1"><%= button_to '削除', ticket_path(ticket), {method: "delete"} %></td>
+            <td><div class="position-in-the-cell1"><%= ticket.seller.name %></div></td>
+            <td><div class="position-in-the-cell1"><%= ticket.stage.stage %></div></td>
+            <td><div class="position-in-the-cell1"><%= ticket.kind.kind %></div></td>
+            <td><div class="position-in-the-cell1"><%= ticket.payment.payment %></div></td>
+            <td><div class="position-in-the-cell1"><%= ticket.count %></div></td>
+            <td><div class="position-in-the-cell1"><%= ticket.buyer_name %></div></td>
+            <td><div class="position-in-the-cell1"><%= ticket.buyer_furigana %></div></td>
+            <td><div class="position-in-the-cell1"><%= ticket.buyer_mail %></div></td>
+            <td><div class="position-in-the-cell1">
               <% if ticket.visited_flag %>
                 ☑️
               <% else %>
                 -
               <% end %>
-            </p></td>
+            </div></td>
           </tr>
         <% end %>
         <%= paginate @tickets %>
