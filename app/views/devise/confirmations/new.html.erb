@@ -1,4 +1,4 @@
-<h2>Resend confirmation instructions</h2>
+<h2>『メールアドレス』確認メール 再送</h2>
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -7,10 +7,10 @@
     <%= f.label :email, 'メールアドレス' %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
   </div>
-
+  <p></p>
   <div class="actions">
     <%= f.submit "メールアドレスの認証方法を再送" %>
   </div>
 <% end %>
-
+<br>
 <%= render "devise/shared/links" %>
