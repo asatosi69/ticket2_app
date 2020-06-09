@@ -33,6 +33,8 @@ class TicketsController < ApplicationController
           
       end
       
+      render 'tickets/', layout: "application3"
+      
   end
     
   def show
@@ -61,7 +63,6 @@ class TicketsController < ApplicationController
       check = 0
       
       unless @ticket.payment.discount_keyword.empty?
-          binding.pry
       
           keywords = @ticket.payment.discount_keyword.split(",")
    
@@ -87,7 +88,6 @@ class TicketsController < ApplicationController
               end
               
           else
-            binding.pry
             flash[:notice] = "割引キーワードが正しくありません。"
             redirect_to("/tickets/new")
           end

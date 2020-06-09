@@ -24,7 +24,7 @@ class ReservedListsController < ApplicationController
           end
       @stage = Stage.find_by(id: params[:stage_id])
       @tickets = search_condition
-      #ender template: 'reserved_lists/reserved_lists'
+      #render template: 'reserved_lists/reserved_lists'
        render 'reserved_lists/reserved_lists', layout: "application2"
     end
 

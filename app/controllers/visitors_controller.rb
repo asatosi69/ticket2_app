@@ -38,13 +38,15 @@ class VisitorsController < ApplicationController
                             .order(created_at: "DESC")
           end
       end
+      
+      render 'visitors/', layout: "application3"
   end
 
 
   def visitor
         
         if params[:Hanten]
-        binding.pry
+
             @tickets = Ticket.where(id: params[:tickets])
             
             validation_context = current_seller.admin_flag? ? :admin_seller : nil
