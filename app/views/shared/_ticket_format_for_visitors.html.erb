@@ -9,17 +9,17 @@
       <thead>
         <tr>
           <% if current_seller.admin_flag %>
-            <th><div class="position-in-the-cell1"> </div></th>
+            <th style="white-space:nowrap;><div class="position-in-the-cell1"> </div></th>
           <% end %>
-          <th><div class="position-in-the-cell1" "text-nowrap">取扱者</div></th>
-          <th><div class="position-in-the-cell1" "text-nowrap">公演</div></th>
-          <th><div class="position-in-the-cell1" "text-nowrap">チケット種別</div></th>
-          <th><div class="position-in-the-cell1" "text-nowrap">支払方法</div></th>
-          <th><div class="position-in-the-cell1" "text-nowrap">チケット枚数</div></th>
-          <th><div class="position-in-the-cell1" "text-nowrap">予約者名</div></th>
-          <th><div class="position-in-the-cell1" "text-nowrap">予約者名フリガナ</div></th>
-          <th style="width: 200px"><div class="position-in-the-cell1" "text-nowrap">予約者Eメール</div></th>
-          <th><div class="position-in-the-cell1" "text-nowrap">来場済</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">取扱者</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">公演</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">チケット種別</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">支払方法</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">チケット枚数</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">予約者名</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">予約者名フリガナ</div></th>
+          <th style="width: 200px" "white-space:nowrap;"><div class="position-in-the-cell1">予約者Eメール</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">来場済</div></th>
         </tr>
       </thead>
 
@@ -28,17 +28,17 @@
           <% @tickets.each do |ticket| %>
             <tr>
               <% if current_seller.admin_flag %>
-                <td><div class="position-in-the-cell1" "text-nowrap"><%= check_box_tag 'tickets[]',ticket.id %></div></td>
+                <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= check_box_tag 'tickets[]',ticket.id %></div></td>
               <% end %>
-              <td><div class="position-in-the-cell1" "text-nowrap"><%= ticket.seller.name %></div></td>
-              <td><div class="position-in-the-cell1" "text-nowrap"><%= ticket.stage.stage %></div></td>
-              <td><div class="position-in-the-cell1" "text-nowrap"><%= ticket.kind.kind %></div></td>
-              <td><div class="position-in-the-cell1" "text-nowrap"><%= ticket.payment.payment %></div></td>
-              <td><div class="position-in-the-cell1" "text-nowrap"><%= ticket.count %></div></td>
-              <td><div class="position-in-the-cell1" "text-nowrap"><%= ticket.buyer_name %></div></td>
-              <td><div class="position-in-the-cell1" "text-nowrap"><%= ticket.buyer_furigana %></div></td>
-              <td><div class="position-in-the-cell1"><%= ticket.buyer_mail %></div></td>
-              <td><div class="position-in-the-cell1" "text-nowrap">
+              <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.seller.name %></div></td>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.stage.stage %></div></td>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.kind.kind %></div></td>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.payment.payment %></div></td>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.count %></div></td>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.buyer_name %></div></td>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.buyer_furigana %></div></td>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.buyer_mail %></div></td>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell1">
                 <% if ticket.visited_flag %>
                   ☑️
                 <% else %>
