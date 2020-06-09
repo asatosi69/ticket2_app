@@ -22,7 +22,7 @@
         <td>
         </td>
         <% @kinds.each do |kind| %>
-          <th>
+          <th style="white-space:nowrap;">
             <div class="position-in-the-cell1">
               <%= kind.kind %>
             </div>
@@ -31,13 +31,13 @@
       </tr>
       <% @stages.each do |stage| %>
         <tr>
-          <th>
+          <th style="white-space:nowrap;">
             <div class="position-in-the-cell1">
               <%= stage.stage %>
             </div>
           </th>
           <% @kinds.each do |kind| %>
-            <td>
+            <td style="white-space:nowrap;">
               <div class="position-in-the-cell1">
                <% if stage.end_flag || kind.end_flag %>
                  受付終了

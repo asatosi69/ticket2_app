@@ -16,13 +16,13 @@
       <thead>
         <tr>
           <% if current_seller.admin_flag %>
-            <th style="width: 60px"><div class="position-in-the-cell1"> </div></th>
-            <th style="width: 60px"><div class="position-in-the-cell1">反転</div></th>
-            <th style="width: 60px"><div class="position-in-the-cell1">削除</div></th>
+            <th style="width: 60px" style="white-space:nowrap;"><div class="position-in-the-cell1"> </div></th>
+            <th style="width: 60px" style="white-space:nowrap;"><div class="position-in-the-cell1">反転</div></th>
+            <th style="width: 60px" style="white-space:nowrap;"><div class="position-in-the-cell1">削除</div></th>
           <% end %>
-          <th style="width: 150px"><div class="position-in-the-cell1">取扱者</div></th>
-          <th style="width: 120px"><div class="position-in-the-cell1">管理者フラグ</div></th>
-          <th><div class="position-in-the-cell1">予約用URL</div></th>
+          <th style="width: 150px" style="white-space:nowrap;"><div class="position-in-the-cell1">取扱者</div></th>
+          <th style="width: 120px" style="white-space:nowrap;"><div class="position-in-the-cell1">管理者フラグ</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">予約用URL</div></th>
         </tr>
       </thead>
 
@@ -30,19 +30,19 @@
           <% @sellers.each do |seller| %>
             <tr>
               <% if current_seller.admin_flag %>
-                <td class="align-middle"><div class="position-in-the-cell2"><%= check_box_tag 'sellers[]',seller.id %></div></td>
-                <td class="align-middle"><div class="position-in-the-cell2"><%= link_to '反転', seller_path(seller), {method: "patch", class: 'btn btn-default'} %></div></td>
-                <td class="align-middle"><div class="position-in-the-cell2"><%= link_to '削除', seller_path(seller), {method: "delete", class: 'btn btn-default'} %></div></td>
+                <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= check_box_tag 'sellers[]',seller.id %></div></td>
+                <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= link_to '反転', seller_path(seller), {method: "patch", class: 'btn btn-default'} %></div></td>
+                <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= link_to '削除', seller_path(seller), {method: "delete", class: 'btn btn-default'} %></div></td>
               <% end %>
-              <td class="align-middle"><div class="position-in-the-cell2"><%= seller.name %></div></td>
-              <td class="align-middle"><div class="position-in-the-cell2">
+              <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= seller.name %></div></td>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell2">
                 <% if seller.admin_flag %>
                   ☑️
                 <% else %>
                   -
                 <% end %>
               </div></td>
-              <td class="align-middle"><div class="position-in-the-cell2"><%= "#{@host_with_port}/registers/#{seller.id}/new" %></div></td>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= "#{@host_with_port}/registers/#{seller.id}/new" %></div></td>
             </tr>
             <% end %>
       </tbody>

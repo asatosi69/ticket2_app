@@ -22,7 +22,7 @@
         <td>
         </td>
         <% @stages.each do |stage| %>
-          <th>
+          <th style="white-space:nowrap;">
             <div class="position-in-the-cell1">
               <%= stage.stage %>
             </div>
@@ -31,13 +31,13 @@
       </tr>
       <% @payments.each do |payment| %>
         <tr>
-          <th>
+          <th style="white-space:nowrap;">
             <div class="position-in-the-cell1">
               <%= payment.payment %>
             </div>
           </th>
           <% @stages.each do |stage| %>
-            <td>
+            <td style="white-space:nowrap;">
               <div class="position-in-the-cell1">
                 <% if stage.end_flag %>
                   受付終了

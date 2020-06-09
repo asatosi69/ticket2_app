@@ -16,26 +16,26 @@
   <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th style="width: 60px"><div class="position-in-the-cell1">編集</div></th>
-      <th style="width: 60px"><div class="position-in-the-cell1">削除</div></th>
-      <th><div class="position-in-the-cell1">チケット種別</div></th>
-      <th><div class="position-in-the-cell1">消費する席数</div></th>
-      <th><div class="position-in-the-cell1">料金</div></th>
-      <th><div class="position-in-the-cell1">チケットの色</div></th>
-      <th><div class="position-in-the-cell1">終了フラグ</div></th>
+      <th style="width: 60px" "white-space:nowrap;"><div class="position-in-the-cell1">編集</div></th>
+      <th style="width: 60px" "white-space:nowrap;"><div class="position-in-the-cell1">削除</div></th>
+      <th style="white-space:nowrap;"><div class="position-in-the-cell1">チケット種別</div></th>
+      <th style="white-space:nowrap;"><div class="position-in-the-cell1">消費する席数</div></th>
+      <th style="white-space:nowrap;"><div class="position-in-the-cell1">料金</div></th>
+      <th style="white-space:nowrap;"><div class="position-in-the-cell1">チケットの色</div></th>
+      <th style="white-space:nowrap;"><div class="position-in-the-cell1">終了フラグ</div></th>
     </tr>
   </thead>
 
   <tbody>
     <% @kinds.each do |kind| %>
       <tr>
-        <td><div class="position-in-the-cell2"><%= button_to '編集', edit_kind_path(kind), {method: "get"} %></div></td>
-        <td><div class="position-in-the-cell2"><%= button_to '削除', kind_path(kind), {method: "delete"} %></div></td>
-        <td><div class="position-in-the-cell2"><%= kind.kind %></div></td>
-        <td><div class="position-in-the-cell2"><%= kind.seats %></div></td>
-        <td><div class="position-in-the-cell2"><%= kind.price %></div></td>
-        <td><div class="position-in-the-cell2"><%= kind.color.color_name %></div></td>
-        <td><div class="position-in-the-cell2">
+        <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= button_to '編集', edit_kind_path(kind), {method: "get"} %></div></td>
+        <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= button_to '削除', kind_path(kind), {method: "delete"} %></div></td>
+        <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= kind.kind %></div></td>
+        <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= kind.seats %></div></td>
+        <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= kind.price %></div></td>
+        <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= kind.color.color_name %></div></td>
+        <td style="white-space:nowrap;"><div class="position-in-the-cell2">
           <% if kind.end_flag %>
             ☑️
           <% else %>

@@ -22,7 +22,7 @@
         <td>
         </td>
         <% @payments.each do |payment| %>
-          <th>
+          <th style="white-space:nowrap;">
             <div class="position-in-the-cell1">
               <%= payment.payment %>
             </div>
@@ -31,13 +31,13 @@
       </tr>
       <% @kinds.each do |kind| %>
         <tr>
-          <th>
+          <th style="white-space:nowrap;">
             <div class="position-in-the-cell1">
               <%= kind.kind %>
             </div>
           </th>
           <% @payments.each do |payment| %>
-            <td>
+            <td style="white-space:nowrap;">
               <div class="position-in-the-cell1">
                 <% if kind.end_flag %>
                   受付終了

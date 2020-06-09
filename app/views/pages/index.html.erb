@@ -5,19 +5,19 @@
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:50%">
       <tr>
-        <td>
+        <td style="white-space:nowrap;">
           <div class="position-in-the-cell1">公演</div>
         </td>
-        <td>
+        <td style="white-space:nowrap;">
           <div class="position-in-the-cell1">販売状況</div>
         </td>
       </tr>
       <% @stages.each do |stage| %>
         <tr>
-          <td>
+          <td style="white-space:nowrap;">
             <div class="position-in-the-cell1"><%= stage.stage %></div>
           </td>
-          <td>
+          <td style="white-space:nowrap;">
             <div class="position-in-the-cell1">
               <% percent = ( stage.remaining * 100 ) / stage.total_seats %>
               <%if stage.end_flag? %>
