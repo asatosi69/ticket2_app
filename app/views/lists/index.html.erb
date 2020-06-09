@@ -39,7 +39,7 @@
             </div>
           </th>
           <% @stages.each do |stage| %>
-            <td style="white-space:nowrap;">
+            <td>
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -49,16 +49,18 @@
               <% color_code = kind.color.color_code %>
               <% array.push([color_code, @seats_count]) %>
             <% end %>
-            <%= sum %>
-            <% array.each do |value1, value2| %>
+            <div class="position-in-the-cell1">
+              <%= sum %>
+              <% array.each do |value1, value2| %>
                 <span style="color: <%= value1 %>">
                   (<%= value2 %>)
                 </span>
+            </div>
             <% end %>
             </td>
           <% end %>
           <%# 合計(取扱者別)処理 %>
-          <td style="white-space:nowrap;">
+          <td>
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -67,13 +69,14 @@
               <% color_code = kind.color.color_code %>
               <% array.push([color_code, @seats_count]) %>
             <% end %>
+            <div class="position-in-the-cell1">
               <%= sum %>
-            <% array.each do |value1, value2| %>
-              <span style="color: <%= value1 %>">
-                (<%= value2 %>)
-              </span>
-              <% end %>
+              <% array.each do |value1, value2| %>
+                <span style="color: <%= value1 %>">
+                  (<%= value2 %>)
+                </span>
             </div>
+            <% end %>
           </td>
         </tr>
       <% end %>
@@ -89,7 +92,7 @@
         </th>
         <%# 合計(公演別)処理 %>
         <% @stages.each do |stage| %>
-          <td style="white-space:nowrap;">
+          <td>
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -98,16 +101,18 @@
               <% color_code = kind.color.color_code %>
               <% array.push([color_code, @seats_count]) %>
             <% end %>
-            <%= sum %>
-            <% array.each do |value1, value2| %>
-              <span style="color: <%= value1 %>">
-                (<%= value2 %>)
-              </span>
+            <div class="position-in-the-cell1">
+              <%= sum %>
+              <% array.each do |value1, value2| %>
+                <span style="color: <%= value1 %>">
+                  (<%= value2 %>)
+                </span>
+              </div>
             <% end %>
           </td>
         <% end %>
         <%# 総合計処理 %>
-        <td style="white-space:nowrap;">
+        <td>
           <% array = [] %>
           <% sum2 = 0 %>
           <% @kinds.each do |kind| %>
@@ -116,11 +121,13 @@
             <% color_code = kind.color.color_code %>
             <% array.push([color_code, @seats_count]) %>
           <% end %>
-          <%= sum2 %>
-          <% array.each do |value1, value2| %>
-            <span style="color: <%= value1 %>">
-              (<%= value2 %>)
-            </span>
+          <div class="position-in-the-cell1">
+            <%= sum2 %>
+            <% array.each do |value1, value2| %>
+              <span style="color: <%= value1 %>">
+                (<%= value2 %>)
+              </span>
+            </div>
           <% end %>
         </td>
       </tr>
@@ -137,13 +144,13 @@
 
     <%# 空行 %>
     <tr>
-      <td style="white-space:nowrap;">
+      <td>
       </td>
       <% @stages.each do |stage| %>
-        <td style="white-space:nowrap;">
+        <td>
         </td>
       <% end %>
-      <td style="white-space:nowrap;">
+      <td>
       </td>
     </tr>
 
@@ -157,14 +164,14 @@
       </th>
       <% sum3 = 0 %>
       <% @stages.each do |stage| %>
-      <td style="white-space:nowrap;">
+      <td>
         <div class="position-in-the-cell1">
           <%= stage.total_seats %>
         </div>
         <% sum3 += stage.total_seats %>
       </td>
       <% end %>
-      <td style="white-space:nowrap;">
+      <td>
         <div class="position-in-the-cell1">
           <div class="position-in-the-cell1">
             <%= sum3 %>
@@ -182,7 +189,7 @@
         </div>
       </th>
       <% @stages.each do |stage| %>
-        <td style="white-space:nowrap;">
+        <td>
         <% array = [] %>
         <% sum = 0 %>
         <% @kinds.each do |kind| %>
@@ -194,7 +201,7 @@
         </div>
       </td>
       <% end %>
-      <td style="white-space:nowrap;">
+      <td>
         <div class="position-in-the-cell1">
           <%= sum2 * 100 / sum3   %>
         </div>
@@ -206,13 +213,13 @@
     <% if current_seller.admin_flag %>
       <%# 空行 %>
       <tr>
-        <td style="white-space:nowrap;">
+        <td>
         </td>
         <% @stages.each do |stage| %>
-          <td style="white-space:nowrap;">
+          <td>
           </td>
         <% end %>
-        <td style="white-space:nowrap;">
+        <td>
         </td>
       </tr>
 
@@ -223,15 +230,15 @@
           </div>
         </th>
         <% @stages.each do |stage| %>
-          <td style="white-space:nowrap;">
+          <td>
             <div class="position-in-the-cell1">
-              <%= Ticket.money_in_the_stage(stage.id) %>
+              <%= Ticket.money_in_the_stage(stage.id) %> 円
             </div>
           </td>
         <% end %>
-        <td style="white-space:nowrap;">
+        <td>
           <div class="position-in-the-cell1">
-            <%= Ticket.all_money %>
+            <%= Ticket.all_money %> 円
           </div>
         </td>
       </tr>
@@ -241,18 +248,18 @@
     <%# ここ以降の内容については『管理取扱者』も『一般取扱者』も共通。 %>
     <%# 空行 %>
     <tr>
-      <td style="white-space:nowrap;">
+      <td>
       </td>
       <% @stages.each do |stage| %>
-        <td style="white-space:nowrap;">
+        <td>
         </td>
       <% end %>
-      <td style="white-space:nowrap;">
+      <td>
       </td>
     </tr>
 
     <tr>
-      <td style="white-space:nowrap;">
+      <td>
       </td>
       <% @stages.each do |stage| %>
         <th style="white-space:nowrap;">
@@ -269,13 +276,13 @@
     </tr>
     <% @payments.each do |payment| %>
       <tr>
-        <th style="white-space:nowrap;">
+        <th>
           <div class="position-in-the-cell1">
             <%= payment.payment %>
           </div>
         </th>
         <% @stages.each do |stage| %>
-          <td style="white-space:nowrap;">
+          <td>
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -285,15 +292,17 @@
               <% color_code = kind.color.color_code %>
               <% array.push([color_code, @seats_count]) %>
             <% end %>
-            <%= sum %>
-            <% array.each do |value1, value2| %>
+            <div class="position-in-the-cell1">
+              <%= sum %>
+              <% array.each do |value1, value2| %>
               <span style="color: <%= value1 %>">
-                (<%= value2 %>)
-              </span>
-            <% end %>
+                  (<%= value2 %>)
+                </span>
+              <% end %>
+            </div>
           </td>
         <% end %>
-        <td style="white-space:nowrap;">
+        <td>
           <% array = [] %>
           <% sum = 0 %>
           <% @kinds.each do |kind| %>
@@ -302,12 +311,14 @@
             <% color_code = kind.color.color_code %>
             <% array.push([color_code, @seats_count]) %>
           <% end %>
-          <%= sum %>
-          <% array.each do |value1, value2| %>
-            <span style="color: <%= value1 %>">
-              (<%= value2 %>)
-            </span>
-          <% end %>
+          <div class="position-in-the-cell1">
+            <%= sum %>
+            <% array.each do |value1, value2| %>
+              <span style="color: <%= value1 %>">
+                (<%= value2 %>)
+              </span>
+            <% end %>
+          </div>
         </td>
       </tr>
     <% end %>
