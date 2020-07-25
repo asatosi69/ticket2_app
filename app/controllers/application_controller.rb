@@ -2,11 +2,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :master_record?
+  before_action :subdomain
+  before_action :establish_subdomain
 
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
       devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    end
+    
+    def establish_subdomain
+        ActiveRecord::Base.establish_connection :"ticket2_app_#{subdomain}_development".to_s.to_sym
+    end
+    
+    def subdomain
+        request.subdomain.to_s.to_sym
     end
     
     def after_sign_in_path_for(resource)

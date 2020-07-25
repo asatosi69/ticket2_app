@@ -47,7 +47,7 @@ class RegistersController < ApplicationController
 
             if check == 1
                 if @ticket.save
-                    UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
+                    UserMailer.notice_mail_for_create_ticket(@ticket).deliver
                     flash[:notice] = "登録が完了しました"
                     redirect_to("/registers/#{seller_id}/thankyou")
                 end
@@ -59,7 +59,7 @@ class RegistersController < ApplicationController
         else
         
           if @ticket.save
-              UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
+              UserMailer.notice_mail_for_create_ticket(@ticket).deliver
              flash[:notice] = "登録が完了しました"
               redirect_to("/registers/#{seller_id}/thankyou")
           end

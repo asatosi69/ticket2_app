@@ -1,0 +1,28 @@
+<%= @ticket.buyer_name %>様
+
+
+<%= Rails.application.config.troupe_name %> 『<%= Rails.application.config.performance_name %>』のチケットをご予約いただき、誠にありがとうございます！
+残念ながらキャンセルをご希望とのことですので、下記の予約を解除させていただきました。
+
+=====================================================
+お名前：<%= @ticket.buyer_name %>様
+メールアドレス：<%= @ticket.buyer_mail %>
+=====================================================
+ご予約内容：
+<%= Rails.application.config.troupe_name %> 『<%= Rails.application.config.performance_name %>』
+<%= @ticket.stage.stage %>
+<%= @ticket.kind.kind %>
+支払方法が『<%= @ticket.payment.payment %>』の時のチケット『<%= @ticket.kind.kind %>』の料金：<%= @ticket.kind.price + @ticket.payment.discount_rate %>円 × 枚数：<%= @ticket.count %>枚
+お支払い金額：<%= (@ticket.kind.price + @ticket.payment.discount_rate) * @ticket.count %>円
+---------------------
+またのご予約をお待ちしております。
+今後とも<%= Rails.application.config.troupe_name %> をよろしくお願いいたします。
+
+疑問点などございましたら、『<%= Rails.application.config.troupe_mail %>』 までお気軽にお問い合わせください。
+
+★公演情報
+<%= Rails.application.config.troupe_name %> 『<%= Rails.application.config.performance_name %>』
+公演ページ： <%= Rails.application.config.performance_url %>
+
+<%= Rails.application.config.troupe_name %>
+<%= Rails.application.config.troupe_url %>

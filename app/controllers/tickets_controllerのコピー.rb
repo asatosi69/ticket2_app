@@ -76,10 +76,10 @@ class TicketsController < ApplicationController
                   flash[:notice] = "登録が完了しました"
           
                   if params[:Renzoku]
-                      UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
+                      UserMailer.notice_mail_for_create_ticket(@ticket).deliver
                       redirect_to("/tickets/new")
                   else
-                      UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
+                      UserMailer.notice_mail_for_create_ticket(@ticket).deliver
                       redirect_to("/tickets")
                   end
                   
@@ -98,10 +98,10 @@ class TicketsController < ApplicationController
                   flash[:notice] = "登録が完了しました"
           
                   if params[:Renzoku]
-                      UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
+                      UserMailer.notice_mail_for_create_ticket(@ticket).deliver
                       redirect_to("/tickets/new")
                   else
-                      UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
+                      UserMailer.notice_mail_for_create_ticket(@ticket).deliver
                       redirect_to("/tickets")
                   end
                   
@@ -158,7 +158,7 @@ class TicketsController < ApplicationController
           if check == 1
       
               if @ticket.save(context: validation_context)
-                    UserMailer.with(subdomain: subdomain).notice_mail_for_update_ticket(@ticket).deliver
+                    UserMailer.notice_mail_for_update_ticket(@ticket).deliver
                     flash[:notice] = "編集が完了しました"
                     redirect_to("/tickets")
               else
@@ -171,7 +171,7 @@ class TicketsController < ApplicationController
           
       else
           if @ticket.save(context: validation_context)
-             UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
+             UserMailer.notice_mail_for_update_ticket(@ticket).deliver
              flash[:notice] = "編集が完了しました"
              redirect_to("/tickets")
           else
@@ -194,7 +194,7 @@ class TicketsController < ApplicationController
       end
       
       @ticket.destroy
-      UserMailer.with(subdomain: subdomain).notice_mail_for_destroy_ticket(@ticket).deliver
+      UserMailer.notice_mail_for_destroy_ticket(@ticket).deliver
       redirect_to("/tickets")
   end
   

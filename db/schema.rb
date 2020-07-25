@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_06_06_215719) do
 
-  create_table "colors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "colors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "color_name"
     t.string "color_code"
     t.datetime "created_at", null: false
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_215719) do
     t.boolean "is_selected", default: false, null: false
   end
 
-  create_table "connection2s", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "connection2s", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "kind_id"
     t.integer "payment_id"
     t.boolean "invalid_flag", default: false, null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_215719) do
     t.index ["payment_id"], name: "index_connection2s_on_payment_id"
   end
 
-  create_table "connection3s", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "connection3s", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "payment_id"
     t.integer "stage_id"
     t.boolean "invalid_flag", default: false, null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_215719) do
     t.index ["stage_id"], name: "index_connection3s_on_stage_id"
   end
 
-  create_table "connections", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "connections", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "stage_id"
     t.integer "kind_id"
     t.datetime "created_at", null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_215719) do
     t.index ["stage_id"], name: "index_connections_on_stage_id"
   end
 
-  create_table "kinds", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "kinds", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "kind"
     t.integer "seats"
     t.integer "price"
@@ -60,14 +60,14 @@ ActiveRecord::Schema.define(version: 2020_06_06_215719) do
     t.boolean "end_flag", default: false, null: false
   end
 
-  create_table "pages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "pages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "notice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "seller_id"
   end
 
-  create_table "payments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "payments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "payment"
     t.string "abbreviation"
     t.integer "discount_rate"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_215719) do
     t.string "discount_keyword"
   end
 
-  create_table "sellers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "sellers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_215719) do
     t.index ["unlock_token"], name: "index_sellers_on_unlock_token", unique: true
   end
 
-  create_table "stages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "stages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "stage"
     t.integer "total_seats"
     t.datetime "end_time"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_215719) do
     t.datetime "stage_time"
   end
 
-  create_table "tickets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tickets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

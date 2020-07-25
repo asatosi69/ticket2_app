@@ -20,13 +20,21 @@ module Ticket2App
     ### Rails(Activerecord)がDBへのRead・Writeを行う際タイムゾーン ←ココ
     config.active_record.default_timezone = :local
     
-    config.troupe_name = '三角'.freeze
-    config.performance_name = 'おにぎり'.freeze
-    config.performance_url = 'www.onigiri.com'.freeze
     config.performance_notice = '『お客様へのお願い』<br>・劇場の開場時間は公演開演時間の30分前となります。<br/><br/>'
-    config.troupe_url = 'www.sankaku.com'.freeze
-    config.troupe_mail = 'aaa@yahoo.co.jp'.freeze
-    config.enquete_form = 'google.co.jp'.freeze
+    
+    config.x.admin.troupe_name = '四角'.freeze
+    config.x.admin.performance_name = 'おむすび'.freeze
+    config.x.admin.performance_url = 'www.omusubi.com'.freeze
+    config.x.admin.troupe_url = 'www.shikaku.com'.freeze
+    config.x.admin.troupe_mail = 'shikaku@yahoo.co.jp'.freeze
+    config.x.admin.enquete_form = 'google.co.jp'.freeze
+    
+    config.x.admin2.troupe_name = '三角'.freeze
+    config.x.admin2.performance_name = 'おにぎり'.freeze
+    config.x.admin2.performance_url = 'www.onigiri.com'.freeze
+    config.x.admin2.troupe_url = 'www.sankaku.com'.freeze
+    config.x.admin2.troupe_mail = 'aaa@yahoo.co.jp'.freeze
+    config.x.admin2.enquete_form = 'google.co.jp'.freeze
 
 
   end

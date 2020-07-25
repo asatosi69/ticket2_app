@@ -1,21 +1,21 @@
 <%= @ticket.buyer_name %>様
 
 
-<%= Rails.application.config.troupe_name %> 『<%= Rails.application.config.performance_name %>』にご来場をいただき、誠にありがとうございました！
+<%= Rails.configuration.x.send(@subdomain).troupe_name %> 『<%= Rails.configuration.x.send(@subdomain).performance_name %>』にご来場をいただき、誠にありがとうございました！
 
 今後の活動の参考にさせていただきますので、アンケートにご協力いただきければと思います。
 
 アンケートはリンク先にございますので、何卒、ご協力のほどよろしくお願いいたします。
 
 ==========================================================================================================
-アンケート：<%= Rails.application.config.enquete_form %>
+アンケート：<%= Rails.configuration.x.send(@subdomain).enquete_form %>
 ==========================================================================================================
 
-疑問点などございましたら、『<%= Rails.application.config.troupe_mail %>』 までお気軽にお問い合わせください。
+疑問点などございましたら、『<%= Rails.configuration.x.send(@subdomain).troupe_mail %>』 までお気軽にお問い合わせください。
 
 ★公演情報
-<%= Rails.application.config.troupe_name %> 『<%= Rails.application.config.performance_name %>』
-公演ページ： <%= Rails.application.config.performance_url %>
+<%= Rails.configuration.x.send(@subdomain).troupe_name %> 『<%= Rails.configuration.x.send(@subdomain).performance_name %>』
+公演ページ： <%= Rails.configuration.x.send(@subdomain).performance_url %>
 
-<%= Rails.application.config.troupe_name %>
-<%= Rails.application.config.troupe_url %>
+<%= Rails.configuration.x.send(@subdomain).troupe_name %>
+<%= Rails.configuration.x.send(@subdomain).troupe_url %>
