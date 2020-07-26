@@ -6,7 +6,6 @@ class UserMailer < ApplicationMailer
     def confirmation_instructions(record, token, opts={})
       @token = token
       @subdomain = opts[:subdomain]
-      binding.pry
       devise_mail(record, :confirmation_instructions, opts)
     end
 

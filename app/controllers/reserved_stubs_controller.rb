@@ -4,42 +4,29 @@ class ReservedStubsController < ApplicationController
   # 『管理者』として、ログインしないと処理は実行できない
   before_action :admin_seller?
 
-def index
+  def index
     @stages = Stage.all.order(stage_time: "ASC")
     @kinds = Kind.all.order(kind: "ASC")
-    
-    if current_seller.admin_flag
-      @sellers = Seller.all
-    else
-      @sellers = Seller.where(id: current_seller.id)
-    end
-    
-    case params[:order_id]
-    when 'order_by_seller_id_and_buyer_furigana' then
-        if current_seller.admin_flag
-            @tickets = Ticket.where(stage_id: params[:stage_id])
-                          .includes(:seller).order("sellers.name asc").order(buyer_furigana: "ASC")
-        else
-          @tickets = Ticket.where(stage_id: params[:stage_id], seller_id: current_seller.id)
-                         .includes(:seller).order("sellers.name asc").order(buyer_furigana: "ASC")
-        end
-    when 'order_by_buyer_furigana' then
-        if current_seller.admin_flag
-            @tickets = Ticket.where(stage_id: params[:stage_id])
-                          .order(buyer_furigana: "ASC")
-        else
-            @tickets = Ticket.where(stage_id: params[:stage_id], seller_id: current_seller.id)
-                          .order(buyer_furigana: "ASC")
-        end
-    when 'order_by_created_at' then
-        if current_seller.admin_flag
-            @tickets = Ticket.where(stage_id: params[:stage_id])
-                          .order(created_at: "DESC")
-        else
-            @tickets = Ticket.where(stage_id: params[:stage_id], seller_id: current_seller.id)
-                          .order(created_at: "DESC")
-        end
-    end
-end
+      
+  end
+  
+  def reserved_stub_print
+    @page_title = '予約一覧別ウィンドウ'
+    search_condition = Ticket.joins(:seller).where(stage_id: params[:stage_id])
+    search_condition =
+      case params[:order_id]
+       when 'order_by_seller_id_and_buyer_furigana' then
+            search_condition.includes(:seller).order("sellers.name asc").order(buyer_furigana: "ASC")
+       when 'order_by_buyer_furigana' then
+            search_condition.order(buyer_furigana: "ASC")
+       when 'order_by_created_at' then
+            search_condition.order(created_at: "DESC")
+       end
+    @stage = Stage.find_by(id: params[:stage_id])
+    @tickets = search_condition
+   
+    #render template: 'reserved_stubs/reserved_stubs'
+    render 'reserved_stubs/reserved_stubs', layout: "application2"
+  end
 
 end

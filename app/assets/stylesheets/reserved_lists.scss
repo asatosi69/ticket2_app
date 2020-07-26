@@ -1,26 +1,97 @@
 // Place all the styles related to the ReservedLists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 /* A4横 */
-@page {
+  @page {
   size: A4 landscape;
-  margin: 27mm 16mm 27mm 16mm;
-}
+  margin: 5mm 5mm 5mm 5mm;
+  }
 body {
-  -webkit-print-color-adjust: exact;
+ -webkit-print-color-adjust: exact;
 }
 .table th {
-  background-color: #e9ecef !important;
+ background-color: #e9ecef !important;
 }
 
 .table td {
-  background-color: inherit !important;
+ background-color: inherit !important;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(0,0,0,.01) !important;
+ background-color: rgba(0,0,0,.01) !important;
 }
 
-.table tr td, .table tr th {
-  page-break-inside: avoid;
+.page-brake {
+ page-break-inside: avoid !important;
+ page-break-after: always !important;
+}
+
+.print-title {
+ height: 1em;
+ line-height: 1em;
+}
+
+.print-page-number {
+ height: 1em;
+ line-height: 1em;
+ float: right;
+}
+
+.ticket-card-table {
+ width: 33%;
+ border: solid 1px;
+ border-collapse: collapse;
+ table-layout: fixed;
+ margin-bottom: 3px;
+ page-break-inside: avoid !important;
+}
+.ticket-card-table__title {
+ font-size: 0.7em;
+}
+.ticket-card-table__tiny-text {
+ font-size: 0.5em;
+}
+.ticket-card-table td:first-child:before {
+ display: block;
+ float: left;
+ height: 18px;
+ content: "";
+}
+.ticket-card-table tbody {
+ page-break-inside: avoid !important;
+}
+.ticket-card-table tr {
+ height: 1em;
+ line-height: 1em;
+ page-break-inside: avoid !important;
+}
+tr.b-bottom--thin td {
+ border-bottom: solid 1px #ccc;
+}
+td.b-bottom--thin {
+ border-bottom: solid 1px #ccc;
+}
+
+tr.b-bottom td {
+ border-bottom: solid 1px;
+}
+td.b-bottom {
+ border-bottom: solid 1px;
+}
+tr.b-left td {
+ border-left: solid 1px;
+}
+td.b-left {
+ border-left: solid 1px;
+}
+tr.b-right td {
+ border-right: solid 1px;
+}
+
+.position-in-the-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
 }
