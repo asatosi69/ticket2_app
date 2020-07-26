@@ -3,11 +3,7 @@ class UserMailer < ApplicationMailer
 
     default from: "no-reply@gmail.com"
 
-    def confirmation_instructions(record, token, opts={})
-      @token = token
-      @subdomain = opts[:subdomain]
-      devise_mail(record, :confirmation_instructions, opts)
-    end
+   
 
     def reset_password_instructions(record, token, opts={})
       @token = token

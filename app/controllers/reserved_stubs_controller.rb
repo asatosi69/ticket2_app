@@ -24,7 +24,9 @@ class ReservedStubsController < ApplicationController
        end
     @stage = Stage.find_by(id: params[:stage_id])
     @tickets = search_condition
-   
+    while @tickets.size % (3 * 6) != 0
+      @tickets << Ticket.new
+    end
     #render template: 'reserved_stubs/reserved_stubs'
     render 'reserved_stubs/reserved_stubs', layout: "application2"
   end
