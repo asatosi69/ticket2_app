@@ -3,7 +3,13 @@ class UserMailer < ApplicationMailer
 
     default from: "no-reply@gmail.com"
 
-   
+    def confirmation_instructions(record, token, opts={})
+      @token = token
+      @subdomain = opts.delete(:subdomain)
+      Rails.logger.info @subdomain
+      Rails.logger.info opts
+      devise_mail(record, :confirmation_instructions, opts)
+   end
 
     def reset_password_instructions(record, token, opts={})
       @token = token

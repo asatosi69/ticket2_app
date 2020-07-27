@@ -10,6 +10,7 @@
   size: A4;
   margin: 5mm 5mm 5mm 5mm;
   }
+
 body {
  -webkit-print-color-adjust: exact;
 }
@@ -90,11 +91,4 @@ td.b-left {
 }
 tr.b-right td {
  border-right: solid 1px;
-}
-
-.position-in-the-cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 32px;
 }
