@@ -12,8 +12,10 @@ class Sellers::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @subdomain = request.subdomain.to_s.to_sym
-    super
+    @subdomain = request.subdomain.to_s
+    Rails.logger.info @subdomain
+    @token = resource.generate_confirmation_token!
+    UserMailer.confirmation_instructions(resource, @token, {subdomain: @subdomain})
   end
 
   # GET /resource/edit

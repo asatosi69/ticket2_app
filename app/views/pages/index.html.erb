@@ -1,8 +1,9 @@
 <% if @tickets.empty? %>
 
 <% else %>
+  <br>
   <p>チケット残席速報</p>
-  <div class="table-responsive">
+  <div class="table-responsive overflow-y:auto">
     <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:50%">
       <tr>
         <td style="white-space:nowrap;">
@@ -48,11 +49,11 @@
   <h1>『連絡事項』</h1>
   <br>
   <% @pages.each do |page| %>
-    <table style="table-layout:fixed;width:50%">
+    <table style="table-layout:fixed width:50%">
       <tr>
         <td><h4>更新日時: <%= page.updated_at.to_s(:updated_at) %></h4></td>
-        <td style="width: 60px"><%= button_to '編集', edit_page_path(page), {method: "get"} %></td>
-        <td style="width: 60px"><%= button_to '削除', page_path(page), {method: "delete"} %></td>
+        <td style="white-space:nowrap;"><%= button_to '編集', edit_page_path(page), {method: "get"} %></td>
+        <td style="white-space:nowrap;"><%= button_to '削除', page_path(page), {method: "delete"} %></td>
       </tr>
         <td colspan="3">投稿者：<%= page.seller.name %></td>
       <tr>

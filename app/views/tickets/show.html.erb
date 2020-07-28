@@ -1,34 +1,34 @@
 
 <h1>『チケット』の詳細</h1>
 <br>
-<div class="table-responsive">
+<div class="table-responsive overflow-y:auto">
   <table class="table table-striped table-bordered table-hover">
     <tr>
-      <td style="width:13%">取扱者</td><td style="width:87%"><%= @ticket.seller.name %></td>
+      <td style="white-space:nowrap;">取扱者</td><td style="white-space:nowrap;"><%= @ticket.seller.name %></td>
     </tr>
     <tr>
-      <td style="width:13%">公演</td><td style="width:80%"><%= @ticket.stage.stage %></td>
+      <td style="white-space:nowrap;">公演</td><td style="width:80%"><%= @ticket.stage.stage %></td>
     </tr>
     <tr>
-      <td style="width:13%">チケット種別</td><td style="width:87%"><%= @ticket.kind.kind %></td>
+      <td style="white-space:nowrap;">チケット種別</td><td style="white-space:nowrap;"><%= @ticket.kind.kind %></td>
     </tr>
     <tr>
-      <td style="width:13%">支払方法</td><td style="width:87%"><%= @ticket.payment.payment %></td>
+      <td style="white-space:nowrap;">支払方法</td><td style="white-space:nowrap;"><%= @ticket.payment.payment %></td>
     </tr>
     <tr>
-      <td style="width:13%">枚数</td><td style="width:87%"><%= @ticket.count %></td>
+      <td style="white-space:nowrap;">枚数</td><td style="white-space:nowrap;"><%= @ticket.count %></td>
     </tr>
     <tr>
-      <td style="width:13%">購入者名</td><td style="width:87%"><%= @ticket.buyer_name %></td>
+      <td style="white-space:nowrap;">購入者名</td><td style="white-space:nowrap;"><%= @ticket.buyer_name %></td>
     </tr>
     <tr>
-      <td style="width:13%">購入者名フリガナ</td><td style="width:87%"><%= @ticket.buyer_furigana %></td>
+      <td style="white-space:nowrap;">購入者名フリガナ</td><td style="white-space:nowrap;"><%= @ticket.buyer_furigana %></td>
     </tr>
     <tr>
-      <td style="width:13%">購入者Eメール</td><td style="width:87%"><%= @ticket.buyer_mail %></td>
+      <td style="white-space:nowrap;">購入者Eメール</td><td style="white-space:nowrap;"><%= @ticket.buyer_mail %></td>
     </tr>
     <tr>
-      <td style="width:13%">来場済</td><td style="width:87%">
+      <td style="white-space:nowrap;">来場済</td><td style="white-space:nowrap;">
         <% if @ticket.visited_flag %>
           ☑️
         <% else %>
@@ -37,10 +37,10 @@
       </td>
     </tr>
     <tr>
-      <td style="width:13%">コメント</td><td style="width:87%"><%= simple_format(@ticket.comment1) %></td>
+      <td style="white-space:nowrap;">コメント</td><td style="white-space:nowrap;"><%= simple_format(@ticket.comment1) %></td>
     </tr>
     <tr>
-      <td style="width:13%">備考</td><td style="width:87%"><%= simple_format(@ticket.comment2) %></td>
+      <td style="white-space:nowrap;">備考</td><td style="white-space:nowrap;"><%= simple_format(@ticket.comment2) %></td>
     </tr>
   </table>
 </div>

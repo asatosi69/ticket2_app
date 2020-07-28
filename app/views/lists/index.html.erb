@@ -1,3 +1,4 @@
+<br>
 <h3>『予約集計表』</h3>
 <br>
 <p>チケット枚数の見方（凡例）</p>
@@ -10,19 +11,19 @@
 <% end %>
 <br>
 
-<div class="table-responsive">
+<div class="table-responsive overflow-y:auto">
   <table class="table table-striped table-bordered table-hover">
     <tr>
       <td>
       </td>
       <% @stages.each do |stage| %>
-        <th style="white-space:nowrap;">
+        <th align="center">
           <div class="position-in-the-cell1">
           <%= stage.stage %>
           </div>
         </th>
       <% end %>
-      <th style="white-space:nowrap;">
+      <th align="center">
         <div class="position-in-the-cell1">
           集計
         </div>
@@ -33,13 +34,13 @@
     <%# 『一般取扱者』は『自身』の予約のみについて表示する。 %>
       <% @sellers.each do |seller| %>
         <tr>
-          <th style="white-space:nowrap;">
+          <th align="center">
             <div class="position-in-the-cell1">
               <%= seller.name %>
             </div>
           </th>
           <% @stages.each do |stage| %>
-            <td>
+            <td align="center">
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -49,18 +50,16 @@
               <% color_code = kind.color.color_code %>
               <% array.push([color_code, @seats_count]) %>
             <% end %>
-            <div class="position-in-the-cell1">
               <%= sum %>
               <% array.each do |value1, value2| %>
                 <span style="color: <%= value1 %>">
                   (<%= value2 %>)
                 </span>
-            </div>
             <% end %>
             </td>
           <% end %>
           <%# 合計(取扱者別)処理 %>
-          <td>
+          <td align="center">
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -69,13 +68,11 @@
               <% color_code = kind.color.color_code %>
               <% array.push([color_code, @seats_count]) %>
             <% end %>
-            <div class="position-in-the-cell1">
               <%= sum %>
               <% array.each do |value1, value2| %>
                 <span style="color: <%= value1 %>">
                   (<%= value2 %>)
                 </span>
-            </div>
             <% end %>
           </td>
         </tr>
@@ -85,14 +82,14 @@
     <%# 『一般取扱者』は『販売済』を表示しない。 %>
     <% if current_seller.admin_flag %>
       <tr>
-        <th style="white-space:nowrap;">
+        <th align="center">
           <div class="position-in-the-cell1">
             販売済
           </div>
         </th>
         <%# 合計(公演別)処理 %>
         <% @stages.each do |stage| %>
-          <td>
+          <td align="center">
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -101,18 +98,16 @@
               <% color_code = kind.color.color_code %>
               <% array.push([color_code, @seats_count]) %>
             <% end %>
-            <div class="position-in-the-cell1">
               <%= sum %>
               <% array.each do |value1, value2| %>
                 <span style="color: <%= value1 %>">
                   (<%= value2 %>)
                 </span>
-              </div>
             <% end %>
           </td>
         <% end %>
         <%# 総合計処理 %>
-        <td>
+        <td align="center">
           <% array = [] %>
           <% sum2 = 0 %>
           <% @kinds.each do |kind| %>
@@ -121,13 +116,11 @@
             <% color_code = kind.color.color_code %>
             <% array.push([color_code, @seats_count]) %>
           <% end %>
-          <div class="position-in-the-cell1">
             <%= sum2 %>
             <% array.each do |value1, value2| %>
               <span style="color: <%= value1 %>">
                 (<%= value2 %>)
               </span>
-            </div>
           <% end %>
         </td>
       </tr>
@@ -171,7 +164,7 @@
         <% sum3 += stage.total_seats %>
       </td>
       <% end %>
-      <td>
+      <td style="white-space:nowrap;">
         <div class="position-in-the-cell1">
           <div class="position-in-the-cell1">
             <%= sum3 %>

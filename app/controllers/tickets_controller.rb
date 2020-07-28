@@ -33,7 +33,7 @@ class TicketsController < ApplicationController
           
       end
       
-      render 'tickets/index', layout: "application3"
+      render 'tickets/index', layout: "application"
       
   end
     

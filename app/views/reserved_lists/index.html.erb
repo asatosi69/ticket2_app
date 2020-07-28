@@ -1,3 +1,4 @@
+<br>
 <h3>『（印刷用）予約者一覧』</h3>
 <br>
 <p>表示したい『公演』と表示させたい『並び順』を選択し、『表示』を押下ください。</p>
@@ -6,11 +7,11 @@
   <p>公演</p>
   <div class="form-group">
     <%= select_tag 'stage_id', options_from_collection_for_select(Stage.all.order(stage_time: "ASC"), :id, :stage, params[:stage_id]),
-   {prompt: "選択して下さい"} %>
+   {prompt: "選択して下さい", :class => "form-control-sm"} %>
   </div>
   <p>並び順</p>
   <div class="form-group">
-    <%= select_tag 'order_id', options_for_select({ 'フリガナ（昇順）': :order_by_buyer_furigana ,'取扱者（昇順）⇒フリガナ（昇順）': :order_by_seller_id_and_buyer_furigana, '登録順（降順）': :order_by_created_at }), {prompt: "選択して下さい"} %>
+    <%= select_tag 'order_id', options_for_select({ 'フリガナ（昇順）': :order_by_buyer_furigana ,'取扱者（昇順）⇒フリガナ（昇順）': :order_by_seller_id_and_buyer_furigana, '登録順（降順）': :order_by_created_at }), {prompt: "選択して下さい", :class => "form-control-sm"} %>
   </div>
   <div class="form-group">
     <%= submit_tag "表示", 'data-disable-with' => false   %>

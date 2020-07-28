@@ -31,7 +31,6 @@ gem 'devise-i18n-views'
 gem 'pry-rails'
 gem 'pry-byebug'
 gem "jquery-ui-rails"
-gem 'bootstrap-sass'
 gem 'rails-i18n', '~> 5.1' 
 gem 'kaminari', '~> 1.2.1'
 gem 'kaminari-bootstrap', '~> 3.0.1'
@@ -39,6 +38,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'capistrano3-unicorn'
 gem 'listen', '~> 3.0.5'
+gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 
 
 group :deployment do

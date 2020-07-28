@@ -1,3 +1,4 @@
+<br>
 <h3>『支払方法』管理ページ</h3>
 <br>
 <br>
@@ -24,12 +25,12 @@
 <h1>登録されている『支払方法』はありません</h1>
 
 <% else %>
-<div class="table-responsive">
+<div class="table-responsive overflow-y:auto">
   <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th style="width: 60px" "white-space:nowrap;"><div class="position-in-the-cell1">編集</div></th>
-      <th style="width: 60px" "white-space:nowrap;"><div class="position-in-the-cell1">削除</div></th>
+      <th style="white-space:nowrap;"><div class="position-in-the-cell1">編集</div></th>
+      <th style="white-space:nowrap;"><div class="position-in-the-cell1">削除</div></th>
       <th style="white-space:nowrap;"><div class="position-in-the-cell1">支払方法</div></th>
       <th style="white-space:nowrap;"><div class="position-in-the-cell1">略称</div></th>
       <th style="white-space:nowrap;"><div class="position-in-the-cell1">変動額</div></th>
@@ -63,7 +64,7 @@
 <% if @payments.empty? %>
 <% else %>
   <p>【参考】各チケット種別の支払方法別料金</p>
-  <div class="table-responsive">
+  <div class="table-responsive overflow-y:auto">
     <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:35%">
       <tr>
         <td style="white-space:nowrap;">

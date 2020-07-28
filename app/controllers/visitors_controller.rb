@@ -39,7 +39,7 @@ class VisitorsController < ApplicationController
           end
       end
       
-      render 'visitors/index', layout: "application3"
+      render 'visitors/index', layout: "application"
   end
 
 

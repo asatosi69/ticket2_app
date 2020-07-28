@@ -9,7 +9,7 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-expand-sm bg-light">
         <div class="navbar-header">
           <a class="navbar-brand">チケット管理システム</a>
         </div>
@@ -19,76 +19,79 @@
               <% if @master_stage.empty? || @master_kind.empty? || @master_payment.empty? %>
                 <% if @master_stage.empty? %>
                   <ul class="nav navbar-nav">
-                    <li><%= link_to 'プロフィール変更', edit_seller_registration_path %></li>
-                    <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete %></li>
-                    <li><%= link_to '連絡事項', pages_path %></li>
-                    <li><%= link_to '取扱者', sellers_path %></li>
-                    <li><%= link_to '公演 ← チケットを予約するために登録が必要です', :stages, :style=>"color:#FF00FF"%></li>
+                    <li><%= link_to 'プロフィール変更', edit_seller_registration_path, class: "nav-link" %></li>
+                    <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete, class: "nav-link" %></li>
+                    <li><%= link_to '連絡事項', pages_path, class: "nav-link" %></li>
+                    <li><%= link_to '取扱者', sellers_path, class: "nav-link" %></li>
+                    <li><%= link_to '公演 ← チケットを予約するために登録が必要です', :stages, class: "nav-link", :style=>"color:#FF00FF" %></li>
                   </ul>
                 <% else %>
                   <% if @master_kind.empty? %>
                     <ul class="nav navbar-nav">
-                      <li><%= link_to 'プロフィール変更', edit_seller_registration_path %></li>
-                      <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete %></li>
-                      <li><%= link_to '連絡事項', pages_path %></li>
-                      <li><%= link_to '取扱者', sellers_path %></li>
-                      <li><%= link_to '公演', stages_path %></li>
-                      <li><%= link_to 'チケット種別 ← チケットを予約するために登録が必要です', :kinds, :style=>"color:#FF00FF"%></li>
+                      <li><%= link_to 'プロフィール変更', edit_seller_registration_path, class: "nav-link" %></li>
+                      <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete, class: "nav-link" %></li>
+                      <li><%= link_to '連絡事項', pages_path, class: "nav-link" %></li>
+                      <li><%= link_to '取扱者', sellers_path, class: "nav-link" %></li>
+                      <li><%= link_to '公演', stages_path, class: "nav-link" %></li>
+                      <li><%= link_to 'チケット種別 ← チケットを予約するために登録が必要です', :kinds, class: "nav-link", :style=>"color:#FF00FF" %></li>
                     </ul>
                   <% else %>
                     <% if @master_payment.empty? %>
                       <ul class="nav navbar-nav">
-                        <li><%= link_to 'プロフィール変更', edit_seller_registration_path %></li>
-                        <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete %></li>
-                        <li><%= link_to '連絡事項', pages_path %></li>
-                        <li><%= link_to '取扱者', sellers_path %></li>
-                        <li><%= link_to '公演', stages_path %></li>
-                        <li><%= link_to 'チケット種別', kinds_path %></li>
-                        <li><%= link_to '支払方法 ← チケットを予約するために登録が必要です', :payments, :style=>"color:#FF00FF"%></li>
+                        <li><%= link_to 'プロフィール変更', edit_seller_registration_path, class: "nav-link" %></li>
+                        <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete, class: "nav-link" %></li>
+                        <li><%= link_to '連絡事項', pages_path, class: "nav-link" %></li>
+                        <li><%= link_to '取扱者', sellers_path, class: "nav-link" %></li>
+                        <li><%= link_to '公演', stages_path, class: "nav-link" %></li>
+                        <li><%= link_to 'チケット種別', kinds_path, class: "nav-link" %></li>
+                        <li><%= link_to '支払方法 ← チケットを予約するために登録が必要です', :payments, class: "nav-link", :style=>"color:#FF00FF" %></li>
                     <% end %>
                   <% end %>
                 <% end %>
               <% else %>
-                <ul class="nav navbar-nav">
-                  <li><%= link_to 'プロフィール変更', edit_seller_registration_path %></li>
-                  <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete %></li>
-                  <li><%= link_to '連絡事項', pages_path %></li>
-                  <li><%= link_to '取扱者', sellers_path %></li>
-                  <li><%= link_to '公演', stages_path %></li>
-                  <li><%= link_to 'チケット種別', kinds_path %></li>
-                  <li><%= link_to '支払方法', payments_path %></li>
-                  <br>
-                  <li><%= link_to 'チケット', tickets_path %></li>
-                  <li><%= link_to '集計', lists_path %></li>
-                  <li><%= link_to '来場者一覧', visitors_path %></li>
-                  <li><%= link_to '組み合わせ', connections_path %></li>
-                  <li><%= link_to '予約一覧印刷', reserved_lists_path %></li>
-                  <li><%= link_to '予約半券印刷', reserved_stubs_path %></li>
-                </ul>
-                <% end %>
+              <div class="d-flex flex-column">
+                  <ul class="navbar-nav mr-auto justify-content-between">
+                    <li class="nav-item"><%= link_to 'プロフィール変更', edit_seller_registration_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to 'ログアウト', destroy_seller_session_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to '連絡事項', pages_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to '取扱者', sellers_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to '公演', stages_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to 'チケット種別', kinds_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to '支払方法', payments_path, class: "nav-link" %></li>
+                  </ul>
+                  <ul class="navbar-nav flex-row justify-content-between">
+                    <li class="nav-item"><%= link_to 'チケット', tickets_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to '集計', lists_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to '来場者一覧', visitors_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to '組み合わせ', connections_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to '予約一覧印刷', reserved_lists_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to '予約半券印刷', reserved_stubs_path, class: "nav-link" %></li>
+                  </ul>
+                </div>
+              <% end %>
             <% else %>
               <% if @master_stage.empty? || @master_kind.empty? || @master_payment.empty? %>
                 <ul class="nav navbar-nav">
-                  <li><%= link_to 'プロフィール変更', edit_seller_registration_path %></li>
-                  <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete %></li>
-                  <li><%= link_to '連絡事項', pages_path %></li>
+                  <li><%= link_to 'プロフィール変更', edit_seller_registration_path, class: "nav-link" %></li>
+                  <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete, class: "nav-link" %></li>
+                  <li><%= link_to '連絡事項', pages_path, class: "nav-link" %></li>
                 </ul>
               <% else %>
                 <ul class="nav navbar-nav">
-                  <li><%= link_to 'プロフィール変更', edit_seller_registration_path %></li>
-                  <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete %></li>
-                  <li><%= link_to '連絡事項', pages_path %></li>
-                  <li><%= link_to 'チケット', tickets_path %></li>
-                  <li><%= link_to '取扱者', sellers_path %></li>
-                  <li><%= link_to '集計', lists_path %></li>
-                  <li><%= link_to '来場者一覧', visitors_path %></li>
+                  <li><%= link_to 'プロフィール変更', edit_seller_registration_path, class: "nav-link" %></li>
+                  <li><%= link_to 'ログアウト', destroy_seller_session_path, method: :delete, class: "nav-link" %></li>
+                  <li><%= link_to '連絡事項', pages_path, class: "nav-link" %></li>
+                  <li><%= link_to 'チケット', tickets_path, class: "nav-link" %></li>
+                  <li><%= link_to '取扱者', sellers_path, class: "nav-link" %></li>
+                  <li><%= link_to '集計', lists_path, class: "nav-link" %></li>
+                  <li><%= link_to '来場者一覧', visitors_path, class: "nav-link" %></li>
                 </ul>
               <% end %>
             <% end %>
           <% else %>
             <ul class="nav navbar-nav">
-              <li><%= link_to 'サインアップ', new_seller_registration_path %></li>
-              <li><%= link_to 'ログイン', new_seller_session_path %></li>
+              <li><%= link_to 'サインアップ', new_seller_registration_path, class: "nav-link" %></li>
+              <li><%= link_to 'ログイン', new_seller_session_path, class: "nav-link" %></li>
             </ul>
           <% end %>
       </nav>
