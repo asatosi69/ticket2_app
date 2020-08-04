@@ -198,9 +198,9 @@ class TicketsController < ApplicationController
       redirect_to("/tickets")
   end
   
-  
   def download
      @tickets = Ticket.all
+     @subdomain = request.subdomain.to_s.to_sym
      
      respond_to do |format|
        format.csv do
@@ -222,7 +222,6 @@ class TicketsController < ApplicationController
       end
       
   end
-  
   
   private
   

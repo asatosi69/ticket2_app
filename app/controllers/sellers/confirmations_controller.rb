@@ -9,10 +9,15 @@ class Sellers::ConfirmationsController < Devise::ConfirmationsController
 
   # POST /resource/confirmation
   def create
-    @subdomain = request.subdomain.to_s
-    Rails.logger.info @subdomain
-    @token = resource.generate_confirmation_token!
-    UserMailer.confirmation_instructions(resource, @token, {subdomain: @subdomain})
+      @subdomain = request.subdomain.to_s
+      binding.pry
+      super do
+        @subdomain = request.subdomain.to_s
+        Rails.logger.info @subdomain
+        @token = resource.generate_confirmation_token!
+        binding.pry
+        UserMailer.confirmation_instructions(resource, @token, {subdomain: @subdomain})
+      end
   end
 
   # GET /resource/confirmation?confirmation_token=abcdef

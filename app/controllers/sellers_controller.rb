@@ -34,6 +34,7 @@ class SellersController < ApplicationController
         
         @sellers.each do |seller|
           UserMailer.notice_mail_for_url(seller).deliver
+          UserMailer.with(subdomain: subdomain).notice_mail_for_url(seller).deliver
         end
   
         redirect_to("/sellers")

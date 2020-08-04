@@ -59,8 +59,6 @@
 <p>
   <%= form.submit "登録" %>
   <%= form.submit "連続登録", name: "Renzoku" %>
-  <%= link_to :back, :style=>"color:black" do %>
-    <button>戻る</button>
-  <% end %>
+  <%= button_to '戻る', :back, method: :get %>
 </p>
 <% end %>

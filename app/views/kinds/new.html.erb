@@ -1,4 +1,5 @@
-<h1>『チケット種別』を登録</h1>
+<br>
+<h3>『チケット種別』を登録</h3>
 <br>
 <br>
 <%= form_with model: @kind do |form| %>
@@ -23,10 +24,8 @@
   <%= form.label(:end_flag, Stage.human_attribute_name(:end_flag), class:'control-label') %>
   <%= form.check_box :end_flag , class: 'form-control'%>
 </p>
-<p>
+<div class="btn-group">
+  <%= button_to '戻る', :back, method: :get %>
   <%= form.submit "登録" %>
-  <%= link_to :back, :style=>"color:#333333" do %>
-    <button>戻る</button>
-  <% end %>
-</p>
+</div>
 <% end %>

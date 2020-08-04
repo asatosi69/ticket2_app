@@ -51,9 +51,7 @@
 <br>
 
 <% if current_seller.admin_flag? %>
-  <%= link_to tickets_download_path(format: :csv), :style=>"color:#333333" do %>
-    <button>全レコードCSVダウンロード</button>
-  <% end %>
+  <%= button_to '全レコードCSVダウンロード', tickets_download_path(format: :csv), method: :get %>
 <% end %>
 <br>
 <br>

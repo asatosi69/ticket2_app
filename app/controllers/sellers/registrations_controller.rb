@@ -11,12 +11,19 @@ class Sellers::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  def create
-    @subdomain = request.subdomain.to_s
-    Rails.logger.info @subdomain
-    @token = resource.generate_confirmation_token!
-    UserMailer.confirmation_instructions(resource, @token, {subdomain: @subdomain})
-  end
+  #def create
+    #@subdomain = request.subdomain.to_s
+    #Rails.logger.info @subdomain
+    #binding.pry
+    #UserMailer.confirmation_instructions(resource, @token, {subdomain: @subdomain})
+    #super do
+      #@subdomain = request.subdomain.to_s
+      #Rails.logger.info @subdomain
+      #@token = resource.send(:generate_confirmation_token!)
+      #binding.pry
+      #UserMailer.confirmation_instructions(resource, @token, {subdomain: @subdomain})
+    #end
+  #end
 
   # GET /resource/edit
   def edit

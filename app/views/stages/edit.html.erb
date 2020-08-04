@@ -1,6 +1,5 @@
 <br>
-<br>
-<h1>『公演』を更新</h1>
+<h3>『公演』を更新</h3>
 <br>
 <br>
 <%= form_with model: @stage do |form| %>
@@ -55,8 +54,6 @@
 </p>
 <p>
   <%= form.submit "更新" %>
-  <%= link_to :back, :style=>"color:#333333" do %>
-    <button>戻る</button>
-  <% end %>
+  <%= button_to '戻る', :back, method: :get %>
 </p>
 <% end %>

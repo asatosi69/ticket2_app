@@ -4,8 +4,8 @@ CSV.generate do |csv|
   csv << column_names
   @tickets.each do |ticket|
     column_values = [
-      Rails.application.config.troupe_name,
-      Rails.application.config.performance_name,
+      Rails.configuration.x.send(@subdomain).troupe_name,
+      Rails.configuration.x.send(@subdomain).performance_name,
       ticket.id,
       ticket.seller.name,
       ticket.stage.stage,

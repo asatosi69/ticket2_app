@@ -66,7 +66,7 @@ class VisitorsController < ApplicationController
                     if ticket.buyer_mail.present? # メールアドレスが登録されているか？
                         if not ticket.enquete_flag # アンケート送付済みフラグが立っていないか？
                             unless enquete_array.include?(ticket.buyer_mail) # すでに同じメールアドレスについて処理をしていないか？
-                                UserMailer.notice_mail_for_enquete(ticket).deliver
+                                UserMailer.with(subdomain: subdomain).notice_mail_for_enquete(ticket).deliver
                                 enquete_array.push(ticket.buyer_mail)
                             end
                             ticket.update(enquete_flag: true)

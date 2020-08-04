@@ -61,14 +61,9 @@
   </div>
 <% end %>
 
-<%= link_to :back, :style=>"color:#333333" do %>
-  <button>戻る</button>
-<% end %>
 
-<%= link_to :connections2_index, :style=>"color:#333333" do %>
-  <button>『チケット種別』と『支払方法』の組み合わせ</button>
-<% end %>
-
-<%= link_to :connections3_index, :style=>"color:#333333" do %>
-  <button>『支払方法』と『公演』の組み合わせ</button>
-<% end %>
+<div class="btn-group">
+  <%= button_to '戻る', :back, method: :get %>
+  <%= button_to '『チケット種別』と『支払方法』の組み合わせ' ,:connections2_index, {method: :get} %>
+  <%= button_to '『支払方法』と『公演』の組み合わせ' ,:connections3_index, {method: :get} %>
+</div>

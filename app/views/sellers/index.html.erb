@@ -51,14 +51,11 @@
     </table>
   </div>
   <% if current_seller.admin_flag %>
-    <%= submit_tag "一括送信" %>
-    <%= link_to :back, :style=>"color:#333333" do %>
-      <button type="button" class="btn btn-outline-secondary">Secondary</button>
-    <% end %>
+    <div class="btn-group">
+      <%= button_to '戻る', :back, method: :get %>
+      <%= submit_tag "一括送信" %>
+    </div>
   <% else %>
-  <%= link_to :back, :style=>"color:#333333" do %>
-    <button>戻る</button>
-  <% end %>
+    <%= button_to '戻る', :back, method: :get %>
   <% end %>
 <% end %>
-<%= paginate @sellers -%>

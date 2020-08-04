@@ -55,16 +55,14 @@
   </div>
   <% if current_seller.admin_flag %>
     <br>
-    <p><%= submit_tag "来場済 ON/OFF", name: "Hanten" %>
-       <%= submit_tag "アンケート送付", name: "Enquete" %></p>
-    <%= link_to :back do %>
-      <button>戻る</button>
-    <% end %>
+    <div class="btn-group">
+      <%= button_to '戻る', :back, method: :get %>
+      <%= submit_tag "来場済 ON/OFF", name: "Hanten" %>
+      <%= submit_tag "アンケート送付", name: "Enquete" %>
+    </div>
   <% else %>
     <br>
-    <%= link_to :back do %>
-      <button>戻る</button>
-    <% end %>
+    <%= button_to '戻る', :back, method: :get %>
   <% end %>
 
 <% end %>
