@@ -1,27 +1,23 @@
 class UserMailer < ApplicationMailer
     include Devise::Mailers::Helpers
+    include ApplicationHelper
+    helper :application
 
     default from: "no-reply@gmail.com"
+    
 
     def confirmation_instructions(record, token, opts={})
-       @token = token
-       #@subdomain = opts.delete(:subdomain)
-       @subdomain = "admin"
-       Rails.logger.info @subdomain
-       Rails.logger.info opts
-       binding.pry
-       devise_mail(record, :confirmation_instructions, opts)
+      @token = token
+      devise_mail(record, :confirmation_instructions, opts)
     end
 
     def reset_password_instructions(record, token, opts={})
       @token = token
-      @subdomain = opts[:subdomain]
       devise_mail(record, :reset_password_instructions, opts)
     end
 
     def unlock_instructions(record, token, opts={})
       @token = token
-      @subdomain = opts[:subdomain]
       devise_mail(record, :unlock_instructions, opts)
     end
 

@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :master_record?
   before_action :subdomain
   before_action :establish_subdomain
-
+  
+  
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])

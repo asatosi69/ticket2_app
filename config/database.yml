@@ -79,3 +79,21 @@ production:
   username: root
   password: orangeseed69
   host: 127.0.0.1 # IPアドレス
+
+ticket2_app_admin_production:
+  <<: *default
+  adapter: mysql2
+  encoding: utf8
+  database: ticket2_app_admin_production # mysqlで作成したdatabase名
+  username: root
+  password: orangeseed69
+  host: 127.0.0.1 # IPアドレス
+
+ticket2_app_admin2_production:
+  <<: *default
+  adapter: mysql2
+  encoding: utf8
+  database: ticket2_app_admin2_production # mysqlで作成したdatabase名
+  username: root
+  password: orangeseed69
+  host: 127.0.0.1 # IPアドレス
