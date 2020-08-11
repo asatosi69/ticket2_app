@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
     
     def establish_subdomain
         ActiveRecord::Base.establish_connection :"ticket2_app_#{subdomain}_development".to_s.to_sym
+        ActiveRecord::Base.establish_connection :"ticket2_app_#{subdomain}_production".to_s.to_sym
     end
     
     def subdomain
