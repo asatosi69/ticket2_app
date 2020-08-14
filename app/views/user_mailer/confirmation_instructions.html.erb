@@ -1,5 +1,5 @@
 <p>こんにちは <%= @email %> さん</p>
 
 <p> ↓ のリンクをクリックして、メールアドレスを認証してください。</p>
-
+<%= @resource.subdomain %>
 <p><%= link_to 'アカウントを認証', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token, :subdomain => @resource.subdomain) %></p>
