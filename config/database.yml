@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password:
+  password: orangeseed69
   socket: /tmp/mysql.sock
 
 development:
@@ -28,7 +28,7 @@ ticket2_app_admin_development:
   database: ticket2_app_admin_development
   pool: 5
   username: root
-  password:
+  password: orangeseed69
   socket: /var/lib/mysql/mysql.sock
   host: 127.0.0.1
   port: 3306
@@ -40,11 +40,11 @@ ticket2_app_admin2_development:
   database: ticket2_app_admin2_development
   pool: 5
   username: root
-  password:
+  password: orangeseed69
   socket: /var/lib/mysql/mysql.sock
   host: 127.0.0.1
   port: 3306
-
+  
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.

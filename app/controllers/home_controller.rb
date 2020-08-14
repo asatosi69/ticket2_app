@@ -3,5 +3,7 @@ class HomeController < ApplicationController
     before_action :end_time_past?
 
     def top
+        @subdomain  = request.subdomain.to_s.to_sym
+        binding.pry
     end
 end

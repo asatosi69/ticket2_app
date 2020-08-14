@@ -13,8 +13,11 @@ class ApplicationController < ActionController::Base
     end
     
     def establish_subdomain
-        ActiveRecord::Base.establish_connection :"ticket2_app_#{subdomain}_development".to_s.to_sym
-        ActiveRecord::Base.establish_connection :"ticket2_app_#{subdomain}_production".to_s.to_sym
+        if Rails.env.development?
+            ActiveRecord::Base.establish_connection :"ticket2_app_#{subdomain}_development".to_s.to_sym
+        else
+            ActiveRecord::Base.establish_connection :"ticket2_app_#{subdomain}_production".to_s.to_sym
+        end
     end
     
     def subdomain
