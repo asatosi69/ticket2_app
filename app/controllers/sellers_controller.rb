@@ -34,7 +34,7 @@ class SellersController < ApplicationController
         @host_with_port = request.host_with_port
         
         @sellers.each do |seller|
-            seller.url = "#{@host_with_port}/registers/#{seller.id}/new"
+            seller.url = "https://#{@host_with_port}/registers/#{seller.id}/new"
             seller.save
         end
         
