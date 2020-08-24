@@ -7,7 +7,7 @@
 <br>
 <%= form_with(scope: :search, url: tickets_path, method: :get, local: true) do |form| %>
 
-    <div class="form-row">
+    <div class="form-inline">
 
       <% if current_seller.admin_flag? %>
         <div class="form-group">
@@ -25,7 +25,7 @@
 
     </div>
 
-    <div class="form-row">
+    <div class="form-inline">
 
       <div class="form-group">
         <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id)) %>
