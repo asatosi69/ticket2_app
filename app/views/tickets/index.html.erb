@@ -7,28 +7,36 @@
 <br>
 <%= form_with(scope: :search, url: tickets_path, method: :get, local: true) do |form| %>
 
-    <% if current_seller.admin_flag? %>
-      <div class="form-group">
-        <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id)) %>
-        <%= form.collection_select(:seller_id, Seller.all, :id, :name, selected: @search_params[:seller_id], prompt: "選択して下さい", :class => "form-control") %>
-      </div>
-    <% else %>
+    <div class="form-row">
+
+      <% if current_seller.admin_flag? %>
+        <div class="form-group">
+          <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id)) %>
+          <%= form.collection_select(:seller_id, Seller.all, :id, :name, selected: @search_params[:seller_id], prompt: "選択して下さい", :class => "form-control") %>
+        </div>
+      <% else %>
       <%= form.hidden_field :seller_id, value: current_seller.id %>
-    <% end %>
+      <% end %>
 
-    <div class="form-group">
-      <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id)) %>
-      <%= form.collection_select(:stage_id, Stage.all.order(stage_time: "ASC"), :id, :stage, selected: @search_params[:stage_id], prompt: "選択して下さい", :class => "form-control") %>
+      <div class="form-group">
+        <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id)) %>
+        <%= form.collection_select(:stage_id, Stage.all.order(stage_time: "ASC"), :id, :stage, selected: @search_params[:stage_id], prompt: "選択して下さい", :class => "form-control") %>
+      </div>
+
     </div>
 
-    <div class="form-group">
-      <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id)) %>
-      <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind, selected: @search_params[:kind_id], prompt: "選択して下さい", :class => "form-control") %>
-    </div>
+    <div class="form-row">
 
-    <div class="form-group">
+      <div class="form-group">
+        <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id)) %>
+        <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind, selected: @search_params[:kind_id], prompt: "選択して下さい", :class => "form-control") %>
+      </div>
+
+      <div class="form-group">
       <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id)) %>
       <%= form.collection_select(:payment_id, Payment.all.order(payment: "ASC"), :id, :payment, selected: @search_params[:payment_id], prompt: "選択して下さい", :class => "form-control") %>
+      </div>
+
     </div>
 
     <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name)) %>
