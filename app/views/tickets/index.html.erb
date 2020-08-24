@@ -25,7 +25,7 @@
     <div class="form-group row">
       <div>
         <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id)) %>
-        <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind, selected: @search_params[:kind_id], prompt: "選択して下さい", :class => "form-control") %>        </div>
+        <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind, selected: @search_params[:kind_id], prompt: "選択して下さい", :class => "form-control") %>
       </div>
       <div>
         <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id)) %>
