@@ -31,9 +31,15 @@ class SellersController < ApplicationController
     def mail_all
         
         @sellers = Seller.where(id: params[:sellers])
+        @host_with_port = request.host_with_port
         
         @sellers.each do |seller|
-          UserMailer.notice_mail_for_url(seller).deliver
+            seller.url = "#{@host_with_port}/registers/#{seller.id}/new"
+            seller.save
+        end
+        
+        
+        @sellers.each do |seller|
           UserMailer.with(subdomain: subdomain).notice_mail_for_url(seller).deliver
         end
   
