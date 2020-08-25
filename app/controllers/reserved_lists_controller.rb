@@ -7,7 +7,6 @@ class ReservedListsController < ApplicationController
   def index
         @stages = Stage.all.order(stage_time: "ASC")
         @kinds = Kind.all.order(kind: "ASC")
-        
   end
     
   def reserved_list_print
