@@ -49,17 +49,17 @@
                   <% end %>
                 <% end %>
               <% else %>
-              <div class="d-flex flex-column">
-                  <ul class="navbar-nav flex-row justify-content-end">
+              <div>
+                  <ul class="navbar-nav demo1">
                     <li class="nav-item"><%= link_to 'プロフィール変更', edit_seller_registration_path, class: "nav-link" %></li>
-                    <li class="nav-item"><%= link_to 'ログアウト', destroy_seller_session_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to '　　ログアウト', destroy_seller_session_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to '連絡事項', pages_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to '取扱者', sellers_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to '公演', stages_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to 'チケット種別', kinds_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to '支払方法', payments_path, class: "nav-link" %></li>
                   </ul>
-                  <ul class="navbar-nav flex-row justify-content-end">
+                  <ul class="navbar-nav demo1">
                     <li class="nav-item"><%= link_to 'チケット', tickets_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to '集計', lists_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to '来場者一覧', visitors_path, class: "nav-link" %></li>

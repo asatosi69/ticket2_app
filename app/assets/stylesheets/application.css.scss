@@ -18,3 +18,16 @@
  */
 
  @import "bootstrap";
+
+ .demo1{
+  width: 1000px;
+  margin-right: none;
+  margin-left: 30px;
+}
+.demo1 li{
+  float: left;
+  width: 200px;
+  list-style: none;
+  padding: none;
+  margin-right: none;
+}

@@ -8,7 +8,7 @@ class ReservedListsController < ApplicationController
         @stages = Stage.all.order(stage_time: "ASC")
         @kinds = Kind.all.order(kind: "ASC")
   end
-    
+
   def reserved_list_print
       @page_title = '予約一覧別ウィンドウ'
       search_condition = Ticket.joins(:seller).where(stage_id: params[:stage_id])
@@ -24,7 +24,7 @@ class ReservedListsController < ApplicationController
       @stage = Stage.find_by(id: params[:stage_id])
       @tickets = search_condition
       #render template: 'reserved_lists/reserved_lists'
-      render 'reserved_lists/reserved_lists', layout: "application2"
+      render 'reserved_lists/reserved_lists', layout: "application2" and return
     end
 
 end
