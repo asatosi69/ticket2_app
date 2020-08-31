@@ -8,7 +8,7 @@
   <div class="form-row">
     <div class="form-group col-auto">
       <label for="stage_id">公演</label>
-      <%= select_tag 'stage_id', options_from_collection_for_select(Stage.all.order(stage_time: "ASC"), :id, :stage, params[:stage_id]),
+      <%= select_tag 'stage_id', options_from_collection_for_select(Stage.all.order(stage_time: "ASC"), :id, :stage, selected = nil),
       {prompt: "選択して下さい", :class => "form-control"} %>
     </div>
     <div class="form-group col-auto">

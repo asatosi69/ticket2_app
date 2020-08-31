@@ -5,13 +5,13 @@ class VisitorsController < ApplicationController
   def index
       @stages = Stage.all.order(stage_time: "ASC")
       @kinds = Kind.all.order(kind: "ASC")
-      
+
       if current_seller.admin_flag
         @sellers = Seller.all
       else
         @sellers = Seller.where(id: current_seller.id)
       end
-      
+
       case params[:order_id]
       when 'order_by_seller_id_and_buyer_furigana' then
           if current_seller.admin_flag
@@ -38,29 +38,29 @@ class VisitorsController < ApplicationController
                             .order(created_at: "DESC")
           end
       end
-      
+
       render 'visitors/index', layout: "application"
   end
 
 
   def visitor
-        
+
         if params[:Hanten]
 
             @tickets = Ticket.where(id: params[:tickets])
-            
+
             validation_context = current_seller.admin_flag? ? :admin_seller : nil
-            
+
             @tickets.each do |ticket|
                 ticket.visited_flag = !ticket.visited_flag
                 ticket.save(context: validation_context)
             end
-        
+
         else
-        
+
             @tickets = Ticket.all
             enquete_array = [] #アンケート送付済みのメールアドレスを格納する配列
-            
+
             @tickets.each do |ticket|
                 if ticket.visited_flag # 来場済みか？
                     if ticket.buyer_mail.present? # メールアドレスが登録されているか？
@@ -74,9 +74,9 @@ class VisitorsController < ApplicationController
                     end
                 end
             end
-        
+
         end
-        
+
         redirect_to("/visitors")
   end
 
