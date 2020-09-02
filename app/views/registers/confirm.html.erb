@@ -1,6 +1,6 @@
 <br>
 <h3>申込内容の確認</h3>
-
+<br>
 <p> 公演: <%= @ticket.stage.stage %></p>
 <p> チケット種別: <%= @ticket.kind.kind %></p>
 <p> 支払方法: <%= @ticket.payment.payment %></p>
@@ -44,7 +44,7 @@
         <%= form.hidden_field :tel %>
         <%= form.hidden_field :buyer_mail %>
         <%= form.hidden_field :comment1 %>
-        <%= form.submit '申込', class: 'btn btn-default' %>
+        <%= form.submit "申込", class: 'btn btn-default' %>
       <% end %>
     </td>
   </tr>

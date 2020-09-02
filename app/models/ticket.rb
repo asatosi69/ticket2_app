@@ -31,13 +31,6 @@ class Ticket < ApplicationRecord
       message: :invalid_tel
     }
     
-    VALID_BUYER_MAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-    validates :buyer_mail, presence: true,
-    format: {
-      with: VALID_BUYER_MAIL_REGEX,
-      message: :invalid_buyer_mail
-    }
-    
     validate :check_combination_of_stage_and_kind, unless: -> { validation_context == :admin_seller }
     validate :check_combination_of_kind_and_payment, unless: -> { validation_context == :admin_seller }
     validate :check_combination_of_payment_and_stage, unless: -> { validation_context == :admin_seller }

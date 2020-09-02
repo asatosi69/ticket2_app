@@ -57,6 +57,7 @@ class TicketsController < ApplicationController
 
   def create
       @ticket = Ticket.new(params_ticket)
+      subdomain = request.subdomain.to_s.to_sym
       
       validation_context = current_seller.admin_flag? ? :admin_seller : nil
       
@@ -98,7 +99,7 @@ class TicketsController < ApplicationController
                   flash[:notice] = "登録が完了しました"
           
                   if params[:Renzoku]
-                      UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
+                      UserMailer.with(subdomain: subdomain)notice_mail_for_create_ticket(@ticket).deliver
                       redirect_to("/tickets/new")
                   else
                       UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
@@ -115,6 +116,7 @@ class TicketsController < ApplicationController
   def edit
       
       @ticket = Ticket.find_by(id: params[:id])
+      subdomain = request.subdomain.to_s.to_sym
       
       # 『取扱者』の場合は自分以外の予約の操作はできない
       unless current_seller.admin_flag?
@@ -183,6 +185,7 @@ class TicketsController < ApplicationController
   
   def destroy
       @ticket = Ticket.find_by(id: params[:id])
+      subdomain = request.subdomain.to_s.to_sym
       
       # 『取扱者』の場合は自分以外の予約の操作はできない
       unless current_seller.admin_flag?

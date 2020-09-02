@@ -11,6 +11,7 @@ class RegistersController < ApplicationController
       
     def new
         @seller = Seller.find(params[:seller_id])
+        @subdomain = request.subdomain.to_s.to_sym
         @ticket = Ticket.new
     end
     

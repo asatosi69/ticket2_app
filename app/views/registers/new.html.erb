@@ -1,12 +1,13 @@
+<br>
 <h1 class="text-center">
-  <%= "『#{Rails.application.config.performance_name} 』『#{@seller.name}』 専用チケットページ" %>
+  <%= "『#{Rails.configuration.x.send(@subdomain).performance_name} 』『#{@seller.name}』 専用チケットページ" %>
 </h1>
 <br>
 <div class="text-center my-3">
-  <%= link_to "＜公演情報＞", Rails.application.config.performance_url %>
+  <%= link_to "＜公演情報＞", Rails.configuration.x.send(@subdomain).performance_url %>
 </div>
 <div style = "color: red">
-  <%= Rails.application.config.performance_notice.html_safe %>
+  <%= Rails.configuration.x.send(@subdomain).performance_notice %>
 </div>
 
 <%= form_with model: @ticket, url: confirm_registers_path do |form| %>
@@ -39,7 +40,7 @@
   <%= form.text_field :buyer_furigana, {:required => true, class: "form-control"} %>
 </p>
 <p>
-  <%= form.label(:tel, Ticket.human_attribute_name(:tel, class:'control-label') %>
+  <%= form.label(:tel, Ticket.human_attribute_name(:tel), class:'control-label') %>
   <%= form.text_field :tel, {:required => true, class: "form-control"} %>
 </p>
 <p>

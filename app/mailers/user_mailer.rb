@@ -26,10 +26,11 @@ class UserMailer < ApplicationMailer
       return if ticket.buyer_mail.blank?
       @ticket = ticket
       @subdomain = params[:subdomain]
+      binding.pry
       return if @subdomain.blank?
       mail(
-        to: @ticket.buyer_mail,
-        bcc: @ticket.seller.email,
+        to: @ticket.buyer_mail, #{Rails.configuration.x.send(@subdomain).receiver_mail},
+        bcc: @ticket.seller.email, #{Rails.configuration.x.send(@subdomain).receiver_mail},
         subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、承りました'"
       )
     end

@@ -28,6 +28,7 @@ module Ticket2App
     config.x.admin.troupe_url = 'www.shikaku.com'.freeze
     config.x.admin.troupe_mail = 'shikaku@yahoo.co.jp'.freeze
     config.x.admin.enquete_form = 'google.co.jp'.freeze
+    config.x.admin.receiver_mail = 'puente.japan@gmail.com'.freeze
     
     config.x.admin2.troupe_name = '三角'.freeze
     config.x.admin2.performance_name = 'おにぎり'.freeze
@@ -35,6 +36,7 @@ module Ticket2App
     config.x.admin2.troupe_url = 'www.sankaku.com'.freeze
     config.x.admin2.troupe_mail = 'aaa@yahoo.co.jp'.freeze
     config.x.admin2.enquete_form = 'google.co.jp'.freeze
+    config.x.admin2.receiver_mail = 'puente.japan@gmail.com'.freeze
 
 
   end
