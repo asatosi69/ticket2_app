@@ -38,11 +38,15 @@
 </p>
 <p>
   <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name), class:'control-label') %>
-  <%= form.text_field :buyer_name, class: 'form-control' %>
+  <%= form.text_field :buyer_name, {:required => true, class: "form-control"} %>
 </p>
 <p>
   <%= form.label(:buyer_furigana, Ticket.human_attribute_name(:buyer_furigana), class:'control-label') %>
-  <%= form.text_field :buyer_furigana, class: 'form-control' %>
+  <%= form.text_field :buyer_furigana, {:required => true, class: "form-control"} %>
+</p>
+<p>
+  <%= form.label(:tel, Ticket.human_attribute_name(:tel), class:'control-label') %>
+  <%= form.text_field :tel, {:required => true, class: "form-control"} %>
 </p>
 <p>
   <%= form.label(:buyer_mail, Ticket.human_attribute_name(:buyer_mail), class:'control-label') %>

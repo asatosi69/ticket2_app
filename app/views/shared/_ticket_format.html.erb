@@ -18,6 +18,7 @@
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">チケット枚数</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">予約者名</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">予約者名フリガナ</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">来場者電話番号</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">予約者Eメール</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">来場済</div></th>
         </tr>
@@ -36,6 +37,7 @@
             <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.count %></div></td>
             <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.buyer_name %></div></td>
             <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.buyer_furigana %></div></td>
+            <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.tel %></div></td>
             <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.buyer_mail %></div></td>
             <td style="white-space:nowrap;"><div class="position-in-the-cell1">
               <% if ticket.visited_flag %>

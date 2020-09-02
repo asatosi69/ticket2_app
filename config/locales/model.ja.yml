@@ -46,6 +46,7 @@ ja:
         enquete_flage: 'アンケート送付済みフラグ'
         error_connection: '組み合わせエラー'
         limit_over: '残席無し'
+        tel: '来場者電話番号'
       seller:
         name: '取扱者'
         admin_flag: '管理者フラグ'

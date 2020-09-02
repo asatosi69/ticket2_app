@@ -84,7 +84,7 @@ class TicketsController < ApplicationController
                   end
                   
               else
-                      redirect_to("/tickets")
+                  render :new
               end
               
           else
@@ -106,7 +106,7 @@ class TicketsController < ApplicationController
                   end
                   
               else
-                  redirect_to("/tickets")
+                  render :new
               end
       end
       
@@ -162,7 +162,7 @@ class TicketsController < ApplicationController
                     flash[:notice] = "編集が完了しました"
                     redirect_to("/tickets")
               else
-                    rendirect("tickets/edit")
+                    redirect_to("tickets/edit")
               end
           else
               flash[:notice] = "割引キーワードが正しくありません。"
@@ -175,7 +175,7 @@ class TicketsController < ApplicationController
              flash[:notice] = "編集が完了しました"
              redirect_to("/tickets")
           else
-             rendirect("tickets/edit")
+             redirect_to("tickets/edit")
           end
       end
       
@@ -226,7 +226,7 @@ class TicketsController < ApplicationController
   private
   
   def params_ticket
-    params.require(:ticket).permit(:seller_id, :stage_id, :kind_id, :payment_id, :count, :buyer_name, :buyer_furigana, :buyer_mail, :visited_flag, :comment1, :comment2, :enquete_flag)
+    params.require(:ticket).permit(:seller_id, :stage_id, :kind_id, :payment_id, :count, :buyer_name, :buyer_furigana, :tel, :buyer_mail, :visited_flag, :comment1, :comment2, :enquete_flag)
   end
     
   def ticket_search_params

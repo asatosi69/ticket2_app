@@ -10,16 +10,32 @@ class Ticket < ApplicationRecord
     validates :payment_id, presence: true
     validates :count, presence: true, numericality: { only_integer: true }
     
+    VALID_BUYER_NAME_REGEX = /\A[ぁ-んァ-ヶー一-龠]+\z/
     validates :buyer_name, presence: true,
     format: {
-      with: /\A[ぁ-んァ-ヶー一-龠]+\z/,
-      errors: "は全角のみで入力して下さい"
+      with: VALID_BUYER_NAME_REGEX,
+      message: :invalid_buyer_name
     }
     
+    VALID_BUYER_FURIGANA_REGEX = /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/
     validates :buyer_furigana, presence: true,
     format: {
-      with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
-      errors: "は全角カタカナのみで入力して下さい"
+      with: VALID_BUYER_FURIGANA_REGEX,
+      message: :invalid_buyer_furigana
+    }
+    
+    VALID_TEL_REGEX = /\A(((0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1}|[5789]0[-(]?\d{4})[-)]?)|\d{1,4}\-?)\d{4}|0120[-(]?\d{3}[-)]?\d{3})\z/
+    validates :tel, presence: true,
+    format: {
+      with: VALID_TEL_REGEX,
+      message: :invalid_tel
+    }
+    
+    VALID_BUYER_MAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+    validates :buyer_mail, presence: true,
+    format: {
+      with: VALID_BUYER_MAIL_REGEX,
+      message: :invalid_buyer_mail
     }
     
     validate :check_combination_of_stage_and_kind, unless: -> { validation_context == :admin_seller }

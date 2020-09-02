@@ -8,6 +8,7 @@
 <p> 予約者名: <%= @ticket.buyer_name %></p>
 <p> 予約者名フリガナ: <%= @ticket.buyer_furigana %></p>
 <p> 予約者Eメール: <%= @ticket.buyer_mail %></p>
+<p> 来場者電話番号: <%= @ticket.tel %></p>
 <p> コメント: <%= @ticket.comment1 %></p>
 <br>
 <p>お支払い金額：<%=  (@ticket.kind.price + @ticket.payment.discount_rate) * @ticket.count %>円</p>
@@ -25,6 +26,7 @@
         <%= form.hidden_field :count %>
         <%= form.hidden_field :buyer_name %>
         <%= form.hidden_field :buyer_furigana %>
+        <%= form.hidden_field :tel %>
         <%= form.hidden_field :buyer_mail %>
         <%= form.hidden_field :comment1 %>
         <%= form.submit '戻る', class: 'btn btn-default' %>
@@ -39,6 +41,7 @@
         <%= form.hidden_field :count %>
         <%= form.hidden_field :buyer_name %>
         <%= form.hidden_field :buyer_furigana %>
+        <%= form.hidden_field :tel %>
         <%= form.hidden_field :buyer_mail %>
         <%= form.hidden_field :comment1 %>
         <%= form.submit '申込', class: 'btn btn-default' %>
