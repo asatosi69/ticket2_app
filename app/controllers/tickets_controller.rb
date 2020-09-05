@@ -97,9 +97,8 @@ class TicketsController < ApplicationController
       
           if @ticket.save(context: validation_context)
                   flash[:notice] = "登録が完了しました"
-          
                   if params[:Renzoku]
-                      UserMailer.with(subdomain: subdomain)notice_mail_for_create_ticket(@ticket).deliver
+                      UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
                       redirect_to("/tickets/new")
                   else
                       UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
@@ -196,6 +195,7 @@ class TicketsController < ApplicationController
           end
       end
       
+      binding.pry
       @ticket.destroy
       UserMailer.with(subdomain: subdomain).notice_mail_for_destroy_ticket(@ticket).deliver
       redirect_to("/tickets")

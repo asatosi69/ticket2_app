@@ -29,8 +29,7 @@ class SellersController < ApplicationController
     end
     
     def mail_all
-        subdomain = request.subdomain.to_s.to_sym
-        
+        @subdomain = request.subdomain.to_s.to_sym
         @sellers = Seller.where(id: params[:sellers])
         @host_with_port = request.host_with_port
         

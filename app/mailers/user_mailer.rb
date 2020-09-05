@@ -21,16 +21,14 @@ class UserMailer < ApplicationMailer
       devise_mail(record, :unlock_instructions, opts)
     end
 
-    
     def notice_mail_for_create_ticket(ticket)
       return if ticket.buyer_mail.blank?
       @ticket = ticket
       @subdomain = params[:subdomain]
-      binding.pry
       return if @subdomain.blank?
       mail(
-        to: @ticket.buyer_mail, #{Rails.configuration.x.send(@subdomain).receiver_mail},
-        bcc: @ticket.seller.email, #{Rails.configuration.x.send(@subdomain).receiver_mail},
+        to: @ticket.buyer_mail,
+        bcc: @ticket.seller.email,
         subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、承りました'"
       )
     end
@@ -58,17 +56,17 @@ class UserMailer < ApplicationMailer
         subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、キャンセル承りました'"
       )
     end
-    
+
     def notice_mail_for_url(seller)
-      return if seller.email.blank?
-      @seller = seller
-      @subdomain = params[:subdomain]
-      return if @subdomain.blank?
-      mail(
-        to: @seller.email,
-        subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』の予約ページのURLをお知らせいたします。'"
-        )
-      end
+    return if seller.email.blank?
+    @seller = seller
+    @subdomain = params[:subdomain]
+    return if @subdomain.blank?
+    mail(
+      to:  @seller.email,
+      subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』の予約ページのURLをお知らせいたします。'"
+      )
+    end
     
     def notice_mail_for_enquete(ticket)
     return if ticket.buyer_mail.blank?
