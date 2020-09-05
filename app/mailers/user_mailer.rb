@@ -28,7 +28,7 @@ class UserMailer < ApplicationMailer
       return if @subdomain.blank?
       mail(
         to: @ticket.buyer_mail,
-        bcc: @ticket.seller.email,
+        bcc: "#{@ticket.seller.email}, #{Rails.configuration.x.send(@subdomain).receiver_mail}",
         subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、承りました'"
       )
     end
@@ -40,7 +40,7 @@ class UserMailer < ApplicationMailer
       return if @subdomain.blank?
       mail(
         to: @ticket.buyer_mail,
-        bcc: @ticket.seller.email,
+        bcc: "#{@ticket.seller.email}, #{Rails.configuration.x.send(@subdomain).receiver_mail}",
         subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、内容変更承りました'"
       )
     end
@@ -52,7 +52,7 @@ class UserMailer < ApplicationMailer
       return if @subdomain.blank?
       mail(
         to: @ticket.buyer_mail,
-        bcc: @ticket.seller.email,
+        bcc: "#{@ticket.seller.email}, #{Rails.configuration.x.send(@subdomain).receiver_mail}",
         subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、キャンセル承りました'"
       )
     end
@@ -63,7 +63,8 @@ class UserMailer < ApplicationMailer
     @subdomain = params[:subdomain]
     return if @subdomain.blank?
     mail(
-      to:  @seller.email,
+      to:  "#{@seller.email}",
+      bcc:  "#{Rails.configuration.x.send(@subdomain).receiver_mail}",
       subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』の予約ページのURLをお知らせいたします。'"
       )
     end
@@ -75,7 +76,7 @@ class UserMailer < ApplicationMailer
     return if @subdomain.blank?
     mail(
       to: @ticket.buyer_mail,
-      bcc: @ticket.seller.email,
+      bcc: "#{@ticket.seller.email}, #{Rails.configuration.x.send(@subdomain).receiver_mail}",
       subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』への観劇後のアンケートにご協力ください。'"
       )
     end
