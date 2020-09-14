@@ -111,7 +111,7 @@ ticket2_app_admin2_production:
   password: orangeseed69
   host: 127.0.0.1 # IPアドレス
 
-ticket2_app_rachetwrench_1_production:
+ticket2_app_ratchetwrench_1_production:
   <<: *default
   adapter: mysql2
   encoding: utf8
