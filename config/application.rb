@@ -40,7 +40,7 @@ module Ticket2App
     
     config.x.ratchetwrench_1.troupe_name = '劇団ラチェットレンチ'.freeze
     config.x.ratchetwrench_1.performance_name = '曇天プラネタリム:Re'.freeze
-    config.x.ratchetwrench_1.performance_url = 'www.onigiri.com'.freeze
+    config.x.ratchetwrench_1.performance_url = 'http://ratchetwrench.info/report.html'.freeze
     config.x.ratchetwrench_1.troupe_url = 'http://ratchetwrench.info/'.freeze
     config.x.ratchetwrench_1.troupe_mail = 'ratchetwrench.teatro@gmail.com'.freeze
     config.x.ratchetwrench_1.enquete_form = '

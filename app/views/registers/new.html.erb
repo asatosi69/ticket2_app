@@ -56,6 +56,10 @@
   <%= form.label(:chk1, "『お願い事項』了解致しました") %>
   <%= form.check_box :chk1, {:required => true, class: "form-control"} %>
 </p>
-      <%= form.submit "申込", class: 'btn btn-default' %>
-      <%= link_to '中止', 'https://www.google.co.jp', class: 'btn btn-default' %>
+<div class="btn-group">
+  <%= form.submit "申込" %>
+  <%=link_to("https://www.google.co.jp") do %>
+    <button>中止</button>
+  <%end%>
+</div>
 <% end %>
