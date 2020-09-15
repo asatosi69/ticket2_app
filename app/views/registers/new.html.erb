@@ -51,6 +51,11 @@
   <%= form.label(:comment1, Ticket.human_attribute_name(:comment1), class:'control-label') %>
   <%= form.text_area :comment1, size: "50x20", class: 'form-control' %>
 </p>
+<br>
+<p>
+  <%= form.label(:chk1, "『お願い事項』了解致しました") %>
+  <%= form.check_box :chk1, {:required => true, class: "form-control"} %>
+</p>
       <%= form.submit "申込", class: 'btn btn-default' %>
       <%= link_to '中止', 'https://www.google.co.jp', class: 'btn btn-default' %>
 <% end %>

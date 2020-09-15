@@ -37,6 +37,16 @@ module Ticket2App
     config.x.admin2.troupe_mail = 'aaa@yahoo.co.jp'.freeze
     config.x.admin2.enquete_form = 'google.co.jp'.freeze
     config.x.admin2.receiver_mail = 'puente.japan@gmail.com'.freeze
+    
+    config.x.ratchetwrench_1.troupe_name = '劇団ラチェットレンチ'.freeze
+    config.x.ratchetwrench_1.performance_name = '曇天プラネタリム:Re'.freeze
+    config.x.ratchetwrench_1.performance_url = 'www.onigiri.com'.freeze
+    config.x.ratchetwrench_1.troupe_url = 'http://ratchetwrench.info/'.freeze
+    config.x.ratchetwrench_1.troupe_mail = 'ratchetwrench.teatro@gmail.com'.freeze
+    config.x.ratchetwrench_1.enquete_form = '
+    https://docs.google.com/forms/d/1WnCzoX-nF7K3rwnw5wGTgQ2bozakHpoSdjD7KcCZdiU/edit
+'.freeze
+    config.x.ratchetwrench_1.receiver_mail = 'ratchetwrench.teatro@gmail.com'.freeze
 
 
   end

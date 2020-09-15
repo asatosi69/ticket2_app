@@ -29,7 +29,6 @@ class ApplicationController < ActionController::Base
     end
     
     def after_sign_out_path_for(resource)
-        binding.pry
       root_path # ログアウト後に遷移するpathを設定
     end
     
