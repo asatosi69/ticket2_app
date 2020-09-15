@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
       pages_path # ログイン後に遷移するpathを設定
     end
     
+    def after_sign_out_path_for(resource)
+      root_path # ログアウト後に遷移するpathを設定
+    end
+    
     # 『管理取扱者』と『一般取扱者』では操作できる内容が異なる
     def admin_seller?
         unless current_seller.admin_flag?
