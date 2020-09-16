@@ -8,7 +8,7 @@ class RegistersController < ApplicationController
       # 予約数が『公演』モデルの各レコードの総席数と同じ、若しくは上回った場合、終了フラグを立てる
       after_action :sold_out?, {only: [:create]}
       
-      layout 'application2.html.erb'
+      layout 'application3.html.erb'
 
       
     def new
