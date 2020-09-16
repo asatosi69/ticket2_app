@@ -1,6 +1,6 @@
 <br>
 <h1 class="text-center">
-  <%= "『#{Rails.configuration.x.send(@subdomain).performance_name} 』" %>
+  <%= "『#{Rails.configuration.x.send(@subdomain).performance_name}』" %>
 </h1>
 <h1 class="text-center">
   <%= "『#{@seller.name}』専用チケットページ" %>
@@ -40,7 +40,7 @@
 <br>
 【ご来場のキャンセルなど】
 <br>
-ご観劇を取り止められる場合、必ず、劇団ラチェットレンチメールアドレス『ratchetwrench.teatro@gmail.com』まで事前にご連絡ください。
+ご観劇を取り止められる場合、必ず、<%= "『#{Rails.configuration.x.send(@subdomain).troupe_name}』" %> の メールアドレス <%= "『#{Rails.configuration.x.send(@subdomain).receiver_mail}』" %> まで事前にご連絡ください。
 <br>
 <br>
 <font color="red">万が一新型コロナウイルスに感染された方がご観劇された場合には、保健所に速やかに報告するとともに、ご来場者様のお名前、緊急連絡先を保健所と共有させていただきます。</font>
