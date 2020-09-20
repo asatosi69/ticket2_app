@@ -45,9 +45,9 @@
                 <% else %>
                   <% connection = Connection3.find_by(payment_id: payment.id, stage_id: stage.id) %>
                     <% if connection.invalid_flag %>
-                      ☑️  /
+                      ☑️ 　/　
                     <% else %>
-                      -  /
+                      - 　/　
                     <% end %>
                   <%= check_box_tag 'connections[]', connection.id %>
                 </div>
