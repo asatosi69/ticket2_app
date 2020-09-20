@@ -12,13 +12,13 @@
 <p>『どなたでも』予約可能です。</p>
 <br>
 <p>セル内右側のチェックボックスにレ点を書いて、ボタン『組み合わせフラグ ON/OFF』を押下すると</p>
-<p>セル左側の『☑️ 』/ 『-』が反転します</p>
+<p>セル左側の『☑️ 』 /  『-』が反転します</p>
 <br>
 <br>
 
 <%= form_tag(connection3_all_path, method: 'patch') do %>
   <div class="table-responsive overflow-y:auto">
-    <table class="table table-striped table-bordered table-hover" style="table-layout:fixed;width:75%">
+    <table class="table table-striped table-bordered table-hover">
       <tr>
         <td>
         </td>
@@ -45,9 +45,9 @@
                 <% else %>
                   <% connection = Connection3.find_by(payment_id: payment.id, stage_id: stage.id) %>
                     <% if connection.invalid_flag %>
-                      ☑️ /
+                      ☑️  /
                     <% else %>
-                      - /
+                      -  /
                     <% end %>
                   <%= check_box_tag 'connections[]', connection.id %>
                 </div>
