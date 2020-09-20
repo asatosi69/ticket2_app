@@ -19,42 +19,47 @@
 <%= form_tag(connection_all_path, method: 'patch') do %>
   <div class="table-responsive overflow-y:auto">
     <table class="table table-striped table-bordered table-hover">
-      <tr>
-        <td>
-        </td>
-        <% @kinds.each do |kind| %>
+      <thead>
+        <tr>
+          <th>
+          </th>
+          <% @kinds.each do |kind| %>
           <th style="white-space:nowrap;">
             <div class="position-in-the-cell1">
               <%= kind.kind %>
             </div>
           </th>
         <% end %>
-      </tr>
-      <% @stages.each do |stage| %>
-        <tr>
-          <th style="white-space:nowrap;">
-            <div class="position-in-the-cell1">
-              <%= stage.stage %>
-            </div>
-          </th>
-          <% @kinds.each do |kind| %>
-            <td style="white-space:nowrap;">
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @stages.each do |stage| %>
+          <tr>
+            <th style="white-space:nowrap;">
               <div class="position-in-the-cell1">
-               <% if stage.end_flag || kind.end_flag %>
-                 受付終了
-               <% else %>
-                 <% connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
-                   <% if connection.invalid_flag %>
-                      ☑️ 　/　
-                   <% else %>
+                <%= stage.stage %>
+              </div>
+            </th>
+            <% @kinds.each do |kind| %>
+              <td style="white-space:nowrap;">
+                <div class="position-in-the-cell1">
+                  <% if stage.end_flag || kind.end_flag %>
+                     受付終了
+                  <% else %>
+                   <% connection = Connection.find_by(stage_id: stage.id, kind_id: kind.id) %>
+                     <% if connection.invalid_flag %>
+                        ☑️ 　/　
+                     <% else %>
                       -　/　
-                   <% end %>
-                 <%= check_box_tag 'connections[]', connection.id %>
+                     <% end %>
+                  <%= check_box_tag 'connections[]', connection.id %>
                <% end %>
               </div>
             </td>
-          <% end %>
-        </tr>
+            <% end %>
+          </tr>
+      </tbody>
       <% end %>
       <p><%= submit_tag "組み合わせフラグ ON/OFF" %></p>
     </table>
