@@ -30,7 +30,11 @@
 </p>
 <p>
   <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
-  <%= form.collection_select(:payment_id, Payment.all.order(payment: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
+  <% if current_seller.admin_flag? %>
+    <%= form.collection_select(:payment_id, Payment.all.order(payment: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
+  <% else %>
+    <%= form.collection_select(:payment_id, Payment.where("discount_rate >= ? OR discount_keyword IS NOT ?", 0, nil).order(payment: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
+  <% end %>
 </p>
 <p>
   <%= form.label(:count, Ticket.human_attribute_name(:count), class:'control-label') %>
