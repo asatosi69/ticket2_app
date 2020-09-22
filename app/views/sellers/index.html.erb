@@ -51,9 +51,9 @@
     </table>
   </div>
   <% if current_seller.admin_flag %>
-    <div class="form-group">
-      <%= submit_tag "一括送信" %>
+    <div class="form-group row">
       <%= button_to '戻る', :back, method: :get %>
+      <%= submit_tag "一括送信" %>
     </div>
   <% else %>
     <%= button_to '戻る', :back, method: :get %>
