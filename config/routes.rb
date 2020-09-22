@@ -12,6 +12,7 @@ Rails.application.routes.draw do
        :sessions => 'sellers/sessions',
        :unlocks => 'sellers/unlocks'
       }
+      get '/sellers/sign_out' => 'devise/sessions#destroy'
       
       resources :sellers, :only => [:index, :update, :destroy]
       get "sellers/mail_all" => "sellers#mail_all", as: :mail_all

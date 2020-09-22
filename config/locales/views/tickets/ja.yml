@@ -14,6 +14,7 @@ ja:
       comment2: '備考'
       enquete_flag: 'アンケート送付済フラグ'
       tel: '来場者電話番号'
+      published: '発券済'
     new:
       seller_id: '取扱者'
       stage_id: '公演'
@@ -28,6 +29,7 @@ ja:
       comment2: '備考'
       enquete_flag: 'アンケート送付済フラグ'
       tel: '来場者電話番号 ※入力必須'
+      published: '発券済'
     edit:
       seller_id: '取扱者'
       stage_id: '公演'
@@ -42,6 +44,7 @@ ja:
       comment2: '備考'
       enquete_flag: 'アンケート送付済フラグ'
       tel: '来場者電話番号 ※入力必須'
+      published: '発券済'
     show:
       seller_id: '取扱者'
       stage_id: '公演'
@@ -55,7 +58,8 @@ ja:
       comment1: 'コメント'
       comment2: '備考'
       enquete_flag: 'アンケート送付済フラグ'
-      tel: '来場者電話番号 ※入力必須'
+      tel: '来場者電話番号'
+      published: '発券済'
   views:
     pagination:
       first: "&laquo; 最初"

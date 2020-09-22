@@ -25,8 +25,8 @@
   <%= form.label(:discount_keyword, Payment.human_attribute_name(:discount_keyword), class:'control-label') %>
   <%= form.text_field :discount_keyword, class: 'form-control' %>
 </p>
-<div class="btn-group">
-  <%= button_to '戻る', :back, method: :get %>
+<div class="form-group">
   <%= form.submit "登録" %>
+  <%= button_to '戻る', :back, method: :get %>
 </div>
 <% end %>

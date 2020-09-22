@@ -24,8 +24,8 @@
   <%= form.label(:end_flag, Stage.human_attribute_name(:end_flag), class:'control-label') %>
   <%= form.check_box :end_flag , class: 'form-control'%>
 </p>
-<div class="btn-group">
-  <%= button_to '戻る', :back, method: :get %>
+<div class="form-group">
   <%= form.submit "登録" %>
+  <%= button_to '戻る', :back, method: :get %>
 </div>
 <% end %>

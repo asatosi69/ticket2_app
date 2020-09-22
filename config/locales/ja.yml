@@ -43,6 +43,7 @@ ja:
         comment2: '備考'
         enquete_flag: 'アンケート送付済みフラグ'
         tel: '来場者電話番号'
+        published: '発券済'
     date:
       abbr_day_names:
       - 日

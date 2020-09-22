@@ -4,6 +4,15 @@
 <div class="table-responsive overflow-y:auto">
   <table class="table table-striped table-bordered table-hover">
     <tr>
+      <td style="white-space:nowrap;">発券済</td><td style="white-space:nowrap;">
+        <% if @ticket.published %>
+          ☑️
+        <% else %>
+          -
+        <% end %>
+      </td>
+    </tr>
+    <tr>
       <td style="white-space:nowrap;">取扱者</td><td style="white-space:nowrap;"><%= @ticket.seller.name %></td>
     </tr>
     <tr>
