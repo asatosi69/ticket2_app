@@ -18,9 +18,9 @@
 
 <%= form_tag(connection2_all_path, method: 'patch') do %>
   <div class="table-responsive overflow-y:auto">
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover table-width">
       <tr>
-        <td>
+        <td class="td-width">
         </td>
         <% @payments.each do |payment| %>
           <th style="white-space:nowrap;">
