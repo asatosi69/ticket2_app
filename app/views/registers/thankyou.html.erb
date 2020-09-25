@@ -1,16 +1,12 @@
-<div class="row">
-  <div class="col-sm-8 offset-sm-2">
-    <h2>
-      お申し込みありがとうございました。
-      <br/>
-      劇場でお会いできますことを楽しみにしております。
-    </h2>
-  </div>
-</div>
 <br>
-<div class="row">
-  <div class="col-sm-8 offset-sm-2">
-    <%= link_to '連続して予約を行う', new_registers_path, class: 'btn btn-default' %>
-    <%= link_to '予約を終了する', 'https://www.google.co.jp', class: 'btn btn-default' %>
-  </div>
+<br>
+<h2>
+お申し込みありがとうございました。
+<br>
+劇場でお会いできますことを楽しみにしております。
+</h2>
+<br>
+<div class="form-group row">
+  <%= button_to '連続して予約を行う', new_registers_path, method: :get %>
+  <%= button_to '予約を終了する', 'https://www.google.co.jp', method: :get %>
 </div>

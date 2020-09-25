@@ -98,8 +98,6 @@
 </p>
 <div class="form-group">
   <%= form.submit "申込" %>
-  <%=link_to("https://www.google.co.jp") do %>
-    <button>中止</button>
-  <%end%>
+  <%= button_to '予約を終了する', 'https://www.google.co.jp', method: :get %>
 </div>
 <% end %>

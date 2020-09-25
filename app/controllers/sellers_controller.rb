@@ -15,42 +15,50 @@ class SellersController < ApplicationController
         end
     end
 
-    
-    def update
+    def edit
         @seller = Seller.find(params[:id])
-        @seller.admin_flag = !@seller.admin_flag
-        
+    end
+
+    def update
+        @subdomain = request.subdomain.to_s.to_sym
+        @seller = Seller.find(params[:id])
+        @seller.assign_attributes(params_seller)
+
         if @seller.save
-            flash[:notice] = "フラグを反転させました"
-            redirect_to("/sellers")
-        else
-            redirect_to("/sellers")
+            UserMailer.with(subdomain: subdomain).notice_mail_for_update_seller(@seller).deliver
+            flash[:notice] = "編集が完了しました"
+            if @seller.id == current_seller.id && @seller.admin_flag == false
+                redirect_to("/sellers/sign_out")
+            else
+                redirect_to("/sellers")
+            end
+            
         end
+        
     end
     
     def mail_all
-        @subdomain = request.subdomain.to_s.to_sym
-        @sellers = Seller.where(id: params[:sellers])
-        @host_with_port = request.host_with_port
-        
-        @sellers.each do |seller|
-            seller.url = "https://#{@host_with_port}/registers/#{seller.id}/new"
-            seller.save
-        end
-        
-        
-        @sellers.each do |seller|
-          UserMailer.with(subdomain: subdomain).notice_mail_for_url(seller).deliver
-        end
-  
-        redirect_to("/sellers")
+            @subdomain = request.subdomain.to_s.to_sym
+            @sellers = Seller.where(id: params[:sellers])
+            @host_with_port = request.host_with_port
+            
+            @sellers.each do |seller|
+                seller.url = "https://#{@host_with_port}/registers/#{seller.id}/new"
+                seller.save
+            end
+            
+            
+            @sellers.each do |seller|
+              UserMailer.with(subdomain: subdomain).notice_mail_for_url(seller).deliver
+            end
+      
+            redirect_to("/sellers")
 
     end
     
 
     def destroy
         @seller = Seller.find_by(id: params[:id])
-        binding.pry
         # 『取扱者』のレコードを削除する前に、削除対象のidが『チケットモデル』使用されていないかの確認をする
         if Ticket.where(seller_id: @seller.id).exists?
             flash[:alert] = "『取扱者』を削除する前に、削除したい『取扱者』を使用している『チケット』を削除してください。"
@@ -64,7 +72,7 @@ class SellersController < ApplicationController
     
     private
     def params_seller
-     params.require(:seller).permit(:admin_flag, :url)
+     params.require(:seller).permit(:admin_flag, :url, :rental_tickets)
     end
     
 end

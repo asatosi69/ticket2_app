@@ -52,6 +52,7 @@ ja:
         name: '取扱者'
         admin_flag: '管理者フラグ'
         url: '予約ページ'
+        rental_tickets: '貸出枚数'
   helpers:
     select:
       prompt: '選択してください'

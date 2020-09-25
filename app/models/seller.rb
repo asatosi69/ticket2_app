@@ -9,6 +9,7 @@ class Seller< ApplicationRecord
   has_many :tickets
   
   validates :name, presence: true, uniqueness: true
+  validates :rental_tickets, presence: true, numericality: { only_integer: true }
   
   
 end

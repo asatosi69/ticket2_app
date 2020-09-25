@@ -28,6 +28,7 @@ activerecord:
       remember_me: "次回から自動的にログイン"
       admin_flag: "管理者フラグ"
       url: "予約用ページ"
+      rental_tickets: "貸出枚数"
   models:
     seller: "取扱者"
 devise:

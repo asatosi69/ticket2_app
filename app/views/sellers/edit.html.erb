@@ -1,0 +1,19 @@
+<br>
+<h3>『取扱者』を更新</h3>
+<br>
+<br>
+<%= form_with model: @seller do |form| %>
+<%= render 'shared/error_messages', model: form.object %>
+<p>
+  <%= form.label(:rental_tickets, Seller.human_attribute_name(:rental_tickets), class:'control-label') %>
+  <%= form.number_field :rental_tickets, {:required => true, class: 'form-control'} %>
+</p>
+<p>
+  <%= form.label(:admin_flag, Seller.human_attribute_name(:admin_flag), class:'control-label') %>
+  <%= form.check_box :admin_flag, class: 'form-control move-left' %>
+</p>
+<div class="form-group">
+  <%= form.submit "更新" %>
+  <%= button_to '戻る', :back, method: :get %>
+</div>
+<% end %>

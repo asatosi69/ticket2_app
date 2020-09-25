@@ -69,6 +69,18 @@ class UserMailer < ApplicationMailer
       )
     end
     
+    def notice_mail_for_update_seller(seller)
+    return if seller.email.blank?
+    @seller = seller
+    @subdomain = params[:subdomain]
+    return if @subdomain.blank?
+    mail(
+      to:  "#{@seller.email}",
+      bcc:  "#{Rails.configuration.x.send(@subdomain).receiver_mail}",
+      subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』での登録情報を更新しました。'"
+      )
+    end
+    
     def notice_mail_for_enquete(ticket)
     return if ticket.buyer_mail.blank?
     @ticket = ticket

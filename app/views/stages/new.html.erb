@@ -17,7 +17,7 @@
         date_separator: '-',
         datetime_separator: ',',
         time_separator: ':',
-        class:'control-label'
+        class: "form-control"
      %>
 </p>
 <p>
@@ -33,7 +33,7 @@
         date_separator: '-',
         datetime_separator: ',',
         time_separator: ':',
-        class:'control-label'
+        class: "form-control"
      %>
 </p>
 <p>
@@ -46,12 +46,12 @@
         date_separator: '-',
         datetime_separator: ',',
         time_separator: ':',
-        class:'control-label'
+        class: "form-control"
      %>
 </p>
 <p>
   <%= form.label(:end_flag, Stage.human_attribute_name(:end_flag), class:'control-label') %>
-  <%= form.check_box :end_flag %>
+  <%= form.check_box :end_flag, class: 'form-control move-left' %>
 </p>
 <div class="form-group">
   <%= form.submit "登録" %>

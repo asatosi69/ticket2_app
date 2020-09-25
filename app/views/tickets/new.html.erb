@@ -4,14 +4,12 @@
 <br>
 <%= form_with model: @ticket do |form| %>
 <%= render 'shared/error_messages', model: form.object %>
-<% if current_seller.admin_flag? %>
 <p>
-    <div class="form-group">
-      <%= form.label(:published, Ticket.human_attribute_name(:published), class:'control-label') %>
-      <%= form.check_box :published, class: 'form-control' %>
-    </div>
+  <% if current_seller.admin_flag? %>
+    <%= form.label(:published, Ticket.human_attribute_name(:published), class:'control-label') %>
+    <%= form.check_box :published, class: 'form-control move-left' %>
+  <% end %>
 </p>
-<% end %>
 <p>
   <% if current_seller.admin_flag? %>
     <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id), class:'control-label') %>
