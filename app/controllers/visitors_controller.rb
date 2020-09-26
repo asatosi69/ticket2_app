@@ -37,6 +37,14 @@ class VisitorsController < ApplicationController
               @tickets = Ticket.eager_load(:seller, :stage, :kind, :payment).where(stage_id: params[:stage_id], seller_id: current_seller.id)
                             .order(created_at: "DESC")
           end
+      when 'order_by_published_and_buyer_furigana' then
+          if current_seller.admin_flag
+              @tickets = Ticket.eager_load(:seller, :stage, :kind, :payment).where(stage_id: params[:stage_id])
+                            .order(published: "DESC").order(buyer_furigana: "ASC")
+          else
+              @tickets = Ticket.eager_load(:seller, :stage, :kind, :payment).where(stage_id: params[:stage_id], seller_id: current_seller.id)
+                            .order(published: "DESC").order(buyer_furigana: "ASC")
+          end
       end
 
       render 'visitors/index', layout: "application"

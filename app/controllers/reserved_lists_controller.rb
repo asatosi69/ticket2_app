@@ -20,6 +20,8 @@ class ReservedListsController < ApplicationController
                     search_condition.order(buyer_furigana: "ASC")
                when 'order_by_created_at' then
                     search_condition.order(created_at: "DESC")
+               when 'order_by_published_and_buyer_furigana' then
+                    search_condition.order(published: "DESC").order(buyer_furigana: "ASC")
           end
       @stage = Stage.find_by(id: params[:stage_id])
       @tickets = search_condition

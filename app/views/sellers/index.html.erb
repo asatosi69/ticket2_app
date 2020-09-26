@@ -35,9 +35,9 @@
               <% if current_seller.admin_flag %>
                 <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= check_box_tag 'sellers[]',seller.id %></div></td>
                 <td style="white-space:nowrap;"><div class="position-in-the-cell2">
-                  <%= button_tag type: 'button', onclick: "link_to('#{edit_seller_path(seller)}')" do %>
-  <%= '編集' %>
-<% end %>
+                  <%= button_tag style: 'border-radius: 3px; border-width: 1px;', type: 'button', onclick: "link_to('#{edit_seller_path(seller)}')" do %>
+                    <%= '編集' %>
+                  <% end %>
                 </div></td>
                 <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= button_to("削除", seller_path(seller), {method: :delete}) %></div></td>
               <% end %>

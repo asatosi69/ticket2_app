@@ -14,7 +14,11 @@
 
     <div class="form-group col-auto">
       <label for="order_id">並び順</label>
-      <%= select_tag 'order_id', options_for_select({ 'フリガナ（昇順）': :order_by_buyer_furigana ,'取扱者（昇順）⇒フリガナ（昇順）': :order_by_seller_id_and_buyer_furigana, '登録順（降順）': :order_by_created_at }),  {prompt: "選択して下さい", :class => "form-control"} %>
+      <%= select_tag 'order_id', options_for_select({ 'フリガナ（昇順）': :order_by_buyer_furigana ,
+                                                      '取扱者（昇順）⇒フリガナ（昇順）': :order_by_seller_id_and_buyer_furigana,
+                                                      '登録順（降順）': :order_by_created_at,
+                                                      '発券済/未発券 ⇒フリガナ（昇順）': :order_by_published_and_buyer_furigana }),
+      {prompt: "選択して下さい", :class => "form-control"} %>
     </div>
   </div>
 
