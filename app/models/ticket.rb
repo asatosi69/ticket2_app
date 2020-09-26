@@ -111,6 +111,7 @@ class Ticket < ApplicationRecord
         .buyer_furigana_like(search_params[:buyer_furigana])
         .comment1_like(search_params[:chk1])
         .comment2_like(search_params[:chk2])
+        .published_like(search_params[:chk3])
 
     end
     
@@ -123,6 +124,7 @@ class Ticket < ApplicationRecord
     scope :buyer_furigana_like, -> (buyer_furigana) { where('buyer_furigana LIKE ?', "%#{buyer_furigana}%") if buyer_furigana.present? }
     scope :comment1_like, -> (chk1) { where.not(comment1: nil || "" ) if chk1 == "1" }
     scope :comment2_like, -> (chk2) { where.not(comment2: nil || "" ) if chk2 == "1" }
+    scope :published_like, -> (chk3) { where(published: true || "1" ) if chk3 == "1" }
 
     private
     def check_combination_of_stage_and_kind

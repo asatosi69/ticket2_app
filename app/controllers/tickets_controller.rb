@@ -232,7 +232,7 @@ class TicketsController < ApplicationController
   end
     
   def ticket_search_params
-    params.fetch(:search, {}).permit(:seller_id, :stage_id, :kind_id, :payment_id, :buyer_name, :buyer_furigana, :chk1, :chk2, :enquete_flag)
+    params.fetch(:search, {}).permit(:seller_id, :stage_id, :kind_id, :payment_id, :buyer_name, :buyer_furigana, :chk1, :chk2, :chk3, :enquete_flag)
   end
   
 end

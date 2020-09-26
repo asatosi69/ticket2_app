@@ -98,14 +98,24 @@
     <tr></tr>
 
     <tr class="b-right ticket-card-table__title">
-      <td colspan="6">予約連番</td>
+      <td colspan="3">予約連番</td>
+      <td colspan="3">発券済</td>
       <td colspan="6">予約日</td>
     </tr>
 
     <tr class="b-bottom b-right">
-     <td colspan="6" class="text-center">
+     <td colspan="3" class="text-center">
        <% unless ticket.buyer_furigana.nil? %>
          <%= ticket.id %>
+       <% end %>
+     </td>
+     <td colspan="3" class="text-center">
+       <% unless ticket.buyer_furigana.nil? %>
+         <% if ticket.published %>
+           ☑️
+         <% else %>
+           -
+         <% end %>
        <% end %>
      </td>
      <td colspan="6" class="text-center">

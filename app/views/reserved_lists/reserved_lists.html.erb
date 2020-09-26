@@ -16,6 +16,7 @@
   <table class='table table-striped table-bordered page-brake'>
     <thead class="thead-light text-center">
       <tr>
+        <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :published %></div></th>
         <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :buyer_furigana %></div></th>
         <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :buyer_name %></div></th>
         <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :kind_id %></div></th>
@@ -28,6 +29,13 @@
     <tbody>
       <% slice_tickets.each do |ticket| %>
         <tr>
+          <td style="white-space:nowrap;"><div class="position-in-the-cell">
+            <% if ticket.published %>
+              ☑️
+            <% else %>
+              -
+            <% end %>
+          </div></td>
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.buyer_furigana&.slice(0...8) %></div></td>
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.buyer_name&.slice(0...8) %></div></td>
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.kind.kind %></div></td>

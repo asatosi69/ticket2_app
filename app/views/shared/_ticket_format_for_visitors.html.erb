@@ -11,6 +11,7 @@
           <% if current_seller.admin_flag %>
             <th style="white-space:nowrap;"><div class="position-in-the-cell1"> </div></th>
           <% end %>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">発券済</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">取扱者</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">公演</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">チケット種別</div></th>
@@ -30,6 +31,13 @@
               <% if current_seller.admin_flag %>
                 <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= check_box_tag 'tickets[]',ticket.id %></div></td>
               <% end %>
+              <td style="white-space:nowrap;"><div class="position-in-the-cell1">
+                <% if ticket.published %>
+                  ☑️
+                <% else %>
+                  -
+                <% end %>
+              </div></td>
               <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.seller.name %></div></td>
               <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.stage.stage %></div></td>
               <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.kind.kind %></div></td>
