@@ -56,7 +56,7 @@ class TicketsController < ApplicationController
       else
           @tickets = Ticket.order(updated_at: :DESC).where(seller_id: current_seller.id).limit(1)
           @tickets.each do |ticket|
-            @stage = Stage.find_by(id: ticket.stage_id)ß
+            @stage = Stage.find_by(id: ticket.stage_id)
             if @stage.end_flag == true and current_seller.admin_flag == false
                @ticket = Ticket.new(:published => ticket.published, :seller_id => ticket.seller_id,
                                     :kind_id => ticket.kind_id, :payment_id => ticket.payment_id,
