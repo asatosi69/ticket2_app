@@ -20,10 +20,6 @@
   <%= form.label(:color_id, Kind.human_attribute_name(:color_id), class:'control-label') %>
   <%= form.collection_select(:color_id, Color.where(is_selected: false), :id, :color_name, {prompt: :color_id}, {class: "form-control input-sm"}) %>
 </p>
-<p>
-  <%= form.label(:end_flag, Stage.human_attribute_name(:end_flag), class:'control-label') %>
-  <%= form.check_box :end_flag %>
-</p>
 <div class="form-group">
   <%= form.submit "登録" %>
   <%= button_to '戻る', :back, method: :get %>

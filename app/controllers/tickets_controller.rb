@@ -51,8 +51,25 @@ class TicketsController < ApplicationController
   end
 
   def new
-      @ticket = Ticket.new
-
+      if Ticket.where(seller_id: current_seller.id).count == 0
+          @ticket = Ticket.new
+      else
+          @tickets = Ticket.order(updated_at: :DESC).where(seller_id: current_seller.id).limit(1)
+          @tickets.each do |ticket|
+            @stage = Stage.find_by(id: ticket.stage_id)ß
+            if @stage.end_flag == true and current_seller.admin_flag == false
+               @ticket = Ticket.new(:published => ticket.published, :seller_id => ticket.seller_id,
+                                    :kind_id => ticket.kind_id, :payment_id => ticket.payment_id,
+                                    :count => ticket.count)
+            else
+               @ticket = Ticket.new(:published => ticket.published, :seller_id => ticket.seller_id,
+                                    :stage_id => ticket.stage_id, :kind_id => ticket.kind_id,
+                                    :payment_id => ticket.payment_id, :count => ticket.count)
+            end
+            
+          end
+      end
+      
   end
 
   def create

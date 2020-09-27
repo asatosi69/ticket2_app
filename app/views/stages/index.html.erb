@@ -29,6 +29,7 @@
       <th style="white-space:nowrap;"><div class="position-in-the-cell1">受付終了時間</div></th>
       <th style="white-space:nowrap;"><div class="position-in-the-cell1">終了フラグ</div></th>
       <th style="white-space:nowrap;"><div class="position-in-the-cell1">残席数</div>
+      <th style="white-space:nowrap;"><div class="position-in-the-cell1">規定フラグ</div></th>
     </tr>
   </thead>
 
@@ -49,7 +50,14 @@
             -
           <% end %>
         </div></td>
-      <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= stage.remaining %></div></td>
+        <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= stage.remaining %></div></td>
+        <td style="white-space:nowrap;"><div class="position-in-the-cell2">
+          <% if stage.default %>
+            ☑️
+          <% else %>
+            -
+          <% end %>
+        <div></td>
       </tr>
     <% end %>
   </tbody>
