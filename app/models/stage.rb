@@ -1,6 +1,5 @@
 class Stage < ApplicationRecord
     has_many :tickets
-    has_many :defaults
     has_many :connections, dependent: :destroy
     has_many :kinds, through: :connections, dependent: :destroy
     has_many :connection3s, dependent: :destroy
@@ -12,7 +11,6 @@ class Stage < ApplicationRecord
     validates :end_time, presence: true
     validates :remaining, presence: true, numericality: { only_integer: true }
     validates :stage_time, presence: true
-    validates :default, uniqueness: true
     
     # 終了フラグを立てる
     def finished
