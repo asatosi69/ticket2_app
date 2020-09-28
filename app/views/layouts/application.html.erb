@@ -101,6 +101,35 @@
     <% end %>
     <% if flash[:alert] %>
       <p class="alert"><%= alert %></p>
+
+        <script>
+          window.onload = function() {
+            $('#MODAL').modal('show');
+          }
+        </script>
+        <!-- ここからモーダル -->
+        <div class="modal fade" id="MODAL">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h2 class="h3 mb-4">
+                    <p><%= flash[:alert] %></p>
+                </h2>
+              </div>
+              <div class="modal-footer">
+                  <ul class="nav">
+                    <li><a href="#" class="btn btn-link btn-lg" data-dismiss="modal">閉じる</a></li>
+                  </ul>
+              </div>
+            </div> <!-- modal-content -->
+          </div>  <!-- modal-dialog -->
+        </div>  <!-- modal fade -->
+        
     <% end %>
     <div class="container">
       <%= yield %>
