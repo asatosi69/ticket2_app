@@ -29,7 +29,7 @@ class RegistersController < ApplicationController
     def back
         @seller = Seller.find(params[:seller_id])
         @ticket = Ticket.new(params_ticket)
-
+        @subdomain = request.subdomain.to_s.to_sym
         render :new
     end
 
