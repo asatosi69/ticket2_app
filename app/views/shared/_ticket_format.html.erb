@@ -24,6 +24,7 @@
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">来場済</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">コメント</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">備考</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">最終改訂者</div></th>
         </tr>
       </thead>
 
@@ -58,6 +59,7 @@
             </div></td>
             <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.comment1 %></div></td>
             <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.comment2 %></div></td>
+            <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= ticket.reviser %></div></td>
           </tr>
         <% end %>
         <%= paginate @tickets %>

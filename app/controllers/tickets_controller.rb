@@ -74,6 +74,8 @@ class TicketsController < ApplicationController
 
   def create
       @ticket = Ticket.new(params_ticket)
+      @ticket.reviser = current_seller.name
+      
       subdomain = request.subdomain.to_s.to_sym
       
       validation_context = current_seller.admin_flag? ? :admin_seller : nil
@@ -132,6 +134,7 @@ class TicketsController < ApplicationController
   def edit
       
       @ticket = Ticket.find_by(id: params[:id])
+      
       subdomain = request.subdomain.to_s.to_sym
       
       # 『取扱者』の場合は自分以外の予約の操作はできない
@@ -149,6 +152,7 @@ class TicketsController < ApplicationController
 
   def update
       @ticket = Ticket.find_by(id: params[:id])
+      @ticket.reviser = current_seller.name
       
       # 『取扱者』の場合は自分以外の予約の操作はできない
       unless current_seller.admin_flag?

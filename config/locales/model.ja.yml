@@ -48,6 +48,7 @@ ja:
         limit_over: '残席無し'
         tel: '来場者電話番号'
         published: '発券済'
+        reviser: '最終改訂者'
       seller:
         name: '取扱者'
         admin_flag: '管理者フラグ'

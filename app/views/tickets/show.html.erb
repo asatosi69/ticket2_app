@@ -54,6 +54,9 @@
     <tr>
       <td style="white-space:nowrap;">備考</td><td style="white-space:nowrap;"><%= simple_format(@ticket.comment2) %></td>
     </tr>
+    <tr>
+      <td style="white-space:nowrap;">最終改訂者</td><td style="white-space:nowrap;"><%= @ticket.reviser %></td>
+    </tr>
   </table>
 </div>
 <%= button_to '戻る', :back, method: :get %>
