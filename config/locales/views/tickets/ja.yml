@@ -15,7 +15,7 @@ ja:
       enquete_flag: 'アンケート送付済フラグ'
       tel: '来場者電話番号'
       published: '発券済'
-      reviser: '最終改訂者'
+      reviser: '最終更新者'
     new:
       seller_id: '取扱者'
       stage_id: '公演'
@@ -31,7 +31,7 @@ ja:
       enquete_flag: 'アンケート送付済フラグ'
       tel: '来場者電話番号 ※入力必須'
       published: '発券済'
-      reviser: '最終改訂者'
+      reviser: '最終更新者'
     edit:
       seller_id: '取扱者'
       stage_id: '公演'
@@ -47,7 +47,7 @@ ja:
       enquete_flag: 'アンケート送付済フラグ'
       tel: '来場者電話番号 ※入力必須'
       published: '発券済'
-      reviser: '最終改訂者'
+      reviser: '最終更新者'
     show:
       seller_id: '取扱者'
       stage_id: '公演'
@@ -63,7 +63,7 @@ ja:
       enquete_flag: 'アンケート送付済フラグ'
       tel: '来場者電話番号'
       published: '発券済'
-      reviser: '最終改訂者'
+      reviser: '最終更新者'
   views:
     pagination:
       first: "&laquo; 最初"
