@@ -5,7 +5,7 @@ class Connections3Controller < ApplicationController
     before_action :admin_seller?
     
   def index
-      @payments = Payment.all.order(payment: "ASC")
+      @payments = Payment.all.order(discount_rate: "DESC")
       @stages = Stage.all.order(stage_time: "ASC")
       @connections = Connection3.all
   end

@@ -6,7 +6,7 @@ class Connections2Controller < ApplicationController
     
   def index
       @kinds = Kind.all.order(kind: "ASC")
-      @payments = Payment.all.order(payment: "ASC")
+      @payments = Payment.all.order(discount_rate: "DESC")
       @connections = Connection2.all
   end
 
