@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
     before_action :admin_seller?
     
     def index
-        @payments = Payment.all
+        @payments = Payment.all.order(discount_rate: "DESC")
         @kinds = Kind.all
     end
 

@@ -38,7 +38,7 @@
         <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= button_to '編集', edit_stage_path(stage), {method: "get"} %></div></td>
         <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= button_to '削除', stage_path(stage), {method: "delete"} %></div></td>
         <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= stage.stage %></div></td>
-        <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= stage.start_time.to_s(:stage_time) %></div></td>
+        <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= stage.stage_time.to_s(:stage_time) %></div></td>
         <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= stage.total_seats %></div></td>
         <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= stage.start_time.to_s(:start_time) %></div></td>
         <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= stage.end_time.to_s(:end_time) %></div></td>
