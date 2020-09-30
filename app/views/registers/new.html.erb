@@ -57,7 +57,7 @@
 </p>
 <p>
   <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
-  <%= form.collection_select(:stage_id, Stage.where(end_flag: false).where("start_time <= ?", Time.now), :id, :stage, {prompt: :stage_id}, {:required => true, class: "form-control input-sm"}) %>
+  <%= form.collection_select(:stage_id, Stage.where(end_flag: false).where("start_time <= ?", Time.now).order(stage_time: "ASC"), :id, :stage, {prompt: :stage_id}, {:required => true, class: "form-control input-sm"}) %>
 <p>
 <p>
   <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
