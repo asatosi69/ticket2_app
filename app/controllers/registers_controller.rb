@@ -19,6 +19,7 @@ class RegistersController < ApplicationController
     
     def confirm
         @seller = Seller.find(params[:seller_id])
+        @subdomain = request.subdomain.to_s.to_sym
         @ticket = Ticket.new(params_ticket)
 
         return if @ticket.valid?
@@ -36,6 +37,7 @@ class RegistersController < ApplicationController
     def create
         @ticket = Ticket.new(params_ticket)
         seller_id = @ticket.seller_id
+        @subdomain = request.subdomain.to_s.to_sym
         validation_context = Seller.find(seller_id).admin_flag? ? :admin_seller : nil
         
         check = 0
