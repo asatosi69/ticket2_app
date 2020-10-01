@@ -48,6 +48,7 @@
 <br>
 <font color="red">いただいた個人情報はその他の目的以外には使用せず、公演日から4週間保管後、適切な手段で廃棄いたします。</font>
 <br>
+<br>
 【開場時間】
 <br>
 <font color="red">開場時間は開演時間の30分前となっています。</font>
@@ -68,7 +69,7 @@
 </p>
 <p>
   <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
-  <%= form.collection_select(:payment_id, Payment.where("discount_rate < ? OR discount_keyword IS NOT ?", 0, nil).order(payment: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
+  <%= form.collection_select(:payment_id, Payment.where(("discount_rate >= ? ) OR (discount_rate < ? and discount_keyword IS NOT ?)", 0, 0, nil).order(payment: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
 </p>
 <p>
   <%= form.label(:count, Ticket.human_attribute_name(:count), class:'control-label') %>
