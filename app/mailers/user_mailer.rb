@@ -22,39 +22,36 @@ class UserMailer < ApplicationMailer
     end
 
     def notice_mail_for_create_ticket(ticket)
-      return if ticket.buyer_mail.blank?
       @ticket = ticket
       @subdomain = params[:subdomain]
       return if @subdomain.blank?
       mail(
-        to: @ticket.buyer_mail,
-        bcc: "#{@ticket.seller.email}, #{Rails.configuration.x.send(@subdomain).receiver_mail}",
-        subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、承りました'"
-      )
+           to:  "#{Rails.configuration.x.send(@subdomain).receiver_mail},  #{@ticket.buyer_mail}",
+           bcc: "#{@ticket.seller.email}",
+           subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、承りました'"
+           )
     end
 
     def notice_mail_for_update_ticket(ticket)
-      return if ticket.buyer_mail.blank?
       @ticket = ticket
       @subdomain = params[:subdomain]
       return if @subdomain.blank?
       mail(
-        to: @ticket.buyer_mail,
-        bcc: "#{@ticket.seller.email}, #{Rails.configuration.x.send(@subdomain).receiver_mail}",
-        subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、内容変更承りました'"
-      )
+           to:  "#{Rails.configuration.x.send(@subdomain).receiver_mail}, #{@ticket.buyer_mail}",
+           bcc: "#{@ticket.seller.email}",
+           subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、内容変更承りました'"
+           )
     end
 
     def notice_mail_for_destroy_ticket(ticket)
-      return if ticket.buyer_mail.blank?
       @ticket = ticket
       @subdomain = params[:subdomain]
       return if @subdomain.blank?
       mail(
-        to: @ticket.buyer_mail,
-        bcc: "#{@ticket.seller.email}, #{Rails.configuration.x.send(@subdomain).receiver_mail}",
-        subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、キャンセル承りました'"
-      )
+           to: "#{Rails.configuration.x.send(@subdomain).receiver_mail}, #{@ticket.buyer_mail}",
+           bcc: "#{@ticket.seller.email}",
+           subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のご予約、キャンセル承りました'"
+           )
     end
 
     def notice_mail_for_url(seller)
@@ -87,8 +84,8 @@ class UserMailer < ApplicationMailer
     @subdomain = params[:subdomain]
     return if @subdomain.blank?
     mail(
-      to: @ticket.buyer_mail,
-      bcc: "#{@ticket.seller.email}, #{Rails.configuration.x.send(@subdomain).receiver_mail}",
+      to: "#{@ticket.buyer_mail}",
+      bcc: "#{@ticket.seller.email}",
       subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』への観劇後のアンケートにご協力ください。'"
       )
     end
