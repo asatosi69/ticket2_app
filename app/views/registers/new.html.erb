@@ -69,8 +69,7 @@
 </p>
 <p>
   <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
-  <%= form.collection_select(:payment_id, Payment.where(("discount_rate >= ? ) OR (discount_rate < ? and discount_keyword IS NOT ?)", 0, 0, nil).order(payment: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
-</p>
+  <%= form.collection_select(:payment_id, Payment.where("discount_rate >= 0").or(Payment.where("discount_keyword <> '' and discount_rate < ?", 0)).order(payment: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
 <p>
   <%= form.label(:count, Ticket.human_attribute_name(:count), class:'control-label') %>
   <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: :count}, {:required => true, class: "form-control"} %>
