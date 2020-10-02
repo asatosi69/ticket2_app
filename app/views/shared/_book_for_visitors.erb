@@ -14,32 +14,24 @@
    <tr>
     <td style="width: 120px" rowspan="2">
     </td>
-    <th colspan="2">
-      <div class="position-in-the-cell1">
-        <%= Stage.find(params[:stage_id]).stage %>
-      </div>
+    <th colspan="2", class="align-middle", style="white-space: nowrap">
+      <div class="text-center"><%= Stage.find(params[:stage_id]).stage %></div>
     </th>
   </tr>
   <tr>
-    <th>
-      <div class="position-in-the-cell1">
-        来場済
-      </div>
+    <th class="align-middle", style="white-space: nowrap">
+        <div class="text-center">来場済</div>
     </th>
-    <th>
-      <div class="position-in-the-cell1">
-        予約全体
-      </div>
+    <th class="align-middle", style="white-space: nowrap">
+        <div class="text-center">予約全体</div>
     </th>
   </tr>
     <% @sellers.each do |seller| %>
       <tr>
-        <th align="center">
-          <div class="position-in-the-cell1">
-            <%= seller.name %>
-          </div>
+        <th class="align-middle", style="white-space: nowrap">
+            <div class="text-center"><%= seller.name %></div>
         </th>
-        <td align="center">
+        <td class="align-middle", style="white-space: nowrap">
           <% array = [] %>
           <% sum = 0 %>
           <% @kinds.each do |kind| %>
@@ -57,7 +49,7 @@
             </span>
           <% end %>
         </td>
-        <td align="center">
+        <td class="align-middle", style="white-space: nowrap">
           <% array = [] %>
           <% sum = 0 %>
           <% @kinds.each do |kind| %>
@@ -81,13 +73,11 @@
     <%# 『一般取扱者』は『販売済』を表示しない。 %>
     <% if current_seller.admin_flag %>
       <tr>
-        <th align="center">
-          <div class="position-in-the-cell1">
-            合計
-          </div>
+        <th class="align-middle", style="white-space: nowrap">
+            <div class="text-center">合計</div>
         </th>
         <%# 合計(公演別)処理 %>
-        <td align="center">
+        <td class="align-middle", style="white-space: nowrap">
           <% array = [] %>
           <% sum = 0 %>
           <% visited_flag = true %>
@@ -104,7 +94,7 @@
             </span>
           <% end %>
         </td>
-        <td align="center">
+        <td class="align-middle", style="white-space: nowrap">
           <% array = [] %>
           <% sum = 0 %>
           <% @kinds.each do |kind| %>
@@ -137,17 +127,15 @@
       </tr>
 
       <tr>
-        <th align="center">
-          <div class="position-in-the-cell1">
-            金額
-          </div>
+        <th class="align-middle", style="white-space: nowrap">
+            <div class="text-center">金額</div>
         </th>
-        <td align="center">
+        <td class="align-middle", style="white-space: nowrap">
           <% visited_flag = true %>
-          <%= Ticket.money_in_the_stage_for_visitors(params[:stage_id], visited_flag) %>
+          <div class="text-center"><%= Ticket.money_in_the_stage_for_visitors(params[:stage_id], visited_flag) %></div>
         </td>
-        <td align="center">
-          <%= Ticket.money_in_the_stage(params[:stage_id]) %>
+        <td class="align-middle", style="white-space: nowrap">
+          <div class="text-center"><%= Ticket.money_in_the_stage(params[:stage_id]) %></div>
         </td>
       </tr>
     <% end %>

@@ -111,12 +111,13 @@
             <% color_code = kind.color.color_code %>
             <% array.push([color_code, @seats_count]) %>
           <% end %>
-            <%= sum2 %>
+            <div class="text-center"><%= sum2 %>
             <% array.each do |value1, value2| %>
               <span style="color: <%= value1 %>">
                 (<%= value2 %>)
               </span>
           <% end %>
+          </div>
         </td>
       </tr>
     <% else %>
