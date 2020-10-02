@@ -17,7 +17,7 @@
       <td>
       </td>
       <% @stages.each do |stage| %>
-        <th class="align-middle">
+        <th class="align-middle", style="white-space: nowrap">
           <div class="text-center"><%= stage.stage %></div>
         </th>
       <% end %>
@@ -30,11 +30,11 @@
     <%# 『一般取扱者』は『自身』の予約のみについて表示する。 %>
       <% @sellers.each do |seller| %>
         <tr>
-          <th class="align-middle">
+          <th class="align-middle", style="white-space: nowrap">
             <div class="text-center"><%= seller.name %></div>
           </th>
           <% @stages.each do |stage| %>
-            <td class="align-middle">
+            <td class="align-middle", style="white-space: nowrap">
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -54,7 +54,7 @@
             </td>
           <% end %>
           <%# 合計(取扱者別)処理 %>
-          <td class="align-middle">
+          <td class="align-middle", style="white-space: nowrap">
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -78,12 +78,12 @@
     <%# 『一般取扱者』は『販売済』を表示しない。 %>
     <% if current_seller.admin_flag %>
       <tr>
-        <th class="align-middle">
+        <th class="align-middle", style="white-space: nowrap">
           <div class="text-center">販売済</div>
         </th>
         <%# 合計(公演別)処理 %>
         <% @stages.each do |stage| %>
-          <td class="align-middle">
+          <td class="align-middle", style="white-space: nowrap">
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -102,7 +102,7 @@
           </td>
         <% end %>
         <%# 総合計処理 %>
-        <td class="align-middle">
+        <td class="align-middle", style="white-space: nowrap">
           <% array = [] %>
           <% sum2 = 0 %>
           <% @kinds.each do |kind| %>
@@ -143,17 +143,17 @@
 
    <%# 『座席』については『管理取扱者』も『一般取扱者』も共通。 %>
     <tr>
-      <th class="align-middle">
+      <th class="align-middle", style="white-space: nowrap">
         <div class="text-center">座席</div>
       </th>
       <% sum3 = 0 %>
       <% @stages.each do |stage| %>
-      <td class="align-middle">
+      <td class="align-middle", style="white-space: nowrap">
         <div class="text-center"><%= stage.total_seats %></div>
         <% sum3 += stage.total_seats %>
       </td>
       <% end %>
-      <td class="align-middle">
+      <td class="align-middle", style="white-space: nowrap">
         <div class="text-center"><%= sum3 %></div>
       </td>
     </tr>
@@ -161,11 +161,11 @@
 
     <%# 『収容率』については『管理取扱者』も『一般管理者』も共通。 %>
     <tr>
-      <th class="align-middle">
+      <th class="align-middle", style="white-space: nowrap">
         <div class="text-center">収容率(%)</div>
       </th>
       <% @stages.each do |stage| %>
-        <td class="align-middle">
+        <td class="align-middle", style="white-space: nowrap">
         <% array = [] %>
         <% sum = 0 %>
         <% @kinds.each do |kind| %>
@@ -175,7 +175,7 @@
           <div class="text-center"><%= sum * 100 / stage.total_seats %></div>
       </td>
       <% end %>
-      <td class="align-middle">
+      <td class="align-middle", style="white-space: nowrap">
         <div class="text-center"><%= sum2 * 100 / sum3   %></div>
       </td>
     </tr>
@@ -196,15 +196,15 @@
       </tr>
 
       <tr>
-        <th class="align-middle">
+        <th class="align-middle", style="white-space: nowrap">
           <div class="text-center">金額</div>
         </th>
         <% @stages.each do |stage| %>
-          <td class="align-middle">
+          <td class="align-middle", style="white-space: nowrap">
             <div class="text-center"><%= Ticket.money_in_the_stage(stage.id) %> 円</div>
           </td>
         <% end %>
-        <td class="align-middle">
+        <td class="align-middle", style="white-space: nowrap">
           <div class="text-center"><%= Ticket.all_money %> 円</div>
         </td>
       </tr>
@@ -228,21 +228,21 @@
       <td>
       </td>
       <% @stages.each do |stage| %>
-        <th class="align-middle">
+        <th class="align-middle", style="white-space: nowrap">
           <div class="text-center"><%= stage.stage %></div>
         </th>
       <% end %>
-      <th class="align-middle">
+      <th class="align-middle", style="white-space: nowrap">
         <div class="text-center">集計</div>
       </th>
     </tr>
     <% @payments.each do |payment| %>
       <tr>
-        <th class="align-middle">
+        <th class="align-middle", style="white-space: nowrap">
           <div class="text-center"><%= payment.payment %></div>
         </th>
         <% @stages.each do |stage| %>
-          <td class="align-middle">
+          <td class="align-middle", style="white-space: nowrap">
             <% array = [] %>
             <% sum = 0 %>
             <% @kinds.each do |kind| %>
@@ -261,7 +261,7 @@
               </div>
           </td>
         <% end %>
-        <td class="align-middle">
+        <td class="align-middle", style="white-space: nowrap">
           <% array = [] %>
           <% sum = 0 %>
           <% @kinds.each do |kind| %>
