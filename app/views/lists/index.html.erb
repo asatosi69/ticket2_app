@@ -35,7 +35,7 @@
       <% @sellers.each do |seller| %>
         <tr>
           <th align="center">
-            <div class="position-in-the-cell1">
+            <div class="position-in-the-cell2">
               <%= seller.name %>
             </div>
           </th>
@@ -83,7 +83,7 @@
     <% if current_seller.admin_flag %>
       <tr>
         <th align="center">
-          <div class="position-in-the-cell1">
+          <div class="position-in-the-cell2">
             販売済
           </div>
         </th>
@@ -130,7 +130,7 @@
         <% @seats_count = Ticket.all_tickets(kind.id) %>
         <% sum2 += @seats_count * kind.seats%>
       <% end %>
-      <div class="position-in-the-cell1">
+      <div class="position-in-the-cell2">
         <% sum2 %>
       </div>
     <% end %>
@@ -270,7 +270,7 @@
     <% @payments.each do |payment| %>
       <tr>
         <th>
-          <div class="position-in-the-cell1">
+          <div class="position-in-the-cell2">
             <%= payment.payment %>
           </div>
         </th>
