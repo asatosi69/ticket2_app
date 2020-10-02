@@ -65,14 +65,16 @@ class VisitorsController < ApplicationController
             end
 
         else
-
-            @tickets = Ticket.all
+        
+          @tickets = Ticket.all
             enquete_array = [] #アンケート送付済みのメールアドレスを格納する配列
 
             @tickets.each do |ticket|
                 if ticket.visited_flag # 来場済みか？
                     if ticket.buyer_mail.present? # メールアドレスが登録されているか？
+                        binding.pry
                         if not ticket.enquete_flag # アンケート送付済みフラグが立っていないか？
+                            binding.pry
                             unless enquete_array.include?(ticket.buyer_mail) # すでに同じメールアドレスについて処理をしていないか？
                                 UserMailer.with(subdomain: subdomain).notice_mail_for_enquete(ticket).deliver
                                 enquete_array.push(ticket.buyer_mail)

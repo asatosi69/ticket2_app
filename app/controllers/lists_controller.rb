@@ -12,7 +12,7 @@ class ListsController < ApplicationController
     
         @stages = Stage.all.order(stage_time: "ASC")
         @kinds = Kind.all.order(kind: "ASC")
-        @payments = Payment.all.order(payment: "ASC")
+        @payments = Payment.all.order(discount_rate: "DESC")
         @tickets = Ticket.all
     end
 end

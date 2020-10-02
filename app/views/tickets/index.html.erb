@@ -23,7 +23,7 @@
         </div>
         <div class="form-group col-auto">
           <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
-          <%= form.collection_select(:payment_id, Payment.all.order(payment: "ASC"), :id, :payment,  {selected: @search_params[:payment_id], prompt: "選択してください"}, class: "form-control input-sm") %>
+          <%= form.collection_select(:payment_id, Payment.all.order(discount_rate: "DESC"), :id, :payment,  {selected: @search_params[:payment_id], prompt: "選択してください"}, class: "form-control input-sm") %>
         </div>
       </div>
     <% else %>

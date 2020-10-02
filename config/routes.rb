@@ -14,8 +14,9 @@ Rails.application.routes.draw do
       }
       get '/sellers/sign_out' => 'devise/sessions#destroy'
       
-      resources :sellers, :only => [:index, :edit, :update, :destroy]
+      resources :sellers, :only => [:index, :edit, :update]
       get "sellers/mail_all" => "sellers#mail_all", as: :mail_all
+      delete "sellers/:id/destroy" => "sellers#destroy", as: :destroy
       
       resources :pages
 

@@ -1,5 +1,5 @@
 <br>
-<h3>『取扱者』を更新</h3>
+<h3>『取扱者』を更新・削除</h3>
 <br>
 <br>
 <%= form_with model: @seller do |form| %>
@@ -14,6 +14,7 @@
 </p>
 <div class="form-group">
   <%= form.submit "更新" %>
+  <%= form.submit "この取扱者を削除", name: "Sakujyo" %>
   <%= button_to '戻る', :back, method: :get %>
 </div>
 <% end %>

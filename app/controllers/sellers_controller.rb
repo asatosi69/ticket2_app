@@ -23,15 +23,29 @@ class SellersController < ApplicationController
         @subdomain = request.subdomain.to_s.to_sym
         @seller = Seller.find(params[:id])
         @seller.assign_attributes(params_seller)
-
-        if @seller.save
-            UserMailer.with(subdomain: subdomain).notice_mail_for_update_seller(@seller).deliver
-            flash[:notice] = "編集が完了しました"
-            if @seller.id == current_seller.id && @seller.admin_flag == false
-                redirect_to("/sellers/sign_out")
+        
+        if params[:Sakujyo]
+            
+            if Ticket.where(seller_id: @seller.id).exists?
+                flash[:alert] = "『取扱者』を削除する前に、削除したい『取扱者』を使用している『チケット』を削除してください。"
             else
-                redirect_to("/sellers")
+                @seller.destroy
             end
+
+            redirect_to("/sellers")
+
+         else
+          
+            if @seller.save
+                UserMailer.with(subdomain: subdomain).notice_mail_for_update_seller(@seller).deliver
+                flash[:notice] = "編集が完了しました"
+                if @seller.id == current_seller.id && @seller.admin_flag == false
+                    redirect_to("/sellers/sign_out")
+                else
+                    redirect_to("/sellers")
+                end
+                
+          end
             
         end
         
