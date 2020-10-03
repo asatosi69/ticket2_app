@@ -14,21 +14,21 @@
    <tr>
     <td style="width: 120px" rowspan="2">
     </td>
-    <th colspan="2", class="align-middle", style="white-space: nowrap">
+    <th colspan="2", class="align-middle th-width", style="white-space: nowrap">
       <div class="text-center"><%= Stage.find(params[:stage_id]).stage %></div>
     </th>
   </tr>
   <tr>
-    <th class="align-middle", style="white-space: nowrap">
+    <th class="align-middle th-width", style="white-space: nowrap">
         <div class="text-center">来場済</div>
     </th>
-    <th class="align-middle", style="white-space: nowrap">
+    <th class="align-middle th-width", style="white-space: nowrap">
         <div class="text-center">予約全体</div>
     </th>
   </tr>
     <% @sellers.each do |seller| %>
       <tr>
-        <th class="align-middle", style="white-space: nowrap">
+        <th class="align-middle th-width", style="white-space: nowrap">
             <div class="text-center"><%= seller.name %></div>
         </th>
         <td class="align-middle", style="white-space: nowrap">
@@ -42,12 +42,13 @@
             <% color_code = kind.color.color_code %>
             <% array.push([color_code, @seats_count]) %>
           <% end %>
-          <%= sum %>
+          <div class="text-center"><%= sum %>
           <% array.each do |value1, value2| %>
             <span style="color: <%= value1 %>">
               (<%= value2 %>)
             </span>
           <% end %>
+          </div>
         </td>
         <td class="align-middle", style="white-space: nowrap">
           <% array = [] %>
@@ -59,12 +60,13 @@
             <% color_code = kind.color.color_code %>
             <% array.push([color_code, @seats_count]) %>
           <% end %>
-          <%= sum %>
+          <div class="text-center"><%= sum %>
           <% array.each do |value1, value2| %>
             <span style="color: <%= value1 %>">
               (<%= value2 %>)
             </span>
           <% end %>
+          </div>
         </td>
       </tr>
     <% end %>
@@ -87,12 +89,13 @@
             <% color_code = kind.color.color_code %>
             <% array.push([color_code, @seats_count]) %>
           <% end %>
-          <%= sum %>
+          <div class="text-center"><%= sum %>
           <% array.each do |value1, value2| %>
             <span style="color: <%= value1 %>">
               (<%= value2 %>)
             </span>
           <% end %>
+          </div>
         </td>
         <td class="align-middle", style="white-space: nowrap">
           <% array = [] %>
@@ -103,12 +106,13 @@
             <% color_code = kind.color.color_code %>
             <% array.push([color_code, @seats_count]) %>
           <% end %>
-          <%= sum %>
+          <div class="text-center"><%= sum %>
           <% array.each do |value1, value2| %>
             <span style="color: <%= value1 %>">
               (<%= value2 %>)
             </span>
           <% end %>
+          </div>
         </td>
       </tr>
     <% end %>

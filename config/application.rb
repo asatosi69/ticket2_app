@@ -43,9 +43,7 @@ module Ticket2App
     config.x.ratchetwrench_1.performance_url = 'http://ratchetwrench.info/report.html'.freeze
     config.x.ratchetwrench_1.troupe_url = 'http://ratchetwrench.info/'.freeze
     config.x.ratchetwrench_1.troupe_mail = 'ratchetwrench.teatro@gmail.com'.freeze
-    config.x.ratchetwrench_1.enquete_form = '
-    https://docs.google.com/forms/d/1WnCzoX-nF7K3rwnw5wGTgQ2bozakHpoSdjD7KcCZdiU/edit
-'.freeze
+    config.x.ratchetwrench_1.enquete_form = 'https://docs.google.com/forms/d/1WnCzoX-nF7K3rwnw5wGTgQ2bozakHpoSdjD7KcCZdiU/edit'.freeze
     config.x.ratchetwrench_1.receiver_mail = 'ratchetwrench.teatro@gmail.com'.freeze
 
 
