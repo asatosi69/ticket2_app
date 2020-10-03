@@ -78,6 +78,7 @@ class VisitorsController < ApplicationController
                             unless enquete_array.include?(ticket.buyer_mail) # すでに同じメールアドレスについて処理をしていないか？
                                 UserMailer.with(subdomain: subdomain).notice_mail_for_enquete(ticket).deliver
                                 enquete_array.push(ticket.buyer_mail)
+                                flash[:notice] = "アンケートを送信しました"
                             end
                             ticket.update(enquete_flag: true)
                         end

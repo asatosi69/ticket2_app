@@ -9,7 +9,7 @@
     <% page_count += 1 %>
     <div class="d-flex flex-row justify-content-between">
       <div class="print-title">
-        <%= @stage.stage %>の予約半券
+        『<%= @stage.stage %>』の予約半券
         <%= Time.current.strftime('%Y年%m月%d日 %H時%M分') %>
       </div>
       <div class="print-page-number">
@@ -68,12 +68,12 @@
     <tr class="b-left b-bottom b-right">
       <td colspan="4" class="text-center">
         <% unless ticket.buyer_furigana.nil? %>
-          <%= ticket.payment.payment %>
+          <%= ticket.kind.kind&.slice(0...3) %>
         <% end %>
       </td>
       <td colspan="4" class="text-center">
         <% unless ticket.buyer_furigana.nil? %>
-          <%= ticket.kind.kind&.slice(0...3) %>
+          <%= ticket.payment.abbreviation %>
         <% end %>
       </td>
       <td colspan="4" class="text-center">

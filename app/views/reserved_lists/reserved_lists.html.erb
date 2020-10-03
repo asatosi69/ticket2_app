@@ -20,8 +20,8 @@
         <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :buyer_furigana %></div></th>
         <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :buyer_name %></div></th>
         <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :kind_id %></div></th>
-        <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :count %></div></th>
         <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :payment_id %></div></th>
+        <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :count %></div></th>
         <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :seller_id %></div></th>
         <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :comment2 %></div></th>
       </tr>
@@ -39,8 +39,8 @@
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.buyer_furigana&.slice(0...8) %></div></td>
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.buyer_name&.slice(0...8) %></div></td>
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.kind.kind %></div></td>
+          <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.payment.abbreviation %></td>
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.count %></div></td>
-          <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.payment.payment %></td>
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.seller.name&.slice(0...6) %></div></td>
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.comment2&.truncate(18) %></div></td>
         </tr>
