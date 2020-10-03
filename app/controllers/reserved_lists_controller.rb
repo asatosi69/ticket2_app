@@ -25,8 +25,15 @@ class ReservedListsController < ApplicationController
           end
       @stage = Stage.find_by(id: params[:stage_id])
       @tickets = search_condition
-      #render template: 'reserved_lists/reserved_lists'
-      render 'reserved_lists/reserved_lists', layout: "application2"
-    end
+      
+      if @tickets.count >= 1
+        #render template: 'reserved_lists/reserved_lists'
+        render 'reserved_lists/reserved_lists', layout: "application2"
+      else
+        render :index
+        flash[:alert] = "出力対象となるデータが存在しません。"
+      end
+    
+  end
 
 end

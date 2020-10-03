@@ -29,8 +29,15 @@ class ReservedStubsController < ApplicationController
     while @tickets.size % (3 * 6) != 0
       @tickets << Ticket.new
     end
-    #render template: 'reserved_stubs/reserved_stubs'
-    render 'reserved_stubs/reserved_stubs', layout: "application2"
+    
+    if @tickets.count >= 1
+      #render template: 'reserved_stubs/reserved_stubs'
+      render 'reserved_stubs/reserved_stubs', layout: "application2"
+    else
+      render :index
+      flash[:alert] = "出力対象となるデータが存在しません。"
+    end
+    
   end
 
 end

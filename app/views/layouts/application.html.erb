@@ -101,7 +101,6 @@
     <% end %>
     <% if flash[:alert] %>
       <p class="alert"><%= alert %></p>
-
         <script>
           window.onload = function() {
             $('#MODAL').modal('show');
@@ -129,7 +128,6 @@
             </div> <!-- modal-content -->
           </div>  <!-- modal-dialog -->
         </div>  <!-- modal fade -->
-        
     <% end %>
     <div class="container">
       <%= yield %>
