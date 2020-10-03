@@ -30,13 +30,8 @@ class ReservedStubsController < ApplicationController
       @tickets << Ticket.new
     end
     
-    if @tickets.count >= 1
       #render template: 'reserved_stubs/reserved_stubs'
       render 'reserved_stubs/reserved_stubs', layout: "application2"
-    else
-      render :index
-      flash[:alert] = "出力対象となるデータが存在しません。"
-    end
     
   end
 

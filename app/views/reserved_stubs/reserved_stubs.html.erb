@@ -9,7 +9,7 @@
     <% page_count += 1 %>
     <div class="d-flex flex-row justify-content-between">
       <div class="print-title">
-        『<%= @stage.stage %>』の予約半券
+        『<%= @stage.stage %>』の予約半券 / 『<%= Time.current.strftime('%Y年%m月%d日 %H時%M分') %>』 印刷
         <%= Time.current.strftime('%Y年%m月%d日 %H時%M分') %>
       </div>
       <div class="print-page-number">

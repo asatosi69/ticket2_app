@@ -13,7 +13,7 @@
       <%= "#{i}/#{(@tickets.size/13.to_f).ceil}" %>
     </span>
   </div>
-  <table class='table table-striped table-bordered page-brake'>
+  <table class='table table-striped table-bordered'>
     <thead class="thead-light text-center">
       <tr>
         <th style="white-space:nowrap;"><div class="position-in-the-cell"><%= Ticket.human_attribute_name :published %></div></th>
@@ -42,6 +42,7 @@
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.payment.abbreviation %></td>
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.count %></div></td>
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.seller.name&.slice(0...6) %></div></td>
+
           <td style="white-space:nowrap;"><div class="position-in-the-cell"><%= ticket.comment2&.truncate(18) %></div></td>
         </tr>
       <% end %>
