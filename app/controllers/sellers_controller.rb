@@ -10,6 +10,7 @@ class SellersController < ApplicationController
         @host_with_port = request.host_with_port
         if current_seller.admin_flag?
             @sellers = Seller.all
+        else
             @sellers = Seller.where(id: current_seller.id)
         end
     end
