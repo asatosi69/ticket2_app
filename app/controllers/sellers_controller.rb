@@ -9,9 +9,8 @@ class SellersController < ApplicationController
         
         @host_with_port = request.host_with_port
         if current_seller.admin_flag?
-            @sellers = Seller.page(params[:page]).per(10)
-        else
-            @sellers = Seller.where(id: current_seller.id).page(params[:page]).per(10)
+            @sellers = Seller.all
+            @sellers = Seller.where(id: current_seller.id)
         end
     end
 
