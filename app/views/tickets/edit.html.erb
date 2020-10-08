@@ -76,8 +76,9 @@
   <%= form.label(:comment2, Ticket.human_attribute_name(:comment2), class:'control-label') %>
   <%= form.text_area :comment2, size: "50x10", class: 'form-control' %>
 </p>
-<p>
+<div class="form-group">
   <%= form.submit "更新" %>
+  <%= form.submit "このチケットを削除", name: "Sakujyo" %>
   <%= button_to '戻る', :back, method: :get %>
-</p>
+</div>
 <% end %>

@@ -9,8 +9,7 @@
       <thead>
         <tr>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">詳細</div></th>
-          <th style="white-space:nowrap;"><div class="position-in-the-cell1">編集</div></th>
-          <th style="white-space:nowrap;"><div class="position-in-the-cell1">削除</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">編集・削除</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">発券済</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">取扱者</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">公演</div></th>
@@ -32,8 +31,7 @@
         <% @tickets.each do |ticket| %>
           <tr>
             <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= button_to '詳細', ticket_path(ticket), {method: "get"} %></td>
-            <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= button_to '編集', edit_ticket_path(ticket), {method: "get"} %></td>
-            <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= button_to '削除', ticket_path(ticket), {method: "delete"} %></td>
+            <td style="white-space:nowrap;"><div class="position-in-the-cell1"><%= button_to '編集・削除', edit_ticket_path(ticket), {method: "get"} %></td>
             <td style="white-space:nowrap;"><div class="position-in-the-cell1">
               <% if ticket.published %>
                 ☑️

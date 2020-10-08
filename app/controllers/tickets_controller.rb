@@ -153,54 +153,72 @@ class TicketsController < ApplicationController
   def update
       @ticket = Ticket.find_by(id: params[:id])
       @ticket.reviser = current_seller.name
+      subdomain = request.subdomain.to_s.to_sym
       
-      # 『取扱者』の場合は自分以外の予約の操作はできない
-      unless current_seller.admin_flag?
-          # 自分以外の予約
-          if current_seller.id != @ticket.seller_id
-            flash[:notice] = "他の取扱者の予約は操作できません"
-            redirect_to("/tickets")
-          end
-      end
-    
-      @ticket.assign_attributes(params_ticket)
-      
-      validation_context = current_seller.admin_flag? ? :admin_seller : nil
-      
-      check = 0
+      if params[:Sakujyo]
          
-      unless @ticket.payment.discount_keyword.empty?
+         # 『取扱者』の場合は自分以外の予約の操作はできない
+         unless current_seller.admin_flag?
+             # 自分以外の予約
+             if current_seller.id != @ticket.seller_id
+               flash[:notice] = "他の取扱者の予約は操作できません"
+               redirect_to("/tickets")
+             end
+         end
          
-          keywords = @ticket.payment.discount_keyword.split(",")
-      
-          for keyword in keywords do
-               check = 1  if @ticket.comment1.include?(keyword)
-          end
-             
-          if check == 1
-      
-              if @ticket.save(context: validation_context)
-                    UserMailer.with(subdomain: subdomain).notice_mail_for_update_ticket(@ticket).deliver
-                    flash[:notice] = "編集が完了しました"
-                    redirect_to("/tickets")
-              else
-                    redirect_to("tickets/edit")
-              end
-          else
-              flash[:notice] = "割引キーワードが正しくありません。"
-              render 'edit'
-          end
-          
+         @ticket.destroy
+         UserMailer.with(subdomain: subdomain).notice_mail_for_destroy_ticket(@ticket).deliver
+         redirect_to("/tickets")
+
       else
-          if @ticket.save(context: validation_context)
-             UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
-             flash[:notice] = "編集が完了しました"
-             redirect_to("/tickets")
+      
+          # 『取扱者』の場合は自分以外の予約の操作はできない
+          unless current_seller.admin_flag?
+              # 自分以外の予約
+              if current_seller.id != @ticket.seller_id
+                flash[:notice] = "他の取扱者の予約は操作できません"
+                redirect_to("/tickets")
+              end
+          end
+        
+          @ticket.assign_attributes(params_ticket)
+          
+          validation_context = current_seller.admin_flag? ? :admin_seller : nil
+          
+          check = 0
+             
+          unless @ticket.payment.discount_keyword.empty?
+             
+              keywords = @ticket.payment.discount_keyword.split(",")
+          
+              for keyword in keywords do
+                   check = 1  if @ticket.comment1.include?(keyword)
+              end
+                 
+              if check == 1
+          
+                  if @ticket.save(context: validation_context)
+                        UserMailer.with(subdomain: subdomain).notice_mail_for_update_ticket(@ticket).deliver
+                        flash[:notice] = "編集が完了しました"
+                        redirect_to("/tickets")
+                  else
+                        redirect_to("tickets/edit")
+                  end
+              else
+                  flash[:notice] = "割引キーワードが正しくありません。"
+                  render 'edit'
+              end
+              
           else
-             redirect_to("tickets/edit")
+              if @ticket.save(context: validation_context)
+                 UserMailer.with(subdomain: subdomain).notice_mail_for_create_ticket(@ticket).deliver
+                 flash[:notice] = "編集が完了しました"
+                 redirect_to("/tickets")
+              else
+                 redirect_to("tickets/edit")
+              end
           end
       end
-      
   end
   
   def destroy
