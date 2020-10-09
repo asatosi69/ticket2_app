@@ -186,7 +186,6 @@ class TicketsController < ApplicationController
          end
                   
          @delete2.save
-         binding.pry
          @ticket.destroy
          UserMailer.with(subdomain: subdomain).notice_mail_for_destroy_ticket(@ticket).deliver
          redirect_to("/tickets")
