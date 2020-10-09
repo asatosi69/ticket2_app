@@ -154,6 +154,25 @@ class TicketsController < ApplicationController
       @ticket = Ticket.find_by(id: params[:id])
       @ticket.reviser = current_seller.name
       subdomain = request.subdomain.to_s.to_sym
+     
+      @delete = Delete.new
+      @delete = Ticket.find_by(id: params[:id])
+      @delete2.seller_id = @delete.seller_id
+      @delete2.stage_id = @delete.stage_id
+      @delete2.kind_id = @delete.kind_id
+      @delete2.payment_id = @delete.payment_id
+      @delete2.count = @delete.count
+      @delete2.buyer_name = @delete.buyer_name
+      @delete2.buyer_furigana = @delete.buyer_furigana
+      @delete2.buyer_mail = @delete.buyer_mail
+      @delete2.comment1 = @delete.comment1
+      @delete2.comment2 = @delete.comment2
+      @delete2.tel = @delete.tel
+      @delete2.published = @delete.published
+      @delete2.reviser = @delete.reviser
+      @delete2.enquete_flag = @delete.enquete_flag
+      @delete2.visited_flag = @delete.visited_flag
+                        
       
       if params[:Sakujyo]
          
@@ -165,7 +184,9 @@ class TicketsController < ApplicationController
                redirect_to("/tickets")
              end
          end
-         
+                  
+         @delete2.save
+         binding.pry
          @ticket.destroy
          UserMailer.with(subdomain: subdomain).notice_mail_for_destroy_ticket(@ticket).deliver
          redirect_to("/tickets")
@@ -234,6 +255,7 @@ class TicketsController < ApplicationController
           end
       end
       
+
       @ticket.destroy
       UserMailer.with(subdomain: subdomain).notice_mail_for_destroy_ticket(@ticket).deliver
       redirect_to("/tickets")

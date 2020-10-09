@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_140357) do
+ActiveRecord::Schema.define(version: 2020_10_09_112335) do
 
   create_table "colors", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "color_name"
@@ -48,6 +48,46 @@ ActiveRecord::Schema.define(version: 2020_09_29_140357) do
     t.boolean "invalid_flag", default: false, null: false
     t.index ["kind_id"], name: "index_connections_on_kind_id"
     t.index ["stage_id"], name: "index_connections_on_stage_id"
+  end
+
+  create_table "delete_databases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "seller_id"
+    t.text "comment1"
+    t.text "comment2"
+    t.boolean "visited_flag", default: true, null: false
+    t.boolean "enquete_flag", default: false, null: false
+    t.integer "stage_id"
+    t.integer "kind_id"
+    t.integer "payment_id"
+    t.integer "count"
+    t.string "buyer_name"
+    t.string "buyer_furigana"
+    t.string "buyer_mail"
+    t.string "tel"
+    t.boolean "published", default: false, null: false
+    t.string "reviser"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "deletes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "seller_id"
+    t.text "comment1"
+    t.text "comment2"
+    t.boolean "visited_flag", default: true, null: false
+    t.boolean "enquete_flag", default: false, null: false
+    t.integer "stage_id"
+    t.integer "kind_id"
+    t.integer "payment_id"
+    t.integer "count"
+    t.string "buyer_name"
+    t.string "buyer_furigana"
+    t.string "buyer_mail"
+    t.string "tel"
+    t.boolean "published", default: false, null: false
+    t.string "reviser"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "kinds", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

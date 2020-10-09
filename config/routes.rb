@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       get "tickets/download" => "tickets#download"
       resources :tickets
       
+      resources :deletes, :only => [:index]
+      
       resources :stages, :except => [:show]
       
       resources :kinds, :except => [:show]
