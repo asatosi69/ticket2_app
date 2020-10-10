@@ -8,6 +8,9 @@
 <br><%= link_to("チケット種別を登録する", new_kind_path) %>
 <br>
 <br>
+<div class="form-group">
+  <%= button_to '戻る', :back, method: :get %>
+</div>
 <% if @kinds.empty? %>
 
 <h1>登録した『チケット種別』はまだありません</h1>
@@ -51,4 +54,3 @@
 </div>
 <% end %>
 <br>
-<%= button_to '戻る', :back, method: :get %>

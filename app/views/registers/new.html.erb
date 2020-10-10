@@ -62,53 +62,56 @@
 <br>
 <br>
 <%= form_with model: @ticket, url: confirm_registers_path do |form| %>
-<%= render 'shared/error_messages', model: form.object %>
-<p>
-  <%= form.hidden_field :seller_id, value: @seller.id %>
-</p>
-<p>
-  <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
-  <%= form.collection_select(:stage_id, Stage.where(end_flag: false).where("start_time <= ?", Time.now).order(stage_time: "ASC"), :id, :stage, {prompt: :stage_id}, {:required => true, class: "form-control input-sm"}) %>
-<p>
-<p>
-  <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
-  <%= form.collection_select(:kind_id, Kind.where(end_flag: false).where("id = ? OR id = ?", '2', '6').order(id: "ASC"), :id, :kind, {prompt: :kind_id} ,{:required => true, class: "form-control input-sm"}) %>
-</p>
-<p>
-  <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
-  <%= form.collection_select(:payment_id, Payment.where("id = ?", '1').order(id: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
-<p>
-  <%= form.label(:count, Ticket.human_attribute_name(:count), class:'control-label') %>
-  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: :count}, {:required => true, class: "form-control"} %>
-</p>
-<p>
-  <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name), class:'control-label') %>
-  <%= form.text_field :buyer_name, {:required => true, class: "form-control"} %>
-</p>
-<p>
-  <%= form.label(:buyer_furigana, Ticket.human_attribute_name(:buyer_furigana), class:'control-label') %>
-  <%= form.text_field :buyer_furigana, {:required => true, class: "form-control"} %>
-</p>
-<p>
-  <%= form.label(:tel, Ticket.human_attribute_name(:tel), class:'control-label') %>
-  <%= form.text_field :tel, {:required => true, class: "form-control"} %>
-</p>
-<p>
-  <%= form.label(:buyer_mail, Ticket.human_attribute_name(:buyer_mail), class:'control-label') %>
-  <%= form.email_field :buyer_mail, class: 'form-control' %>
-</p>
-<p>
-  <%= form.label(:comment1, Ticket.human_attribute_name(:comment1), class:'control-label') %>
-  <%= form.text_area :comment1, size: "50x10", class: 'form-control' %>
-</p>
-<br>
-<p>
-  <%= form.label(:chk1, "『お願い事項』了解致しました") %>
-  <%= form.check_box :chk1, {:required => true, class: "form-control"} %>
-</p>
-<div class="form-group">
-  <%= form.submit "申込" %>
-  <%= button_to '予約を終了する', 'https://www.google.co.jp', method: :get %>
-</div>
+  <%= render 'shared/error_messages', model: form.object %>
+  <p>
+    <%= form.hidden_field :seller_id, value: @seller.id %>
+  </p>
+  <p>
+    <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
+    <%= form.collection_select(:stage_id, Stage.where(end_flag: false).where("start_time <= ?", Time.now).order(stage_time: "ASC"), :id, :stage, {prompt: :stage_id}, {:required => true, class: "form-control input-sm"}) %>
+  <p>
+  <p>
+    <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
+    <%= form.collection_select(:kind_id, Kind.where(end_flag: false).where("id = ? OR id = ?", '2', '6').order(id: "ASC"), :id, :kind, {prompt: :kind_id} ,{:required => true, class: "form-control input-sm"}) %>
+  </p>
+  <p>
+    <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
+    <%= form.collection_select(:payment_id, Payment.where("id = ?", '1').order(id: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
+  <p>
+    <%= form.label(:count, Ticket.human_attribute_name(:count), class:'control-label') %>
+    <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: :count}, {:required => true, class: "form-control"} %>
+  </p>
+  <p>
+    <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name), class:'control-label') %>
+    <%= form.text_field :buyer_name, {:required => true, class: "form-control"} %>
+  </p>
+  <p>
+    <%= form.label(:buyer_furigana, Ticket.human_attribute_name(:buyer_furigana), class:'control-label') %>
+    <%= form.text_field :buyer_furigana, {:required => true, class: "form-control"} %>
+  </p>
+  <p>
+    <%= form.label(:tel, Ticket.human_attribute_name(:tel), class:'control-label') %>
+    <%= form.text_field :tel, {:required => true, class: "form-control"} %>
+  </p>
+  <p>
+    <%= form.label(:buyer_mail, Ticket.human_attribute_name(:buyer_mail), class:'control-label') %>
+    <%= form.email_field :buyer_mail, class: 'form-control' %>
+  </p>
+  <p>
+    <%= form.label(:comment1, Ticket.human_attribute_name(:comment1), class:'control-label') %>
+    <%= form.text_area :comment1, size: "50x10", class: 'form-control' %>
+  </p>
+  <br>
+  <p>
+    <%= form.label(:chk1, "『お願い事項』了解致しました") %>
+    <%= form.check_box :chk1, {:required => true, class: "form-control"} %>
+  </p>
+  <div class="form-group">
+    <%= form.submit "申込" %>
+    <%= button_to '予約を終了する', 'https://www.google.co.jp', method: :get %>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
 <% end %>
-<br>

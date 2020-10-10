@@ -3,7 +3,7 @@
 <br>
 <p>表示したい『公演』と表示したい『並び順』を選択し、『表示』を押下ください。</p>
 <br>
-<p>ブラウザ『Chrome』で表示することを前提に印刷データをレイアウトしています。</p>
+<p><font color="red">ブラウザ『Chrome』で表示することを前提に印刷データをレイアウトしています。</font></p>
 <br>
 <%= form_tag(reserved_list_print_path, method: :get, target: '_blank', name: "myform") do %>
 
@@ -23,9 +23,13 @@
       {prompt: "選択して下さい", :class => "form-control"} %>
     </div>
   </div>
-
   <div class="form-group">
     <%= submit_tag "表示", 'data-disable-with' => false   %>
     <%= button_to '戻る', :back, method: :get %>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+
 <% end %>

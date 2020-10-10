@@ -3,29 +3,33 @@
 <br>
 <br>
 <%= form_with model: @kind do |form| %>
-<%= render 'shared/error_messages', model: form.object %>
-<p>
-  <%= form.label(:kind, Kind.human_attribute_name(:kind), class:'control-label') %>
-  <%= form.text_field :kind, class: "form-control" %>
-</p>
-<p>
-  <%= form.label(:seats, Kind.human_attribute_name(:seats), class:'control-label') %>
-  <%= form.number_field :seats, class: "form-control" %>
-</p>
-<p>
-  <%= form.label(:price, Kind.human_attribute_name(:price), class:'control-label') %>
-  <%= form.number_field :price, class: "form-control" %>
-</p>
-<p>
-  <%= form.label(:color_id, Kind.human_attribute_name(:color_id), class:'control-label') %>
-  <%= form.collection_select(:color_id, Color.where(is_selected: false), :id, :color_name, {prompt: :color_id}, {class: "form-control input-sm"}) %>
-</p>
-<p>
-  <%= form.label(:end_flag, Kind.human_attribute_name(:end_flag), class:'control-label') %>
-  <%= form.check_box :end_flag , class: 'form-control move-left' %>
-</p>
-<div class="form-group">
-  <%= form.submit "登録" %>
-  <%= button_to '戻る', :back, method: :get %>
-</div>
+  <%= render 'shared/error_messages', model: form.object %>
+  <p>
+    <%= form.label(:kind, Kind.human_attribute_name(:kind), class:'control-label') %>
+    <%= form.text_field :kind, class: "form-control" %>
+  </p>
+  <p>
+    <%= form.label(:seats, Kind.human_attribute_name(:seats), class:'control-label') %>
+    <%= form.number_field :seats, class: "form-control" %>
+  </p>
+  <p>
+    <%= form.label(:price, Kind.human_attribute_name(:price), class:'control-label') %>
+    <%= form.number_field :price, class: "form-control" %>
+  </p>
+  <p>
+    <%= form.label(:color_id, Kind.human_attribute_name(:color_id), class:'control-label') %>
+    <%= form.collection_select(:color_id, Color.where(is_selected: false), :id, :color_name, {prompt: :color_id}, {class: "form-control input-sm"}) %>
+  </p>
+  <p>
+    <%= form.label(:end_flag, Kind.human_attribute_name(:end_flag), class:'control-label') %>
+    <%= form.check_box :end_flag , class: 'form-control move-left' %>
+  </p>
+  <div class="form-group">
+    <%= form.submit "登録" %>
+    <%= button_to '戻る', :back, method: :get %>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
 <% end %>

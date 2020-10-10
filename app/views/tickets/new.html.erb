@@ -6,78 +6,84 @@
 <p><font color="red">開場時間は開演時間の30分前となっています。</font></p>
 <br>
 <br>
+
 <%= form_with model: @ticket do |form| %>
-<%= render 'shared/error_messages', model: form.object %>
-<p>
-  <% if current_seller.admin_flag? %>
-    <%= form.label(:published, Ticket.human_attribute_name(:published), class:'control-label') %>
-    <%= form.check_box :published, class: 'form-control move-left' %>
-  <% end %>
-</p>
-<p>
-  <% if current_seller.admin_flag? %>
-    <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id), class:'control-label') %>
-    <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: :seller_id}, {:required => true, class: "form-control input-sm"}) %>
-  <% else %>
-    <%= form.hidden_field :seller_id, value: current_seller.id %>
-  <% end %>
-</p>
-<p>
-  <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
-  <% if current_seller.admin_flag? %>
-    <%= form.collection_select(:stage_id, Stage.all.order(stage_time: "ASC"), :id, :stage, {prompt: :stage_id}, {:required => true, class: "form-control input-sm"},) %>
-  <% else %>
-    <%= form.collection_select(:stage_id, Stage.where(end_flag: false).where("start_time <= ?", Time.now).order(stage_time: "ASC"), :id, :stage,  {prompt: :stage_id}, {:required => true, class: "form-control input-sm"}) %>
-  <% end %>
-</p>
-<p>
-  <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
-  <% if current_seller.admin_flag? %>
-    <%= form.collection_select(:kind_id, Kind.all.order(id: "ASC"), :id, :kind,  {prompt: :kind_id}, {:required => true, class: "form-control input-sm"}) %>
-  <% else %>
-    <%= form.collection_select(:kind_id, Kind.where(end_flag: false).where("id = ? OR id = ?", '2', '6').order(id: "ASC"), :id, :kind,  {prompt: :kind_id}, {:required => true, class: "form-control input-sm"}) %>
-  <% end %>
-</p>
-<p>
-  <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
-  <% if current_seller.admin_flag? %>
-    <%= form.collection_select(:payment_id, Payment.all.order(id: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
-  <% else %>
-    <%= form.collection_select(:payment_id, Payment.where("id = ? OR id = ?", '1', '2').order(id: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
-  <% end %>
-</p>
-<p>
-  <%= form.label(:count, Ticket.human_attribute_name(:count), class:'control-label') %>
-  <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: :count}, {:required => true, class: "form-control"} %>
-</p>
-<p>
-  <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name), class:'control-label') %>
-  <%= form.text_field :buyer_name, {:required => true, class: "form-control"} %>
-</p>
-<p>
-  <%= form.label(:buyer_furigana, Ticket.human_attribute_name(:buyer_furigana), class:'control-label') %>
-  <%= form.text_field :buyer_furigana, {:required => true, class: "form-control"} %>
-</p>
-<p>
-  <%= form.label(:tel, Ticket.human_attribute_name(:tel), class:'control-label') %>
-  <%= form.text_field :tel, {:required => true, class: "form-control"} %>
-</p>
-<p>
-  <%= form.label(:buyer_mail, Ticket.human_attribute_name(:buyer_mail), class:'control-label') %>
-  <%= form.email_field :buyer_mail, class: 'form-control' %>
-</p>
-<p>
-  <%= form.label(:comment1, Ticket.human_attribute_name(:comment1), class:'control-label') %>
-  <%= form.text_area :comment1, size: "50x10", class: 'form-control' %>
-</p>
-<p>
-  <%= form.label(:comment2, Ticket.human_attribute_name(:comment2), class:'control-label') %>
-  <%= form.text_area :comment2, size: "50x10", class: 'form-control' %>
-</p>
-<p>
-  <%= form.submit "登録" %>
-  <%= form.submit "連続登録", name: "Renzoku" %>
-  <%= button_to '戻る', :back, method: :get %>
-</p>
+  <%= render 'shared/error_messages', model: form.object %>
+  <p>
+    <% if current_seller.admin_flag? %>
+      <%= form.label(:published, Ticket.human_attribute_name(:published), class:'control-label') %>
+      <%= form.check_box :published, class: 'form-control move-left' %>
+    <% end %>
+  </p>
+  <p>
+    <% if current_seller.admin_flag? %>
+      <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id), class:'control-label') %>
+      <%= form.collection_select(:seller_id, Seller.all, :id, :name, {prompt: :seller_id}, {:required => true, class: "form-control input-sm"}) %>
+    <% else %>
+      <%= form.hidden_field :seller_id, value: current_seller.id %>
+    <% end %>
+  </p>
+  <p>
+    <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
+    <% if current_seller.admin_flag? %>
+      <%= form.collection_select(:stage_id, Stage.all.order(stage_time: "ASC"), :id, :stage, {prompt: :stage_id}, {:required => true, class: "form-control input-sm"},) %>
+    <% else %>
+      <%= form.collection_select(:stage_id, Stage.where(end_flag: false).where("start_time <= ?", Time.now).order(stage_time: "ASC"), :id, :stage,  {prompt: :stage_id}, {:required => true, class: "form-control input-sm"}) %>
+    <% end %>
+  </p>
+  <p>
+    <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
+    <% if current_seller.admin_flag? %>
+      <%= form.collection_select(:kind_id, Kind.all.order(id: "ASC"), :id, :kind,  {prompt: :kind_id}, {:required => true, class: "form-control input-sm"}) %>
+    <% else %>
+      <%= form.collection_select(:kind_id, Kind.where(end_flag: false).where("id = ? OR id = ?", '2', '6').order(id: "ASC"), :id, :kind,  {prompt: :kind_id}, {:required => true, class: "form-control input-sm"}) %>
+    <% end %>
+  </p>
+  <p>
+    <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
+    <% if current_seller.admin_flag? %>
+      <%= form.collection_select(:payment_id, Payment.all.order(id: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
+    <% else %>
+      <%= form.collection_select(:payment_id, Payment.where("id = ? OR id = ?", '1', '2').order(id: "ASC"), :id, :payment, {prompt: :payment_id}, {:required => true, class: "form-control input-sm"}) %>
+    <% end %>
+  </p>
+  <p>
+    <%= form.label(:count, Ticket.human_attribute_name(:count), class:'control-label') %>
+    <%= form.select :count, [["1枚", 1], ["2枚", 2],  ["3枚", 3], ["4枚", 4],["5枚", 5] ], {prompt: :count}, {:required => true, class: "form-control"} %>
+  </p>
+  <p>
+    <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name), class:'control-label') %>
+    <%= form.text_field :buyer_name, {:required => true, class: "form-control"} %>
+  </p>
+  <p>
+    <%= form.label(:buyer_furigana, Ticket.human_attribute_name(:buyer_furigana), class:'control-label') %>
+    <%= form.text_field :buyer_furigana, {:required => true, class: "form-control"} %>
+  </p>
+  <p>
+    <%= form.label(:tel, Ticket.human_attribute_name(:tel), class:'control-label') %>
+    <%= form.text_field :tel, {:required => true, class: "form-control"} %>
+  </p>
+  <p>
+    <%= form.label(:buyer_mail, Ticket.human_attribute_name(:buyer_mail), class:'control-label') %>
+    <%= form.email_field :buyer_mail, class: 'form-control' %>
+  </p>
+  <p>
+    <%= form.label(:comment1, Ticket.human_attribute_name(:comment1), class:'control-label') %>
+    <%= form.text_area :comment1, size: "50x10", class: 'form-control' %>
+  </p>
+  <p>
+    <%= form.label(:comment2, Ticket.human_attribute_name(:comment2), class:'control-label') %>
+    <%= form.text_area :comment2, size: "50x10", class: 'form-control' %>
+  </p>
+  <br>
+  <br>
+  <div class="form-group">
+    <%= form.submit "登録" %>
+    <%= form.submit "連続登録", name: "Renzoku" %>
+    <%= button_to '戻る', :back, method: :get %>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
 <% end %>
-<br>

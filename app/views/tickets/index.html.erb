@@ -5,79 +5,84 @@
 <%= link_to("チケット予約を登録する", new_ticket_path) %>
 <br>
 <br>
+
+<% if current_seller.admin_flag? %>
+  <div class="form-group">
+    <%= button_to '全レコードCSVダウンロード', tickets_download_path(format: :csv), method: :get %>
+  </div>
+<% end %>
+
 <%= form_with(scope: :search, url: tickets_path, method: :get, local: true) do |form| %>
 
-    <% if current_seller.admin_flag? %>
-      <div class="form-row">
-        <div class="form-group col-auto">
-          <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id), class:'control-label') %>
-          <%= form.collection_select(:seller_id, Seller.all.order(id: "ASC"), :id, :name, {selected: @search_params[:seller_id], prompt: "選択してください"}, {class: "form-control input-sm"}) %>
-        </div>
-        <div class="form-group col-auto">
-          <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
-          <%= form.collection_select(:stage_id, Stage.all.order(stage_time: "ASC"), :id, :stage,  {selected: @search_params[:stage_id], prompt: "選択してください"}, class: "form-control input-sm") %>
-        </div>
-        <div class="form-group col-auto">
-          <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
-          <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind, {selected: @search_params[:kind_id], prompt: "選択してください"}, class: "form-control input-sm") %>
-        </div>
-        <div class="form-group col-auto">
-          <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
-          <%= form.collection_select(:payment_id, Payment.all.order(discount_rate: "DESC"), :id, :payment,  {selected: @search_params[:payment_id], prompt: "選択してください"}, class: "form-control input-sm") %>
-        </div>
-      </div>
-    <% else %>
-      <%= form.hidden_field :seller_id, value: current_seller.id %>
-      <div class="form-row">
-        <div class="col-auto">
-          <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
-          <%= form.collection_select(:stage_id, Stage.all.order(stage_time: "ASC"), :id, :stage,  {selected: @search_params[:stage_id], prompt: "選択してください"}, class: "form-control input-sm") %>
-        </div>
-        <div class="col-auto">
-          <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
-          <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind, {selected: @search_params[:kind_id], prompt: "選択してください"}, class: "form-control input-sm") %>
-        </div>
-        <div class="col-auto">
-          <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
-          <%= form.collection_select(:payment_id, Payment.all.order(payment: "ASC"), :id, :payment,  {selected: @search_params[:payment_id], prompt: "選択してください"}, class: "form-control input-sm") %>
-        </div>
-      </div>
-    <% end %>
-
+  <% if current_seller.admin_flag? %>
     <div class="form-row">
       <div class="form-group col-auto">
-        <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name)) %>
-        <%= form.text_field :buyer_name, class: 'form-control', value: @search_params[:buyer_name] %>
+        <%= form.label(:seller_id, Ticket.human_attribute_name(:seller_id), class:'control-label') %>
+        <%= form.collection_select(:seller_id, Seller.all.order(id: "ASC"), :id, :name, {selected: @search_params[:seller_id], prompt: "選択してください"}, {class: "form-control input-sm"}) %>
       </div>
       <div class="form-group col-auto">
-        <%= form.label(:buyer_furigana, Ticket.human_attribute_name(:buyer_furigana)) %>
-        <%= form.text_field :buyer_furigana, class: 'form-control', value: @search_params[:buyer_furigana] %>
+        <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
+        <%= form.collection_select(:stage_id, Stage.all.order(stage_time: "ASC"), :id, :stage,  {selected: @search_params[:stage_id], prompt: "選択してください"}, class: "form-control input-sm") %>
       </div>
+      <div class="form-group col-auto">
+        <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
+        <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind, {selected: @search_params[:kind_id], prompt: "選択してください"}, class: "form-control input-sm") %>
+      </div>
+      <div class="form-group col-auto">
+        <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
+        <%= form.collection_select(:payment_id, Payment.all.order(discount_rate: "DESC"), :id, :payment,  {selected: @search_params[:payment_id], prompt: "選択してください"}, class: "form-control input-sm") %>
+      </div>
+    </div>
+  <% else %>
+    <%= form.hidden_field :seller_id, value: current_seller.id %>
+    <div class="form-row">
+      <div class="col-auto">
+        <%= form.label(:stage_id, Ticket.human_attribute_name(:stage_id), class:'control-label') %>
+        <%= form.collection_select(:stage_id, Stage.all.order(stage_time: "ASC"), :id, :stage,  {selected: @search_params[:stage_id], prompt: "選択してください"}, class: "form-control input-sm") %>
+      </div>
+      <div class="col-auto">
+        <%= form.label(:kind_id, Ticket.human_attribute_name(:kind_id), class:'control-label') %>
+        <%= form.collection_select(:kind_id, Kind.all.order(kind: "ASC"), :id, :kind, {selected: @search_params[:kind_id], prompt: "選択してください"}, class: "form-control input-sm") %>
+      </div>
+      <div class="col-auto">
+        <%= form.label(:payment_id, Ticket.human_attribute_name(:payment_id), class:'control-label') %>
+        <%= form.collection_select(:payment_id, Payment.all.order(payment: "ASC"), :id, :payment,  {selected: @search_params[:payment_id], prompt: "選択してください"}, class: "form-control input-sm") %>
+      </div>
+    </div>
+  <% end %>
 
-      <div class="form-group col-auto">
-        <%= form.label(:chk3, "発券済") %>
-        <%= form.check_box :chk3, class: 'form-control' %>
-      </div>
-      <div class="form-group col-auto">
-        <%= form.label(:chk1, "コメントあり") %>
-        <%= form.check_box :chk1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-auto">
-        <%= form.label(:chk2, "備考有り") %>
-        <%= form.check_box :chk2, class: 'form-control' %>
-      </div>
-
+  <div class="form-row">
+    <div class="form-group col-auto">
+      <%= form.label(:buyer_name, Ticket.human_attribute_name(:buyer_name)) %>
+      <%= form.text_field :buyer_name, class: 'form-control', value: @search_params[:buyer_name] %>
+    </div>
+    <div class="form-group col-auto">
+      <%= form.label(:buyer_furigana, Ticket.human_attribute_name(:buyer_furigana)) %>
+      <%= form.text_field :buyer_furigana, class: 'form-control', value: @search_params[:buyer_furigana] %>
     </div>
 
-    <%= form.submit(t('helpers.submit.search')) %>
+    <div class="form-group col-auto">
+      <%= form.label(:chk3, "発券済") %>
+      <%= form.check_box :chk3, class: 'form-control' %>
+    </div>
+    <div class="form-group col-auto">
+      <%= form.label(:chk1, "コメントあり") %>
+      <%= form.check_box :chk1, class: 'form-control' %>
+    </div>
+    <div class="form-group col-auto">
+      <%= form.label(:chk2, "備考有り") %>
+      <%= form.check_box :chk2, class: 'form-control' %>
+    </div>
 
+  </div>
+  <div class="form-group">
+    <%= form.submit(t('helpers.submit.search')) %>
+  </div>
 <% end %>
 
 <br>
 
-<% if current_seller.admin_flag? %>
-  <%= button_to '全レコードCSVダウンロード', tickets_download_path(format: :csv), method: :get %>
-<% end %>
+
 <br>
 <br>
 <%= render :partial => "shared/ticket_format" %>

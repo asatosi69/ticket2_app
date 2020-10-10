@@ -10,7 +10,9 @@
 <%= link_to("公演情報を登録する", new_stage_path) %>
 <br>
 <br>
-
+<div class="form-group">
+  <%= button_to '戻る', :back, method: :get %>
+</div>
 <% if @stages.empty? %>
 
 <h1>登録されている『公演情報』はありません</h1>
@@ -57,6 +59,3 @@
 </table>
 </div>
 <% end %>
-
-<br>
-<%= button_to '戻る', :back, method: :get %>

@@ -12,6 +12,9 @@
   <h3>『取扱者』情報ページ</h3>
 <% end %>
 <%= form_tag(mail_all_path, method: 'get') do %>
+  <div class="form-group">
+    <%= button_to '戻る', :back, method: :get %>
+  </div>
   <div class="table-responsive overflow-y:auto">
     <table class="table table-striped table-bordered table-hover table-width">
       <thead>
@@ -58,6 +61,3 @@
     </table>
   </div>
 <% end %>
-<div class="form-group">
-  <%= button_to '戻る', :back, method: :get %>
-</div>

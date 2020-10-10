@@ -3,57 +3,61 @@
 <br>
 <br>
 <%= form_with model: @stage do |form| %>
-<%= render 'shared/error_messages', model: form.object %>
-<p>
-  <%= form.label(:stage, Stage.human_attribute_name(:stage), class:'control-label') %>
-  <%= form.text_field :stage, :size=>"30", class: 'form-control' %>
-</p>
-<p>
-  <%= form.label(:stage_time, Stage.human_attribute_name(:stage_time), class:'control-label') %>
-  <%= form.datetime_select :stage_time,
-        start_year: Time.now.year,
-        end_year: Time.now.since(3.years).year,
-        use_two_digit_numbers: true,
-        date_separator: '-',
-        datetime_separator: ',',
-        time_separator: ':',
-        class:'control-label'
-     %>
-</p>
-<p>
-  <%= form.label(:total_seats, Stage.human_attribute_name(:total_seats), class:'control-label') %>
-  <%= form.number_field :total_seats, class: 'form-control' %>
-</p>
-<p>
-  <%= form.label(:start_time, Stage.human_attribute_name(:start_time), class:'control-label') %>
-  <%= form.datetime_select :start_time,
-        start_year: Time.now.year,
-        end_year: Time.now.since(3.years).year,
-        use_two_digit_numbers: true,
-        date_separator: '-',
-        datetime_separator: ',',
-        time_separator: ':',
-        class:'control-label'
-     %>
-</p>
-<p>
-  <%= form.label(:end_time, Stage.human_attribute_name(:end_time), class:'control-label') %>
-  <%= form.datetime_select :end_time,
-        start_year: Time.now.year,
-        end_year: Time.now.since(3.years).year,
-        use_two_digit_numbers: true,
-        date_separator: '-',
-        datetime_separator: ',',
-        time_separator: ':',
-        class:'control-label'
-     %>
-</p>
-<p>
-  <%= form.label(:end_flag, Stage.human_attribute_name(:end_flag), class:'control-label') %>
-  <%= form.check_box :end_flag , class: 'form-control move-left' %>
-</p>
-<div class="form-group">
-  <%= form.submit "更新" %>
-  <%= button_to '戻る', :back, method: :get %>
-</div>
+  <%= render 'shared/error_messages', model: form.object %>
+  <p>
+    <%= form.label(:stage, Stage.human_attribute_name(:stage), class:'control-label') %>
+    <%= form.text_field :stage, :size=>"30", class: 'form-control' %>
+  </p>
+  <p>
+    <%= form.label(:stage_time, Stage.human_attribute_name(:stage_time), class:'control-label') %>
+    <%= form.datetime_select :stage_time,
+          start_year: Time.now.year,
+          end_year: Time.now.since(3.years).year,
+          use_two_digit_numbers: true,
+          date_separator: '-',
+          datetime_separator: ',',
+          time_separator: ':',
+          class:'control-label'
+       %>
+  </p>
+  <p>
+    <%= form.label(:total_seats, Stage.human_attribute_name(:total_seats), class:'control-label') %>
+    <%= form.number_field :total_seats, class: 'form-control' %>
+  </p>
+  <p>
+    <%= form.label(:start_time, Stage.human_attribute_name(:start_time), class:'control-label') %>
+    <%= form.datetime_select :start_time,
+          start_year: Time.now.year,
+          end_year: Time.now.since(3.years).year,
+          use_two_digit_numbers: true,
+          date_separator: '-',
+          datetime_separator: ',',
+          time_separator: ':',
+          class:'control-label'
+       %>
+  </p>
+  <p>
+    <%= form.label(:end_time, Stage.human_attribute_name(:end_time), class:'control-label') %>
+    <%= form.datetime_select :end_time,
+          start_year: Time.now.year,
+          end_year: Time.now.since(3.years).year,
+          use_two_digit_numbers: true,
+          date_separator: '-',
+          datetime_separator: ',',
+          time_separator: ':',
+          class:'control-label'
+       %>
+  </p>
+  <p>
+    <%= form.label(:end_flag, Stage.human_attribute_name(:end_flag), class:'control-label') %>
+    <%= form.check_box :end_flag , class: 'form-control move-left' %>
+  </p>
+  <div class="form-group">
+    <%= form.submit "更新" %>
+    <%= button_to '戻る', :back, method: :get %>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
 <% end %>

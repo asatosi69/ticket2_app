@@ -157,21 +157,22 @@ class TicketsController < ApplicationController
      
       @delete = Delete.new
       @delete = Ticket.find_by(id: params[:id])
-      @delete2.seller_id = @delete.seller_id
-      @delete2.stage_id = @delete.stage_id
-      @delete2.kind_id = @delete.kind_id
-      @delete2.payment_id = @delete.payment_id
-      @delete2.count = @delete.count
-      @delete2.buyer_name = @delete.buyer_name
-      @delete2.buyer_furigana = @delete.buyer_furigana
-      @delete2.buyer_mail = @delete.buyer_mail
-      @delete2.comment1 = @delete.comment1
-      @delete2.comment2 = @delete.comment2
-      @delete2.tel = @delete.tel
-      @delete2.published = @delete.published
-      @delete2.reviser = @delete.reviser
-      @delete2.enquete_flag = @delete.enquete_flag
-      @delete2.visited_flag = @delete.visited_flag
+      
+      @delete = Delete.new(:published => @ticket.published,
+                           :seller_id => @ticket.seller_id,
+                           :kind_id => @ticket.kind_id,
+                           :stage_id => @ticket.kind_id,
+                           :payment_id => @ticket.payment_id,
+                           :count => @ticket.count,
+                           :buyer_name => @ticket.buyer_name,
+                           :buyer_furigana => @ticket.buyer_furigana,
+                           :buyer_mail => @ticket.buyer_mail,
+                           :comment1 => @ticket.comment1,
+                           :comment2 => @ticket.comment2,
+                           :enquete_flag => @ticket.enquete_flag,
+                           :visited_flag => @ticket.visited_flag,
+                           :reviser => @ticket.reviser,
+                           :tel => @ticket.tel)
                         
       
       if params[:Sakujyo]
@@ -184,8 +185,8 @@ class TicketsController < ApplicationController
                redirect_to("/tickets")
              end
          end
-                  
-         @delete2.save
+
+         @delete.save
          @ticket.destroy
          UserMailer.with(subdomain: subdomain).notice_mail_for_destroy_ticket(@ticket).deliver
          redirect_to("/tickets")

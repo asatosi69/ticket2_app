@@ -2,6 +2,9 @@
 <h3>削除済『チケット』表示ページ</h3>
 <br>
 <br>
+<div class="form-group">
+  <%= button_to '戻る', :back, method: :get %>
+</div>
 <% if @deletes.empty? %>
 
 <h1>削除された『チケット』はまだありません</h1>
@@ -65,6 +68,3 @@
     </table>
   </div>
 <% end %>
-
-<%= button_to '戻る', :back, method: :get %>
-<br>

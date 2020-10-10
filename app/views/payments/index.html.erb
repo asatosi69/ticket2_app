@@ -19,7 +19,9 @@
 <%= link_to("支払方法を登録する", new_payment_path) %>
 <br>
 <br>
-
+<div class="form-group">
+  <%= button_to '戻る', :back, method: :get %>
+</div>
 <% if @payments.empty? %>
 
 <h1>登録されている『支払方法』はありません</h1>
@@ -109,4 +111,3 @@
 <% end %>
 
 <br>
-<%= button_to '戻る', :back, method: :get %>
