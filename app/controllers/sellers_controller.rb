@@ -58,6 +58,7 @@ class SellersController < ApplicationController
             
             @sellers.each do |seller|
                 seller.url = "https://#{@host_with_port}/registers/#{seller.id}/new"
+                seller.sent_flag = true
                 seller.save
             end
             
