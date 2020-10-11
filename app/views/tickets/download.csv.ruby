@@ -20,7 +20,7 @@ CSV.generate do |csv|
       ticket.buyer_name,
       ticket.buyer_furigana,
       ticket.buyer_mail,
-      ticket.tel
+      ticket.tel,
       ticket.comment1,
       ticket.comment2,
       ticket.visited_flag,
