@@ -27,6 +27,7 @@
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">管理者フラグ</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">予約用URL</div></th>
           <th style="white-space:nowrap;"><div class="position-in-the-cell1">貸出枚数</div></th>
+          <th style="white-space:nowrap;"><div class="position-in-the-cell1">URL送付済み</div></th>
         </tr>
       </thead>
       <tbody>
@@ -50,6 +51,12 @@
             </div></td>
             <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= "https://#{@host_with_port}/registers/#{seller.id}/new" %></div></td>
             <td style="white-space:nowrap;"><div class="position-in-the-cell2"><%= seller.rental_tickets %></div></td>
+            <td style="white-space:nowrap;"><div class="position-in-the-cell2"><% if seller.sent_flag %>
+              ☑️
+            <% else %>
+              -
+            <% end %>
+          </div></td>
           </tr>
         <% end %>
       </tbody>

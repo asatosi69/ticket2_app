@@ -84,7 +84,7 @@ class SellersController < ApplicationController
     
     private
     def params_seller
-     params.require(:seller).permit(:admin_flag, :url, :rental_tickets)
+     params.require(:seller).permit(:admin_flag, :url, :rental_tickets, :sent_flag)
     end
     
 end

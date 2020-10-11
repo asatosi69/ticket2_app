@@ -8,6 +8,7 @@ ja:
       stage: '公演'
       ticket: 'チケット'
       connection: '組み合わせ'
+      delete: '削除チケット'
     attributes:
       page:
         notice: '連絡事項'
@@ -54,6 +55,7 @@ ja:
         admin_flag: '管理者フラグ'
         url: '予約ページ'
         rental_tickets: '貸出枚数'
+        sent_flag: 'URL送信済フラグ'
   helpers:
     select:
       prompt: '選択してください'
