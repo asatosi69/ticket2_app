@@ -223,11 +223,11 @@ class TicketsController < ApplicationController
                         flash[:notice] = "編集が完了しました"
                         redirect_to("/tickets")
                   else
-                        redirect_to("tickets/edit")
+                        render :edit
                   end
               else
                   flash[:notice] = "割引キーワードが正しくありません。"
-                  render 'edit'
+                  render :edit
               end
               
           else
@@ -236,7 +236,7 @@ class TicketsController < ApplicationController
                  flash[:notice] = "編集が完了しました"
                  redirect_to("/tickets")
               else
-                 redirect_to("tickets/edit")
+                 render :edit
               end
           end
       end
