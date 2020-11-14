@@ -104,7 +104,7 @@ class TicketsController < ApplicationController
                   end
                   
               else
-                  render :new
+                  render 'new'
               end
               
           else
@@ -125,7 +125,7 @@ class TicketsController < ApplicationController
                   end
                   
               else
-                  render :new
+                  render 'new'
               end
       end
       
@@ -223,11 +223,11 @@ class TicketsController < ApplicationController
                         flash[:notice] = "編集が完了しました"
                         redirect_to("/tickets")
                   else
-                        render :edit
+                        render 'edit'
                   end
               else
                   flash[:notice] = "割引キーワードが正しくありません。"
-                  render :edit
+                  render 'edit'
               end
               
           else
@@ -236,7 +236,7 @@ class TicketsController < ApplicationController
                  flash[:notice] = "編集が完了しました"
                  redirect_to("/tickets")
               else
-                 render :edit
+                render 'edit'
               end
           end
       end
