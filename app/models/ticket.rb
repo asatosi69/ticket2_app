@@ -10,7 +10,7 @@ class Ticket < ApplicationRecord
     validates :payment_id, presence: true
     validates :count, presence: true, numericality: { only_integer: true }
     
-    VALID_BUYER_NAME_REGEX = /\A[ぁ-んァ-ヶー一-龠]+\z/
+    VALID_BUYER_NAME_REGEX = /\A[ぁ-んァ-ヶ（）ー一-龠]+\z/
     validates :buyer_name, presence: true,
     format: {
       with: VALID_BUYER_NAME_REGEX,
