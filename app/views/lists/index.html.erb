@@ -76,6 +76,37 @@
         </tr>
       <% end %>
 
+
+    <%# 空行 %>
+    <tr>
+      <td>
+      </td>
+      <% @stages.each do |stage| %>
+        <td>
+        </td>
+      <% end %>
+      <td>
+      </td>
+    </tr>
+
+
+   <%# 『座席』については『管理取扱者』も『一般取扱者』も共通。 %>
+    <tr>
+      <th class="align-middle", style="white-space: nowrap">
+        <div class="text-center">座席</div>
+      </th>
+      <% sum3 = 0 %>
+      <% @stages.each do |stage| %>
+      <td class="align-middle", style="white-space: nowrap">
+        <div class="text-center"><%= stage.total_seats %></div>
+        <% sum3 += stage.total_seats %>
+      </td>
+      <% end %>
+      <td class="align-middle", style="white-space: nowrap">
+        <div class="text-center"><%= sum3 %></div>
+      </td>
+    </tr>
+
     <%# 『管理取扱者』は『販売済』を表示する。 %>
     <%# 『一般取扱者』は『販売済』を表示しない。 %>
     <% if current_seller.admin_flag %>
@@ -130,37 +161,6 @@
       <% end %>
         <% sum2 %>
     <% end %>
-
-    <%# 空行 %>
-    <tr>
-      <td>
-      </td>
-      <% @stages.each do |stage| %>
-        <td>
-        </td>
-      <% end %>
-      <td>
-      </td>
-    </tr>
-
-
-   <%# 『座席』については『管理取扱者』も『一般取扱者』も共通。 %>
-    <tr>
-      <th class="align-middle", style="white-space: nowrap">
-        <div class="text-center">座席</div>
-      </th>
-      <% sum3 = 0 %>
-      <% @stages.each do |stage| %>
-      <td class="align-middle", style="white-space: nowrap">
-        <div class="text-center"><%= stage.total_seats %></div>
-        <% sum3 += stage.total_seats %>
-      </td>
-      <% end %>
-      <td class="align-middle", style="white-space: nowrap">
-        <div class="text-center"><%= sum3 %></div>
-      </td>
-    </tr>
-
 
     <%# 『収容率』については『管理取扱者』も『一般管理者』も共通。 %>
     <tr>
