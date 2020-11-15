@@ -157,7 +157,7 @@ ja:
         greater_than_or_equal_to: は%{count}以上の値にしてください
         inclusion: は一覧にありません
         invalid: は不正な値です
-        invalid_buyer_name: は全角のみで入力して下さい
+        invalid_buyer_name: は全角ひらがな、全角カタカナ、漢字のみで入力して下さい
         invalid_buyer_furigana: は全角カタカナのみで入力して下さい
         invalid_tel:  は正しい電話番号の形式で入力してください
         less_than: は%{count}より小さい値にしてください
