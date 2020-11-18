@@ -4,4 +4,4 @@
 
 <p>あなた様のアカウントへのロックを解除するには、 ↓ のリンクをクリックなさってください。</p>
 
-<p><%= link_to 'アカウントロックを解除', unlock_url(@resource, :unlock_token => @resource.unlock_token, :subdomain => @resource.subdomain) %></p>
+<p><%= link_to 'アカウントロックを解除', unlock_url(@resource, :unlock_token => @token, :subdomain => @resource.subdomain) %></p>
