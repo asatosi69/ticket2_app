@@ -10,26 +10,31 @@ class ReservedStubsController < ApplicationController
   end
   
   def reserved_stub_print
-    @page_title = '予約一覧別ウィンドウ'
-    search_condition = Ticket.joins(:seller).where(stage_id: params[:stage_id])
-    search_condition =
-      case params[:order_id]
-       when 'order_by_seller_id_and_buyer_furigana' then
-            search_condition.includes(:seller).order("sellers.name asc").order(buyer_furigana: "ASC")
-       when 'order_by_buyer_furigana' then
-            search_condition.order(buyer_furigana: "ASC")
-       when 'order_by_created_at' then
-            search_condition.order(created_at: "DESC")
-       when 'order_by_published_and_buyer_furigana' then
-            search_condition.order(published: "DESC").order(buyer_furigana: "ASC")
-       end
-    @stage = Stage.find_by(id: params[:stage_id])
-    @tickets = search_condition
-    @tickets = @tickets.to_a
-    while @tickets.size % (3 * 6) != 0
-      @tickets << Ticket.new
-    end
-    
+
+          @page_title = '予約一覧別ウィンドウ'
+          search_condition = Ticket.joins(:seller).where(stage_id: params[:stage_id])
+          search_condition =
+              case params[:order_id]
+               when 'order_by_seller_id_and_buyer_furigana' then
+                    search_condition.includes(:seller).order("sellers.name asc").order(buyer_furigana: "ASC")
+               when 'order_by_buyer_furigana' then
+                    search_condition.order(buyer_furigana: "ASC")
+               when 'order_by_created_at' then
+                    search_condition.order(created_at: "DESC")
+               when 'order_by_published_and_buyer_furigana' then
+                    search_condition.order(published: "DESC").order(buyer_furigana: "ASC")
+               end
+          @stage = Stage.find_by(id: params[:stage_id])
+          @tickets = search_condition
+          @tickets = @tickets.to_a
+          while @tickets.size % (3 * 6) != 0
+            @tickets << Ticket.new
+          end
+          
+          if params[:Hakushi]
+              @tickets = []
+          end
+        
       #render template: 'reserved_stubs/reserved_stubs'
       render 'reserved_stubs/reserved_stubs', layout: "application2"
     
