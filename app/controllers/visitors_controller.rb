@@ -79,7 +79,7 @@ class VisitorsController < ApplicationController
                                 enquete_array.push(ticket.buyer_mail)
                                 flash[:notice] = "アンケートを送信しました"
                               end
-                              ticket.update(enquete_flag: true)
+                              ticket.update(enquete_flag: "1")
                             end
                         end
                     end
