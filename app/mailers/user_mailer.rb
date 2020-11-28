@@ -86,7 +86,7 @@ class UserMailer < ApplicationMailer
     mail(
       to: "#{@ticket.buyer_mail}",
       bcc: "#{@ticket.seller.email}",
-      subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』への観劇後のアンケートにご協力ください。'"
+      subject: "'#{Rails.configuration.x.send(@subdomain).troupe_name}『#{Rails.configuration.x.send(@subdomain).performance_name}』のチケットをご予約いただいたお客様へ'"
       )
     end
 end
