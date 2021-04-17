@@ -66,7 +66,14 @@ class VisitorsController < ApplicationController
 
         else
           @subdomain = request.subdomain.to_s.to_sym
-          @tickets = Ticket.all
+          
+          @tickets = Ticket.where(id: params[:tickets])
+          if @tickets.blank?
+            @tickets = Ticket.all
+          else
+            @tickets = Ticket.where(id: params[:tickets])
+          end
+
             enquete_array = [] #アンケート送付済みのメールアドレスを格納する配列
 
             @tickets.each do |ticket|
